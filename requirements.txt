@@ -1,1 +1,7 @@
-
+pandas
+geopandas
+seaborn
+scikit-learn
+pytest
+mypy
+black
