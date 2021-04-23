@@ -1,0 +1,14 @@
+language: python
+install: skip
+script:
+- echo "Tests"
+deploy:
+  provider: s3
+  access_key_id: $ACCESS
+  secret_access_key: $SACCESS
+  bucket: "s3groupiceland"
+  endpoint: "https://s3.us-east-1.amazonaws.com"
+  region: "us-east-1"
+  skip_cleanup: true
+  on:
+        branch: master
