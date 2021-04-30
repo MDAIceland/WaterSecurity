@@ -5,6 +5,8 @@ scikit-learn
 nltk
 gensim
 spacy
+wheel
+langdetect
 pytest
 mypy
 black
