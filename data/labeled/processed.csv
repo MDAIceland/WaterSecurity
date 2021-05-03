@@ -1,0 +1,678 @@
+,city,latitude,longitude,country,c40,region,risk,description
+0,Abuja,9.07647,7.39857,Nigeria,False,Africa,Serious,Inadequate or aging infrastructure
+1,Abuja,9.07647,7.39857,Nigeria,False,Africa,Serious,Inadequate or aging infrastructure
+2,Abuja,9.07647,7.39857,Nigeria,False,Africa,Serious,Increased water stress or scarcity
+3,BouakÃ©,7.4137,-5.0149,CÃ´te d'Ivoire,False,Africa,Extremely serious,Declining water quality
+4,Cape Town,-33.9253,18.4239,South Africa,True,Africa,Extremely serious,Increased water stress or scarcity
+5,Casablanca,33.5206,-7.56806,Morocco,False,Africa,Serious,Increased water stress or scarcity
+6,Cocody,5.3602,-3.9674,CÃ´te d'Ivoire,False,Africa,Less Serious,Increased water demand
+7,Dar es Salaam,-6.79235,39.2083,United Republic of Tanzania,True,Africa,Serious,Increased water stress or scarcity
+8,Durban,-29.8587,31.0218,South Africa,True,Africa,Serious,Increased water stress or scarcity
+9,Ekurhuleni,-26.1777,28.3462,South Africa,False,Africa,Serious,Increased water stress or scarcity
+10,Ekurhuleni,-26.1777,28.3462,South Africa,False,Africa,Serious,Inadequate or aging infrastructure
+11,Ekurhuleni,-26.1777,28.3462,South Africa,False,Africa,Serious,Increased water stress or scarcity
+12,Ekurhuleni,-26.1777,28.3462,South Africa,False,Africa,Serious,Inadequate or aging infrastructure
+13,Harare,-17.8284,30.9328,Zimbabwe,False,Africa,Serious,Declining water quality
+14,Harare,-17.8284,30.9328,Zimbabwe,False,Africa,Less Serious,Increased water stress or scarcity
+15,Ibadan,7.37753,3.94704,Nigeria,False,Africa,Serious,Declining water quality
+16,Ilha,-15.0364,-40.7323,Mozambique,False,Africa,Serious,Inadequate or aging infrastructure
+17,Ilha,-15.0364,-40.7323,Mozambique,False,Africa,Serious,Inadequate or aging infrastructure
+18,Ilha,-15.0364,-40.7323,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+19,Ilha,-15.0364,-40.7323,Mozambique,False,Africa,Serious,Declining water quality
+20,Ilha,-15.0364,-40.7323,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+21,Johannesburg,-26.2041,28.0473,South Africa,True,Africa,Serious,Increased water stress or scarcity
+22,Kisumu,-0.0917,34.7679,Kenya,False,Africa,Extremely serious,Declining water quality
+23,Kisumu,-0.0917,34.7679,Kenya,False,Africa,Serious,Increased water demand
+24,Lagos,6.52437,3.3792,Nigeria,True,Africa,Serious,Declining water quality
+25,Lagos,6.52437,3.3792,Nigeria,True,Africa,Extremely serious,Energy supply issues
+26,Lagos,6.52437,3.3792,Nigeria,True,Africa,Extremely serious,Higher water prices
+27,Lagos,6.52437,3.3792,Nigeria,True,Africa,Serious,Declining water quality
+28,Lagos,6.52437,3.3792,Nigeria,True,Africa,Serious,Increased water demand
+29,Lagos,6.52437,3.3792,Nigeria,True,Africa,Serious,Increased water stress or scarcity
+30,Lagos,6.52437,3.3792,Nigeria,True,Africa,Serious,Regulatory
+31,Lilongwe,-13.9626,33.7741,Malawi,False,Africa,Serious,Increased water stress or scarcity
+32,Mazabuka,-15.8613,27.7491,Zambia,False,Africa,Serious,Increased water stress or scarcity
+33,Mazabuka,-15.8613,27.7491,Zambia,False,Africa,Serious,Declining water quality
+34,Mazabuka,-15.8613,27.7491,Zambia,False,Africa,Serious,Increased water stress or scarcity
+35,Nacala,-14.5656,40.6854,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+36,Nairobi,-1.29206,36.8219,Kenya,True,Africa,Serious,Declining water quality
+37,Nairobi,-1.29206,36.8219,Kenya,True,Africa,Serious,Increased water stress or scarcity
+38,Nakuru,-0.30309,36.08,Kenya,False,Africa,Serious,Declining water quality
+39,Nakuru,-0.30309,36.08,Kenya,False,Africa,Serious,Increased water stress or scarcity
+40,Nakuru,-0.30309,36.08,Kenya,False,Africa,Serious,Increased water stress or scarcity
+41,Nakuru,-0.30309,36.08,Kenya,False,Africa,Serious,Increased water stress or scarcity
+42,Pemba,-12.9732,40.5178,Mozambique,False,Africa,Serious,Energy supply issues
+43,Pemba,-12.9732,40.5178,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+44,Pemba,-12.9732,40.5178,Mozambique,False,Africa,Serious,Increased water demand
+45,Quelimane,-17.8503,36.9218,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+46,Quelimane,-17.8503,36.9218,Mozambique,False,Africa,Serious,Regulatory
+47,Quelimane,-17.8503,36.9218,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+48,Sekhukhune District Municipality,-24.8335,29.974,South Africa,False,Africa,Serious,Increased water stress or scarcity
+49,Vhembe,-22.7695,29.974,South Africa,False,Africa,Extremely serious,Declining water quality
+50,Vhembe,-22.7695,29.974,South Africa,False,Africa,Extremely serious,Increased water stress or scarcity
+51,West Coast District Municipality,-32.0951,18.627,South Africa,False,Africa,Extremely serious,Increased water stress or scarcity
+52,Windhoek,-22.5609,17.0658,Namibia,False,Africa,Serious,Declining water quality
+53,YaoundÃ© 6,3.86181,11.5191,Cameroon,False,Africa,Serious,Inadequate or aging infrastructure
+54,YaoundÃ© 6,3.86181,11.5191,Cameroon,False,Africa,Serious,Inadequate or aging infrastructure
+55,YaoundÃ© 6,3.86181,11.5191,Cameroon,False,Africa,Serious,Inadequate or aging infrastructure
+56,Changwon,35.1542,126.949,Republic of Korea,True,East Asia,Serious,Increased water stress or scarcity
+57,Dalian,38.9389,121.567,China,True,East Asia,Serious,Increased water stress or scarcity
+58,Dalian,38.9389,121.567,China,True,East Asia,Serious,Increased water stress or scarcity
+59,Hong Kong,22.2881,114.14,"China, Hong Kong Special Administrative Region",True,East Asia,Serious,Increased water stress or scarcity
+60,Hong Kong,22.2881,114.14,"China, Hong Kong Special Administrative Region",True,East Asia,Serious,Increased water stress or scarcity
+61,Kaohsiung,22.6297,120.344,"Taiwan, Greater China",False,East Asia,Serious,Increased water stress or scarcity
+62,New Taipei,25.0111,121.446,"Taiwan, Greater China",False,East Asia,Less Serious,Increased water stress or scarcity
+63,PingtungÂ County,22.6558,120.47,"Taiwan, Greater China",False,East Asia,Extremely serious,Declining water quality
+64,Suwon,37.17,126.805,Republic of Korea,False,East Asia,Serious,Increased water stress or scarcity
+65,Taichung,24.1619,120.647,"Taiwan, Greater China",False,East Asia,Less Serious,Increased water stress or scarcity
+66,Taipei,25.0375,121.564,"Taiwan, Greater China",False,East Asia,Less Serious,Declining water quality
+67,Taipei,25.0375,121.564,"Taiwan, Greater China",False,East Asia,Serious,Increased water stress or scarcity
+68,Tokyo,35.41,139.41,Japan,True,East Asia,Serious,Declining water quality
+69,Tokyo,35.41,139.41,Japan,True,East Asia,Serious,Inadequate or aging infrastructure
+70,Tokyo,35.41,139.41,Japan,True,East Asia,Serious,Increased water stress or scarcity
+71,Tokyo,35.41,139.41,Japan,True,East Asia,Serious,Declining water quality
+72,Yokohama,35.4437,139.638,Japan,True,East Asia,Serious,Increased water stress or scarcity
+73,Barcelona,41.3823,2.1775,Spain,True,Europe,Serious,Declining water quality
+74,Barcelona,41.3823,2.1775,Spain,True,Europe,Serious,Inadequate or aging infrastructure
+75,Barcelona,41.3823,2.1775,Spain,True,Europe,Serious,Increased water demand
+76,Barcelona,41.3823,2.1775,Spain,True,Europe,Extremely serious,Increased water stress or scarcity
+77,Bologna,44.4938,11.3387,Italy,False,Europe,Serious,Declining water quality
+78,Bologna,44.4938,11.3387,Italy,False,Europe,Serious,Increased water stress or scarcity
+79,Cambridge,52.2077,0.16353,United Kingdom of Great Britain and Northern Ireland,False,Europe,Serious,Increased water stress or scarcity
+80,Cascais,38.697,-9.42229,Portugal,False,Europe,Serious,Declining water quality
+81,Cascais,38.697,-9.42229,Portugal,False,Europe,Serious,Increased water stress or scarcity
+82,Cascais,38.697,-9.42229,Portugal,False,Europe,Serious,Increased water stress or scarcity
+83,Castelo Branco,39.8239,-7.49189,Portugal,False,Europe,Serious,Increased water stress or scarcity
+84,Ferrara,44.8357,11.619,Italy,False,Europe,Serious,Increased water stress or scarcity
+85,Ferrara,44.8357,11.619,Italy,False,Europe,Serious,Declining water quality
+86,Ferrara,44.8357,11.619,Italy,False,Europe,Extremely serious,Declining water quality
+87,Frederikshavn,57.4427,10.521,Denmark,False,Europe,Serious,Increased water stress or scarcity
+88,GuimarÃ£es,41.4443,-8.29224,Portugal,False,Europe,Serious,Declining water quality
+89,GuimarÃ£es,41.4443,-8.29224,Portugal,False,Europe,Serious,Increased water stress or scarcity
+90,Hvidovre,55.6425,12.4754,Denmark,False,Europe,Serious,Declining water quality
+91,Hvidovre,55.6425,12.4754,Denmark,False,Europe,Serious,Increased water stress or scarcity
+92,Lahti,60.9833,25.65,Finland,False,Europe,Serious,Declining water quality
+93,Lahti,60.9833,25.65,Finland,False,Europe,Serious,Increased water stress or scarcity
+94,Lahti,60.9833,25.65,Finland,False,Europe,Serious,Increased water stress or scarcity
+95,Leicester,52.6333,-1.1333,United Kingdom of Great Britain and Northern Ireland,False,Europe,Serious,Increased water stress or scarcity
+96,Leicester,52.6333,-1.1333,United Kingdom of Great Britain and Northern Ireland,False,Europe,Serious,Increased water stress or scarcity
+97,London,51.5048,-0.07868,United Kingdom of Great Britain and Northern Ireland,True,Europe,Serious,Increased water demand
+98,London,51.5048,-0.07868,United Kingdom of Great Britain and Northern Ireland,True,Europe,Serious,Increased water stress or scarcity
+99,Mannheim,49.4875,8.46603,Germany,False,Europe,Serious,Declining water quality
+100,Mirandela,41.51,-7.1753,Portugal,False,Europe,Serious,Declining water quality
+101,Mirandela,41.51,-7.1753,Portugal,False,Europe,Serious,Increased water stress or scarcity
+102,Murcia,37.799,-1.00495,Spain,False,Europe,Serious,Declining water quality
+103,Murcia,37.799,-1.00495,Spain,False,Europe,Extremely serious,Increased water stress or scarcity
+104,Nijmegen,51.8449,5.84282,Netherlands,False,Europe,Serious,Declining water quality
+105,Oristano,39.7207,8.898,Italy,False,Europe,Serious,Declining water quality
+106,Oristano,39.7207,8.898,Italy,False,Europe,Serious,Inadequate or aging infrastructure
+107,Oslo,59.9139,10.7522,Norway,True,Europe,Extremely serious,Increased water stress or scarcity
+108,Oslo,59.9139,10.7522,Norway,True,Europe,Serious,Increased water stress or scarcity
+109,Ovar,40.8901,-8.59723,Portugal,False,Europe,Serious,Declining water quality
+110,Paris,48.8566,2.35222,France,True,Europe,Extremely serious,Increased water stress or scarcity
+111,Paris,48.8566,2.35222,France,True,Europe,Extremely serious,Increased water stress or scarcity
+112,Parma,44.8015,10.3279,Italy,False,Europe,Serious,Declining water quality
+113,Podgorica,42.4304,19.2594,Montenegro,False,Europe,Serious,Declining water quality
+114,Podgorica,42.4304,19.2594,Montenegro,False,Europe,Less Serious,Higher water prices
+115,Podgorica,42.4304,19.2594,Montenegro,False,Europe,Extremely serious,Increased water stress or scarcity
+116,Podgorica,42.4304,19.2594,Montenegro,False,Europe,Serious,Increased water stress or scarcity
+117,PÃ¤rnu,58.3858,24.4966,Estonia,False,Europe,Serious,Declining water quality
+118,Reggio Emilia,44.4376,10.8774,Italy,False,Europe,Serious,Increased water stress or scarcity
+119,ReykjavÃ­k,64.1265,-21.8174,Iceland,False,Europe,Less Serious,Declining water quality
+120,ReykjavÃ­k,64.1265,-21.8174,Iceland,False,Europe,Less Serious,Increased water stress or scarcity
+121,Riga,56.9496,24.1052,Latvia,False,Europe,Less Serious,Declining water quality
+122,Riga,56.9496,24.1052,Latvia,False,Europe,Serious,Energy supply issues
+123,Riga,56.9496,24.1052,Latvia,False,Europe,Less Serious,Higher water prices
+124,Riga,56.9496,24.1052,Latvia,False,Europe,Serious,Increased water stress or scarcity
+125,Roma,41.53,12.2858,Italy,True,Europe,Serious,Increased water stress or scarcity
+126,Roma,41.53,12.2858,Italy,True,Europe,Extremely serious,Increased water stress or scarcity
+127,Rostock,54.0887,12.1405,Germany,False,Europe,Serious,Declining water quality
+128,SantarÃ©m,39.2367,-8.68599,Portugal,False,Europe,Serious,Declining water quality
+129,Stockholm,59.3293,18.0686,Sweden,True,Europe,Less Serious,Declining water quality
+130,Stockholm,59.3293,18.0686,Sweden,True,Europe,Serious,Increased water stress or scarcity
+131,The Hague,52.0705,4.3007,Netherlands,False,Europe,Serious,Declining water quality
+132,The Hague,52.0705,4.3007,Netherlands,False,Europe,Serious,Increased water stress or scarcity
+133,Torres Vedras,38.7637,-9.30148,Portugal,False,Europe,Serious,Declining water quality
+134,Torres Vedras,38.7637,-9.30148,Portugal,False,Europe,Serious,Increased water stress or scarcity
+135,Tuzla,44.5375,18.6735,Turkey,False,Europe,Serious,Declining water quality
+136,Urla,38.3434,26.5536,Turkey,False,Europe,Less Serious,Declining water quality
+137,Warsaw,52.2297,21.0122,Poland,True,Europe,Serious,Increased water stress or scarcity
+138,Ãlhavo,38.85,-7.58,Portugal,False,Europe,Serious,Declining water quality
+139,Ãlhavo,38.85,-7.58,Portugal,False,Europe,Serious,Increased water stress or scarcity
+140,Ã–rebro,59.2741,15.2066,Sweden,False,Europe,Less Serious,Increased water stress or scarcity
+141,Angra dos Reis,-22.9983,-44.2442,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+142,Aparecida de GoiÃ¢nia,-16.6869,-49.2648,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+143,Aracaju,-10.9472,-37.0731,Brazil,False,Latin America,Serious,Declining water quality
+144,Aracaju,-10.9472,-37.0731,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+145,Aracaju,-10.9472,-37.0731,Brazil,False,Latin America,Serious,Declining water quality
+146,ArchipiÃ©lago de San AndrÃ©s,12.5794,-81.6976,Colombia,False,Latin America,Extremely serious,Declining water quality
+147,ArchipiÃ©lago de San AndrÃ©s,12.5794,-81.6976,Colombia,False,Latin America,Extremely serious,Increased water demand
+148,ArchipiÃ©lago de San AndrÃ©s,12.5794,-81.6976,Colombia,False,Latin America,Extremely serious,Increased water stress or scarcity
+149,AsunciÃ³n,-25.2637,-57.5759,Paraguay,False,Latin America,Serious,Declining water quality
+150,AsunciÃ³n,-25.2637,-57.5759,Paraguay,False,Latin America,Serious,Inadequate or aging infrastructure
+151,AsunciÃ³n,-25.2637,-57.5759,Paraguay,False,Latin America,Less Serious,Increased water stress or scarcity
+152,Barrancabermeja,7.06066,-73.8724,Colombia,False,Latin America,Extremely serious,Increased water stress or scarcity
+153,Belo Horizonte,-19.9167,-43.9345,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+154,Bertioga,-23.8081,-46.0599,Brazil,False,Latin America,Extremely serious,Declining water quality
+155,Bertioga,-23.8081,-46.0599,Brazil,False,Latin America,Serious,Regulatory
+156,Betim,-19.9673,-44.2012,Brazil,False,Latin America,Serious,Declining water quality
+157,Botucatu,-22.8852,-48.4441,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+158,Bucaramanga,7.11034,-73.1227,Colombia,False,Latin America,Extremely serious,Declining water quality
+159,Bucaramanga,7.11034,-73.1227,Colombia,False,Latin America,Extremely serious,Increased water stress or scarcity
+160,Caieiras,-23.3612,-46.7402,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+161,Caieiras,-23.3612,-46.7402,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+162,Caieiras,-23.3612,-46.7402,Brazil,False,Latin America,Serious,Declining water quality
+163,Caieiras,-23.3612,-46.7402,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+164,Campina Grande,-7.2291,-35.8808,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+165,Campinas,-22.744,-46.9372,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+166,Campinas,-22.744,-46.9372,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+167,Cartagena,10.4218,-75.5501,Colombia,False,Latin America,Serious,Declining water quality
+168,Cartagena,10.4218,-75.5501,Colombia,False,Latin America,Serious,Declining water quality
+169,Chapala,20.2962,-103.191,Mexico,False,Latin America,Extremely serious,Declining water quality
+170,Chapala,20.2962,-103.191,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+171,Chapala,20.2962,-103.191,Mexico,False,Latin America,Less Serious,Increased water stress or scarcity
+172,Chihuahua,28.6368,-106.076,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+173,Colina,-33.2043,-70.684,Chile,False,Latin America,Serious,Declining water quality
+174,Comas,-11.95,-77.0667,Peru,False,Latin America,Serious,Increased water stress or scarcity
+175,Cruzeiro do Sul,-7.62799,-72.6761,Brazil,False,Latin America,Serious,Declining water quality
+176,Cruzeiro do Sul,-7.62799,-72.6761,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+177,Cuenca,-2.90841,-79.0048,Ecuador,False,Latin America,Extremely serious,Increased water stress or scarcity
+178,Curitiba,-25.4311,-49.2647,Brazil,True,Latin America,Less Serious,Increased water stress or scarcity
+179,CÃ³rdoba,-31.4201,-64.1888,Argentina,False,Latin America,Less Serious,Increased water stress or scarcity
+180,Degollado,20.4489,-102.132,Mexico,False,Latin America,Serious,Declining water quality
+181,Fortaleza,-10.7183,-48.3936,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+182,Franco da Rocha,-23.3094,-46.732,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+183,"General Alvear, Buenos Aires",-34.978,-67.6955,Argentina,False,Latin America,Extremely serious,Declining water quality
+184,"General Alvear, Buenos Aires",-34.978,-67.6955,Argentina,False,Latin America,Serious,Inadequate or aging infrastructure
+185,"General Alvear, Buenos Aires",-34.978,-67.6955,Argentina,False,Latin America,Extremely serious,Increased water stress or scarcity
+186,GoiÃ¢nia,-16.6869,-49.2648,Brazil,False,Latin America,Serious,Declining water quality
+187,GoiÃ¢nia,-16.6869,-49.2648,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+188,GoiÃ¢nia,-16.6869,-49.2648,Brazil,False,Latin America,Serious,Increased water demand
+189,GoiÃ¢nia,-16.6869,-49.2648,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+190,Guadalajara,20.6597,-103.35,Mexico,True,Latin America,Serious,Declining water quality
+191,GuarujÃ¡,-23.9946,-46.2569,Brazil,False,Latin America,Extremely serious,Declining water quality
+192,GuarujÃ¡,-23.9946,-46.2569,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+193,GuarujÃ¡,-23.9946,-46.2569,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+194,GuarujÃ¡,-23.9946,-46.2569,Brazil,False,Latin America,Less Serious,Regulatory
+195,IbaguÃ©,4.44851,-75.24,Colombia,False,Latin America,Serious,Inadequate or aging infrastructure
+196,IbaguÃ©,4.44851,-75.24,Colombia,False,Latin America,Serious,Increased water demand
+197,IbaguÃ©,4.44851,-75.24,Colombia,False,Latin America,Extremely serious,Increased water stress or scarcity
+198,Independencia,-32.8421,-68.8154,Chile,False,Latin America,Serious,Inadequate or aging infrastructure
+199,JICOSUR,19.34,-104.38,Mexico,False,Latin America,Less Serious,Declining water quality
+200,JICOSUR,19.34,-104.38,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+201,JICOSUR,19.34,-104.38,Mexico,False,Latin America,Less Serious,Increased water demand
+202,JICOSUR,19.34,-104.38,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+203,JICOSUR,19.34,-104.38,Mexico,False,Latin America,Less Serious,Regulatory
+204,JIMAV,19.7682,-104.367,Mexico,False,Latin America,Serious,Declining water quality
+205,JIMAV,19.7682,-104.367,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+206,JIMAV,19.7682,-104.367,Mexico,False,Latin America,Serious,Increased water demand
+207,Juruena,-10.3178,-58.3589,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+208,JuÃ¡rez,31.6904,-106.425,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+209,La Barca,20.2903,-102.546,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+210,Leticia,-4.21528,-69.9406,Colombia,False,Latin America,Serious,Declining water quality
+211,Limeira,-22.5665,-47.3974,Brazil,False,Latin America,Serious,Declining water quality
+212,Londrina,-23.3356,-51.1505,Brazil,False,Latin America,Serious,Declining water quality
+213,Lorena,-22.7339,-45.1201,Brazil,False,Latin America,Extremely serious,Declining water quality
+214,Lorena,-22.7339,-45.1201,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+215,MedellÃ­n,6.22729,-75.5735,Colombia,True,Latin America,Serious,Declining water quality
+216,MedellÃ­n,6.22729,-75.5735,Colombia,True,Latin America,Serious,Increased water stress or scarcity
+217,Mendoza,-32.8894,-68.8458,Argentina,False,Latin America,Serious,Increased water stress or scarcity
+218,Mexico City,19.4326,-99.1332,Mexico,True,Latin America,Serious,Increased water stress or scarcity
+219,Mexico City,19.4326,-99.1332,Mexico,True,Latin America,Extremely serious,Increased water stress or scarcity
+220,Miraflores,-16.3994,-71.5366,Peru,False,Latin America,Extremely serious,Increased water stress or scarcity
+221,MonterÃ­a,8.74798,-75.8814,Colombia,False,Latin America,Serious,Increased water stress or scarcity
+222,MÃ©rida,20.9674,-89.5926,Mexico,False,Latin America,Serious,Declining water quality
+223,Natal,-5.77925,-35.2009,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+224,Natal,-5.77925,-35.2009,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+225,Naucalpan de JuÃ¡rez,19.4631,-99.2453,Mexico,False,Latin America,Serious,Declining water quality
+226,NiterÃ³i,-22.8928,-43.1184,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+227,NiterÃ³i,-22.8928,-43.1184,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+228,NiterÃ³i,-22.8928,-43.1184,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+229,OlÃ­mpia,-20.7371,-48.9111,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+230,Palmira,3.53944,-76.3036,Colombia,False,Latin America,Serious,Declining water quality
+231,Palmira,3.53944,-76.3036,Colombia,False,Latin America,Serious,Increased water demand
+232,Palmira,3.53944,-76.3036,Colombia,False,Latin America,Serious,Increased water stress or scarcity
+233,PirenÃ³polis,-15.8545,-48.9595,Brazil,False,Latin America,Serious,Declining water quality
+234,Providencia,-33.4313,-70.6092,Chile,False,Latin America,Serious,Declining water quality
+235,Providencia,-33.4313,-70.6092,Chile,False,Latin America,Serious,Increased water stress or scarcity
+236,Puerto Barrios,-88.5944,15.7278,Guatemala,False,Latin America,Less Serious,Declining water quality
+237,Puerto Barrios,-88.5944,15.7278,Guatemala,False,Latin America,Less Serious,Increased water stress or scarcity
+238,Quito,-0.2333,-78.5167,Ecuador,True,Latin America,Serious,Increased water stress or scarcity
+239,Recife,-8.05783,-34.8829,Brazil,False,Latin America,Extremely serious,Declining water quality
+240,Rio Verde,-17.9685,-50.4892,Brazil,False,Latin America,Extremely serious,Declining water quality
+241,Rio de Janeiro,-22.9054,-43.5614,Brazil,True,Latin America,Extremely serious,Increased water stress or scarcity
+242,Rio de Janeiro,-22.9054,-43.5614,Brazil,True,Latin America,Serious,Increased water stress or scarcity
+243,San Isidro (Lima),-12.0977,-77.0273,Peru,False,Latin America,Serious,Higher water prices
+244,San Isidro (Lima),-12.0977,-77.0273,Peru,False,Latin America,Serious,Increased water stress or scarcity
+245,San Isidro (Lima),-12.0977,-77.0273,Peru,False,Latin America,Extremely serious,Increased water stress or scarcity
+246,San Pedro de UrabÃ¡,-76.3414,8.34552,Colombia,False,Latin America,Serious,Declining water quality
+247,Santiago de Cali,3.45164,-76.532,Colombia,False,Latin America,Serious,Declining water quality
+248,Santiago de Guayaquil,-2.17099,-79.9223,Ecuador,False,Latin America,Serious,Increased water stress or scarcity
+249,Santiago de Surco,-12.1453,-77.0051,Peru,False,Latin America,Extremely serious,Increased water stress or scarcity
+250,Sincelejo,9.30457,-75.3906,Colombia,False,Latin America,Serious,Inadequate or aging infrastructure
+251,Sincelejo,9.30457,-75.3906,Colombia,False,Latin America,Serious,Declining water quality
+252,Sincelejo,9.30457,-75.3906,Colombia,False,Latin America,Serious,Increased water stress or scarcity
+253,SopÃ³,4.9075,-73.9384,Colombia,False,Latin America,Less Serious,Increased water demand
+254,Sorocaba,-23.4775,-47.4221,Brazil,False,Latin America,Extremely serious,Declining water quality
+255,Sorocaba,-23.4775,-47.4221,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+256,Sorocaba,-23.4775,-47.4221,Brazil,False,Latin America,Serious,Increased water demand
+257,Sorocaba,-23.4775,-47.4221,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+258,SÃ£o Leopoldo,-29.761,-51.1493,Brazil,False,Latin America,Less Serious,Increased water demand
+259,SÃ£o Leopoldo,-29.761,-51.1493,Brazil,False,Latin America,Less Serious,Increased water stress or scarcity
+260,SÃ£o Paulo,-23.5595,-46.7382,Brazil,True,Latin America,Serious,Increased water stress or scarcity
+261,SÃ£o Vicente,-23.963,-46.3919,Brazil,False,Latin America,Less Serious,Increased water demand
+262,TangarÃ¡ da Serra,-14.6194,-57.4858,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+263,TatuÃ­,-23.3492,-47.8466,Brazil,False,Latin America,Serious,Declining water quality
+264,TatuÃ­,-23.3492,-47.8466,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+265,Tegucigalpa,14.1051,-87.2044,Honduras,False,Latin America,Serious,Declining water quality
+266,TorreÃ³n,25.5428,-103.407,Mexico,False,Latin America,Extremely serious,Declining water quality
+267,TorreÃ³n,25.5428,-103.407,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+268,Vinhedo,-23.0307,-46.9838,Brazil,False,Latin America,Serious,Declining water quality
+269,Xalapa,20.1318,-98.7556,Mexico,False,Latin America,Serious,Higher water prices
+270,Xalapa,20.1318,-98.7556,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+271,Xalapa,20.1318,-98.7556,Mexico,False,Latin America,Serious,Increased water demand
+272,Xalapa,20.1318,-98.7556,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+273,Abasan Al-Kabira,31.3231,34.344,State of Palestine,False,Middle East,Serious,Increased water stress or scarcity
+274,Abasan Al-Kabira,31.3231,34.344,State of Palestine,False,Middle East,Serious,Inadequate or aging infrastructure
+275,Abasan Al-Kabira,31.3231,34.344,State of Palestine,False,Middle East,Serious,Inadequate or aging infrastructure
+276,Amman,31.9454,35.9284,Jordan,True,Middle East,Extremely serious,Increased water demand
+277,Amman,31.9454,35.9284,Jordan,True,Middle East,Extremely serious,Increased water stress or scarcity
+278,Abington,40.1241,-75.1195,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+279,"Ajax, ON",43.8509,-79.0204,Canada,False,North America,Extremely serious,Declining water quality
+280,"Ajax, ON",43.8509,-79.0204,Canada,False,North America,Serious,Increased water demand
+281,Alameda,37.4522,122.163,United States of America,False,North America,Serious,Increased water stress or scarcity
+282,Anchorage,61.2181,-149.9,United States of America,False,North America,Serious,Increased water stress or scarcity
+283,Arlington,37.2265,-76.0026,United States of America,False,North America,Less Serious,Declining water quality
+284,Arlington,37.2265,-76.0026,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+285,Asheville,35.5951,-82.5515,United States of America,False,North America,Serious,Increased water stress or scarcity
+286,Asheville,35.5951,-82.5515,United States of America,False,North America,Serious,Increased water demand
+287,Asheville,35.5951,-82.5515,United States of America,False,North America,Serious,Increased water stress or scarcity
+288,Atlanta,33.749,-84.388,United States of America,False,North America,Serious,Increased water stress or scarcity
+289,Austin,30.2672,-97.7431,United States of America,True,North America,Extremely serious,Increased water stress or scarcity
+290,Benicia,38.0494,-122.159,United States of America,False,North America,Serious,Higher water prices
+291,Benicia,38.0494,-122.159,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+292,Bloomington,39.1653,-86.5264,United States of America,False,North America,Less Serious,Declining water quality
+293,Bloomington,39.1653,-86.5264,United States of America,False,North America,Less Serious,Increased water demand
+294,Boulder,40.0274,-105.252,United States of America,False,North America,Serious,Declining water quality
+295,Boulder,40.0274,-105.252,United States of America,False,North America,Serious,Increased water stress or scarcity
+296,Boulder,40.0274,-105.252,United States of America,False,North America,Serious,Increased water stress or scarcity
+297,Breckenridge,39.4817,106.038,United States of America,False,North America,Serious,Increased water stress or scarcity
+298,"Brisbane, CA",37.6808,-122.4,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+299,"Brisbane, CA",37.6808,-122.4,United States of America,False,North America,Serious,Increased water stress or scarcity
+300,Broward,26.1901,80.3659,United States of America,False,North America,Serious,Declining water quality
+301,"Buffalo, NY",42.8864,-78.8784,United States of America,False,North America,Serious,Increased water stress or scarcity
+302,"Buffalo, NY",42.8864,-78.8784,United States of America,False,North America,Serious,Increased water stress or scarcity
+303,"Buffalo, NY",42.8864,-78.8784,United States of America,False,North America,Serious,Increased water stress or scarcity
+304,Calgary,51.0486,-114.071,Canada,False,North America,Serious,Increased water stress or scarcity
+305,Calgary,51.0486,-114.071,Canada,False,North America,Extremely serious,Increased water stress or scarcity
+306,Calgary,51.0486,-114.071,Canada,False,North America,Serious,Regulatory
+307,Chula Vista,32.64,-117.084,United States of America,False,North America,Serious,Increased water stress or scarcity
+308,Cincinnati,39.1031,-84.512,United States of America,False,North America,Serious,Increased water stress or scarcity
+309,Cincinnati,39.1031,-84.512,United States of America,False,North America,Serious,Increased water stress or scarcity
+310,Cincinnati,39.1031,-84.512,United States of America,False,North America,Serious,Declining water quality
+311,Cincinnati,39.1031,-84.512,United States of America,False,North America,Serious,Increased water stress or scarcity
+312,Cincinnati,39.1031,-84.512,United States of America,False,North America,Serious,Increased water stress or scarcity
+313,Cleveland,41.4993,-81.6944,United States of America,False,North America,Less Serious,Declining water quality
+314,Cleveland,41.4993,-81.6944,United States of America,False,North America,Serious,Increased water stress or scarcity
+315,"Columbia, MO",38.9517,-92.3341,United States of America,False,North America,Serious,Declining water quality
+316,"Columbia, MO",38.9517,-92.3341,United States of America,False,North America,Serious,Increased water stress or scarcity
+317,"Columbia, MO",38.9517,-92.3341,United States of America,False,North America,Serious,Increased water stress or scarcity
+318,Columbus,39.9612,-82.9988,United States of America,False,North America,Serious,Declining water quality
+319,Columbus,39.9612,-82.9988,United States of America,False,North America,Serious,Higher water prices
+320,Culver City,34.02,-118.4,United States of America,False,North America,Serious,Declining water quality
+321,Culver City,34.02,-118.4,United States of America,False,North America,Serious,Increased water stress or scarcity
+322,Denver,39.7376,-104.985,United States of America,False,North America,Serious,Declining water quality
+323,Denver,39.7376,-104.985,United States of America,False,North America,Serious,Increased water demand
+324,Denver,39.7376,-104.985,United States of America,False,North America,Serious,Increased water stress or scarcity
+325,"Dublin, CA",37.7,-121.93,United States of America,False,North America,Serious,Increased water stress or scarcity
+326,"Durham, NC",35.994,-78.8986,United States of America,False,North America,Serious,Increased water stress or scarcity
+327,"Durham, NC",35.994,-78.8986,United States of America,False,North America,Serious,Increased water stress or scarcity
+328,Easton,40.6884,-75.2207,United States of America,False,North America,Less Serious,Declining water quality
+329,Emeryville,37.8313,-122.285,United States of America,False,North America,Serious,Increased water stress or scarcity
+330,Encinitas,33.0454,-117.293,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+331,Evanston,42.0669,-87.6898,United States of America,False,North America,Less Serious,Declining water quality
+332,Fayetteville,36.0821,-94.1719,United States of America,False,North America,Serious,Declining water quality
+333,Fayetteville,36.0821,-94.1719,United States of America,False,North America,Serious,Increased water stress or scarcity
+334,Flagstaff,35.1992,-111.631,United States of America,False,North America,Serious,Higher water prices
+335,Flagstaff,35.1992,-111.631,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+336,Fort Collins,40.5853,-105.084,United States of America,False,North America,Serious,Increased water stress or scarcity
+337,Fort Collins,40.5853,-105.084,United States of America,False,North America,Serious,Increased water stress or scarcity
+338,Fort Worth,32.7555,-97.3308,United States of America,False,North America,Serious,Increased water stress or scarcity
+339,Fresno,36.7468,-119.773,United States of America,False,North America,Serious,Increased water stress or scarcity
+340,Gretna,29.9164,-90.0542,United States of America,False,North America,Serious,Declining water quality
+341,Gretna,29.9164,-90.0542,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+342,Guelph,43.55,80.25,Canada,False,North America,Serious,Declining water quality
+343,Guelph,43.55,80.25,Canada,False,North America,Less Serious,Energy supply issues
+344,Guelph,43.55,80.25,Canada,False,North America,Less Serious,Higher water prices
+345,Guelph,43.55,80.25,Canada,False,North America,Serious,Increased water stress or scarcity
+346,Guelph,43.55,80.25,Canada,False,North America,Less Serious,Increased water demand
+347,Guelph,43.55,80.25,Canada,False,North America,Serious,Increased water stress or scarcity
+348,Guelph,43.55,80.25,Canada,False,North America,Serious,Regulatory
+349,Hamilton,43.25,-79.8661,Canada,False,North America,Less Serious,Declining water quality
+350,Hamilton,43.25,-79.8661,Canada,False,North America,Serious,Increased water stress or scarcity
+351,Hayward,37.6689,-122.081,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+352,Honolulu,21.28,157.59,United States of America,False,North America,Serious,Increased water stress or scarcity
+353,Huntington Beach,33.6603,-117.999,United States of America,False,North America,Serious,Increased water stress or scarcity
+354,Indianapolis,39.7676,-86.1785,United States of America,False,North America,Serious,Increased water stress or scarcity
+355,Indianapolis,39.7676,-86.1785,United States of America,False,North America,Serious,Increased water stress or scarcity
+356,Key West,81.78,24.5551,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+357,LaGrange,40.0428,-91.4976,United States of America,False,North America,Serious,Declining water quality
+358,Lakewood,39.7047,-105.081,United States of America,False,North America,Serious,Declining water quality
+359,Lakewood,39.7047,-105.081,United States of America,False,North America,Serious,Increased water stress or scarcity
+360,Lakewood,39.7047,-105.081,United States of America,False,North America,Serious,Increased water stress or scarcity
+361,"Lancaster, PA",40.0379,-76.3055,United States of America,False,North America,Serious,Increased water stress or scarcity
+362,"Lancaster, PA",40.0379,-76.3055,United States of America,False,North America,Serious,Increased water stress or scarcity
+363,Las Vegas,36.1699,-115.14,United States of America,False,North America,Serious,Declining water quality
+364,Las Vegas,36.1699,-115.14,United States of America,False,North America,Less Serious,Higher water prices
+365,Las Vegas,36.1699,-115.14,United States of America,False,North America,Serious,Declining water quality
+366,Las Vegas,36.1699,-115.14,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+367,Las Vegas,36.1699,-115.14,United States of America,False,North America,Less Serious,Regulatory
+368,Long Beach,33.7701,-118.194,United States of America,False,North America,Serious,Increased water stress or scarcity
+369,Manhattan Beach,33.8889,-118.405,United States of America,False,North America,Serious,Increased water stress or scarcity
+370,Memphis,35.1495,-90.049,United States of America,False,North America,Serious,Declining water quality
+371,Memphis,35.1495,-90.049,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+372,Miami Beach,25.7906,-80.13,United States of America,False,North America,Serious,Increased water stress or scarcity
+373,Miami Beach,25.7906,-80.13,United States of America,False,North America,Serious,Declining water quality
+374,Miami Beach,25.7906,-80.13,United States of America,False,North America,Serious,Increased water stress or scarcity
+375,Moab,38.57,-109.54,United States of America,False,North America,Serious,Declining water quality
+376,Nashville,36.1627,-86.7816,United States of America,False,North America,Less Serious,Declining water quality
+377,Nashville,36.1627,-86.7816,United States of America,False,North America,Serious,Increased water stress or scarcity
+378,Nashville,36.1627,-86.7816,United States of America,False,North America,Serious,Increased water stress or scarcity
+379,Natchez,31.5604,-91.4032,United States of America,False,North America,Serious,Declining water quality
+380,New Bedford,41.6362,-70.9342,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+381,North Vancouver,49.32,-123.072,Canada,False,North America,Serious,Declining water quality
+382,North Vancouver,49.32,-123.072,Canada,False,North America,Serious,Increased water stress or scarcity
+383,North Vancouver,49.32,-123.072,Canada,False,North America,Serious,Increased water demand
+384,North Vancouver,49.32,-123.072,Canada,False,North America,Serious,Increased water stress or scarcity
+385,Oakland,37.8044,-122.271,United States of America,False,North America,Serious,Higher water prices
+386,Oakland,37.8044,-122.271,United States of America,False,North America,Serious,Increased water stress or scarcity
+387,Oakland,37.8044,-122.271,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+388,Oakland,37.8044,-122.271,United States of America,False,North America,Serious,Regulatory
+389,Park City,40.6461,-111.498,United States of America,False,North America,Serious,Increased water stress or scarcity
+390,Park City,40.6461,-111.498,United States of America,False,North America,Serious,Increased water stress or scarcity
+391,Phoenix,33.4484,-112.074,United States of America,False,North America,Serious,Higher water prices
+392,Phoenix,33.4484,-112.074,United States of America,False,North America,Serious,Increased water stress or scarcity
+393,Piedmont,37.8244,-122.232,United States of America,False,North America,Less Serious,Higher water prices
+394,Piedmont,37.8244,-122.232,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+395,Pittsburgh,40.4406,-79.9959,United States of America,False,North America,Serious,Declining water quality
+396,Pittsburgh,40.4406,-79.9959,United States of America,False,North America,Serious,Declining water quality
+397,Pittsburgh,40.4406,-79.9959,United States of America,False,North America,Serious,Increased water stress or scarcity
+398,Pittsburgh,40.4406,-79.9959,United States of America,False,North America,Serious,Increased water stress or scarcity
+399,"Portland, ME",43.6615,-70.2553,United States of America,False,North America,Serious,Declining water quality
+400,"Portland, ME",43.6615,-70.2553,United States of America,False,North America,Serious,Increased water stress or scarcity
+401,"Portland, OR",45.52,-122.682,United States of America,True,North America,Serious,Increased water stress or scarcity
+402,"Portland, OR",45.52,-122.682,United States of America,True,North America,Serious,Declining water quality
+403,"Portland, OR",45.52,-122.682,United States of America,True,North America,Serious,Inadequate or aging infrastructure
+404,"Portland, OR",45.52,-122.682,United States of America,True,North America,Serious,Declining water quality
+405,Prince George,53.9171,-122.75,Canada,False,North America,Extremely serious,Declining water quality
+406,Prince George,53.9171,-122.75,Canada,False,North America,Serious,Increased water stress or scarcity
+407,Reno,39.5296,-119.814,United States of America,False,North America,Serious,Increased water stress or scarcity
+408,Reno,39.5296,-119.814,United States of America,False,North America,Serious,Increased water stress or scarcity
+409,"Richmond, VA",37.5407,-77.436,United States of America,False,North America,Serious,Declining water quality
+410,Rochester,43.161,-77.6109,United States of America,False,North America,Serious,Declining water quality
+411,Rochester,43.161,-77.6109,United States of America,False,North America,Serious,Increased water stress or scarcity
+412,Sacramento,38.5816,-121.494,United States of America,False,North America,Serious,Increased water stress or scarcity
+413,Salt Lake City,40.7608,-111.891,United States of America,False,North America,Serious,Declining water quality
+414,Salt Lake City,40.7608,-111.891,United States of America,False,North America,Serious,Declining water quality
+415,Salt Lake City,40.7608,-111.891,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+416,San Antonio,29.4241,-98.4936,United States of America,False,North America,Serious,Increased water stress or scarcity
+417,San Francisco,37.7749,-122.419,United States of America,True,North America,Serious,Increased water stress or scarcity
+418,"San JosÃ©, CA",37.3382,-121.886,United States of America,False,North America,Serious,Increased water stress or scarcity
+419,San Leandro,37.7249,-122.156,United States of America,False,North America,Serious,Increased water stress or scarcity
+420,San Leandro,37.7249,-122.156,United States of America,False,North America,Serious,Increased water stress or scarcity
+421,"Santa Cruz, CA",36.9741,-122.031,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+422,"Santa Cruz, CA",36.9741,-122.031,United States of America,False,North America,Serious,Increased water stress or scarcity
+423,Santa Fe County,35.5,-106.0,United States of America,False,North America,Serious,Increased water demand
+424,Santa Fe County,35.5,-106.0,United States of America,False,North America,Serious,Increased water stress or scarcity
+425,Saratoga Springs,43.0333,-73.8167,United States of America,False,North America,Less Serious,Increased water demand
+426,Saskatoon,52.1332,-106.67,Canada,False,North America,Serious,Declining water quality
+427,Saskatoon,52.1332,-106.67,Canada,False,North America,Serious,Inadequate or aging infrastructure
+428,Saskatoon,52.1332,-106.67,Canada,False,North America,Serious,Declining water quality
+429,Saskatoon,52.1332,-106.67,Canada,False,North America,Serious,Inadequate or aging infrastructure
+430,Seattle,47.6062,-122.332,United States of America,True,North America,Serious,Declining water quality
+431,St Catharines,43.1594,-79.2469,Canada,False,North America,Less Serious,Higher water prices
+432,St Catharines,43.1594,-79.2469,Canada,False,North America,Serious,Increased water stress or scarcity
+433,St Louis,38.627,-90.1994,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+434,St Louis,38.627,-90.1994,United States of America,False,North America,Serious,Declining water quality
+435,Tempe,33.4255,-111.94,United States of America,False,North America,Serious,Increased water stress or scarcity
+436,Tempe,33.4255,-111.94,United States of America,False,North America,Serious,Increased water stress or scarcity
+437,Toledo,41.6639,-83.5552,United States of America,False,North America,Extremely serious,Declining water quality
+438,Vail,39.6403,-106.374,United States of America,False,North America,Serious,Increased water stress or scarcity
+439,Vail,39.6403,-106.374,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+440,Vail,39.6403,-106.374,United States of America,False,North America,Serious,Increased water stress or scarcity
+441,Vancouver,49.2612,-123.114,Canada,True,North America,Less Serious,Increased water stress or scarcity
+442,"Washington, DC",38.9072,-77.0369,United States of America,True,North America,Serious,Declining water quality
+443,"Washington, DC",38.9072,-77.0369,United States of America,True,North America,Serious,Increased water stress or scarcity
+444,"Washington, DC",38.9072,-77.0369,United States of America,True,North America,Serious,Increased water stress or scarcity
+445,West Hollywood,34.09,-118.362,United States of America,False,North America,Serious,Increased water stress or scarcity
+446,West Palm Beach,26.7153,-80.0534,United States of America,False,North America,Serious,Increased water stress or scarcity
+447,West Palm Beach,26.7153,-80.0534,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+448,Windsor,42.3149,-83.0364,Canada,False,North America,Serious,Declining water quality
+449,Windsor,42.3149,-83.0364,Canada,False,North America,Less Serious,Increased water stress or scarcity
+450,Winston-Salem,36.0999,-80.2442,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+451,Dhaka,23.8103,90.4125,Bangladesh,True,South and West Asia,Serious,Inadequate or aging infrastructure
+452,Dhaka,23.8103,90.4125,Bangladesh,True,South and West Asia,Serious,Inadequate or aging infrastructure
+453,Dhaka,23.8103,90.4125,Bangladesh,True,South and West Asia,Serious,Increased water stress or scarcity
+454,Dhaka,23.8103,90.4125,Bangladesh,True,South and West Asia,Extremely serious,Increased water stress or scarcity
+455,Karachi,24.9108,67.1281,Pakistan,True,South and West Asia,Extremely serious,Increased water stress or scarcity
+456,Kolkata,22.5726,88.3639,India,True,South and West Asia,Serious,Increased water stress or scarcity
+457,Adelaide,-34.9285,138.601,Australia,False,Southeast Asia and Oceania,Serious,Higher water prices
+458,Adelaide,-34.9285,138.601,Australia,False,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+459,Adelaide,-34.9285,138.601,Australia,False,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+460,Adelaide,-34.9285,138.601,Australia,False,Southeast Asia and Oceania,Serious,Regulatory
+461,Auckland,-36.8153,174.742,New Zealand,True,Southeast Asia and Oceania,Serious,Declining water quality
+462,Auckland,-36.8153,174.742,New Zealand,True,Southeast Asia and Oceania,Serious,Declining water quality
+463,Auckland,-36.8153,174.742,New Zealand,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+464,Bangkok,13.7712,100.556,Thailand,True,Southeast Asia and Oceania,Less Serious,Increased water stress or scarcity
+465,Canberra,-35.3075,149.124,Australia,False,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+466,City of Melbourne,-37.8141,144.963,Australia,True,Southeast Asia and Oceania,Serious,Increased water demand
+467,City of Melbourne,-37.8141,144.963,Australia,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+468,City of Sydney,-33.8675,151.207,Australia,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+469,City of Sydney,-33.8675,151.207,Australia,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+470,Hutt City,-41.2092,174.908,New Zealand,False,Southeast Asia and Oceania,Serious,Declining water quality
+471,Iskandar,5.71447,100.992,Malaysia,False,Southeast Asia and Oceania,Serious,Declining water quality
+472,Jakarta,-6.1751,106.865,Indonesia,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+473,Jakarta,-6.1751,106.865,Indonesia,True,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+474,Jakarta,-6.1751,106.865,Indonesia,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+475,Jakarta,-6.1751,106.865,Indonesia,True,Southeast Asia and Oceania,Extremely serious,Increased water stress or scarcity
+476,Jakarta,-6.1751,106.865,Indonesia,True,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+477,New Plymouth District,-39.1011,174.354,New Zealand,False,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+478,New Plymouth District,-39.1011,174.354,New Zealand,False,Southeast Asia and Oceania,Serious,Increased water demand
+479,Wellington,-41.2865,174.776,New Zealand,False,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+480,Wellington,-41.2865,174.776,New Zealand,False,Southeast Asia and Oceania,Serious,Declining water quality
+481,Wellington,-41.2865,174.776,New Zealand,False,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+482,Wollongong,-34.4278,150.893,Australia,False,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+483,Wollongong,-34.4278,150.893,Australia,False,Southeast Asia and Oceania,Serious,Increased water stress or scarcity
+484,Abuja,9.07647,7.39857,Nigeria,False,Africa,Serious,Inadequate or aging infrastructure
+485,Addis Ababa,9.02887,38.7544,Ethiopia,True,Africa,Serious,Inadequate or aging infrastructure
+486,Addis Ababa,9.02887,38.7544,Ethiopia,True,Africa,Serious,Increased water demand
+487,Addis Ababa,9.02887,38.7544,Ethiopia,True,Africa,Serious,Increased water stress or scarcity
+488,Dar es Salaam,-6.79235,39.2083,United Republic of Tanzania,True,Africa,Serious,Inadequate or aging infrastructure
+489,Dar es Salaam,-6.79235,39.2083,United Republic of Tanzania,True,Africa,Serious,Increased water stress or scarcity
+490,Durban,-29.8587,31.0218,South Africa,True,Africa,Serious,Increased water stress or scarcity
+491,Ekurhuleni,-26.1777,28.3462,South Africa,False,Africa,Serious,Inadequate or aging infrastructure
+492,Harare,-17.8284,30.9328,Zimbabwe,False,Africa,Extremely serious,Declining water quality
+493,Ilha,-15.0364,-40.7323,Mozambique,False,Africa,Serious,Inadequate or aging infrastructure
+494,Lagos,6.52437,3.3792,Nigeria,True,Africa,Serious,Inadequate or aging infrastructure
+495,Nakuru,-0.30309,36.08,Kenya,False,Africa,Serious,Inadequate or aging infrastructure
+496,Nakuru,-0.30309,36.08,Kenya,False,Africa,Extremely serious,Increased water demand
+497,Pemba,-12.9732,40.5178,Mozambique,False,Africa,Serious,Inadequate or aging infrastructure
+498,Pemba,-12.9732,40.5178,Mozambique,False,Africa,Serious,Increased water stress or scarcity
+499,Quelimane,-17.8503,36.9218,Mozambique,False,Africa,Serious,Inadequate or aging infrastructure
+500,YaoundÃ© 6,3.86181,11.5191,Cameroon,False,Africa,Serious,Inadequate or aging infrastructure
+501,Hong Kong,22.2881,114.14,"China, Hong Kong Special Administrative Region",True,East Asia,Less Serious,Inadequate or aging infrastructure
+502,Nagoya,35.1815,136.906,Japan,False,East Asia,Serious,Inadequate or aging infrastructure
+503,Nagoya,35.1815,136.906,Japan,False,East Asia,Serious,Inadequate or aging infrastructure
+504,Tokyo,35.41,139.41,Japan,True,East Asia,Serious,Inadequate or aging infrastructure
+505,Barcelona,41.3823,2.1775,Spain,True,Europe,Serious,Inadequate or aging infrastructure
+506,Castelo Branco,39.8239,-7.49189,Portugal,False,Europe,Serious,Declining water quality
+507,Castelo Branco,39.8239,-7.49189,Portugal,False,Europe,Less Serious,Inadequate or aging infrastructure
+508,Hvidovre,55.6425,12.4754,Denmark,False,Europe,Serious,Inadequate or aging infrastructure
+509,Iasi,47.1,27.35,Romania,False,Europe,Serious,Increased water stress or scarcity
+510,Lahti,60.9833,25.65,Finland,False,Europe,Serious,Inadequate or aging infrastructure
+511,Leicester,52.6333,-1.1333,United Kingdom of Great Britain and Northern Ireland,False,Europe,Serious,Inadequate or aging infrastructure
+512,London,51.5048,-0.07868,United Kingdom of Great Britain and Northern Ireland,True,Europe,Less Serious,Regulatory
+513,Oslo,59.9139,10.7522,Norway,True,Europe,Less Serious,Declining water quality
+514,Ovar,40.8901,-8.59723,Portugal,False,Europe,Serious,Inadequate or aging infrastructure
+515,Podgorica,42.4304,19.2594,Montenegro,False,Europe,Serious,Inadequate or aging infrastructure
+516,Riga,56.9496,24.1052,Latvia,False,Europe,Serious,Inadequate or aging infrastructure
+517,Roma,41.53,12.2858,Italy,True,Europe,Extremely serious,Inadequate or aging infrastructure
+518,Torres Vedras,38.7637,-9.30148,Portugal,False,Europe,Serious,Inadequate or aging infrastructure
+519,Angra dos Reis,-22.9983,-44.2442,Brazil,False,Latin America,Less Serious,Inadequate or aging infrastructure
+520,Angra dos Reis,-22.9983,-44.2442,Brazil,False,Latin America,Serious,Increased water demand
+521,AsunciÃ³n,-25.2637,-57.5759,Paraguay,False,Latin America,Serious,Inadequate or aging infrastructure
+522,Barrancabermeja,7.06066,-73.8724,Colombia,False,Latin America,Serious,Declining water quality
+523,Bayeux,-7.12505,-34.9268,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+524,Brotas,-22.0,-48.0,Brazil,False,Latin America,Serious,Increased water demand
+525,Brotas,-22.0,-48.0,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+526,Brumadinho,-20.1427,-44.1982,Brazil,False,Latin America,Serious,Declining water quality
+527,Brumadinho,-20.1427,-44.1982,Brazil,False,Latin America,Serious,Increased water demand
+528,Brumadinho,-20.1427,-44.1982,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+529,Caieiras,-23.3612,-46.7402,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+530,Cajamar,-23.3646,-46.8725,Brazil,False,Latin America,Less Serious,Inadequate or aging infrastructure
+531,Cajamar,-23.3646,-46.8725,Brazil,False,Latin America,Extremely serious,Increased water demand
+532,Cajamar,-23.3646,-46.8725,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+533,Campinas,-22.744,-46.9372,Brazil,False,Latin America,Extremely serious,Declining water quality
+534,Campinas,-22.744,-46.9372,Brazil,False,Latin America,Extremely serious,Higher water prices
+535,Campinas,-22.744,-46.9372,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+536,Chapala,20.2962,-103.191,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+537,Cruzeiro do Sul,-7.62799,-72.6761,Brazil,False,Latin America,Less Serious,Inadequate or aging infrastructure
+538,"General Alvear, Buenos Aires",-34.978,-67.6955,Argentina,False,Latin America,Serious,Inadequate or aging infrastructure
+539,GoiÃ¢nia,-16.6869,-49.2648,Brazil,False,Latin America,Less Serious,Inadequate or aging infrastructure
+540,GuarujÃ¡,-23.9946,-46.2569,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+541,IbaguÃ©,4.44851,-75.24,Colombia,False,Latin America,Serious,Inadequate or aging infrastructure
+542,JICOSUR,19.34,-104.38,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+543,JIMAV,19.7682,-104.367,Mexico,False,Latin America,Extremely serious,Inadequate or aging infrastructure
+544,JIMAV,19.7682,-104.367,Mexico,False,Latin America,Serious,Increased water stress or scarcity
+545,La Barca,20.2903,-102.546,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+546,La Barca,20.2903,-102.546,Mexico,False,Latin America,Serious,Increased water demand
+547,Leticia,-4.21528,-69.9406,Colombia,False,Latin America,Extremely serious,Inadequate or aging infrastructure
+548,Limeira,-22.5665,-47.3974,Brazil,False,Latin America,Less Serious,Increased water stress or scarcity
+549,Londrina,-23.3356,-51.1505,Brazil,False,Latin America,Less Serious,Higher water prices
+550,Lorena,-22.7339,-45.1201,Brazil,False,Latin America,Serious,Energy supply issues
+551,Lorena,-22.7339,-45.1201,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+552,MaceiÃ³,-9.67342,-35.718,Brazil,False,Latin America,Serious,Declining water quality
+553,MaceiÃ³,-9.67342,-35.718,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+554,Mendoza,-32.8894,-68.8458,Argentina,False,Latin America,Serious,Inadequate or aging infrastructure
+555,Mendoza,-32.8894,-68.8458,Argentina,False,Latin America,Serious,Increased water stress or scarcity
+556,Mexico City,19.4326,-99.1332,Mexico,True,Latin America,Extremely serious,Inadequate or aging infrastructure
+557,MonterÃ­a,8.74798,-75.8814,Colombia,False,Latin America,Less Serious,Declining water quality
+558,NiterÃ³i,-22.8928,-43.1184,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+559,PirenÃ³polis,-15.8545,-48.9595,Brazil,False,Latin America,Extremely serious,Declining water quality
+560,Rio de Janeiro,-22.9054,-43.5614,Brazil,True,Latin America,Serious,Energy supply issues
+561,Rio de Janeiro,-22.9054,-43.5614,Brazil,True,Latin America,Extremely serious,Inadequate or aging infrastructure
+562,San Isidro (Lima),-12.0977,-77.0273,Peru,False,Latin America,Extremely serious,Inadequate or aging infrastructure
+563,Santiago,-33.4489,-70.6693,Chile,False,Latin America,Extremely serious,Declining water quality
+564,Santiago,-33.4489,-70.6693,Chile,False,Latin America,Extremely serious,Increased water demand
+565,Santiago,-33.4489,-70.6693,Chile,False,Latin America,Extremely serious,Increased water stress or scarcity
+566,Santiago,-33.4489,-70.6693,Chile,True,Latin America,Serious,Declining water quality
+567,Santiago,-33.4489,-70.6693,Chile,True,Latin America,Serious,Increased water stress or scarcity
+568,Santiago,-33.4489,-70.6693,Chile,True,Latin America,Serious,Regulatory
+569,Sorocaba,-23.4775,-47.4221,Brazil,False,Latin America,Less Serious,Inadequate or aging infrastructure
+570,SÃ£o Bento do SapucaÃ­,-22.6874,-45.732,Brazil,False,Latin America,Extremely serious,Declining water quality
+571,SÃ£o Bento do SapucaÃ­,-22.6874,-45.732,Brazil,False,Latin America,Extremely serious,Inadequate or aging infrastructure
+572,SÃ£o Bento do SapucaÃ­,-22.6874,-45.732,Brazil,False,Latin America,Extremely serious,Increased water demand
+573,SÃ£o Bento do SapucaÃ­,-22.6874,-45.732,Brazil,False,Latin America,Extremely serious,Increased water stress or scarcity
+574,SÃ£o Leopoldo,-29.761,-51.1493,Brazil,False,Latin America,Less Serious,Higher water prices
+575,SÃ£o Leopoldo,-29.761,-51.1493,Brazil,False,Latin America,Less Serious,Inadequate or aging infrastructure
+576,TorreÃ³n,25.5428,-103.407,Mexico,False,Latin America,Serious,Increased water demand
+577,VitÃ³ria,-20.3338,-40.3776,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+578,VitÃ³ria,-20.3338,-40.3776,Brazil,False,Latin America,Serious,Increased water stress or scarcity
+579,VitÃ³ria,-20.3338,-40.3776,Brazil,False,Latin America,Extremely serious,Inadequate or aging infrastructure
+580,VitÃ³ria,-20.3338,-40.3776,Brazil,False,Latin America,Serious,Inadequate or aging infrastructure
+581,Xalapa,20.1318,-98.7556,Mexico,False,Latin America,Serious,Inadequate or aging infrastructure
+582,Abasan Al-Kabira,31.3231,34.344,State of Palestine,False,Middle East,Serious,Inadequate or aging infrastructure
+583,Abington,40.1241,-75.1195,United States of America,False,North America,Serious,Declining water quality
+584,Abington,40.1241,-75.1195,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+585,"Ajax, ON",43.8509,-79.0204,Canada,False,North America,Extremely serious,Inadequate or aging infrastructure
+586,Asheville,35.5951,-82.5515,United States of America,False,North America,Extremely serious,Inadequate or aging infrastructure
+587,Atlanta,33.749,-84.388,United States of America,False,North America,Serious,Higher water prices
+588,Aurora,88.3201,41.7606,United States of America,False,North America,Serious,Declining water quality
+589,Aurora,88.3201,41.7606,United States of America,False,North America,Serious,Increased water demand
+590,Aurora,88.3201,41.7606,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+591,Blacksburg,37.2296,-80.4139,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+592,Bloomington,39.1653,-86.5264,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+593,Boynton Beach,26.4986,-80.216,United States of America,False,North America,Serious,Declining water quality
+594,Boynton Beach,26.4986,-80.216,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+595,Boynton Beach,26.4986,-80.216,United States of America,False,North America,Serious,Increased water demand
+596,Bridgewater,44.3786,-64.5188,Canada,False,North America,Extremely serious,Declining water quality
+597,Bridgewater,44.3786,-64.5188,Canada,False,North America,Extremely serious,Increased water demand
+598,"Brisbane, CA",37.6808,-122.4,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+599,"Buffalo, NY",42.8864,-78.8784,United States of America,False,North America,Serious,Increased water stress or scarcity
+600,Calgary,51.0486,-114.071,Canada,False,North America,Serious,Inadequate or aging infrastructure
+601,Cincinnati,39.1031,-84.512,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+602,Cleveland,41.4993,-81.6944,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+603,Clinton,41.839,-90.192,United States of America,False,North America,Less Serious,Declining water quality
+604,Clinton,41.839,-90.192,United States of America,False,North America,Serious,Higher water prices
+605,Clinton,41.839,-90.192,United States of America,False,North America,Serious,Increased water demand
+606,"Columbia, MO",38.9517,-92.3341,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+607,Columbus,39.9612,-82.9988,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+608,Detroit,42.3314,-83.0457,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+609,"Dublin, CA",37.7,-121.93,United States of America,False,North America,Serious,Higher water prices
+610,"Durham, NC",35.994,-78.8986,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+611,Edmonton,53.5444,-113.491,Canada,False,North America,Extremely serious,Increased water stress or scarcity
+612,Evanston,42.0669,-87.6898,United States of America,False,North America,Serious,Increased water stress or scarcity
+613,Fayetteville,36.0821,-94.1719,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+614,Fayetteville,36.0821,-94.1719,United States of America,False,North America,Serious,Increased water demand
+615,Fremont,37.5483,-121.989,United States of America,False,North America,Less Serious,Higher water prices
+616,Fremont,37.5483,-121.989,United States of America,False,North America,Less Serious,Increased water demand
+617,Fremont,37.5483,-121.989,United States of America,False,North America,Serious,Increased water stress or scarcity
+618,Fresno,36.7468,-119.773,United States of America,False,North America,Serious,Increased water demand
+619,Gretna,29.9164,-90.0542,United States of America,False,North America,Extremely serious,Inadequate or aging infrastructure
+620,Guelph,43.55,80.25,Canada,False,North America,Serious,Inadequate or aging infrastructure
+621,Hayward,37.6689,-122.081,United States of America,False,North America,Serious,Higher water prices
+622,Honolulu,21.28,157.59,United States of America,False,North America,Serious,Energy supply issues
+623,Honolulu,21.28,157.59,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+624,Indianapolis,39.7676,-86.1785,United States of America,False,North America,Serious,Declining water quality
+625,Indianapolis,39.7676,-86.1785,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+626,Kansas City,39.1429,-94.573,United States of America,False,North America,Extremely serious,Inadequate or aging infrastructure
+627,La Crosse,43.8014,-91.2396,United States of America,False,North America,Serious,Declining water quality
+628,La Crosse,43.8014,-91.2396,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+629,Lakewood,39.7047,-105.081,United States of America,False,North America,Serious,Higher water prices
+630,Lakewood,39.7047,-105.081,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+631,"Lancaster, PA",40.0379,-76.3055,United States of America,False,North America,Extremely serious,Increased water stress or scarcity
+632,Las Vegas,36.1699,-115.14,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+633,Las Vegas,36.1699,-115.14,United States of America,False,North America,Serious,Increased water demand
+634,Laval,45.6207,-73.7126,Canada,False,North America,Less Serious,Increased water demand
+635,Long Beach,33.7701,-118.194,United States of America,False,North America,Less Serious,Inadequate or aging infrastructure
+636,Miami Beach,25.7906,-80.13,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+637,Minneapolis,44.9833,-93.2667,United States of America,False,North America,Less Serious,Increased water stress or scarcity
+638,Nashville,36.1627,-86.7816,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+639,Natchez,31.5604,-91.4032,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+640,New Bedford,41.6362,-70.9342,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+641,New Bedford,41.6362,-70.9342,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+642,North Vancouver,49.32,-123.072,Canada,False,North America,Serious,Inadequate or aging infrastructure
+643,Oakland,37.8044,-122.271,United States of America,False,North America,Extremely serious,Inadequate or aging infrastructure
+644,Pittsburgh,40.4406,-79.9959,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+645,"Portland, ME",43.6615,-70.2553,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+646,"Portland, OR",45.52,-122.682,United States of America,True,North America,Serious,Inadequate or aging infrastructure
+647,Prince George,53.9171,-122.75,Canada,False,North America,Less Serious,Inadequate or aging infrastructure
+648,Ramsey,45.2611,-93.45,United States of America,False,North America,Less Serious,Increased water demand
+649,"Richmond, VA",37.5407,-77.436,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+650,Salt Lake City,40.7608,-111.891,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+651,San Leandro,37.7249,-122.156,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+652,Saratoga Springs,43.0333,-73.8167,United States of America,False,North America,Less Serious,Declining water quality
+653,Saskatoon,52.1332,-106.67,Canada,False,North America,Serious,Inadequate or aging infrastructure
+654,St Catharines,43.1594,-79.2469,Canada,False,North America,Serious,Declining water quality
+655,St Catharines,43.1594,-79.2469,Canada,False,North America,Serious,Inadequate or aging infrastructure
+656,St Louis,38.627,-90.1994,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+657,Surfside,25.8789,-80.1233,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+658,Surfside,25.8789,-80.1233,United States of America,False,North America,Serious,Increased water stress or scarcity
+659,"Washington, DC",38.9072,-77.0369,United States of America,True,North America,Serious,Inadequate or aging infrastructure
+660,West Hollywood,34.09,-118.362,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+661,West Palm Beach,26.7153,-80.0534,United States of America,False,North America,Serious,Inadequate or aging infrastructure
+662,Dhaka,23.8103,90.4125,Bangladesh,True,South and West Asia,Serious,Inadequate or aging infrastructure
+663,Adelaide,-34.9285,138.601,Australia,False,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+664,Auckland,-36.8153,174.742,New Zealand,True,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+665,Byron Shire,-28.6534,153.533,Australia,False,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+666,City of Sydney,-33.8675,151.207,Australia,True,Southeast Asia and Oceania,Serious,Higher water prices
+667,City of Sydney,-33.8675,151.207,Australia,True,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+668,City of Sydney,-33.8675,151.207,Australia,True,Southeast Asia and Oceania,Serious,Increased water demand
+669,City of Sydney,-33.8675,151.207,Australia,True,Southeast Asia and Oceania,Serious,Regulatory
+670,Ho Chi Minh,10.7626,106.66,Viet Nam,True,Southeast Asia and Oceania,Serious,Declining water quality
+671,Ho Chi Minh,10.7626,106.66,Viet Nam,True,Southeast Asia and Oceania,Less Serious,Higher water prices
+672,Ho Chi Minh,10.7626,106.66,Viet Nam,True,Southeast Asia and Oceania,Less Serious,Inadequate or aging infrastructure
+673,Ho Chi Minh,10.7626,106.66,Viet Nam,True,Southeast Asia and Oceania,Less Serious,Increased water demand
+674,Jakarta,-6.1751,106.865,Indonesia,True,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+675,New Plymouth District,-39.1011,174.354,New Zealand,False,Southeast Asia and Oceania,Serious,Inadequate or aging infrastructure
+676,Wellington,-41.2865,174.776,New Zealand,False,Southeast Asia and Oceania,Less Serious,Inadequate or aging infrastructure
