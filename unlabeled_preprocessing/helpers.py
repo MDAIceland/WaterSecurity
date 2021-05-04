@@ -22,7 +22,7 @@ def unlabeled_df_imputer(df, max_iter=10, verbose=0):
     imp = IterativeImputer(max_iter=max_iter, verbose=verbose)
     imp.fit(df)
     imputed_df = imp.transform(df)
-    return pd.DataFrame(imputed_df, columns=df.columns)
+    return pd.DataFrame(imputed_df, columns=df.columns,index=df.index)
 
 def print_missing_percentages(df):
     """
