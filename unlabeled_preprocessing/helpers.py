@@ -45,11 +45,3 @@ def find_all_integer_columns(df):
     """
     integer_columns = df.applymap(lambda x: int(x)==x if pd.notnull(x) else x).prod().values.astype(bool)
     return df.columns[integer_columns].values
-
-def find_all_float_columns(df):
-    """
-    Returns an array of all colums that contain only float or null values
-    """
-    float_columns = df.applymap(lambda x: float(x)==x if pd.notnull(x) else x).prod().values.astype(bool)
-    return df.columns[float_columns].values
-
