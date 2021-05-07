@@ -13,3 +13,5 @@ black
 #GUI stuff
 fiona
 bokeh
+geojson
+folium
