@@ -1,0 +1,19 @@
+magnitude,risks_to_citys_water_supply,size,size_imp,increase,size_c40,size_imp_c40,increase_c40
+Extremely serious,Energy supply issues,1,1,0.0,1,1,0.0
+Extremely serious,Higher water prices,2,2,0.0,1,1,0.0
+Extremely serious,Inadequate or aging infrastructure,12,13,0.08333333333333333,3,3,0.0
+Extremely serious,Increased water demand,7,8,0.14285714285714285,1,1,0.0
+Extremely serious,Increased water stress or scarcity,39,50,0.28205128205128205,8,13,0.625
+Less Serious,Declining water quality,18,19,0.05555555555555555,2,2,0.0
+Less Serious,Higher water prices,10,10,0.0,1,1,0.0
+Less Serious,Inadequate or aging infrastructure,18,27,0.5,2,2,0.0
+Less Serious,Increased water demand,12,12,0.0,1,1,0.0
+Less Serious,Increased water stress or scarcity,21,22,0.047619047619047616,3,3,0.0
+Less Serious,Regulatory,4,4,0.0,1,1,0.0
+Serious,Declining water quality,57,93,0.631578947368421,9,13,0.4444444444444444
+Serious,Energy supply issues,5,5,0.0,1,1,0.0
+Serious,Higher water prices,14,14,0.0,1,1,0.0
+Serious,Inadequate or aging infrastructure,48,127,1.6458333333333333,8,19,1.375
+Serious,Increased water demand,30,53,0.7666666666666667,6,8,0.3333333333333333
+Serious,Increased water stress or scarcity,94,181,0.925531914893617,21,38,0.8095238095238095
+Serious,Regulatory,8,10,0.25,3,3,0.0
