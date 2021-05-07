@@ -39,6 +39,7 @@ def print_missing_percentages(df):
     print("Mean:", mean_missing,'%')
     return min_missing, max_missing
 
+
 def find_all_integer_columns(df):
     """
     Returns an array of all colums that contain only integers or null values
