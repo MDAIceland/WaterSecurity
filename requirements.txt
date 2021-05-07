@@ -10,3 +10,6 @@ langdetect
 pytest
 mypy
 black
+#GUI stuff
+fiona
+bokeh
