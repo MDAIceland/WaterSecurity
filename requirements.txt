@@ -10,3 +10,5 @@ langdetect
 pytest
 mypy
 black
+geojson
+folium
