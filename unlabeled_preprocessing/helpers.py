@@ -16,11 +16,11 @@ def fill_missing_with_column(df, into, fro):
     df.drop([fro], axis=1, inplace = True)
 
     
-def impute_df(df, max_iter=10, verbose=0):
+def impute_df(df,verbose=0, **kwargs):
     """
     Imputes a df and returns a dataframe with the original and imputed values
     """
-    imp = IterativeImputer(max_iter=max_iter, verbose=verbose)
+    imp = IterativeImputer(verbose=verbose, **kwargs)
     imp.fit_transform(df)
     imputed_df = imp.transform(df)
     return pd.DataFrame(imputed_df, columns=df.columns,index=df.index)
