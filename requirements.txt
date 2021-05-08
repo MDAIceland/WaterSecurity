@@ -15,3 +15,5 @@ fiona
 bokeh
 geojson
 folium
+#debugging
+ptvsd

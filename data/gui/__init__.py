@@ -1,6 +1,11 @@
 import os
+import json
 from bokeh.models import GeoJSONDataSource
 
-_cdir = os.sep.join(os.path.split(__file__)[:-1])
+GUI_DIR = os.sep.join(os.path.split(__file__)[:-1])
+with open(os.path.join(GUI_DIR, "countries.geojson"), "r") as inp:
+    COUNTRIES_MAP_SOURCE = GeoJSONDataSource(geojson=inp.read())
+from bokeh.models import ColumnDataSource
+from data.labeled import LABELED_CITIES
 
-COUNTRIES_MAP = GeoJSONDataSource(geojson=os.path.join(_cdir, "countries.geojson"))
+LABELED_CITIES_SOURCE = ColumnDataSource(data=LABELED_CITIES)
