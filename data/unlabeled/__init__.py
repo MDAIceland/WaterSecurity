@@ -32,3 +32,15 @@ try:
     edstats_se = pd.read_csv(edstats_se_path)
 except Exception as e:
     print("Something went wrong loading the Education Dataset", e)
+    
+try:
+    aquastat_eah_path = os.path.join(_cdir, "aquastat/aquastat_env_and_health.csv")
+    aquastat_wr_path = os.path.join(_cdir, "aquastat/aquastat_water_resources.csv")
+    aquastat_wu_path = os.path.join(_cdir, "aquastat/aquastat_water_use.csv")
+    aquastat_cc_path = os.path.join(_cdir, "aquastat/aquastat_country_code.csv")
+    aquastat_eah = pd.read_csv(aquastat_eah_path, skipfooter=8)
+    aquastat_wr = pd.read_csv(aquastat_wr_path, skipfooter=8)
+    aquastat_wu = pd.read_csv(aquastat_wu_path, skipfooter=8)
+    aquastat_cc = pd.read_csv(aquastat_cc_path)
+except Exception as e:
+    print("Something went wrong loading the Aquastat Dataset", e)
