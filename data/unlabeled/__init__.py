@@ -41,6 +41,12 @@ try:
     aquastat_eah = pd.read_csv(aquastat_eah_path, skipfooter=8)
     aquastat_wr = pd.read_csv(aquastat_wr_path, skipfooter=8)
     aquastat_wu = pd.read_csv(aquastat_wu_path, skipfooter=8)
+    aquastat_eah['Md'] = aquastat_eah['Unknown']
+    aquastat_wr['Md'] = aquastat_wr['Unknown']
+    aquastat_wu['Md'] = aquastat_wu['Unknown']
+    aquastat_eah.drop("Unknown", axis=1, inplace=True)
+    aquastat_wr.drop("Unknown", axis=1, inplace=True)
+    aquastat_wu.drop("Unknown", axis=1, inplace=True)
     aquastat_cc = pd.read_csv(aquastat_cc_path)
 except Exception as e:
     print("Something went wrong loading the Aquastat Dataset", e)
