@@ -12,7 +12,6 @@ mypy
 black
 #GUI stuff
 fiona
-bokeh
 geojson
 folium
 ipyleaflet
