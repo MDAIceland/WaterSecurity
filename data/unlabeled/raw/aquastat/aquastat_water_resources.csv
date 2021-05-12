@@ -1,6 +1,4 @@
-﻿
-
-"Area","Area Id","Variable Name","Variable Id","Year","Value","Symbol","Md"
+﻿"Area","Area Id","Variable Name","Variable Id","Year","Value","Symbol","Md","Unknown"
 "Afghanistan",4,"National Rainfall Index (NRI)",4472,2017,185.0,"I","","0"
 "Afghanistan",4,"Total internal renewable water resources per capita",4158,2017,1299.0371723826,"E","","0"
 "Afghanistan",4,"Dependency ratio",4192,2017,28.7226001512,"E","","0"

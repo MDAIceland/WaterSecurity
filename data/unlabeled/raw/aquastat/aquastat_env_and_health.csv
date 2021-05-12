@@ -1,6 +1,4 @@
-﻿
-
-"Area","Area Id","Variable Name","Variable Id","Year","Value","Symbol","Md"
+﻿"Area","Area Id","Variable Name","Variable Id","Year","Value","Symbol","Md","Unknown"
 "Afghanistan",4,"Total population",4104,2017,36296.113,"X","","0"
 "Afghanistan",4,"Rural population",4105,2017,26558.609,"X","","0"
 "Afghanistan",4,"Urban population",4106,2017,8971.472,"X","","0"

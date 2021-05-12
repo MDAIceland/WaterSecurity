@@ -1,6 +1,4 @@
-﻿
-
-"Area","Area Id","Variable Name","Variable Id","Year","Value","Symbol","Md"
+﻿"Area","Area Id","Variable Name","Variable Id","Year","Value","Symbol","Md","Unknown"
 "Afghanistan",4,"Agricultural water withdrawal as % of total water withdrawal",4254,2017,98.169627299,"E","","0"
 "Afghanistan",4,"Industrial water withdrawal as % of total water withdrawal",4256,2017,0.8319875914,"E","","0"
 "Afghanistan",4,"Municipal water withdrawal as % of total withdrawal",4255,2017,0.9983851096,"E","","0"
