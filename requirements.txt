@@ -15,5 +15,5 @@ fiona
 bokeh
 geojson
 folium
-#debugging
-ptvsd
+ipyleaflet
+voila==0.1.24
