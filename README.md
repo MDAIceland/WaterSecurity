@@ -5,3 +5,9 @@ The current climate change scenario predicts that almost half of the world’s p
 
 Google Drive Meeting Notes:
 https://docs.google.com/document/d/1wlf6fF76RSY6xtbQwIJ4vqqaYujQ0-_ivw8ZJ2gSnSQ/edit?usp=sharing
+
+Installing:
+`pip install -r requirements.txt`
+
+Running the Web App:
+`python run.py`
