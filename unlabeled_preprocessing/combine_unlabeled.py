@@ -20,7 +20,16 @@ print("Not in humdev",countries_diff_humdev_econ)
 big_table = humdev.join(edu, how="inner").join(aqua, how="inner")
 # %%
 big_table.dropna(axis=1, inplace=True)
+
+
 # %%
-big_table.columns
+name_columns = set(big_table.columns) - set(big_table.select_dtypes(include="number").columns)
+print("Info columns",name_columns)
+# %%
+big_table.drop(['Short Name','Long Name','Table Name'],inplace=True, axis=1)
+
+# %%
+big_table
 # %%
 big_table.to_csv("../data/unlabeled/preprocessed_unlabeled.csv")
+# %%
