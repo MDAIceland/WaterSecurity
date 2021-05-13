@@ -32,4 +32,3 @@ big_table.drop(['Short Name','Long Name','Table Name'],inplace=True, axis=1)
 big_table
 # %%
 big_table.to_csv("../data/unlabeled/preprocessed_unlabeled.csv")
-# %%
