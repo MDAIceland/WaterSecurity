@@ -7,8 +7,8 @@ FILLED_DATASET_PATH = os.path.join(PREDICTIONS_DIR, "filled_dataset.csv")
 PREDICTION_MASK_PATH = os.path.join(PREDICTIONS_DIR, "prediction_mask.csv")
 try:
     with open(FILLED_DATASET_PATH, "rb") as inp:
-        FILLED_DATASET = pickle.load(inp)
+        FILLED_DATASET = pd.read_csv(inp)
     with open(PREDICTION_MASK_PATH, "rb") as inp:
-        PREDICTION_MASK = pickle.load(inp)
+        PREDICTION_MASK = pd.read_csv(inp)
 except IOError:
     pass

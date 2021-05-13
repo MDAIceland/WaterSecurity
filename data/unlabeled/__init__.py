@@ -13,3 +13,9 @@ try:
     BIG_CITIES_ALL_COUNTRIES = pd.read_csv(BIG_CITIES_ALL_COUNTRIES_PATH)
 except FileNotFoundError:
     pass
+try:
+    COUNTRIES_DATASET = pd.read_csv(
+        os.path.join(UNLABELED_DIR, "countries_dataset.csv")
+    )
+except ImportError:
+    pass

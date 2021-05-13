@@ -13,13 +13,13 @@ def get_place(latitude, longitude):
     try:
         city = geoname.find("toponymName").text
         country = geoname.find("countryName").text
-        code = geoname.find("geoname").text
+        code = geoname.find("countryCode").text
         return {"city": city, "country": country, "code": code}
     except AttributeError:
         raise
 
 
-def is_close(p1, p2, thres=1):
+def is_close(p1, p2, thres=0.3):
     if sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2) < thres:
         return True
     return False

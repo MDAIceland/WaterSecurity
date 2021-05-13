@@ -20,7 +20,7 @@ from utils.geo import is_close, get_place
 
 class TrainingRequired(NotFittedError):
     def __init__(self, obj):
-        super.__init__(f"{obj} could not be loaded. Training setp is required")
+        super().__init__(f"{obj} could not be loaded. Training model is required")
 
 
 class InvalidCoordinates(BaseException):
@@ -38,7 +38,8 @@ class ModelHandler:
         self._dataset = None
         self._valid_metrics = None
         self._train_metrics = None
-        self.id_columns = ["city", "coutnry", "latitude", "longitude"]
+        self._filled_dataset = None
+        self.id_columns = ["city", "country", "latitude", "longitude"]
 
     @property
     def model(self):
@@ -73,7 +74,17 @@ class ModelHandler:
             self.train_mask = dataset[self.lab_names].apply(
                 lambda x: all(pd.isnull(x)), axis=1
             )
+            self._dataset = dataset
         return self._dataset
+
+    @property
+    def filled_dataset(self):
+        if self._filled_dataset is None:
+            try:
+                self._filled_dataset = pd.read_csv(FILLED_DATASET_PATH)
+            except IOError:
+                raise TrainingRequired("Filled Dataset")
+        return self._filled_dataset
 
     @staticmethod
     def compute_metrics(y_true, y_pred):
@@ -81,6 +92,14 @@ class ModelHandler:
         metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred)
         metrics["classification_report"] = classification_report(y_true, y_pred)
         return metrics
+
+    @property
+    def is_fitted(self) -> bool:
+        try:
+            self.model
+        except TrainingRequired:
+            return False
+        return True
 
     def train(self):
         dataset = self.dataset
@@ -93,7 +112,7 @@ class ModelHandler:
         filled_dataset = dataset[self.lab_names + self.id_columns].copy()
         for label in self.lab_names:
             train_mask = ~pd.isnull(dataset[label])
-            labeled = dataset.iloc[train_mask, :]
+            labeled = dataset.loc[train_mask, :]
             train_set, valid_set = train_test_split(
                 labeled, test_size=0.3, random_state=RANDOM_SEED
             )
@@ -116,10 +135,11 @@ class ModelHandler:
             )
         self.model = model
         with open(VALIDATION_METRICS_PATH, "wb") as out:
-            pickle.dump(self.valid_metrics, out)
+            pickle.dump(valid_metrics, out)
         with open(TRAINING_METRICS_PATH, "wb") as out:
-            pickle.dump(self.train_metrics, out)
-        filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
+            pickle.dump(train_metrics, out)
+        self.filled_dataset = filled_dataset
+        self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
         pd.isnull(dataset[self.lab_names]).to_csv(PREDICTION_MASK_PATH, index=False)
 
     def test(self, latitude, longitude):
@@ -133,22 +153,22 @@ class ModelHandler:
             axis=1,
         )
         if np.any(check_existing):
-
+            labs = list(sorted(self.model.keys()))
             return (
-                FILLED_DATASET.loc[check_existing, self.lab_names].iloc[0, :],
-                PREDICTION_MASK.loc[check_existing, :].iloc[0],
+                FILLED_DATASET.loc[check_existing, labs + ["city", "country"]].iloc[0],
+                PREDICTION_MASK.loc[check_existing, labs].iloc[0],
             )
         try:
             place = get_place(latitude, longitude)
         except AttributeError:
             raise InvalidCoordinates
-        from data.unlabeled.preprocessed import COUNTRIES_DATASET
+        from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET[COUNTRIES_DATASET["country"] == place["code"]]
+        feats = COUNTRIES_DATASET[COUNTRIES_DATASET["2-alpha code"] == place["code"]]
         preds = {}
         mask = {}
-        for label in self.lab_names:
-            preds[label] = self.model[label].predict(feats)
+        for label in self.model:
+            preds[label] = self.model[label].predict(feats)[0]
             mask[label] = True
         preds["city"] = place["city"]
         preds["country"] = place["country"]
