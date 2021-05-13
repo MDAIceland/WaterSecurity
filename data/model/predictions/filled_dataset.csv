@@ -1,0 +1,284 @@
+risk0,risk1,risk2,risk3,risk4,risk5,risk6,city,country,latitude,longitude
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Abasan Al-Kabira,State of Palestine,31.3231,34.344
+2.0,0.0,1.0,1.0,0.0,0.0,0.0,Abington,United States of America,40.1241,-75.1195
+0.0,0.0,2.0,2.0,0.0,0.0,2.0,Abuja,Nigeria,9.07647,7.39857
+0.0,2.0,2.0,2.0,0.0,0.0,0.0,Addis Ababa,Ethiopia,9.02887,38.7544
+0.0,0.0,3.0,2.0,0.0,2.0,2.0,Adelaide,Australia,-34.9285,138.601
+3.0,0.0,2.0,0.0,0.0,0.0,0.0,"Ajax, ON",Canada,43.8509,-79.0204
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Alameda,United States of America,37.4522,122.163
+0.0,3.0,0.0,3.0,0.0,0.0,0.0,Amman,Jordan,31.9454,35.9284
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Anchorage,United States of America,61.2181,-149.9
+0.0,2.0,1.0,3.0,0.0,0.0,0.0,Angra dos Reis,Brazil,-22.9983,-44.2442
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Aparecida de GoiÃ¢nia,Brazil,-16.6869,-49.2648
+2.0,0.0,0.0,2.0,0.0,0.0,2.0,Aracaju,Brazil,-10.9472,-37.0731
+3.0,3.0,0.0,3.0,0.0,0.0,0.0,ArchipiÃ©lago de San AndrÃ©s,Colombia,12.5794,-81.6976
+1.0,0.0,0.0,1.0,0.0,0.0,0.0,Arlington,United States of America,37.2265,-76.0026
+0.0,2.0,2.0,2.0,0.0,0.0,0.0,Asheville,United States of America,35.5951,-82.5515
+2.0,0.0,2.0,1.0,0.0,0.0,0.0,AsunciÃ³n,Paraguay,-25.2637,-57.5759
+0.0,0.0,0.0,2.0,0.0,0.0,2.0,Atlanta,United States of America,33.749,-84.388
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Auckland,New Zealand,-36.8153,174.742
+2.0,2.0,0.0,1.0,0.0,0.0,0.0,Aurora,United States of America,88.3201,41.7606
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Austin,United States of America,30.2672,-97.7431
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Bangkok,Thailand,13.7712,100.556
+2.0,2.0,2.0,3.0,0.0,0.0,0.0,Barcelona,Spain,41.3823,2.1775
+2.0,0.0,0.0,3.0,0.0,0.0,0.0,Barrancabermeja,Colombia,7.06066,-73.8724
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Bayeux,Brazil,-7.12505,-34.9268
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Belo Horizonte,Brazil,-19.9167,-43.9345
+0.0,0.0,0.0,3.0,0.0,0.0,2.0,Benicia,United States of America,38.0494,-122.159
+3.0,0.0,0.0,0.0,0.0,2.0,0.0,Bertioga,Brazil,-23.8081,-46.0599
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Betim,Brazil,-19.9673,-44.2012
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Blacksburg,United States of America,37.2296,-80.4139
+1.0,1.0,1.0,0.0,0.0,0.0,0.0,Bloomington,United States of America,39.1653,-86.5264
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Bologna,Italy,44.4938,11.3387
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Botucatu,Brazil,-22.8852,-48.4441
+3.0,0.0,0.0,0.0,0.0,0.0,0.0,BouakÃ©,CÃ´te d'Ivoire,7.4137,-5.0149
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Boulder,United States of America,40.0274,-105.252
+2.0,2.0,2.0,0.0,0.0,0.0,0.0,Boynton Beach,United States of America,26.4986,-80.216
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Breckenridge,United States of America,39.4817,106.038
+3.0,3.0,0.0,0.0,0.0,0.0,0.0,Bridgewater,Canada,44.3786,-64.5188
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,"Brisbane, CA",United States of America,37.6808,-122.4
+0.0,2.0,0.0,3.0,0.0,0.0,0.0,Brotas,Brazil,-22.0,-48.0
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Broward,United States of America,26.1901,80.3659
+2.0,2.0,0.0,3.0,0.0,0.0,0.0,Brumadinho,Brazil,-20.1427,-44.1982
+3.0,0.0,0.0,3.0,0.0,0.0,0.0,Bucaramanga,Colombia,7.11034,-73.1227
+2.0,0.0,3.0,0.0,0.0,2.0,0.0,"Buffalo, NY",United States of America,42.8864,-78.8784
+0.0,2.0,0.0,0.0,0.0,0.0,0.0,Byron Shire,Australia,-28.6534,153.533
+0.0,0.0,2.0,2.0,0.0,0.0,2.0,Caieiras,Brazil,-23.3612,-46.7402
+0.0,3.0,1.0,3.0,0.0,0.0,0.0,Cajamar,Brazil,-23.3646,-46.8725
+0.0,0.0,2.0,3.0,0.0,2.0,0.0,Calgary,Canada,51.0486,-114.071
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Cambridge,United Kingdom of Great Britain and Northern Ireland,52.2077,0.16353
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Campina Grande,Brazil,-7.2291,-35.8808
+3.0,0.0,2.0,2.0,0.0,0.0,3.0,Campinas,Brazil,-22.744,-46.9372
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Canberra,Australia,-35.3075,149.124
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Cape Town,South Africa,-33.9253,18.4239
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Cartagena,Colombia,10.4218,-75.5501
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Casablanca,Morocco,33.5206,-7.56806
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Cascais,Portugal,38.697,-9.42229
+2.0,0.0,1.0,2.0,0.0,0.0,0.0,Castelo Branco,Portugal,39.8239,-7.49189
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Changwon,Republic of Korea,35.1542,126.949
+3.0,0.0,2.0,1.0,0.0,0.0,0.0,Chapala,Mexico,20.2962,-103.191
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Chihuahua,Mexico,28.6368,-106.076
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Chula Vista,United States of America,32.64,-117.084
+2.0,0.0,2.0,0.0,0.0,2.0,2.0,Cincinnati,United States of America,39.1031,-84.512
+0.0,2.0,0.0,2.0,0.0,0.0,0.0,City of Melbourne,Australia,-37.8141,144.963
+0.0,2.0,2.0,2.0,0.0,2.0,2.0,City of Sydney,Australia,-33.8675,151.207
+1.0,0.0,2.0,0.0,0.0,0.0,0.0,Cleveland,United States of America,41.4993,-81.6944
+1.0,2.0,0.0,0.0,0.0,0.0,2.0,Clinton,United States of America,41.839,-90.192
+0.0,1.0,0.0,0.0,0.0,0.0,0.0,Cocody,CÃ´te d'Ivoire,5.3602,-3.9674
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Colina,Chile,-33.2043,-70.684
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,"Columbia, MO",United States of America,38.9517,-92.3341
+2.0,0.0,0.0,2.0,0.0,0.0,2.0,Columbus,United States of America,39.9612,-82.9988
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Comas,Peru,-11.95,-77.0667
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Cruzeiro do Sul,Brazil,-7.62799,-72.6761
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Cuenca,Ecuador,-2.90841,-79.0048
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Culver City,United States of America,34.02,-118.4
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Curitiba,Brazil,-25.4311,-49.2647
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,CÃ³rdoba,Argentina,-31.4201,-64.1888
+0.0,0.0,0.0,2.0,0.0,0.0,2.0,Dalian,China,38.9389,121.567
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Dar es Salaam,United Republic of Tanzania,-6.79235,39.2083
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Degollado,Mexico,20.4489,-102.132
+2.0,2.0,0.0,2.0,0.0,0.0,0.0,Denver,United States of America,39.7376,-104.985
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Detroit,United States of America,42.3314,-83.0457
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Dhaka,Bangladesh,23.8103,90.4125
+0.0,0.0,0.0,2.0,0.0,0.0,2.0,"Dublin, CA",United States of America,37.7,-121.93
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Durban,South Africa,-29.8587,31.0218
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,"Durham, NC",United States of America,35.994,-78.8986
+1.0,0.0,0.0,0.0,0.0,0.0,0.0,Easton,United States of America,40.6884,-75.2207
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Edmonton,Canada,53.5444,-113.491
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Ekurhuleni,South Africa,-26.1777,28.3462
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Emeryville,United States of America,37.8313,-122.285
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Encinitas,United States of America,33.0454,-117.293
+1.0,0.0,0.0,2.0,0.0,0.0,0.0,Evanston,United States of America,42.0669,-87.6898
+2.0,2.0,2.0,2.0,0.0,0.0,0.0,Fayetteville,United States of America,36.0821,-94.1719
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Ferrara,Italy,44.8357,11.619
+0.0,0.0,0.0,3.0,0.0,0.0,2.0,Flagstaff,United States of America,35.1992,-111.631
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Fort Collins,United States of America,40.5853,-105.084
+0.0,0.0,0.0,0.0,0.0,0.0,1.0,Fort Worth,United States of America,32.7555,-97.3308
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Fortaleza,Brazil,-10.7183,-48.3936
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Franco da Rocha,Brazil,-23.3094,-46.732
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Frederikshavn,Denmark,57.4427,10.521
+0.0,1.0,0.0,2.0,0.0,0.0,1.0,Fremont,United States of America,37.5483,-121.989
+0.0,2.0,0.0,2.0,0.0,0.0,0.0,Fresno,United States of America,36.7468,-119.773
+3.0,0.0,2.0,3.0,0.0,0.0,0.0,"General Alvear, Buenos Aires",Argentina,-34.978,-67.6955
+2.0,2.0,2.0,2.0,0.0,0.0,0.0,GoiÃ¢nia,Brazil,-16.6869,-49.2648
+2.0,0.0,3.0,3.0,0.0,0.0,0.0,Gretna,United States of America,29.9164,-90.0542
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Guadalajara,Mexico,20.6597,-103.35
+3.0,0.0,2.0,2.0,0.0,1.0,0.0,GuarujÃ¡,Brazil,-23.9946,-46.2569
+2.0,1.0,2.0,2.0,1.0,2.0,1.0,Guelph,Canada,43.55,80.25
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,GuimarÃ£es,Portugal,41.4443,-8.29224
+1.0,0.0,0.0,2.0,0.0,0.0,0.0,Hamilton,Canada,43.25,-79.8661
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Harare,Zimbabwe,-17.8284,30.9328
+0.0,0.0,0.0,3.0,0.0,0.0,2.0,Hayward,United States of America,37.6689,-122.081
+2.0,1.0,1.0,0.0,0.0,0.0,1.0,Ho Chi Minh,Viet Nam,10.7626,106.66
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Hong Kong,"China, Hong Kong Special Administrative Region",22.2881,114.14
+0.0,0.0,2.0,2.0,2.0,0.0,0.0,Honolulu,United States of America,21.28,157.59
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Huntington Beach,United States of America,33.6603,-117.999
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Hutt City,New Zealand,-41.2092,174.908
+2.0,0.0,2.0,0.0,0.0,0.0,0.0,Hvidovre,Denmark,55.6425,12.4754
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Iasi,Romania,47.1,27.35
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Ibadan,Nigeria,7.37753,3.94704
+0.0,2.0,2.0,3.0,0.0,0.0,0.0,IbaguÃ©,Colombia,4.44851,-75.24
+2.0,0.0,2.0,2.0,0.0,2.0,0.0,Ilha,Mozambique,-15.0364,-40.7323
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Independencia,Chile,-32.8421,-68.8154
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Indianapolis,United States of America,39.7676,-86.1785
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Iskandar,Malaysia,5.71447,100.992
+1.0,1.0,2.0,2.0,0.0,1.0,0.0,JICOSUR,Mexico,19.34,-104.38
+2.0,2.0,2.0,2.0,0.0,0.0,0.0,JIMAV,Mexico,19.7682,-104.367
+2.0,0.0,2.0,2.0,0.0,0.0,2.0,Jakarta,Indonesia,-6.1751,106.865
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Johannesburg,South Africa,-26.2041,28.0473
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Juruena,Brazil,-10.3178,-58.3589
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,JuÃ¡rez,Mexico,31.6904,-106.425
+0.0,0.0,3.0,0.0,0.0,0.0,0.0,Kansas City,United States of America,39.1429,-94.573
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Kaohsiung,"Taiwan, Greater China",22.6297,120.344
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Karachi,Pakistan,24.9108,67.1281
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Key West,United States of America,81.78,24.5551
+3.0,2.0,0.0,0.0,0.0,0.0,0.0,Kisumu,Kenya,-0.0917,34.7679
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Kolkata,India,22.5726,88.3639
+0.0,2.0,2.0,2.0,0.0,0.0,0.0,La Barca,Mexico,20.2903,-102.546
+2.0,0.0,2.0,0.0,0.0,0.0,0.0,La Crosse,United States of America,43.8014,-91.2396
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,LaGrange,United States of America,40.0428,-91.4976
+2.0,2.0,2.0,2.0,3.0,2.0,3.0,Lagos,Nigeria,6.52437,3.3792
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Lahti,Finland,60.9833,25.65
+2.0,0.0,2.0,2.0,0.0,0.0,2.0,Lakewood,United States of America,39.7047,-105.081
+2.0,0.0,2.0,0.0,0.0,0.0,0.0,"Lancaster, PA",United States of America,40.0379,-76.3055
+2.0,2.0,2.0,3.0,0.0,1.0,1.0,Las Vegas,United States of America,36.1699,-115.14
+0.0,1.0,0.0,0.0,0.0,0.0,0.0,Laval,Canada,45.6207,-73.7126
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Leicester,United Kingdom of Great Britain and Northern Ireland,52.6333,-1.1333
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Leticia,Colombia,-4.21528,-69.9406
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Lilongwe,Malawi,-13.9626,33.7741
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Limeira,Brazil,-22.5665,-47.3974
+0.0,2.0,0.0,2.0,0.0,1.0,0.0,London,United Kingdom of Great Britain and Northern Ireland,51.5048,-0.07868
+2.0,0.0,0.0,0.0,0.0,0.0,1.0,Londrina,Brazil,-23.3356,-51.1505
+0.0,0.0,1.0,2.0,0.0,0.0,0.0,Long Beach,United States of America,33.7701,-118.194
+3.0,0.0,2.0,3.0,2.0,0.0,0.0,Lorena,Brazil,-22.7339,-45.1201
+2.0,0.0,2.0,0.0,0.0,0.0,0.0,MaceiÃ³,Brazil,-9.67342,-35.718
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Manhattan Beach,United States of America,33.8889,-118.405
+0.0,0.0,0.0,0.0,0.0,0.0,2.0,Mannheim,Germany,49.4875,8.46603
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Mazabuka,Zambia,-15.8613,27.7491
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,MedellÃ­n,Colombia,6.22729,-75.5735
+2.0,0.0,0.0,1.0,0.0,0.0,0.0,Memphis,United States of America,35.1495,-90.049
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Mendoza,Argentina,-32.8894,-68.8458
+0.0,0.0,2.0,3.0,0.0,0.0,0.0,Mexico City,Mexico,19.4326,-99.1332
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Miami Beach,United States of America,25.7906,-80.13
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Minneapolis,United States of America,44.9833,-93.2667
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Miraflores,Peru,-16.3994,-71.5366
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Mirandela,Portugal,41.51,-7.1753
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Moab,United States of America,38.57,-109.54
+1.0,0.0,0.0,2.0,0.0,0.0,0.0,MonterÃ­a,Colombia,8.74798,-75.8814
+2.0,0.0,0.0,3.0,0.0,0.0,0.0,Murcia,Spain,37.799,-1.00495
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,MÃ©rida,Mexico,20.9674,-89.5926
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Nacala,Mozambique,-14.5656,40.6854
+2.0,0.0,2.0,0.0,0.0,0.0,0.0,Nagoya,Japan,35.1815,136.906
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Nairobi,Kenya,-1.29206,36.8219
+2.0,3.0,2.0,2.0,0.0,0.0,0.0,Nakuru,Kenya,-0.30309,36.08
+1.0,0.0,2.0,2.0,0.0,0.0,0.0,Nashville,United States of America,36.1627,-86.7816
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Natal,Brazil,-5.77925,-35.2009
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Natchez,United States of America,31.5604,-91.4032
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Naucalpan de JuÃ¡rez,Mexico,19.4631,-99.2453
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,New Bedford,United States of America,41.6362,-70.9342
+0.0,2.0,2.0,0.0,0.0,0.0,0.0,New Plymouth District,New Zealand,-39.1011,174.354
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,New Taipei,"Taiwan, Greater China",25.0111,121.446
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Nijmegen,Netherlands,51.8449,5.84282
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,NiterÃ³i,Brazil,-22.8928,-43.1184
+2.0,2.0,2.0,2.0,0.0,0.0,0.0,North Vancouver,Canada,49.32,-123.072
+0.0,0.0,2.0,3.0,0.0,2.0,2.0,Oakland,United States of America,37.8044,-122.271
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,OlÃ­mpia,Brazil,-20.7371,-48.9111
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Oristano,Italy,39.7207,8.898
+1.0,0.0,0.0,3.0,0.0,0.0,0.0,Oslo,Norway,59.9139,10.7522
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Ovar,Portugal,40.8901,-8.59723
+2.0,2.0,0.0,2.0,0.0,0.0,0.0,Palmira,Colombia,3.53944,-76.3036
+3.0,0.0,0.0,2.0,0.0,0.0,0.0,Paris,France,48.8566,2.35222
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Park City,United States of America,40.6461,-111.498
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Parma,Italy,44.8015,10.3279
+0.0,2.0,2.0,2.0,2.0,0.0,0.0,Pemba,Mozambique,-12.9732,40.5178
+0.0,0.0,0.0,2.0,0.0,0.0,2.0,Phoenix,United States of America,33.4484,-112.074
+0.0,0.0,0.0,1.0,0.0,0.0,1.0,Piedmont,United States of America,37.8244,-122.232
+3.0,0.0,0.0,0.0,0.0,0.0,0.0,PingtungÂ County,"Taiwan, Greater China",22.6558,120.47
+3.0,0.0,0.0,2.0,0.0,0.0,0.0,PirenÃ³polis,Brazil,-15.8545,-48.9595
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Pittsburgh,United States of America,40.4406,-79.9959
+2.0,0.0,2.0,2.0,0.0,0.0,1.0,Podgorica,Montenegro,42.4304,19.2594
+2.0,0.0,2.0,0.0,0.0,0.0,0.0,"Portland, ME",United States of America,43.6615,-70.2553
+0.0,0.0,3.0,2.0,0.0,2.0,2.0,"Portland, OR",United States of America,45.52,-122.682
+3.0,0.0,2.0,0.0,0.0,0.0,0.0,Prince George,Canada,53.9171,-122.75
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Providencia,Chile,-33.4313,-70.6092
+1.0,0.0,0.0,1.0,0.0,0.0,0.0,Puerto Barrios,Guatemala,-88.5944,15.7278
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,PÃ¤rnu,Estonia,58.3858,24.4966
+2.0,0.0,2.0,0.0,0.0,2.0,0.0,Quelimane,Mozambique,-17.8503,36.9218
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Quito,Ecuador,-0.2333,-78.5167
+0.0,1.0,0.0,0.0,0.0,0.0,0.0,Ramsey,United States of America,45.2611,-93.45
+3.0,0.0,0.0,0.0,0.0,0.0,0.0,Recife,Brazil,-8.05783,-34.8829
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Reggio Emilia,Italy,44.4376,10.8774
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Reno,United States of America,39.5296,-119.814
+1.0,0.0,0.0,1.0,0.0,0.0,0.0,ReykjavÃ­k,Iceland,64.1265,-21.8174
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,"Richmond, VA",United States of America,37.5407,-77.436
+1.0,0.0,2.0,0.0,2.0,0.0,1.0,Riga,Latvia,56.9496,24.1052
+3.0,0.0,0.0,0.0,0.0,0.0,0.0,Rio Verde,Brazil,-17.9685,-50.4892
+0.0,0.0,3.0,2.0,2.0,0.0,0.0,Rio de Janeiro,Brazil,-22.9054,-43.5614
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Rochester,United States of America,43.161,-77.6109
+0.0,0.0,2.0,3.0,0.0,0.0,0.0,Roma,Italy,41.53,12.2858
+0.0,0.0,2.0,0.0,0.0,0.0,0.0,Rostock,Germany,54.0887,12.1405
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Sacramento,United States of America,38.5816,-121.494
+2.0,0.0,2.0,3.0,0.0,0.0,0.0,Salt Lake City,United States of America,40.7608,-111.891
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,San Antonio,United States of America,29.4241,-98.4936
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,San Francisco,United States of America,37.7749,-122.419
+0.0,0.0,2.0,3.0,0.0,0.0,2.0,San Isidro (Lima),Peru,-12.0977,-77.0273
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,"San JosÃ©, CA",United States of America,37.3382,-121.886
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,San Leandro,United States of America,37.7249,-122.156
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,San Pedro de UrabÃ¡,Colombia,-76.3414,8.34552
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,"Santa Cruz, CA",United States of America,36.9741,-122.031
+0.0,2.0,0.0,2.0,0.0,0.0,0.0,Santa Fe County,United States of America,35.5,-106.0
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,SantarÃ©m,Portugal,39.2367,-8.68599
+3.0,3.0,0.0,3.0,0.0,0.0,0.0,Santiago,Chile,-33.4489,-70.6693
+2.0,0.0,0.0,2.0,0.0,2.0,0.0,Santiago,Chile,-33.4489,-70.6693
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Santiago de Cali,Colombia,3.45164,-76.532
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Santiago de Guayaquil,Ecuador,-2.17099,-79.9223
+0.0,0.0,0.0,3.0,0.0,0.0,0.0,Santiago de Surco,Peru,-12.1453,-77.0051
+1.0,1.0,0.0,0.0,0.0,0.0,0.0,Saratoga Springs,United States of America,43.0333,-73.8167
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Saskatoon,Canada,52.1332,-106.67
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Seattle,United States of America,47.6062,-122.332
+2.0,0.0,0.0,0.0,0.0,0.0,0.0,Sekhukhune District Municipality,South Africa,-24.8335,29.974
+2.0,0.0,0.0,2.0,0.0,0.0,2.0,Sincelejo,Colombia,9.30457,-75.3906
+0.0,1.0,0.0,0.0,0.0,0.0,0.0,SopÃ³,Colombia,4.9075,-73.9384
+3.0,2.0,2.0,2.0,0.0,0.0,0.0,Sorocaba,Brazil,-23.4775,-47.4221
+2.0,0.0,2.0,0.0,0.0,0.0,1.0,St Catharines,Canada,43.1594,-79.2469
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,St Louis,United States of America,38.627,-90.1994
+1.0,0.0,0.0,2.0,0.0,0.0,0.0,Stockholm,Sweden,59.3293,18.0686
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Surfside,United States of America,25.8789,-80.1233
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Suwon,Republic of Korea,37.17,126.805
+3.0,3.0,3.0,3.0,0.0,0.0,0.0,SÃ£o Bento do SapucaÃ­,Brazil,-22.6874,-45.732
+0.0,1.0,1.0,1.0,0.0,0.0,1.0,SÃ£o Leopoldo,Brazil,-29.761,-51.1493
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,SÃ£o Paulo,Brazil,-23.5595,-46.7382
+0.0,1.0,0.0,0.0,0.0,0.0,0.0,SÃ£o Vicente,Brazil,-23.963,-46.3919
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Taichung,"Taiwan, Greater China",24.1619,120.647
+1.0,0.0,0.0,2.0,0.0,0.0,0.0,Taipei,"Taiwan, Greater China",25.0375,121.564
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,TangarÃ¡ da Serra,Brazil,-14.6194,-57.4858
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,TatuÃ­,Brazil,-23.3492,-47.8466
+0.0,0.0,0.0,0.0,0.0,0.0,2.0,Tegucigalpa,Honduras,14.1051,-87.2044
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Tempe,United States of America,33.4255,-111.94
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,The Hague,Netherlands,52.0705,4.3007
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Tokyo,Japan,35.41,139.41
+3.0,0.0,0.0,0.0,0.0,0.0,0.0,Toledo,United States of America,41.6639,-83.5552
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,Torres Vedras,Portugal,38.7637,-9.30148
+3.0,2.0,0.0,2.0,0.0,0.0,0.0,TorreÃ³n,Mexico,25.5428,-103.407
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Tuzla,Turkey,44.5375,18.6735
+1.0,0.0,0.0,0.0,0.0,0.0,0.0,Urla,Turkey,38.3434,26.5536
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Vail,United States of America,39.6403,-106.374
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Vancouver,Canada,49.2612,-123.114
+3.0,0.0,0.0,3.0,0.0,0.0,0.0,Vhembe,South Africa,-22.7695,29.974
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Vinhedo,Brazil,-23.0307,-46.9838
+2.0,0.0,0.0,2.0,0.0,0.0,2.0,VitÃ³ria,Brazil,-20.3338,-40.3776
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Warsaw,Poland,52.2297,21.0122
+2.0,0.0,2.0,2.0,0.0,0.0,0.0,"Washington, DC",United States of America,38.9072,-77.0369
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,Wellington,New Zealand,-41.2865,174.776
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,West Coast District Municipality,South Africa,-32.0951,18.627
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,West Hollywood,United States of America,34.09,-118.362
+0.0,0.0,2.0,3.0,0.0,0.0,0.0,West Palm Beach,United States of America,26.7153,-80.0534
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Windhoek,Namibia,-22.5609,17.0658
+2.0,0.0,0.0,1.0,0.0,0.0,0.0,Windsor,Canada,42.3149,-83.0364
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Winston-Salem,United States of America,36.0999,-80.2442
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Wollongong,Australia,-34.4278,150.893
+0.0,2.0,2.0,2.0,0.0,0.0,2.0,Xalapa,Mexico,20.1318,-98.7556
+0.0,0.0,2.0,2.0,0.0,0.0,0.0,YaoundÃ© 6,Cameroon,3.86181,11.5191
+0.0,0.0,0.0,2.0,0.0,0.0,0.0,Yokohama,Japan,35.4437,139.638
+2.0,0.0,0.0,2.0,0.0,0.0,0.0,Ãlhavo,Portugal,38.85,-7.58
+0.0,0.0,0.0,1.0,0.0,0.0,0.0,Ã–rebro,Sweden,59.2741,15.2066
