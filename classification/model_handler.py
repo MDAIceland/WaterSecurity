@@ -217,7 +217,7 @@ class ModelHandler:
             raise InvalidCoordinates
         from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET[COUNTRIES_DATASET["2-alpha code"] == place["code"]]
+        feats = COUNTRIES_DATASET[COUNTRIES_DATASET.index == place["code"]]
         preds = {}
         mask = {}
         for label in self.model:
