@@ -3,6 +3,7 @@ import requests
 
 import xml.etree.ElementTree as ET
 from typing import TypedDict
+import haversine as hs
 
 TWO_TO_THREE_LETTER_CODE = {
     "AF": "AFG",
@@ -266,7 +267,7 @@ def get_place(latitude: float, longitude: float) -> PlaceInfo:
     Raises if the supplied coordinates cannot be matched to a specific country (eg if those refer to sea area)
     """
     req = requests.get(
-        f"http://api.geonames.org/findNearbyPlaceName?lat={latitude}&lng={longitude}&username=vaslem"
+        f"http://api.geonames.org/findNearbyPlaceName?lat={latitude}&lng={longitude}&cities=cities15000&username=vaslem"
     )
     tree = ET.fromstring(req.text)
     geoname = tree.find("geoname")
@@ -283,11 +284,9 @@ def get_place(latitude: float, longitude: float) -> PlaceInfo:
         raise
 
 
-def is_close(p1, p2, thres: float = 0.3) -> bool:
+def is_close(loc1, loc2, thres: float = 3) -> bool:
     """
-    Accepts 2 points defined by 2 coordinates (iterables of size 2) and based on a euclidean distance threshold,
+    Accepts 2 points defined by 2 coordinates (iterables of size 2) and based on a distance threshold (in km),
     returns whether those points are close or not to each other
     """
-    if sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2) < thres:
-        return True
-    return False
+    return hs.haversine(loc1, loc2) < thres

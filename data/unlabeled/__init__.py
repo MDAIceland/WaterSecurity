@@ -15,7 +15,7 @@ except FileNotFoundError:
     pass
 try:
     COUNTRIES_DATASET = pd.read_csv(
-        os.path.join(UNLABELED_DIR, "preprocessed_countries_dataset.csv")
+        os.path.join(UNLABELED_DIR, "preprocessed_countries_dataset.csv"), index_col=0
     )
 except ImportError:
     pass

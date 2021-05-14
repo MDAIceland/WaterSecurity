@@ -9,7 +9,7 @@ try:
     with open(VALIDATION_METRICS_PATH, "rb") as inp:
         VALIDATION_METRICS = pickle.load(inp)
     with open(TRAINING_METRICS_PATH, "rb") as inp:
-        TRAINING_METRICS_PATH = pickle.load(inp)
+        TRAINING_METRICS = pickle.load(inp)
 
 except IOError:
     pass

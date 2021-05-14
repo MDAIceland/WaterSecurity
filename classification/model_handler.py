@@ -60,10 +60,10 @@ class ModelHandler:
         return self._model
 
     @model.setter
-    def model(self, model):
+    def model(self, model: Pipeline):
         self._model = model
 
-    def save_model(self):
+    def save_model(self) -> None:
         """
         Saves model to memory
         """
@@ -74,7 +74,7 @@ class ModelHandler:
         importlib.reload(data.model)
 
     @property
-    def dataset(self):
+    def dataset(self) -> pd.DataFrame:
         """
         The dataset for the training step.
         When it is loaded the first time, several variables are defined:
@@ -88,7 +88,7 @@ class ModelHandler:
             from data.dataset import DATASET as dataset
 
             self.lab_names = sorted(RISKS_MAPPING.keys())
-            self.unique_labs = np.unique(dataset[self.lab_names].unique())
+            self.unique_labs = np.unique(dataset[self.lab_names].T.stack().values)
             self.feat_names = [
                 x
                 for x in dataset.columns
@@ -101,7 +101,7 @@ class ModelHandler:
         return self._dataset
 
     @property
-    def filled_dataset(self):
+    def filled_dataset(self) -> pd.DataFrame:
         """
         The dataset that has filled labels, which were produced from the predictions
         """
@@ -111,6 +111,10 @@ class ModelHandler:
             except IOError:
                 raise TrainingRequired("Filled Dataset")
         return self._filled_dataset
+
+    @filled_dataset.setter
+    def filled_dataset(self, dataset: pd.DataFrame):
+        self._filled_dataset = dataset
 
     def compute_metrics(self, y_true, y_pred):
         """
@@ -136,7 +140,7 @@ class ModelHandler:
             return False
         return True
 
-    def train(self):
+    def train(self) -> None:
         """
         - Trains 7 different models, one per each different water security risk.
         - Applies feature selection and generation per different model.
@@ -196,6 +200,7 @@ class ModelHandler:
         Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
         ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
         to create the feature vector and computes the prediction using the trained models.
+        Returns the series of the found labels, which also contain city and country, and the series of booleans which shows which predictions were predicted and which where not.
         """
         try:
             from data.model.predictions import FILLED_DATASET, PREDICTION_MASK
@@ -217,7 +222,7 @@ class ModelHandler:
             raise InvalidCoordinates
         from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET[COUNTRIES_DATASET.index == place["code"]]
+        feats = COUNTRIES_DATASET.loc[place["code"]]
         preds = {}
         mask = {}
         for label in self.model:
@@ -225,4 +230,4 @@ class ModelHandler:
             mask[label] = True
         preds["city"] = place["city"]
         preds["country"] = place["country"]
-        return preds, mask
+        return pd.Series(preds), pd.Series(mask)
