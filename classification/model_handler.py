@@ -4,11 +4,11 @@ import os
 import pickle
 import pandas as pd
 import numpy as np
-
+import importlib
 from data.model import MODEL_PATH
 from sklearn.pipeline import Pipeline
 from classification.classifier import Classifier
-from classification.feature_selection import FeatureSelection
+from classification.feature_selection import FeatureSelectionAndGeneration
 from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
@@ -39,10 +39,17 @@ class ModelHandler:
         self._valid_metrics = None
         self._train_metrics = None
         self._filled_dataset = None
+        self.train_mask = None
+        self.feat_names = None
+        self.lab_names = None
+        # The id columns to remain in the filled dataset
         self.id_columns = ["city", "country", "latitude", "longitude"]
 
     @property
-    def model(self):
+    def model(self) -> Pipeline:
+        """
+        If model is not defined, try to loaded from disk
+        """
         if self._model is None:
             try:
                 from data.model import MODEL
@@ -55,17 +62,33 @@ class ModelHandler:
     @model.setter
     def model(self, model):
         self._model = model
+
+    def save_model(self):
+        """
+        Saves model to memory
+        """
         with open(os.path.join(MODEL_PATH), "wb") as out:
-            pickle.dump(model, out)
+            pickle.dump(self.model, out)
+        import data.model
+
+        importlib.reload(data.model)
 
     @property
     def dataset(self):
+        """
+        The dataset for the training step.
+        When it is loaded the first time, several variables are defined:
+            - lab_names: the labels names/columns of the dataset
+            - unique_labs: the unique labels values
+            - feat_names: the features names/columns of the dataset
+            - train_mask: the mask that refers to the cities that are labeled at least for one risk
+        """
         if self._dataset is None:
             from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
             from data.dataset import DATASET as dataset
 
-            self.cities = LABELED_CITIES
             self.lab_names = sorted(RISKS_MAPPING.keys())
+            self.unique_labs = np.unique(dataset[self.lab_names].unique())
             self.feat_names = [
                 x
                 for x in dataset.columns
@@ -79,6 +102,9 @@ class ModelHandler:
 
     @property
     def filled_dataset(self):
+        """
+        The dataset that has filled labels, which were produced from the predictions
+        """
         if self._filled_dataset is None:
             try:
                 self._filled_dataset = pd.read_csv(FILLED_DATASET_PATH)
@@ -86,15 +112,24 @@ class ModelHandler:
                 raise TrainingRequired("Filled Dataset")
         return self._filled_dataset
 
-    @staticmethod
-    def compute_metrics(y_true, y_pred):
+    def compute_metrics(self, y_true, y_pred):
+        """
+        Compute metrics for regression labels of size nx1
+        """
         metrics = {}
-        metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred)
+        # Interpolate predictions to labels, eg convert 0.2 to 0, 0.7 to 1 etc.
+        y_pred_interp = self.unique_labs[
+            np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
+        ]
+        metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred_interp)
         metrics["classification_report"] = classification_report(y_true, y_pred)
         return metrics
 
     @property
     def is_fitted(self) -> bool:
+        """
+        Tries to load model from memory/disk, if it fails, returns False, else returns True
+        """
         try:
             self.model
         except TrainingRequired:
@@ -102,6 +137,13 @@ class ModelHandler:
         return True
 
     def train(self):
+        """
+        - Trains 7 different models, one per each different water security risk.
+        - Applies feature selection and generation per different model.
+        - Keeps 0.3 validation size, computes classification metrics, saves them, then fits each model to the whole available dataset for each risk.
+        - Creates the filled dataset and saves it to disk
+        - Creates the prediction mask (what labels from the filled dataset were predicted) and saves it to memory
+        """
         dataset = self.dataset
         labeled = dataset[self.train_mask]
         labeled[self.lab_names]
@@ -119,7 +161,7 @@ class ModelHandler:
 
             model[label] = Pipeline(
                 [
-                    ("FeatureSelection", FeatureSelection()),
+                    ("FeatureSelection", FeatureSelectionAndGeneration()),
                     ("Classification", Classifier()),
                 ]
             )
@@ -134,6 +176,7 @@ class ModelHandler:
                 dataset.loc[~train_mask, self.feat_names]
             )
         self.model = model
+        self.save_model()
         with open(VALIDATION_METRICS_PATH, "wb") as out:
             pickle.dump(valid_metrics, out)
         with open(TRAINING_METRICS_PATH, "wb") as out:
@@ -141,9 +184,19 @@ class ModelHandler:
         self.filled_dataset = filled_dataset
         self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
         pd.isnull(dataset[self.lab_names]).to_csv(PREDICTION_MASK_PATH, index=False)
+        import data.model.metrics
+
+        importlib.reload(data.model.metrics)
+        import data.model.predictions
+
+        importlib.reload(data.model.predictions)
 
     def test(self, latitude, longitude):
-
+        """
+        Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
+        ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
+        to create the feature vector and computes the prediction using the trained models.
+        """
         try:
             from data.model.predictions import FILLED_DATASET, PREDICTION_MASK
         except ImportError:
