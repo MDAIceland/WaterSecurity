@@ -1,0 +1,284 @@
+city,latitude,longitude,c40,country,risk0,risk1,risk2,risk3,risk4,risk5,risk6
+Abasan Al-Kabira,31.3231,34.344,False,State of Palestine,2.0,,2.0,2.0,,,
+Abington,40.1241,-75.1195,False,United States of America,2.0,,1.0,1.0,,,
+Abuja,9.07647,7.39857,False,Nigeria,,,2.0,2.0,,,2.0
+Addis Ababa,9.02887,38.7544,True,Ethiopia,0.0,2.0,2.0,2.0,0.0,0.0,0.0
+Adelaide,-34.9285,138.601,False,Australia,,,3.0,2.0,,2.0,2.0
+"Ajax, ON",43.8509,-79.0204,False,Canada,3.0,,2.0,,,,
+Alameda,37.4522,122.163,False,United States of America,,,,2.0,,,
+Amman,31.9454,35.9284,True,Jordan,0.0,3.0,0.0,3.0,0.0,0.0,0.0
+Anchorage,61.2181,-149.9,False,United States of America,,,,2.0,,,
+Angra dos Reis,-22.9983,-44.2442,False,Brazil,,2.0,1.0,3.0,,,
+Aparecida de GoiÃ¢nia,-16.6869,-49.2648,False,Brazil,,,,2.0,,,
+Aracaju,-10.9472,-37.0731,False,Brazil,2.0,,,2.0,,,2.0
+ArchipiÃ©lago de San AndrÃ©s,12.5794,-81.6976,False,Colombia,3.0,3.0,,3.0,,,
+Arlington,37.2265,-76.0026,False,United States of America,1.0,,,1.0,,,
+Asheville,35.5951,-82.5515,False,United States of America,,2.0,2.0,2.0,,,
+AsunciÃ³n,-25.2637,-57.5759,False,Paraguay,2.0,,2.0,1.0,,,
+Atlanta,33.749,-84.388,False,United States of America,,,,2.0,,,2.0
+Auckland,-36.8153,174.742,True,New Zealand,2.0,0.0,2.0,2.0,0.0,0.0,0.0
+Aurora,88.3201,41.7606,False,United States of America,2.0,2.0,,1.0,,,
+Austin,30.2672,-97.7431,True,United States of America,0.0,0.0,0.0,3.0,0.0,0.0,0.0
+Bangkok,13.7712,100.556,True,Thailand,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Barcelona,41.3823,2.1775,True,Spain,2.0,2.0,2.0,3.0,0.0,0.0,0.0
+Barrancabermeja,7.06066,-73.8724,False,Colombia,2.0,,,3.0,,,
+Bayeux,-7.12505,-34.9268,False,Brazil,,,,2.0,,,
+Belo Horizonte,-19.9167,-43.9345,False,Brazil,,,,2.0,,,
+Benicia,38.0494,-122.159,False,United States of America,,,,3.0,,,2.0
+Bertioga,-23.8081,-46.0599,False,Brazil,3.0,,,,,2.0,
+Betim,-19.9673,-44.2012,False,Brazil,,,2.0,,,,
+Blacksburg,37.2296,-80.4139,False,United States of America,,,2.0,,,,
+Bloomington,39.1653,-86.5264,False,United States of America,1.0,1.0,1.0,,,,
+Bologna,44.4938,11.3387,False,Italy,2.0,,,2.0,,,
+Botucatu,-22.8852,-48.4441,False,Brazil,,,,2.0,,,
+BouakÃ©,7.4137,-5.0149,False,CÃ´te d'Ivoire,3.0,,,,,,
+Boulder,40.0274,-105.252,False,United States of America,2.0,,2.0,2.0,,,
+Boynton Beach,26.4986,-80.216,False,United States of America,2.0,2.0,2.0,,,,
+Breckenridge,39.4817,106.038,False,United States of America,,,,2.0,,,
+Bridgewater,44.3786,-64.5188,False,Canada,3.0,3.0,,,,,
+"Brisbane, CA",37.6808,-122.4,False,United States of America,,,2.0,2.0,,,
+Brotas,-22.0,-48.0,False,Brazil,,2.0,,3.0,,,
+Broward,26.1901,80.3659,False,United States of America,2.0,,,,,,
+Brumadinho,-20.1427,-44.1982,False,Brazil,2.0,2.0,,3.0,,,
+Bucaramanga,7.11034,-73.1227,False,Colombia,3.0,,,3.0,,,
+"Buffalo, NY",42.8864,-78.8784,False,United States of America,2.0,,3.0,,,2.0,
+Byron Shire,-28.6534,153.533,False,Australia,,2.0,,,,,
+Caieiras,-23.3612,-46.7402,False,Brazil,,,2.0,2.0,,,2.0
+Cajamar,-23.3646,-46.8725,False,Brazil,,3.0,1.0,3.0,,,
+Calgary,51.0486,-114.071,False,Canada,,,2.0,3.0,,2.0,
+Cambridge,52.2077,0.16353,False,United Kingdom of Great Britain and Northern Ireland,,,,2.0,,,
+Campina Grande,-7.2291,-35.8808,False,Brazil,,,,3.0,,,
+Campinas,-22.744,-46.9372,False,Brazil,3.0,,2.0,2.0,,,3.0
+Canberra,-35.3075,149.124,False,Australia,,,,2.0,,,
+Cape Town,-33.9253,18.4239,True,South Africa,0.0,0.0,0.0,3.0,0.0,0.0,0.0
+Cartagena,10.4218,-75.5501,False,Colombia,2.0,,,2.0,,,
+Casablanca,33.5206,-7.56806,False,Morocco,,,,2.0,,,
+Cascais,38.697,-9.42229,False,Portugal,2.0,,,2.0,,,
+Castelo Branco,39.8239,-7.49189,False,Portugal,2.0,,1.0,2.0,,,
+Changwon,35.1542,126.949,True,Republic of Korea,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+Chapala,20.2962,-103.191,False,Mexico,3.0,,2.0,1.0,,,
+Chihuahua,28.6368,-106.076,False,Mexico,,,,2.0,,,
+Chula Vista,32.64,-117.084,False,United States of America,,,,2.0,,,
+Cincinnati,39.1031,-84.512,False,United States of America,2.0,,2.0,,,2.0,2.0
+City of Melbourne,-37.8141,144.963,True,Australia,0.0,2.0,0.0,2.0,0.0,0.0,0.0
+City of Sydney,-33.8675,151.207,True,Australia,0.0,2.0,2.0,2.0,0.0,2.0,2.0
+Cleveland,41.4993,-81.6944,False,United States of America,1.0,,2.0,,,,
+Clinton,41.839,-90.192,False,United States of America,1.0,2.0,,,,,2.0
+Cocody,5.3602,-3.9674,False,CÃ´te d'Ivoire,,1.0,,,,,
+Colina,-33.2043,-70.684,False,Chile,,,,2.0,,,
+"Columbia, MO",38.9517,-92.3341,False,United States of America,2.0,,2.0,2.0,,,
+Columbus,39.9612,-82.9988,False,United States of America,2.0,,,2.0,,,2.0
+Comas,-11.95,-77.0667,False,Peru,,,,2.0,,,
+Cruzeiro do Sul,-7.62799,-72.6761,False,Brazil,,,2.0,2.0,,,
+Cuenca,-2.90841,-79.0048,False,Ecuador,,,,3.0,,,
+Culver City,34.02,-118.4,False,United States of America,2.0,,,2.0,,,
+Curitiba,-25.4311,-49.2647,True,Brazil,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+CÃ³rdoba,-31.4201,-64.1888,False,Argentina,,,,1.0,,,
+Dalian,38.9389,121.567,True,China,0.0,0.0,0.0,2.0,0.0,0.0,2.0
+Dar es Salaam,-6.79235,39.2083,True,United Republic of Tanzania,0.0,0.0,2.0,2.0,0.0,0.0,0.0
+Degollado,20.4489,-102.132,False,Mexico,2.0,,,,,,
+Denver,39.7376,-104.985,False,United States of America,2.0,2.0,,2.0,,,
+Detroit,42.3314,-83.0457,False,United States of America,,,2.0,,,,
+Dhaka,23.8103,90.4125,True,Bangladesh,2.0,0.0,2.0,2.0,0.0,0.0,0.0
+"Dublin, CA",37.7,-121.93,False,United States of America,,,,2.0,,,2.0
+Durban,-29.8587,31.0218,True,South Africa,0.0,0.0,2.0,0.0,0.0,0.0,0.0
+"Durham, NC",35.994,-78.8986,False,United States of America,,,2.0,2.0,,,
+Easton,40.6884,-75.2207,False,United States of America,1.0,,,,,,
+Edmonton,53.5444,-113.491,False,Canada,,,,3.0,,,
+Ekurhuleni,-26.1777,28.3462,False,South Africa,2.0,,2.0,2.0,,,
+Emeryville,37.8313,-122.285,False,United States of America,,,,2.0,,,
+Encinitas,33.0454,-117.293,False,United States of America,,,,3.0,,,
+Evanston,42.0669,-87.6898,False,United States of America,1.0,,,2.0,,,
+Fayetteville,36.0821,-94.1719,False,United States of America,2.0,2.0,2.0,2.0,,,
+Ferrara,44.8357,11.619,False,Italy,2.0,,,2.0,,,
+Flagstaff,35.1992,-111.631,False,United States of America,,,,3.0,,,2.0
+Fort Collins,40.5853,-105.084,False,United States of America,2.0,,,2.0,,,
+Fort Worth,32.7555,-97.3308,False,United States of America,,,,,,,1.0
+Fortaleza,-10.7183,-48.3936,False,Brazil,,,,2.0,,,
+Franco da Rocha,-23.3094,-46.732,False,Brazil,,,,2.0,,,
+Frederikshavn,57.4427,10.521,False,Denmark,,,,2.0,,,
+Fremont,37.5483,-121.989,False,United States of America,,1.0,,2.0,,,1.0
+Fresno,36.7468,-119.773,False,United States of America,,2.0,,2.0,,,
+"General Alvear, Buenos Aires",-34.978,-67.6955,False,Argentina,3.0,,2.0,3.0,,,
+GoiÃ¢nia,-16.6869,-49.2648,False,Brazil,2.0,2.0,2.0,2.0,,,
+Gretna,29.9164,-90.0542,False,United States of America,2.0,,3.0,3.0,,,
+Guadalajara,20.6597,-103.35,True,Mexico,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+GuarujÃ¡,-23.9946,-46.2569,False,Brazil,3.0,,2.0,2.0,,1.0,
+Guelph,43.55,80.25,False,Canada,2.0,1.0,2.0,2.0,1.0,2.0,1.0
+GuimarÃ£es,41.4443,-8.29224,False,Portugal,2.0,,,2.0,,,
+Hamilton,43.25,-79.8661,False,Canada,1.0,,,2.0,,,
+Harare,-17.8284,30.9328,False,Zimbabwe,,,2.0,2.0,,,
+Hayward,37.6689,-122.081,False,United States of America,,,,3.0,,,2.0
+Ho Chi Minh,10.7626,106.66,True,Viet Nam,2.0,1.0,1.0,0.0,0.0,0.0,1.0
+Hong Kong,22.2881,114.14,True,"China, Hong Kong Special Administrative Region",0.0,0.0,2.0,2.0,0.0,0.0,0.0
+Honolulu,21.28,157.59,False,United States of America,,,2.0,2.0,2.0,,
+Huntington Beach,33.6603,-117.999,False,United States of America,,,,3.0,,,
+Hutt City,-41.2092,174.908,False,New Zealand,2.0,,,,,,
+Hvidovre,55.6425,12.4754,False,Denmark,2.0,,2.0,,,,
+Iasi,47.1,27.35,False,Romania,,,,2.0,,,
+Ibadan,7.37753,3.94704,False,Nigeria,2.0,,,,,,
+IbaguÃ©,4.44851,-75.24,False,Colombia,,2.0,2.0,3.0,,,
+Ilha,-15.0364,-40.7323,False,Mozambique,2.0,,2.0,2.0,,2.0,
+Independencia,-32.8421,-68.8154,False,Chile,,,,2.0,,,
+Indianapolis,39.7676,-86.1785,False,United States of America,2.0,,2.0,2.0,,,
+Iskandar,5.71447,100.992,False,Malaysia,,,,2.0,,,
+JICOSUR,19.34,-104.38,False,Mexico,1.0,1.0,2.0,2.0,,1.0,
+JIMAV,19.7682,-104.367,False,Mexico,2.0,2.0,2.0,2.0,,,
+Jakarta,-6.1751,106.865,True,Indonesia,2.0,0.0,2.0,2.0,0.0,0.0,2.0
+Johannesburg,-26.2041,28.0473,True,South Africa,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+Juruena,-10.3178,-58.3589,False,Brazil,,,2.0,,,,
+JuÃ¡rez,31.6904,-106.425,False,Mexico,,,,2.0,,,
+Kansas City,39.1429,-94.573,False,United States of America,,,3.0,,,,
+Kaohsiung,22.6297,120.344,False,"Taiwan, Greater China",,,,2.0,,,
+Karachi,24.9108,67.1281,True,Pakistan,0.0,0.0,0.0,3.0,0.0,0.0,0.0
+Key West,81.78,24.5551,False,United States of America,,,,3.0,,,
+Kisumu,-0.0917,34.7679,False,Kenya,3.0,2.0,,,,,
+Kolkata,22.5726,88.3639,True,India,2.0,0.0,0.0,0.0,0.0,0.0,0.0
+La Barca,20.2903,-102.546,False,Mexico,,2.0,2.0,2.0,,,
+La Crosse,43.8014,-91.2396,False,United States of America,2.0,,2.0,,,,
+LaGrange,40.0428,-91.4976,False,United States of America,2.0,,,,,,
+Lagos,6.52437,3.3792,True,Nigeria,2.0,2.0,2.0,2.0,3.0,2.0,3.0
+Lahti,60.9833,25.65,False,Finland,2.0,,2.0,2.0,,,
+Lakewood,39.7047,-105.081,False,United States of America,2.0,,2.0,2.0,,,2.0
+"Lancaster, PA",40.0379,-76.3055,False,United States of America,2.0,,2.0,,,,
+Las Vegas,36.1699,-115.14,False,United States of America,2.0,2.0,2.0,3.0,,1.0,1.0
+Laval,45.6207,-73.7126,False,Canada,,1.0,,,,,
+Leicester,52.6333,-1.1333,False,United Kingdom of Great Britain and Northern Ireland,,,2.0,2.0,,,
+Leticia,-4.21528,-69.9406,False,Colombia,,,2.0,,,,
+Lilongwe,-13.9626,33.7741,False,Malawi,,,,2.0,,,
+Limeira,-22.5665,-47.3974,False,Brazil,,,,2.0,,,
+London,51.5048,-0.07868,True,United Kingdom of Great Britain and Northern Ireland,0.0,2.0,0.0,2.0,0.0,1.0,0.0
+Londrina,-23.3356,-51.1505,False,Brazil,2.0,,,,,,1.0
+Long Beach,33.7701,-118.194,False,United States of America,,,1.0,2.0,,,
+Lorena,-22.7339,-45.1201,False,Brazil,3.0,,2.0,3.0,2.0,,
+MaceiÃ³,-9.67342,-35.718,False,Brazil,2.0,,2.0,,,,
+Manhattan Beach,33.8889,-118.405,False,United States of America,,,,2.0,,,
+Mannheim,49.4875,8.46603,False,Germany,,,,,,,2.0
+Mazabuka,-15.8613,27.7491,False,Zambia,2.0,,,2.0,,,
+MedellÃ­n,6.22729,-75.5735,True,Colombia,2.0,0.0,0.0,2.0,0.0,0.0,0.0
+Memphis,35.1495,-90.049,False,United States of America,2.0,,,1.0,,,
+Mendoza,-32.8894,-68.8458,False,Argentina,,,2.0,2.0,,,
+Mexico City,19.4326,-99.1332,True,Mexico,0.0,0.0,2.0,3.0,0.0,0.0,0.0
+Miami Beach,25.7906,-80.13,False,United States of America,,,2.0,2.0,,,
+Minneapolis,44.9833,-93.2667,False,United States of America,,,,1.0,,,
+Miraflores,-16.3994,-71.5366,False,Peru,,,,3.0,,,
+Mirandela,41.51,-7.1753,False,Portugal,2.0,,,2.0,,,
+Moab,38.57,-109.54,False,United States of America,,,,2.0,,,
+MonterÃ­a,8.74798,-75.8814,False,Colombia,1.0,,,2.0,,,
+Murcia,37.799,-1.00495,False,Spain,2.0,,,3.0,,,
+MÃ©rida,20.9674,-89.5926,False,Mexico,2.0,,,,,,
+Nacala,-14.5656,40.6854,False,Mozambique,,,,2.0,,,
+Nagoya,35.1815,136.906,False,Japan,2.0,,2.0,,,,
+Nairobi,-1.29206,36.8219,True,Kenya,2.0,0.0,0.0,2.0,0.0,0.0,0.0
+Nakuru,-0.30309,36.08,False,Kenya,2.0,3.0,2.0,2.0,,,
+Nashville,36.1627,-86.7816,False,United States of America,1.0,,2.0,2.0,,,
+Natal,-5.77925,-35.2009,False,Brazil,2.0,,,2.0,,,
+Natchez,31.5604,-91.4032,False,United States of America,,,2.0,,,,
+Naucalpan de JuÃ¡rez,19.4631,-99.2453,False,Mexico,,,,2.0,,,
+New Bedford,41.6362,-70.9342,False,United States of America,,,2.0,,,,
+New Plymouth District,-39.1011,174.354,False,New Zealand,,2.0,2.0,,,,
+New Taipei,25.0111,121.446,False,"Taiwan, Greater China",,,,1.0,,,
+Nijmegen,51.8449,5.84282,False,Netherlands,2.0,,,,,,
+NiterÃ³i,-22.8928,-43.1184,False,Brazil,,,2.0,2.0,,,
+North Vancouver,49.32,-123.072,False,Canada,2.0,2.0,2.0,2.0,,,
+Oakland,37.8044,-122.271,False,United States of America,,,2.0,3.0,,2.0,2.0
+OlÃ­mpia,-20.7371,-48.9111,False,Brazil,,,,2.0,,,
+Oristano,39.7207,8.898,False,Italy,2.0,,,2.0,,,
+Oslo,59.9139,10.7522,True,Norway,1.0,0.0,0.0,3.0,0.0,0.0,0.0
+Ovar,40.8901,-8.59723,False,Portugal,2.0,,,2.0,,,
+Palmira,3.53944,-76.3036,False,Colombia,2.0,2.0,,2.0,,,
+Paris,48.8566,2.35222,True,France,3.0,0.0,0.0,2.0,0.0,0.0,0.0
+Park City,40.6461,-111.498,False,United States of America,,,,2.0,,,
+Parma,44.8015,10.3279,False,Italy,,,,2.0,,,
+Pemba,-12.9732,40.5178,False,Mozambique,,2.0,2.0,2.0,2.0,,
+Phoenix,33.4484,-112.074,False,United States of America,,,,2.0,,,2.0
+Piedmont,37.8244,-122.232,False,United States of America,,,,1.0,,,1.0
+PingtungÂ County,22.6558,120.47,False,"Taiwan, Greater China",3.0,,,,,,
+PirenÃ³polis,-15.8545,-48.9595,False,Brazil,3.0,,,2.0,,,
+Pittsburgh,40.4406,-79.9959,False,United States of America,2.0,,2.0,2.0,,,
+Podgorica,42.4304,19.2594,False,Montenegro,2.0,,2.0,2.0,,,1.0
+"Portland, ME",43.6615,-70.2553,False,United States of America,2.0,,2.0,,,,
+"Portland, OR",45.52,-122.682,True,United States of America,0.0,0.0,3.0,2.0,0.0,2.0,2.0
+Prince George,53.9171,-122.75,False,Canada,3.0,,2.0,,,,
+Providencia,-33.4313,-70.6092,False,Chile,2.0,,,2.0,,,
+Puerto Barrios,-88.5944,15.7278,False,Guatemala,1.0,,,1.0,,,
+PÃ¤rnu,58.3858,24.4966,False,Estonia,,,,2.0,,,
+Quelimane,-17.8503,36.9218,False,Mozambique,2.0,,2.0,,,2.0,
+Quito,-0.2333,-78.5167,True,Ecuador,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+Ramsey,45.2611,-93.45,False,United States of America,,1.0,,,,,
+Recife,-8.05783,-34.8829,False,Brazil,3.0,,,,,,
+Reggio Emilia,44.4376,10.8774,False,Italy,,,,2.0,,,
+Reno,39.5296,-119.814,False,United States of America,2.0,,,2.0,,,
+ReykjavÃ­k,64.1265,-21.8174,False,Iceland,1.0,,,1.0,,,
+"Richmond, VA",37.5407,-77.436,False,United States of America,,,2.0,,,,
+Riga,56.9496,24.1052,False,Latvia,1.0,,2.0,,2.0,,1.0
+Rio Verde,-17.9685,-50.4892,False,Brazil,3.0,,,,,,
+Rio de Janeiro,-22.9054,-43.5614,True,Brazil,0.0,0.0,3.0,2.0,2.0,0.0,0.0
+Rochester,43.161,-77.6109,False,United States of America,2.0,,,2.0,,,
+Roma,41.53,12.2858,True,Italy,0.0,0.0,2.0,3.0,0.0,0.0,0.0
+Rostock,54.0887,12.1405,False,Germany,,,2.0,,,,
+Sacramento,38.5816,-121.494,False,United States of America,,,,2.0,,,
+Salt Lake City,40.7608,-111.891,False,United States of America,2.0,,2.0,3.0,,,
+San Antonio,29.4241,-98.4936,False,United States of America,,,,3.0,,,
+San Francisco,37.7749,-122.419,True,United States of America,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+San Isidro (Lima),-12.0977,-77.0273,False,Peru,,,2.0,3.0,,,2.0
+"San JosÃ©, CA",37.3382,-121.886,False,United States of America,,,,2.0,,,
+San Leandro,37.7249,-122.156,False,United States of America,,,2.0,2.0,,,
+San Pedro de UrabÃ¡,-76.3414,8.34552,False,Colombia,2.0,,,,,,
+"Santa Cruz, CA",36.9741,-122.031,False,United States of America,,,,2.0,,,
+Santa Fe County,35.5,-106.0,False,United States of America,,2.0,,2.0,,,
+SantarÃ©m,39.2367,-8.68599,False,Portugal,,,,2.0,,,
+Santiago,-33.4489,-70.6693,False,Chile,3.0,3.0,,3.0,,,
+Santiago,-33.4489,-70.6693,True,Chile,2.0,0.0,0.0,2.0,0.0,2.0,0.0
+Santiago de Cali,3.45164,-76.532,False,Colombia,2.0,,,,,,
+Santiago de Guayaquil,-2.17099,-79.9223,False,Ecuador,,,,2.0,,,
+Santiago de Surco,-12.1453,-77.0051,False,Peru,,,,3.0,,,
+Saratoga Springs,43.0333,-73.8167,False,United States of America,1.0,1.0,,,,,
+Saskatoon,52.1332,-106.67,False,Canada,2.0,,2.0,2.0,,,
+Seattle,47.6062,-122.332,True,United States of America,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+Sekhukhune District Municipality,-24.8335,29.974,False,South Africa,2.0,,,,,,
+Sincelejo,9.30457,-75.3906,False,Colombia,2.0,,,2.0,,,2.0
+SopÃ³,4.9075,-73.9384,False,Colombia,,1.0,,,,,
+Sorocaba,-23.4775,-47.4221,False,Brazil,3.0,2.0,2.0,2.0,,,
+St Catharines,43.1594,-79.2469,False,Canada,2.0,,2.0,,,,1.0
+St Louis,38.627,-90.1994,False,United States of America,,,2.0,2.0,,,
+Stockholm,59.3293,18.0686,True,Sweden,1.0,0.0,0.0,2.0,0.0,0.0,0.0
+Surfside,25.8789,-80.1233,False,United States of America,,,2.0,2.0,,,
+Suwon,37.17,126.805,False,Republic of Korea,,,,2.0,,,
+SÃ£o Bento do SapucaÃ­,-22.6874,-45.732,False,Brazil,3.0,3.0,3.0,3.0,,,
+SÃ£o Leopoldo,-29.761,-51.1493,False,Brazil,,1.0,1.0,1.0,,,1.0
+SÃ£o Paulo,-23.5595,-46.7382,True,Brazil,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+SÃ£o Vicente,-23.963,-46.3919,False,Brazil,,1.0,,,,,
+Taichung,24.1619,120.647,False,"Taiwan, Greater China",,,,1.0,,,
+Taipei,25.0375,121.564,False,"Taiwan, Greater China",1.0,,,2.0,,,
+TangarÃ¡ da Serra,-14.6194,-57.4858,False,Brazil,,,,2.0,,,
+TatuÃ­,-23.3492,-47.8466,False,Brazil,2.0,,,2.0,,,
+Tegucigalpa,14.1051,-87.2044,False,Honduras,,,,,,,2.0
+Tempe,33.4255,-111.94,False,United States of America,,,2.0,2.0,,,
+The Hague,52.0705,4.3007,False,Netherlands,2.0,,,2.0,,,
+Tokyo,35.41,139.41,True,Japan,2.0,0.0,2.0,2.0,0.0,0.0,0.0
+Toledo,41.6639,-83.5552,False,United States of America,3.0,,,,,,
+Torres Vedras,38.7637,-9.30148,False,Portugal,2.0,,2.0,2.0,,,
+TorreÃ³n,25.5428,-103.407,False,Mexico,3.0,2.0,,2.0,,,
+Tuzla,44.5375,18.6735,False,Turkey,,,,2.0,,,
+Urla,38.3434,26.5536,False,Turkey,1.0,,,,,,
+Vail,39.6403,-106.374,False,United States of America,2.0,,,2.0,,,
+Vancouver,49.2612,-123.114,True,Canada,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Vhembe,-22.7695,29.974,False,South Africa,3.0,,,3.0,,,
+Vinhedo,-23.0307,-46.9838,False,Brazil,,,,2.0,,,
+VitÃ³ria,-20.3338,-40.3776,False,Brazil,2.0,,,2.0,,,2.0
+Warsaw,52.2297,21.0122,True,Poland,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+"Washington, DC",38.9072,-77.0369,True,United States of America,2.0,0.0,2.0,2.0,0.0,0.0,0.0
+Wellington,-41.2865,174.776,False,New Zealand,,,2.0,2.0,,,
+West Coast District Municipality,-32.0951,18.627,False,South Africa,,,,2.0,,,
+West Hollywood,34.09,-118.362,False,United States of America,,,,2.0,,,
+West Palm Beach,26.7153,-80.0534,False,United States of America,,,2.0,3.0,,,
+Windhoek,-22.5609,17.0658,False,Namibia,,,,2.0,,,
+Windsor,42.3149,-83.0364,False,Canada,2.0,,,1.0,,,
+Winston-Salem,36.0999,-80.2442,False,United States of America,,,,1.0,,,
+Wollongong,-34.4278,150.893,False,Australia,2.0,,,2.0,,,
+Xalapa,20.1318,-98.7556,False,Mexico,,2.0,2.0,2.0,,,2.0
+YaoundÃ© 6,3.86181,11.5191,False,Cameroon,,,2.0,2.0,,,
+Yokohama,35.4437,139.638,True,Japan,0.0,0.0,0.0,2.0,0.0,0.0,0.0
+Ãlhavo,38.85,-7.58,False,Portugal,2.0,,,2.0,,,
+Ã–rebro,59.2741,15.2066,False,Sweden,,,,1.0,,,
