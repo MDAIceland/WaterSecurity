@@ -18,3 +18,4 @@ ipyleaflet
 voila==0.1.24
 haversine
 country-converter
+pdoc3
