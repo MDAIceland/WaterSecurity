@@ -1,8 +1,8 @@
 description,code
-Declining water quality,risk0
-Increased water demand,risk1
-Inadequate or aging infrastructure,risk2
-Increased water stress or scarcity,risk3
-Energy supply issues,risk4
+Higher water prices,risk0
+Inadequate or aging infrastructure,risk1
+Increased water stress or scarcity,risk2
+Declining water quality,risk3
+Increased water demand,risk4
 Regulatory,risk5
-Higher water prices,risk6
+Energy supply issues,risk6
