@@ -2,7 +2,10 @@ import pdoc
 import os
 context = pdoc.Context()
 
-modules = pdoc.Module(".", context=context, skip_errors=True)
+with open(".docignore","r") as rf:
+    ignore_strings = rf.read().splitlines()
+
+modules = pdoc.Module(".", context=context, skip_errors=True, docfilter=lambda x: x.name not in ignore_strings)
         
 pdoc.link_inheritance(context)
 
@@ -19,3 +22,4 @@ for module_name, html, has_subm in recursive_htmls(modules):
     os.makedirs(os.path.dirname(fname), exist_ok=True)
     with open(fname,"w", encoding="utf-8") as f:
         f.writelines(html)
+
