@@ -155,7 +155,7 @@ class ModelHandler:
         model = {}
         train_metrics = {}
         valid_metrics = {}
-        filled_dataset = dataset[self.lab_names + self.id_columns].copy()
+        filled_dataset = dataset[self.id_columns + self.lab_names].copy()
         for label in self.lab_names:
             train_mask = ~pd.isnull(dataset[label])
             labeled = dataset.loc[train_mask, :]
@@ -187,7 +187,9 @@ class ModelHandler:
             pickle.dump(train_metrics, out)
         self.filled_dataset = filled_dataset
         self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
-        pd.isnull(dataset[self.lab_names]).to_csv(PREDICTION_MASK_PATH, index=False)
+        prediction_mask = self.filled_dataset[self.id_columns + self.lab_names]
+        prediction_mask[self.lab_names] = pd.isnull(dataset[self.lab_names])
+        prediction_mask.to_csv(PREDICTION_MASK_PATH, index=False)
         import data.model.metrics
 
         importlib.reload(data.model.metrics)
