@@ -296,13 +296,20 @@ def is_close(loc1, loc2, thres: float = 3) -> bool:
 
 
 class DownloadProgressBar(tqdm):
+    """
+    Progress Bar for downloading purposes
+    """
+
     def update_to(self, b=1, bsize=1, tsize=None):
         if tsize is not None:
             self.total = tsize
         self.update(b * bsize - self.n)
 
 
-def download_url(url, output_path):
+def download_url(url: str, output_path: str) -> None:
+    """
+    Download a file from a url and save it to the provided output path
+    """
     with DownloadProgressBar(
         unit="B", unit_scale=True, miniters=1, desc=url.split("/")[-1]
     ) as t:
@@ -314,7 +321,9 @@ import numpy as np
 
 ## Answer to
 ## https://stackoverflow.com/questions/60127026/python-how-do-i-get-the-pixel-values-from-an-geotiff-map-by-coordinate
-def get_coordinate_pixel(map, lat, lon, pixels_width, pixels_height, crs="WGS84"):
+def get_coordinate_pixel(
+    map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs="WGS84"
+) -> np.ndarray:
     """
     Given a geotif map, open it,
     read the pixels values that correspond to the provided latitude and longitude,
@@ -333,6 +342,10 @@ def get_coordinate_pixel(map, lat, lon, pixels_width, pixels_height, crs="WGS84"
 
 
 def get_average_1k_population_density(longitude: float, latitude: float) -> int:
+    """
+    Based on provided longitude and latitude, get the median population density, as computed
+    in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
+    """
     from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
 
     if not os.path.isfile(POPULATION_DENSITY_PATH):
@@ -346,9 +359,9 @@ def get_average_1k_population_density(longitude: float, latitude: float) -> int:
                 pass
 
     oret = get_coordinate_pixel(
-        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=6, pixels_height=6
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7
     ).squeeze()
-    cnt = 2
+    cnt = 3
     ret = oret
     while cnt:
         res = np.median(ret[ret > 0])
