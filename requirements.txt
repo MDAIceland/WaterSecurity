@@ -20,3 +20,5 @@ haversine
 country-converter
 pdoc3
 nbconvert
+tqdm
+rasterio

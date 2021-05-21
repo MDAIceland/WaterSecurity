@@ -1,9 +1,12 @@
-from math import sqrt
-import requests
-
+import os
+import urllib.request
 import xml.etree.ElementTree as ET
+from math import sqrt
 from typing import TypedDict
+
 import haversine as hs
+import requests
+from tqdm import tqdm
 
 TWO_TO_THREE_LETTER_CODE = {
     "AF": "AFG",
@@ -290,3 +293,67 @@ def is_close(loc1, loc2, thres: float = 3) -> bool:
     returns whether those points are close or not to each other
     """
     return hs.haversine(loc1, loc2) < thres
+
+
+class DownloadProgressBar(tqdm):
+    def update_to(self, b=1, bsize=1, tsize=None):
+        if tsize is not None:
+            self.total = tsize
+        self.update(b * bsize - self.n)
+
+
+def download_url(url, output_path):
+    with DownloadProgressBar(
+        unit="B", unit_scale=True, miniters=1, desc=url.split("/")[-1]
+    ) as t:
+        urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
+
+
+import rasterio
+import numpy as np
+
+## Answer to
+## https://stackoverflow.com/questions/60127026/python-how-do-i-get-the-pixel-values-from-an-geotiff-map-by-coordinate
+def get_coordinate_pixel(map, lat, lon, pixels_width, pixels_height, crs="WGS84"):
+    """
+    Given a geotif map, open it,
+    read the pixels values that correspond to the provided latitude and longitude,
+    with a specific bounding box pixels_width, pixels_height, and return them
+    """
+    # open map
+    with rasterio.open(map, crs=crs) as dataset:
+        # get pixel x+y of the coordinate
+        py, px = dataset.index(lat, lon)
+        # create 1x1px window of the pixel
+        window = rasterio.windows.Window(
+            px - pixels_width // 2, py - pixels_height // 2, pixels_width, pixels_height
+        )
+        # read rgb values of the window
+        return dataset.read(window=window)
+
+
+def get_average_1k_population_density(longitude: float, latitude: float) -> int:
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not os.path.isfile(POPULATION_DENSITY_PATH):
+        print("Population Density Map is not available, it will be downloaded")
+        try:
+            download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass
+
+    oret = get_coordinate_pixel(
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=6, pixels_height=6
+    ).squeeze()
+    cnt = 2
+    ret = oret
+    while cnt:
+        res = np.median(ret[ret > 0])
+        if res > 1:
+            return res
+        cnt -= 1
+        ret = ret[1:-1, -1:1]
+    return np.median(oret[oret > 0])
