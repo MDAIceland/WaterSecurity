@@ -7,6 +7,7 @@ from typing import TypedDict
 import haversine as hs
 import requests
 from tqdm import tqdm
+from tqdm.notebook import tqdm
 
 TWO_TO_THREE_LETTER_CODE = {
     "AF": "AFG",
@@ -295,27 +296,6 @@ def is_close(loc1, loc2, thres: float = 3) -> bool:
     return hs.haversine(loc1, loc2) < thres
 
 
-class DownloadProgressBar(tqdm):
-    """
-    Progress Bar for downloading purposes
-    """
-
-    def update_to(self, b=1, bsize=1, tsize=None):
-        if tsize is not None:
-            self.total = tsize
-        self.update(b * bsize - self.n)
-
-
-def download_url(url: str, output_path: str) -> None:
-    """
-    Download a file from a url and save it to the provided output path
-    """
-    with DownloadProgressBar(
-        unit="B", unit_scale=True, miniters=1, desc=url.split("/")[-1]
-    ) as t:
-        urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
-
-
 import rasterio
 import numpy as np
 
@@ -341,22 +321,43 @@ def get_coordinate_pixel(
         return dataset.read(window=window)
 
 
+CHECKED_DENSITY_SOURCE = False
+
+
+def check_1k_population_density_source():
+    global CHECKED_DENSITY_SOURCE
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not CHECKED_DENSITY_SOURCE:
+        try:
+            get_coordinate_pixel(
+                POPULATION_DENSITY_PATH, 0, 0, pixels_width=3, pixels_height=3
+            )
+
+            rasterio.open(POPULATION_DENSITY_PATH)
+            CHECKED_DENSITY_SOURCE = True
+        except:
+            pass
+    if not CHECKED_DENSITY_SOURCE:
+        print("Population Density Map is not available, it will be downloaded")
+        from utils.download import download_url
+
+        try:
+            return download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except KeyboardInterrupt:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass
+
+
 def get_average_1k_population_density(longitude: float, latitude: float) -> int:
     """
     Based on provided longitude and latitude, get the median population density, as computed
     in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
     """
-    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
-
-    if not os.path.isfile(POPULATION_DENSITY_PATH):
-        print("Population Density Map is not available, it will be downloaded")
-        try:
-            download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
-        except:
-            try:
-                os.remove(POPULATION_DENSITY_PATH)
-            except:
-                pass
+    check_1k_population_density_source()
+    from data.unlabeled import POPULATION_DENSITY_PATH
 
     oret = get_coordinate_pixel(
         POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7

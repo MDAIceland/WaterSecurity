@@ -13,5 +13,9 @@ try:
     RISKS_MAPPING = (
         pd.read_csv(RISKS_MAPPING_PATH).set_index("code").to_dict()["description"]
     )
+    SEVERITY_MAPPING = {
+        value: key
+        for key, value in pd.read_csv(SEVERITY_MAPPING_PATH).iloc[0].to_dict().items()
+    }
 except FileNotFoundError:
     pass

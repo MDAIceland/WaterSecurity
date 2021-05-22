@@ -226,7 +226,7 @@ class ModelHandler:
 
         from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET.loc[place["code"]]
+        feats = COUNTRIES_DATASET.loc[place["code"]].copy()
         feats["population_1k_density"] = population_density
         preds = {}
         mask = {}
