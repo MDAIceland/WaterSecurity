@@ -1,9 +1,13 @@
-from math import sqrt
-import requests
-
+import os
+import urllib.request
 import xml.etree.ElementTree as ET
+from math import sqrt
 from typing import TypedDict
+
 import haversine as hs
+import requests
+from tqdm import tqdm
+from tqdm.notebook import tqdm
 
 TWO_TO_THREE_LETTER_CODE = {
     "AF": "AFG",
@@ -290,3 +294,80 @@ def is_close(loc1, loc2, thres: float = 3) -> bool:
     returns whether those points are close or not to each other
     """
     return hs.haversine(loc1, loc2) < thres
+
+
+import rasterio
+import numpy as np
+
+## Answer to
+## https://stackoverflow.com/questions/60127026/python-how-do-i-get-the-pixel-values-from-an-geotiff-map-by-coordinate
+def get_coordinate_pixel(
+    map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs="WGS84"
+) -> np.ndarray:
+    """
+    Given a geotif map, open it,
+    read the pixels values that correspond to the provided latitude and longitude,
+    with a specific bounding box pixels_width, pixels_height, and return them
+    """
+    # open map
+    with rasterio.open(map, crs=crs) as dataset:
+        # get pixel x+y of the coordinate
+        py, px = dataset.index(lat, lon)
+        # create 1x1px window of the pixel
+        window = rasterio.windows.Window(
+            px - pixels_width // 2, py - pixels_height // 2, pixels_width, pixels_height
+        )
+        # read rgb values of the window
+        return dataset.read(window=window)
+
+
+CHECKED_DENSITY_SOURCE = False
+
+
+def check_1k_population_density_source():
+    global CHECKED_DENSITY_SOURCE
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not CHECKED_DENSITY_SOURCE:
+        try:
+            get_coordinate_pixel(
+                POPULATION_DENSITY_PATH, 0, 0, pixels_width=3, pixels_height=3
+            )
+
+            rasterio.open(POPULATION_DENSITY_PATH)
+            CHECKED_DENSITY_SOURCE = True
+        except:
+            pass
+    if not CHECKED_DENSITY_SOURCE:
+        print("Population Density Map is not available, it will be downloaded")
+        from utils.download import download_url
+
+        try:
+            return download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except KeyboardInterrupt:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass
+
+
+def get_average_1k_population_density(longitude: float, latitude: float) -> int:
+    """
+    Based on provided longitude and latitude, get the median population density, as computed
+    in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
+    """
+    check_1k_population_density_source()
+    from data.unlabeled import POPULATION_DENSITY_PATH
+
+    oret = get_coordinate_pixel(
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7
+    ).squeeze()
+    cnt = 3
+    ret = oret
+    while cnt:
+        res = np.median(ret[ret > 0])
+        if res > 1:
+            return res
+        cnt -= 1
+        ret = ret[1:-1, -1:1]
+    return np.median(oret[oret > 0])

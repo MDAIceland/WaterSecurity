@@ -15,7 +15,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 from classification import RANDOM_SEED
 from data.model.metrics import VALIDATION_METRICS_PATH, TRAINING_METRICS_PATH
 from data.model.predictions import PREDICTION_MASK_PATH, FILLED_DATASET_PATH
-from utils.geo import is_close, get_place
+from utils.geo import is_close, get_place, get_average_1k_population_density
 
 
 class TrainingRequired(NotFittedError):
@@ -222,9 +222,12 @@ class ModelHandler:
             place = get_place(latitude, longitude)
         except AttributeError:
             raise InvalidCoordinates
+        population_density = get_average_1k_population_density(latitude, longitude)
+
         from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET.loc[place["code"]]
+        feats = COUNTRIES_DATASET.loc[place["code"]].copy()
+        feats["population_1k_density"] = population_density
         preds = {}
         mask = {}
         for label in self.model:
