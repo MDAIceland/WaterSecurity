@@ -21,4 +21,4 @@ except ImportError:
     pass
 
 POPULATION_DENSITY_PATH = os.path.join(UNLABELED_DIR, "ppp_2020_1km_Aggregated.tif")
-POPULATION_DENSITY_URL = "https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/0_Mosaicked/ppp_2020_1km_Aggregated.tif"
+POPULATION_DENSITY_URL = "https://s3groupiceland.s3.eu-central-1.amazonaws.com/ppp_2020_1km_Aggregated.tif"
