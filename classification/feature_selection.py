@@ -11,48 +11,51 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.fitted_selector = None
         self.min_num_feats = 10
+        self.scores_ = None
 
     def fit(self, x, y):
         # risks.remove(label)
         # print(risks)
-        x = self.preprocess(x)
         assert all(~np.isnan(y))
 
         # l = x.columns[x.isna().any()].tolist()
         # print(l)
 
-        var_num = x.shape[1]
+        var_num = x.shape[0]
         var_num = max(int((var_num * 15) / 100), self.min_num_feats)
         print("Picked variable number:", var_num)
 
         # Applying select K-best
         bestFeatures = SelectKBest(score_func=f_regression, k=var_num)
         self.fitted_selector = bestFeatures.fit(x, y)
-        dfscores = pd.DataFrame(self.fitted_selector.scores_)
-        dfcolumns = pd.DataFrame(x.columns)
-
-        # print(dfscores)
-
-        # Concat two dataframes for better visualization
-        featureScores = pd.concat([dfcolumns, dfscores], axis=1)
-        featureScores.columns = ["Specs", "Score"]
-        # print 15% of the total features according to the score features
-        print("Features select \n", featureScores.nlargest(var_num, "Score"))
+        self.scores_ = self.fitted_selector.scores_
+        self.feats_indices = bestFeatures.get_support()
 
     def transform(self, X):
-        return self.fitted_selector.transform(self.preprocess(X))
+        return self.fitted_selector.transform(X)
 
 
 class DummyTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self.feats = None
+
     def fit(self, X, y):
+        self.feats = X.columns
         return self
 
-    def transform(X):
+    def transform(self, X):
         return X
 
+    def get_feature_names(self):
+        return self.feats
 
-class PolynomialPopulation(BaseEstimator, TransformerMixin):
-    def __init__(self):
+
+import re
+
+
+class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
+    def __init__(self, element):
+        self.element = element
         self.poly = None
         self.pop_feats = []
 
@@ -63,7 +66,7 @@ class PolynomialPopulation(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         self.poly = PolynomialFeatures()
-        self.pop_feats = self.getArrayOfFeatures(X, "population")
+        self.pop_feats = self.getArrayOfFeatures(X, self.element)
         self.poly.fit(X[self.pop_feats].values)
 
         # print(crossed_df.shape)
@@ -71,9 +74,18 @@ class PolynomialPopulation(BaseEstimator, TransformerMixin):
 
     def transform(self, data):
         crossed_feats = self.poly.transform(data[self.pop_feats])
+
         # Convert to Pandas DataFrame and merge to original dataset
         crossed_df = pd.DataFrame(crossed_feats)
         return crossed_df
+
+    def get_feature_names(self):
+        feats = []
+        for out_feat in self.poly.get_feature_names():
+            for cnt, pop_feat in enumerate(self.pop_feats):
+                out_feat = re.sub(r"x" + str(cnt) + r"\b", pop_feat, out_feat)
+            feats.append(out_feat)
+        return feats
 
 
 class PCAWrapper(BaseEstimator, TransformerMixin):
@@ -110,32 +122,50 @@ class PCAWrapper(BaseEstimator, TransformerMixin):
         pca_ret = self.pca.transform(X)
         return pd.DataFrame(data=pca_ret, columns=self.component_cols)
 
+    def get_feature_names(self):
+        return self.component_cols
+
+
+class RobustScalerWrapper:
+    def __init__(self):
+        self.robust_scaler = RobustScaler()
+        self.columns = None
+
+    def fit(self, X, y):
+        self.columns = X.columns
+        self.robust_scaler.fit(X, y)
+        return self
+
+    def transform(self, X):
+        return pd.DataFrame(self.robust_scaler.transform(X), columns=self.columns)
+
 
 class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.id_columns = [
-            "country",
-            "city",
-            "country_code",
-            "c40",
             "latitude",
             "longitude",
         ]
         self.pipeline = Pipeline(
             [
-                ("scale", RobustScaler()),
+                ("scale", RobustScalerWrapper()),
                 (
                     "generation",
                     FeatureUnion(
-                        [DummyTransformer(), PCAWrapper(), PolynomialPopulation()]
+                        [
+                            ("scaled", DummyTransformer()),
+                            ("pca", PCAWrapper()),
+                            ("pop_poly", ColumnSubstringPolynomial("population")),
+                            ("perc_poly", ColumnSubstringPolynomial("%")),
+                        ]
                     ),
                 ),
                 ("selection", FeatureSelection()),
             ]
         )
+        self.feat_names = None
 
     def split(self, data):
-        data = data.drop(columns=self.id_columns)
         return (
             data[self.id_columns],
             data[[col for col in data.columns.values if col not in self.id_columns]],
@@ -147,6 +177,22 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         """
         _, x_data = self.split(x_data)
         self.pipeline.fit(x_data, y_data)
+        dfscores = pd.DataFrame(self.pipeline.named_steps["selection"].scores_)
+        dfcolumns = pd.DataFrame(
+            self.pipeline.named_steps["generation"].get_feature_names()
+        )
+        feats_indices = self.pipeline.named_steps["selection"].feats_indices
+        # print(dfscores)
+
+        # Concat two dataframes for better visualization
+        featureScores = pd.concat([dfcolumns, dfscores], axis=1)
+        featureScores.columns = ["Specs", "Score"]
+        # print 15% of the total features according to the score features
+        print(
+            "Features select \n",
+            featureScores.iloc[feats_indices].sort_values("Score", ascending=False),
+        )
+        self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         return self
 
     def transform(self, x_data):
@@ -154,5 +200,8 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         Transforms x_data from nxm to kxm
         """
         labs, x_data = self.split(x_data)
-        new_x_data = self.pipeline.transform(x_data)
+        new_x_data = pd.DataFrame(
+            self.pipeline.transform(x_data), columns=self.feat_names
+        )
+
         return pd.concat([labs, new_x_data], axis=1)

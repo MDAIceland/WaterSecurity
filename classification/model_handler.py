@@ -43,7 +43,7 @@ class ModelHandler:
         self.feat_names = None
         self.lab_names = None
         # The id columns to remain in the filled dataset
-        self.id_columns = ["city", "country", "latitude", "longitude"]
+        self.id_columns = ["city", "country", "country_code", "c40"]
 
     @property
     def model(self) -> Pipeline:
@@ -92,7 +92,7 @@ class ModelHandler:
             self.feat_names = [
                 x
                 for x in dataset.columns
-                if x not in self.lab_names and x not in LABELED_CITIES.columns
+                if x not in self.lab_names and x not in self.id_columns
             ]
             self.train_mask = dataset[self.lab_names].apply(
                 lambda x: all(pd.isnull(x)), axis=1
@@ -150,8 +150,6 @@ class ModelHandler:
         """
         dataset = self.dataset
         labeled = dataset[self.train_mask]
-        labeled[self.lab_names]
-
         model = {}
         train_metrics = {}
         valid_metrics = {}
