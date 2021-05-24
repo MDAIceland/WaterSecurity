@@ -141,7 +141,7 @@ class RobustScalerWrapper:
 
 
 class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
-    def __init__(self):
+    def __init__(self, apply_selection=True):
         self.id_columns = [
             "latitude",
             "longitude",
@@ -164,6 +164,9 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             ]
         )
         self.feat_names = None
+        self.apply_selection = apply_selection
+        if not apply_selection:
+            self.pipeline.steps.pop(2)
 
     def split(self, data):
         return (
@@ -177,24 +180,27 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         """
         _, x_data = self.split(x_data)
         self.pipeline.fit(x_data, y_data)
-        dfscores = pd.DataFrame(self.pipeline.named_steps["selection"].scores_)
         dfcolumns = pd.DataFrame(
             self.pipeline.named_steps["generation"].get_feature_names()
         )
-        feats_indices = self.pipeline.named_steps["selection"].feats_indices
-        # print(dfscores)
+        if self.apply_selection:
+            dfscores = pd.DataFrame(self.pipeline.named_steps["selection"].scores_)
+            feats_indices = self.pipeline.named_steps["selection"].feats_indices
+            # print(dfscores)
 
-        # Concat two dataframes for better visualization
-        featureScores = pd.concat([dfcolumns, dfscores], axis=1)
-        featureScores.columns = ["Specs", "Score"]
-        # print 15% of the total features according to the score features
-        print(
-            "Features select \n",
-            featureScores.iloc[feats_indices]
-            .sort_values("Score", ascending=False)
-            .to_markdown(),
-        )
-        self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
+            # Concat two dataframes for better visualization
+            featureScores = pd.concat([dfcolumns, dfscores], axis=1)
+            featureScores.columns = ["Specs", "Score"]
+            # print 15% of the total features according to the score features
+            print(
+                "Features select \n",
+                featureScores.iloc[feats_indices]
+                .sort_values("Score", ascending=False)
+                .to_markdown(),
+            )
+            self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
+        else:
+            self.feat_names = dfcolumns
         return self
 
     def transform(self, x_data):
