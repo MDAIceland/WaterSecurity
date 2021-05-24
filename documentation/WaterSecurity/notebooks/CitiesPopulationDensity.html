@@ -13084,79 +13084,10 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipyleaflet</span> <span class="kn">import</span> <span class="n">Map</span><span class="p">,</span> <span class="n">basemaps</span><span class="p">,</span> <span class="n">CircleMarker</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">from</span> <span class="nn">data.labeled.preprocessed</span> <span class="kn">import</span>  <span class="n">RISKS_MAPPING</span> <span class="k">as</span> <span class="n">risks</span>
-<span class="kn">from</span> <span class="nn">data.labeled.preprocessed</span> <span class="kn">import</span> <span class="n">SEVERITY_MAPPING</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">ipyleaflet</span> <span class="kn">import</span> <span class="n">Icon</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">MarkerCluster</span><span class="p">,</span> <span class="n">Popup</span>
-
-<span class="c1"># First is latitude and second is longitude; both in degrees</span>
-
-
-<span class="n">m</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="n">basemaps</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">Terrain</span><span class="p">,</span><span class="n">world_copy_jump</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">markers</span> <span class="o">=</span> <span class="p">()</span>
-
-
-<span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;popup&#39;</span><span class="p">,</span>
-            <span class="n">close_button</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">close_on_escape_key</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">auto_pan</span><span class="o">=</span><span class="kc">False</span>
-        <span class="p">)</span>
-<span class="n">dpopup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;download_popup&#39;</span><span class="p">,</span>
-            <span class="n">close_button</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">close_on_escape_key</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">auto_pan</span><span class="o">=</span><span class="kc">False</span>
-        <span class="p">)</span>
-<span class="k">def</span> <span class="nf">mouseover_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span><span class="n">location</span><span class="p">,</span> <span class="n">html</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">popup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">html</span>
-        <span class="n">popup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">popup</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">callback</span>
-
-<span class="k">def</span> <span class="nf">mouseout_callback</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">popup</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">callback</span>
-
-
-
-<span class="k">def</span> <span class="nf">populate_per_city</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">risks_dict</span><span class="p">,</span> <span class="n">pred_mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-    <span class="n">html</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    &lt;p&gt; &lt;h4&gt;&lt;b&gt; </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2"> &lt;/b&gt;&lt;/h4&gt;</span>
-<span class="s2">    </span>
-<span class="s2">    &quot;&quot;&quot;</span>
-    
-    <span class="k">for</span> <span class="n">risk</span> <span class="ow">in</span> <span class="n">risks</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">risk</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">risks_dict</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">risk_value</span> <span class="o">=</span> <span class="n">risks_dict</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">risk_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">risk_value</span> <span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-            <span class="n">risk_value</span> <span class="o">=</span> <span class="n">SEVERITY_MAPPING</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">risk_value</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span>
-            <span class="n">to_add</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">      &lt;b&gt;</span><span class="si">{</span><span class="n">risks</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;:</span><span class="si">{</span><span class="n">risk_value</span><span class="si">}</span><span class="s2"></span>
-<span class="s2">   </span>
-<span class="s2">    &quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="n">pred_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">pred_mask</span><span class="p">[</span><span class="n">risk</span><span class="p">]:</span>
-                    <span class="n">to_add</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&lt;h4 style=&quot;color:blue&quot;&gt;</span><span class="si">{</span><span class="n">to_add</span><span class="si">}</span><span class="s1">&lt;/h4&gt;&#39;</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">to_add</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&lt;h4&gt;</span><span class="si">{</span><span class="n">to_add</span><span class="si">}</span><span class="s1">&lt;/h4&gt;&#39;</span>
-            <span class="n">html</span> <span class="o">+=</span> <span class="n">to_add</span>
-            
-    <span class="n">html</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span>
-    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
-    
-
-
-    
-<span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span>  <span class="n">is_close</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">data.dataset</span> <span class="kn">import</span> <span class="n">DATASET</span><span class="p">,</span> <span class="n">DATASET_PATH</span>
+<span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span> <span class="n">get_average_1k_population_density</span><span class="p">,</span><span class="n">get_place</span>
 </pre></div>
 
     </div>
@@ -13169,109 +13100,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">classification.model_handler</span> <span class="kn">import</span> <span class="n">ModelHandler</span><span class="p">,</span> <span class="n">InvalidCoordinates</span>
-<span class="kn">from</span> <span class="nn">data.labeled.preprocessed</span> <span class="kn">import</span> <span class="n">RISKS_MAPPING</span>
-
-<span class="n">handler</span> <span class="o">=</span> <span class="n">ModelHandler</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">handler</span><span class="o">.</span><span class="n">is_fitted</span><span class="p">:</span>
-    <span class="n">handler</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-    
-<span class="n">risks_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">RISKS_MAPPING</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">data.model.predictions</span> <span class="kn">import</span> <span class="n">FILLED_DATASET</span> <span class="k">as</span> <span class="n">dataset</span> <span class="p">,</span><span class="n">PREDICTION_MASK</span> <span class="k">as</span> <span class="n">prediction_mask</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">city</span><span class="p">),(</span><span class="n">_</span><span class="p">,</span><span class="n">pred_mask</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span><span class="n">prediction_mask</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()):</span>
-    <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">populate_per_city</span><span class="p">(</span><span class="n">city</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">city</span><span class="o">.</span><span class="n">country</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span><span class="n">pred_mask</span><span class="p">)</span>
-    <span class="n">marker</span> <span class="o">=</span> <span class="n">CircleMarker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span><span class="n">fill_color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseover</span><span class="p">(</span><span class="n">mouseover_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span><span class="n">location</span><span class="p">,</span> <span class="n">html</span><span class="p">))</span>
-    <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseout</span><span class="p">(</span><span class="n">mouseout_callback</span><span class="p">())</span>
-    <span class="n">markers</span> <span class="o">=</span> <span class="n">markers</span> <span class="o">+</span> <span class="p">(</span><span class="n">marker</span><span class="p">,)</span>
-    
-<span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span> <span class="n">check_1k_population_density_source</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">def</span> <span class="nf">on_download</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-            <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Still Downloading..&quot;</span><span class="p">)</span>
-            <span class="n">dpopup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">coords</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="n">threads</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-    <span class="n">dthread</span> <span class="o">=</span> <span class="n">check_1k_population_density_source</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">dthread</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dthread</span><span class="p">)</span>
-        <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Downloading required resource..&quot;</span><span class="p">)</span>
-        <span class="n">dpopup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">coords</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">return</span> <span class="kc">False</span>
-
-<span class="n">manually_added_markers</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">def</span> <span class="nf">handle_click</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;click&#39;</span><span class="p">:</span>
-        <span class="n">coords</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coordinates&#39;</span><span class="p">)</span>
-        <span class="n">check</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_close</span><span class="p">((</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">x</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="k">if</span> <span class="n">on_download</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-            <span class="k">return</span> 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">output</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">except</span> <span class="n">InvalidCoordinates</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">html</span> <span class="o">=</span> <span class="n">populate_per_city</span><span class="p">(</span><span class="s2">&quot;Close To:&quot;</span> <span class="o">+</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">],</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
-                    <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">output</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">risks_ids</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">output</span><span class="p">},</span>
-                    <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">mask</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">risks_ids</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">mask</span><span class="p">})</span>
-        <span class="n">marker</span> <span class="o">=</span> <span class="n">CircleMarker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span><span class="n">fill_color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">check</span> <span class="o">=</span> <span class="p">[</span><span class="n">is_close</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">location</span><span class="p">,</span><span class="n">mark</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">manually_added_markers</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">check</span><span class="p">):</span>
-            
-            <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseover</span><span class="p">(</span><span class="n">mouseover_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span><span class="n">coords</span><span class="p">,</span> <span class="n">html</span><span class="p">))</span>
-            <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseout</span><span class="p">(</span><span class="n">mouseout_callback</span><span class="p">())</span>
-            <span class="n">manually_added_markers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">marker</span><span class="p">)</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">marker</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">to_rem</span> <span class="o">=</span> <span class="p">[</span><span class="n">cnt</span> <span class="k">for</span> <span class="n">cnt</span><span class="p">,(</span><span class="n">m</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">manually_added_markers</span><span class="p">,</span><span class="n">check</span><span class="p">))</span> <span class="k">if</span> <span class="n">c</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">manually_added_markers</span><span class="p">[</span><span class="n">to_rem</span><span class="p">])</span>
-            <span class="n">manually_added_markers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">to_rem</span><span class="p">)</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">popup</span><span class="p">)</span>
-
-<span class="n">m</span><span class="o">.</span><span class="n">on_interaction</span><span class="p">(</span><span class="n">handle_click</span><span class="p">)</span>
-<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">MarkerCluster</span><span class="p">(</span><span class="n">markers</span> <span class="o">=</span> <span class="n">markers</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Instructions">Instructions<a class="anchor-link" href="#Instructions">&#182;</a></h2><h3 id="Click-on-clouds-of-cities-to-expand-or-hover-over-single-points-to-view-risks">Click on clouds of cities to expand or hover over single points to view risks<a class="anchor-link" href="#Click-on-clouds-of-cities-to-expand-or-hover-over-single-points-to-view-risks">&#182;</a></h3><ul>
-<li>Risks shown in black are result of ground truth</li>
-<li>Risks shown in blue are result of prediction</li>
-</ul>
-<h3 id="Click-on-the-map-for-online-prediction.-Click-the-created-red-dot-to-remove.">Click on the map for online prediction. Click the created red dot to remove.<a class="anchor-link" href="#Click-on-the-map-for-online-prediction.-Click-the-created-red-dot-to-remove.">&#182;</a></h3><p>(For online prediction, a file containing population densities is required to be downloaded)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="s1">&#39;80%&#39;</span>
-<span class="n">m</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="s1">&#39;1000px&#39;</span>
-<span class="n">m</span><span class="o">.</span><span class="n">zoom</span><span class="o">=</span><span class="mf">2.2</span>
-<span class="n">m</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATASET</span><span class="p">[</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13287,65 +13116,151 @@ div#notebook {
     <div class="prompt"></div>
 
 
-
-
-
- 
- 
-<div id="df4ca8b4-4e85-4499-a5e6-3f2f06804c9f"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#df4ca8b4-4e85-4499-a5e6-3f2f06804c9f');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "e5fee8800d9847adbc4fa9ff90851348", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Population Density Map is not available, it will be downloaded
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/vaslem/code/bioinformatics_ms/modern_data_analytics/.venv/lib/python3.8/site-packages/numpy/core/fromnumeric.py:3419: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/vaslem/code/bioinformatics_ms/modern_data_analytics/.venv/lib/python3.8/site-packages/numpy/core/_methods.py:188: RuntimeWarning: invalid value encountered in true_divide
+  ret = ret.dtype.type(ret / rcount)
 </pre>
 </div>
 </div>
 
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="aef78bed-7a61-4d4e-956d-12988353274b"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#aef78bed-7a61-4d4e-956d-12988353274b');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "dfe6b2210ce24ee19b6c7886df68be6a", "version_major": 2, "version_minor": 0}
-</script>
+</div>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATASET</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:][[</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea ">
-<pre>&lt;utils.download.DownloadProgressBar at 0x7f6ff04dabe0&gt;</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>country</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>population_1k_density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>181</th>
+      <td>Kano</td>
+      <td>Nigeria</td>
+      <td>12.0000</td>
+      <td>8.5167</td>
+      <td>32776.671875</td>
+    </tr>
+    <tr>
+      <th>680</th>
+      <td>Shenzhen</td>
+      <td>China</td>
+      <td>22.5350</td>
+      <td>114.0540</td>
+      <td>32942.902344</td>
+    </tr>
+    <tr>
+      <th>1081</th>
+      <td>Hanoi</td>
+      <td>Viet Nam</td>
+      <td>21.0245</td>
+      <td>105.8412</td>
+      <td>33384.570312</td>
+    </tr>
+    <tr>
+      <th>936</th>
+      <td>Dhaka</td>
+      <td>Bangladesh</td>
+      <td>23.7161</td>
+      <td>90.3961</td>
+      <td>34085.695312</td>
+    </tr>
+    <tr>
+      <th>677</th>
+      <td>Guangzhou</td>
+      <td>China</td>
+      <td>23.1288</td>
+      <td>113.2590</td>
+      <td>38069.554688</td>
+    </tr>
+    <tr>
+      <th>1105</th>
+      <td>Mbuji-Mayi</td>
+      <td>Democratic Republic of the Congo</td>
+      <td>-6.1209</td>
+      <td>23.5967</td>
+      <td>38148.828125</td>
+    </tr>
+    <tr>
+      <th>742</th>
+      <td>Kathmandu</td>
+      <td>Nepal</td>
+      <td>27.7167</td>
+      <td>85.3667</td>
+      <td>38521.742188</td>
+    </tr>
+    <tr>
+      <th>587</th>
+      <td>Bangalore</td>
+      <td>India</td>
+      <td>12.9699</td>
+      <td>77.5980</td>
+      <td>40835.621094</td>
+    </tr>
+    <tr>
+      <th>716</th>
+      <td>Luanda</td>
+      <td>Angola</td>
+      <td>-8.8383</td>
+      <td>13.2344</td>
+      <td>42064.023438</td>
+    </tr>
+    <tr>
+      <th>793</th>
+      <td>Roma</td>
+      <td>Italy</td>
+      <td>41.5300</td>
+      <td>12.2858</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
@@ -13356,10 +13271,667 @@ var element = $('#aef78bed-7a61-4d4e-956d-12988353274b');
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATASET</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">][[</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>country</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>population_1k_density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>401</th>
+      <td>Natal</td>
+      <td>Brazil</td>
+      <td>-6.9838</td>
+      <td>-60.2699</td>
+      <td>0.003718</td>
+    </tr>
+    <tr>
+      <th>725</th>
+      <td>Vhembe</td>
+      <td>South Africa</td>
+      <td>-22.7695</td>
+      <td>29.9740</td>
+      <td>0.004092</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Anchorage</td>
+      <td>United States of America</td>
+      <td>61.1508</td>
+      <td>-149.1091</td>
+      <td>0.020515</td>
+    </tr>
+    <tr>
+      <th>230</th>
+      <td>Douglas</td>
+      <td>Canada</td>
+      <td>46.2819</td>
+      <td>-66.9420</td>
+      <td>0.076147</td>
+    </tr>
+    <tr>
+      <th>792</th>
+      <td>Oristano</td>
+      <td>Italy</td>
+      <td>39.7207</td>
+      <td>8.8980</td>
+      <td>0.193612</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>Georgetown</td>
+      <td>Australia</td>
+      <td>-18.3000</td>
+      <td>143.5500</td>
+      <td>0.341027</td>
+    </tr>
+    <tr>
+      <th>515</th>
+      <td>JICOSUR</td>
+      <td>Mexico</td>
+      <td>19.3400</td>
+      <td>-104.3800</td>
+      <td>0.483595</td>
+    </tr>
+    <tr>
+      <th>724</th>
+      <td>Sekhukhune District Municipality</td>
+      <td>South Africa</td>
+      <td>-24.8335</td>
+      <td>29.9740</td>
+      <td>0.825482</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>Victoria</td>
+      <td>Romania</td>
+      <td>45.6466</td>
+      <td>24.7059</td>
+      <td>1.035097</td>
+    </tr>
+    <tr>
+      <th>975</th>
+      <td>Santa Cruz</td>
+      <td>Ecuador</td>
+      <td>-0.5333</td>
+      <td>-90.3500</td>
+      <td>1.056872</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-population-density-results-can-be-used-to-manually-curate-the-rather-big-dataset">The population density results can be used to manually curate the rather big dataset<a class="anchor-link" href="#The-population-density-results-can-be-used-to-manually-curate-the-rather-big-dataset">&#182;</a></h3><p>as density nan or lower than 2 people/sqkm is probably bad measurement</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Roma, Italy: 41.5300, 12.2858</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Roma&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Italy&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">41.9028</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">12.4964</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>793    4297.904297
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Natal, Brazil: -6.9838, -60.2699</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Natal&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Brazil&#39;</span><span class="p">),</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.7793</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Natal&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Brazil&#39;</span><span class="p">),</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">35.2009</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Natal&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Brazil&#39;</span><span class="p">),</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Natal&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Brazil&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Natal&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Brazil&#39;</span><span class="p">),</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>401    1053.169678
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_place</span><span class="p">(</span> <span class="o">-</span><span class="mf">5.7793</span><span class="p">,</span><span class="o">-</span><span class="mf">35.2009</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;city&#39;: &#39;Natal&#39;, &#39;country&#39;: &#39;Brazil&#39;, &#39;code&#39;: &#39;BRA&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Anchorage, US: 61.1508 -149.1091</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Anchorage&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;United States of America&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">61.2181</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">149.9003</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>16    319.156555
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Douglas, Canada: 46.2819 -66.9420</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Douglas&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Canada&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">49.0056</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">122.7452</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>230    63.305809
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Santa Cruz, Ecuador: -0.5333 -90.3500</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Santa Cruz&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Ecuador&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.6394</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">90.3372</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>975    1.603762
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Dropping Vhembe, South Africa, as it is a municipality of  25597 sqkm!</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="o">~</span><span class="p">((</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Vhembe&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;South Africa&#39;</span><span class="p">))</span>
+<span class="n">DATASET</span> <span class="o">=</span> <span class="n">DATASET</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Unknown location JICOSUR, Mexico: 19.3400 -104.3800</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;JICOSUR&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Mexico&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Cihuatlán&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Oristano, Italy: 39.7207, 8.8980</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Oristano&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Italy&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">39.9062</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">8.5884</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>792    25.601376
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATASET</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">][[</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">,</span><span class="s1">&#39;c40&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>country</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>population_1k_density</th>
+      <th>c40</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>199</th>
+      <td>Georgetown</td>
+      <td>Australia</td>
+      <td>-18.3000</td>
+      <td>143.5500</td>
+      <td>0.341027</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>515</th>
+      <td>Cihuatlán</td>
+      <td>Mexico</td>
+      <td>19.3400</td>
+      <td>-104.3800</td>
+      <td>0.483595</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>724</th>
+      <td>Sekhukhune District Municipality</td>
+      <td>South Africa</td>
+      <td>-24.8335</td>
+      <td>29.9740</td>
+      <td>0.825482</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>Victoria</td>
+      <td>Romania</td>
+      <td>45.6466</td>
+      <td>24.7059</td>
+      <td>1.035097</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>838</th>
+      <td>Cottica</td>
+      <td>Suriname</td>
+      <td>3.8547</td>
+      <td>-54.2289</td>
+      <td>1.318348</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>975</th>
+      <td>Santa Cruz</td>
+      <td>Ecuador</td>
+      <td>-0.6394</td>
+      <td>-90.3372</td>
+      <td>1.603762</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>488</th>
+      <td>New Plymouth District</td>
+      <td>New Zealand</td>
+      <td>-39.1011</td>
+      <td>174.3540</td>
+      <td>1.658758</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>806</th>
+      <td>Parma</td>
+      <td>Russian Federation</td>
+      <td>65.9230</td>
+      <td>57.4030</td>
+      <td>1.797995</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1069</th>
+      <td>Lata</td>
+      <td>Solomon Islands</td>
+      <td>-10.7380</td>
+      <td>165.8567</td>
+      <td>2.206394</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>837</th>
+      <td>Brokopondo</td>
+      <td>Suriname</td>
+      <td>5.0404</td>
+      <td>-55.0200</td>
+      <td>2.214054</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Incorrect lat,long for Georgetown, Australia: -18.3000 143.5500</span>
+<span class="c1">#Manual Curation</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">city</span><span class="o">==</span><span class="s1">&#39;Georgetown&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">DATASET</span><span class="o">.</span><span class="n">country</span><span class="o">==</span><span class="s1">&#39;Australia&#39;</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">18.2470</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">143.0360</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">city</span><span class="p">:</span> <span class="n">get_average_1k_population_density</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">DATASET</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">flag</span><span class="p">,</span><span class="s1">&#39;population_1k_density&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/vaslem/code/bioinformatics_ms/modern_data_analytics/.venv/lib/python3.8/site-packages/numpy/core/fromnumeric.py:3419: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/vaslem/code/bioinformatics_ms/modern_data_analytics/.venv/lib/python3.8/site-packages/numpy/core/_methods.py:188: RuntimeWarning: invalid value encountered in true_divide
+  ret = ret.dtype.type(ret / rcount)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>199    0.011311
+Name: population_1k_density, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATASET</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">DATASET_PATH</span><span class="p">)</span>
 </pre></div>
 
     </div>
