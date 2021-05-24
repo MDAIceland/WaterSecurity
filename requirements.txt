@@ -10,6 +10,8 @@ langdetect
 pytest
 mypy
 black
+xgboost
+random
 #GUI stuff
 fiona
 geojson
