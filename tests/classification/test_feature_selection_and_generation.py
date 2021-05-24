@@ -33,15 +33,9 @@ def test_feature_selection_model():
 def test_produce_augmented_features():
     handler = ModelHandler()
     dataset = handler.dataset
-    labeled = dataset[handler.train_mask]
+    train_set = dataset[handler.train_mask]
     model = {}
     label = handler.lab_names[0]
-    train_mask = ~pd.isnull(dataset[label])
-    labeled = dataset.loc[train_mask, :]
-    train_set, valid_set = train_test_split(
-        labeled, test_size=0.3, random_state=RANDOM_SEED
-    )
-
     model[label] = FeatureSelectionAndGeneration(apply_selection=False)
 
     d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])
