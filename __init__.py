@@ -7,6 +7,8 @@ This project aims to look at and predict the water securiy around the world. It 
 #### In order to get the final dataset from the preprocessing the following notebooks have to be executed in the given order: 
 1. prep_hdro_v2.ipynb
 2. combine_unlabeled.ipynb
-3. Merge Unlabeled to Labeled.ipynb
-4. CitiesPopulationDensity.ipynb
+3. Dataset Normalization and Imputation.ipynb
+4. Cities Test Set Processing.ipynb
+5. Merge Unlabeled to Labeled.ipynb
+6. CitiesPopulationDensity.ipynb
 """
