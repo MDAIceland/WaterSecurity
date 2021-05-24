@@ -26,12 +26,16 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from math import sqrt
-import requests
-
+<pre><code class="python">import os
+import urllib.request
 import xml.etree.ElementTree as ET
+from math import sqrt
 from typing import TypedDict
+
 import haversine as hs
+import requests
+from tqdm import tqdm
+from tqdm.notebook import tqdm
 
 TWO_TO_THREE_LETTER_CODE = {
     &#34;AF&#34;: &#34;AFG&#34;,
@@ -317,7 +321,84 @@ def is_close(loc1, loc2, thres: float = 3) -&gt; bool:
     Accepts 2 points defined by 2 coordinates (iterables of size 2) and based on a distance threshold (in km),
     returns whether those points are close or not to each other
     &#34;&#34;&#34;
-    return hs.haversine(loc1, loc2) &lt; thres</code></pre>
+    return hs.haversine(loc1, loc2) &lt; thres
+
+
+import rasterio
+import numpy as np
+
+## Answer to
+## https://stackoverflow.com/questions/60127026/python-how-do-i-get-the-pixel-values-from-an-geotiff-map-by-coordinate
+def get_coordinate_pixel(
+    map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs=&#34;WGS84&#34;
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;
+    Given a geotif map, open it,
+    read the pixels values that correspond to the provided latitude and longitude,
+    with a specific bounding box pixels_width, pixels_height, and return them
+    &#34;&#34;&#34;
+    # open map
+    with rasterio.open(map, crs=crs) as dataset:
+        # get pixel x+y of the coordinate
+        py, px = dataset.index(lat, lon)
+        # create 1x1px window of the pixel
+        window = rasterio.windows.Window(
+            px - pixels_width // 2, py - pixels_height // 2, pixels_width, pixels_height
+        )
+        # read rgb values of the window
+        return dataset.read(window=window)
+
+
+CHECKED_DENSITY_SOURCE = False
+
+
+def check_1k_population_density_source():
+    global CHECKED_DENSITY_SOURCE
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not CHECKED_DENSITY_SOURCE:
+        try:
+            get_coordinate_pixel(
+                POPULATION_DENSITY_PATH, 0, 0, pixels_width=3, pixels_height=3
+            )
+
+            rasterio.open(POPULATION_DENSITY_PATH)
+            CHECKED_DENSITY_SOURCE = True
+        except:
+            pass
+    if not CHECKED_DENSITY_SOURCE:
+        print(&#34;Population Density Map is not available, it will be downloaded&#34;)
+        from utils.download import download_url
+
+        try:
+            return download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except KeyboardInterrupt:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass
+
+
+def get_average_1k_population_density(longitude: float, latitude: float) -&gt; int:
+    &#34;&#34;&#34;
+    Based on provided longitude and latitude, get the median population density, as computed
+    in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
+    &#34;&#34;&#34;
+    check_1k_population_density_source()
+    from data.unlabeled import POPULATION_DENSITY_PATH
+
+    oret = get_coordinate_pixel(
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7
+    ).squeeze()
+    cnt = 3
+    ret = oret
+    while cnt:
+        res = np.median(ret[ret &gt; 0])
+        if res &gt; 1:
+            return res
+        cnt -= 1
+        ret = ret[1:-1, -1:1]
+    return np.median(oret[oret &gt; 0])</code></pre>
 </details>
 </section>
 <section>
@@ -327,6 +408,106 @@ def is_close(loc1, loc2, thres: float = 3) -&gt; bool:
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
+<dt id="WaterSecurity.utils.geo.check_1k_population_density_source"><code class="name flex">
+<span>def <span class="ident">check_1k_population_density_source</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_1k_population_density_source():
+    global CHECKED_DENSITY_SOURCE
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not CHECKED_DENSITY_SOURCE:
+        try:
+            get_coordinate_pixel(
+                POPULATION_DENSITY_PATH, 0, 0, pixels_width=3, pixels_height=3
+            )
+
+            rasterio.open(POPULATION_DENSITY_PATH)
+            CHECKED_DENSITY_SOURCE = True
+        except:
+            pass
+    if not CHECKED_DENSITY_SOURCE:
+        print(&#34;Population Density Map is not available, it will be downloaded&#34;)
+        from utils.download import download_url
+
+        try:
+            return download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except KeyboardInterrupt:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass</code></pre>
+</details>
+</dd>
+<dt id="WaterSecurity.utils.geo.get_average_1k_population_density"><code class="name flex">
+<span>def <span class="ident">get_average_1k_population_density</span></span>(<span>longitude: float, latitude: float) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Based on provided longitude and latitude, get the median population density, as computed
+in a 7x7 square around the pixel of the population density geotif map located in
+POPULATION_DENSITY_PATH.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_average_1k_population_density(longitude: float, latitude: float) -&gt; int:
+    &#34;&#34;&#34;
+    Based on provided longitude and latitude, get the median population density, as computed
+    in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
+    &#34;&#34;&#34;
+    check_1k_population_density_source()
+    from data.unlabeled import POPULATION_DENSITY_PATH
+
+    oret = get_coordinate_pixel(
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7
+    ).squeeze()
+    cnt = 3
+    ret = oret
+    while cnt:
+        res = np.median(ret[ret &gt; 0])
+        if res &gt; 1:
+            return res
+        cnt -= 1
+        ret = ret[1:-1, -1:1]
+    return np.median(oret[oret &gt; 0])</code></pre>
+</details>
+</dd>
+<dt id="WaterSecurity.utils.geo.get_coordinate_pixel"><code class="name flex">
+<span>def <span class="ident">get_coordinate_pixel</span></span>(<span>map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs='WGS84') ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given a geotif map, open it,
+read the pixels values that correspond to the provided latitude and longitude,
+with a specific bounding box pixels_width, pixels_height, and return them</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_coordinate_pixel(
+    map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs=&#34;WGS84&#34;
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;
+    Given a geotif map, open it,
+    read the pixels values that correspond to the provided latitude and longitude,
+    with a specific bounding box pixels_width, pixels_height, and return them
+    &#34;&#34;&#34;
+    # open map
+    with rasterio.open(map, crs=crs) as dataset:
+        # get pixel x+y of the coordinate
+        py, px = dataset.index(lat, lon)
+        # create 1x1px window of the pixel
+        window = rasterio.windows.Window(
+            px - pixels_width // 2, py - pixels_height // 2, pixels_width, pixels_height
+        )
+        # read rgb values of the window
+        return dataset.read(window=window)</code></pre>
+</details>
+</dd>
 <dt id="WaterSecurity.utils.geo.get_place"><code class="name flex">
 <span>def <span class="ident">get_place</span></span>(<span>latitude: float, longitude: float) ‑> <a title="WaterSecurity.utils.geo.PlaceInfo" href="#WaterSecurity.utils.geo.PlaceInfo">PlaceInfo</a></span>
 </code></dt>
@@ -444,6 +625,9 @@ dict(one=1, two=2)</p></div>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
+<li><code><a title="WaterSecurity.utils.geo.check_1k_population_density_source" href="#WaterSecurity.utils.geo.check_1k_population_density_source">check_1k_population_density_source</a></code></li>
+<li><code><a title="WaterSecurity.utils.geo.get_average_1k_population_density" href="#WaterSecurity.utils.geo.get_average_1k_population_density">get_average_1k_population_density</a></code></li>
+<li><code><a title="WaterSecurity.utils.geo.get_coordinate_pixel" href="#WaterSecurity.utils.geo.get_coordinate_pixel">get_coordinate_pixel</a></code></li>
 <li><code><a title="WaterSecurity.utils.geo.get_place" href="#WaterSecurity.utils.geo.get_place">get_place</a></code></li>
 <li><code><a title="WaterSecurity.utils.geo.is_close" href="#WaterSecurity.utils.geo.is_close">is_close</a></code></li>
 </ul>

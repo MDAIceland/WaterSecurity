@@ -43,7 +43,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 from classification import RANDOM_SEED
 from data.model.metrics import VALIDATION_METRICS_PATH, TRAINING_METRICS_PATH
 from data.model.predictions import PREDICTION_MASK_PATH, FILLED_DATASET_PATH
-from utils.geo import is_close, get_place
+from utils.geo import is_close, get_place, get_average_1k_population_density
 
 
 class TrainingRequired(NotFittedError):
@@ -250,9 +250,12 @@ class ModelHandler:
             place = get_place(latitude, longitude)
         except AttributeError:
             raise InvalidCoordinates
+        population_density = get_average_1k_population_density(latitude, longitude)
+
         from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]]
+        feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]].copy()
+        feats[&#34;population_1k_density&#34;] = population_density
         preds = {}
         mask = {}
         for label in self.model:
@@ -495,9 +498,12 @@ During training the model is first fitted, then produces predictions for any unl
             place = get_place(latitude, longitude)
         except AttributeError:
             raise InvalidCoordinates
+        population_density = get_average_1k_population_density(latitude, longitude)
+
         from data.unlabeled import COUNTRIES_DATASET
 
-        feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]]
+        feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]].copy()
+        feats[&#34;population_1k_density&#34;] = population_density
         preds = {}
         mask = {}
         for label in self.model:
@@ -693,9 +699,12 @@ Returns the series of the found labels, which also contain city and country, and
         place = get_place(latitude, longitude)
     except AttributeError:
         raise InvalidCoordinates
+    population_density = get_average_1k_population_density(latitude, longitude)
+
     from data.unlabeled import COUNTRIES_DATASET
 
-    feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]]
+    feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]].copy()
+    feats[&#34;population_1k_density&#34;] = population_density
     preds = {}
     mask = {}
     for label in self.model:
