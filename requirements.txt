@@ -13,8 +13,6 @@ nltk
 xgboost
 scikit-learn
 
-#math
-random
 
 #testing
 pytest

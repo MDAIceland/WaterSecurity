@@ -13,11 +13,8 @@ def test_feature_selection_model():
     dataset = handler.dataset
     labeled = dataset[handler.train_mask]
     model = {}
-    train_metrics = {}
-    valid_metrics = {}
-    filled_dataset = dataset[handler.id_columns + handler.lab_names].copy()
     for label in handler.lab_names:
-        print("Risk:", RISKS_MAPPING[label])
+        print(f"\n\n**Risk: {RISKS_MAPPING[label]}**\n\n")
         train_mask = ~pd.isnull(dataset[label])
         labeled = dataset.loc[train_mask, :]
         train_set, valid_set = train_test_split(
@@ -29,10 +26,5 @@ def test_feature_selection_model():
                 ("FeatureSelection", FeatureSelectionAndGeneration()),
             ]
         )
-        print(
-            "\n".join(
-                model[label]
-                .fit_transform(train_set[handler.feat_names], train_set[label])
-                .columns.tolist()
-            )
-        )
+        d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])
+        assert len(d.shape) == 2
