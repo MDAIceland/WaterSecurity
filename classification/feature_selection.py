@@ -190,7 +190,9 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         # print 15% of the total features according to the score features
         print(
             "Features select \n",
-            featureScores.iloc[feats_indices].sort_values("Score", ascending=False),
+            featureScores.iloc[feats_indices]
+            .sort_values("Score", ascending=False)
+            .to_markdown(),
         )
         self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         return self
