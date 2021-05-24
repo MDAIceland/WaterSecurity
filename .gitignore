@@ -133,3 +133,4 @@ dmypy.json
 
 Edstats_csv
 preprocessed_data
+data/unlabeled/ppp_2020_1km_Aggregated.tif
