@@ -90,7 +90,7 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
             if re.match(comb_pattern, feat):
                 out_feat = re.sub(
                     comb_pattern,
-                    r"Feat[\1] + Feat[\2]",
+                    r"Feat[\1] * Feat[\2]",
                     feat,
                 )
             else:
