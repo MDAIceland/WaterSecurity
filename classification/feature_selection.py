@@ -65,15 +65,16 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
         return [s for s in arr if (name in s)]
 
     def fit(self, X, y=None):
-        self.poly = PolynomialFeatures()
+        self.poly = PolynomialFeatures(interaction_only=False, include_bias=False)
         self.pop_feats = self.getArrayOfFeatures(X, self.element)
         self.poly.fit(X[self.pop_feats].values)
+        self.mask = np.sum(self.poly.powers_, axis=1) > 1
 
         # print(crossed_df.shape)
         return self
 
     def transform(self, data):
-        crossed_feats = self.poly.transform(data[self.pop_feats])
+        crossed_feats = self.poly.transform(data[self.pop_feats])[:, self.mask]
 
         # Convert to Pandas DataFrame and merge to original dataset
         crossed_df = pd.DataFrame(crossed_feats)
@@ -81,9 +82,28 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
 
     def get_feature_names(self):
         feats = []
-        for out_feat in self.poly.get_feature_names():
-            for cnt, pop_feat in enumerate(self.pop_feats):
-                out_feat = re.sub(r"x" + str(cnt) + r"\b", pop_feat, out_feat)
+        replacement_dict = {cnt: x for cnt, x in enumerate(self.pop_feats)}
+        comb_pattern = re.compile(r"(x[0-9]+) (x[0-9]+)")
+        single_pattern = re.compile(r"(x[0-9]+)")
+        pattern = re.compile(r"(x[0-9]+)")
+        for feat in np.array(self.poly.get_feature_names())[self.mask]:
+            if re.match(comb_pattern, feat):
+                out_feat = re.sub(
+                    comb_pattern,
+                    r"Feat[\1] + Feat[\2]",
+                    feat,
+                )
+            else:
+                out_feat = re.sub(
+                    single_pattern,
+                    r"Feat[\1]",
+                    feat,
+                )
+            out_feat = re.sub(
+                pattern,
+                lambda m: replacement_dict[int(m.group()[1:])],
+                out_feat,
+            )
             feats.append(out_feat)
         return feats
 
@@ -180,9 +200,8 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         """
         _, x_data = self.split(x_data)
         self.pipeline.fit(x_data, y_data)
-        dfcolumns = pd.DataFrame(
-            self.pipeline.named_steps["generation"].get_feature_names()
-        )
+        columns = self.pipeline.named_steps["generation"].get_feature_names()
+        dfcolumns = pd.DataFrame(columns)
         if self.apply_selection:
             dfscores = pd.DataFrame(self.pipeline.named_steps["selection"].scores_)
             feats_indices = self.pipeline.named_steps["selection"].feats_indices
@@ -200,7 +219,7 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             )
             self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         else:
-            self.feat_names = dfcolumns
+            self.feat_names = columns
         return self
 
     def transform(self, x_data):

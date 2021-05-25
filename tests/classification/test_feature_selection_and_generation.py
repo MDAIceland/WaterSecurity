@@ -28,15 +28,3 @@ def test_feature_selection_model():
         )
         d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])
         assert len(d.shape) == 2
-
-
-def test_produce_augmented_features():
-    handler = ModelHandler()
-    dataset = handler.dataset
-    train_set = dataset[handler.train_mask]
-    model = {}
-    label = handler.lab_names[0]
-    model[label] = FeatureSelectionAndGeneration(apply_selection=False)
-
-    d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])
-    d.to_csv("data/dataset/tmp_augmented_dataset.csv")
