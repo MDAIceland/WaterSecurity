@@ -21,9 +21,9 @@ def recursive_htmls(mod):
 for module_name, html, has_subm in recursive_htmls(modules):
     print(module_name)
     if has_subm:
-        fname = f"documentation/{'/'.join(module_name.split('.'))}/index.html"
+        fname = f"docs/{'/'.join(module_name.split('.'))}/index.html"
     else:
-        fname = f"documentation/{'/'.join(module_name.split('.'))}.html"
+        fname = f"docs/{'/'.join(module_name.split('.'))}.html"
     os.makedirs(os.path.dirname(fname), exist_ok=True)
     with open(fname,"w", encoding="utf-8") as f:
         f.writelines(html)
@@ -37,5 +37,5 @@ for subdir, dirs, files in os.walk(r'.'):
         if filepath.endswith(".ipynb"):
             with open(filepath, "r",encoding="utf-8") as fp:
                 (body, resources) = html_exporter.from_notebook_node(nbformat.read(fp, as_version=4))
-            with open("documentation/WaterSecurity/notebooks/"+os.path.basename(filepath).split(".")[0]+".html","w",encoding="utf-8") as exp:   
+            with open("docs/WaterSecurity/notebooks/"+os.path.basename(filepath).split(".")[0]+".html","w",encoding="utf-8") as exp:   
                 exp.writelines(body)
