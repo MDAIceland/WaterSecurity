@@ -1,3 +1,16 @@
+'''
+- - - Feature Generation and Feature Selection Script - - -
+We use this script to generate new features from already existing ones.
+Throughout this process, generation of the new features are done by using 
+PCA and Polynomial Cross Features algorithm. Once feature generation is done,
+script uses all of the generated and original features as an input to perform
+a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
+score is used since numbers in the risk factors are representing a certain value.
+In the end, only selected feature columns, latitude and longitude columns are returned
+back for further prediction of the NaN values for a specific risk factor.
+'''
+
+
 from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import PolynomialFeatures, RobustScaler
@@ -7,12 +20,17 @@ import pandas as pd
 import numpy as np
 
 
+# Generation of the Feature Selection Class for the Pipeline
 class FeatureSelection(BaseEstimator, TransformerMixin):
+
+    # Initiation of the variables for the feature selection, using sklearn SelectKBest Algorithm
     def __init__(self):
         self.fitted_selector = None
         self.min_num_feats = 10
         self.scores_ = None
 
+    # Process of feature selection is done in this part: Select the K-best features
+    # using the f_regression function since labels also have a meaning Risk:0 (means low) and 2(means high)
     def fit(self, x, y):
         # risks.remove(label)
         # print(risks)
@@ -31,10 +49,12 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
         self.scores_ = self.fitted_selector.scores_
         self.feats_indices = bestFeatures.get_support()
 
+    # Return the vector of best features
     def transform(self, X):
         return self.fitted_selector.transform(X)
 
 
+# Generation of the transformer class for the return of selected features in the pipeline
 class DummyTransformer(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.feats = None
@@ -52,18 +72,21 @@ class DummyTransformer(BaseEstimator, TransformerMixin):
 
 import re
 
-
+# Class for generation of cross polynomial features
 class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
+
     def __init__(self, element):
         self.element = element
         self.poly = None
         self.pop_feats = []
 
+    # Returns every column name that has a specific string inside
     @staticmethod
     def getArrayOfFeatures(data, name):
         arr = data.columns.values
         return [s for s in arr if (name in s)]
 
+    # Obtaining the list of columns and fitting them to a feature generation model
     def fit(self, X, y=None):
         self.poly = PolynomialFeatures(interaction_only=False, include_bias=False)
         self.pop_feats = self.getArrayOfFeatures(X, self.element)
@@ -73,6 +96,7 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
         # print(crossed_df.shape)
         return self
 
+    # Acquire the selected features and generate a dataframe with only selected feature columns
     def transform(self, data):
         crossed_feats = self.poly.transform(data[self.pop_feats])[:, self.mask]
 
@@ -80,6 +104,7 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
         crossed_df = pd.DataFrame(crossed_feats)
         return crossed_df
 
+    # Obtain the original feature names after the automatic naming of the cross feature algorithm
     def get_feature_names(self):
         feats = []
         replacement_dict = {cnt: x for cnt, x in enumerate(self.pop_feats)}
@@ -108,12 +133,17 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
         return feats
 
 
+# Generate a PCA class for using the pipeline
 class PCAWrapper(BaseEstimator, TransformerMixin):
+
+    # Initializing necessary variables for performing the PCA
     def __init__(self):
         self.num_components = 10
         self.pca = PCA(n_components=self.num_components)
         self.component_cols = ["PC" + str(i + 1) for i in range(self.num_components)]
 
+    # Fit the data to Principle Component Generator, return insight regarding the
+    # first 10 principle components of the dataset
     def fit(self, X, y):
         self.pca.fit(X)
         percentage_list = [
@@ -138,34 +168,45 @@ class PCAWrapper(BaseEstimator, TransformerMixin):
         )
         return self
 
+    # Return the dataframe of generated first 10 Principle Components
     def transform(self, X):
         pca_ret = self.pca.transform(X)
         return pd.DataFrame(data=pca_ret, columns=self.component_cols)
 
+    # Get the name of the Principle Components
     def get_feature_names(self):
         return self.component_cols
 
 
+# Robust Scaler Class for the generation of pipeline
 class RobustScalerWrapper:
+
+    # Initiation of the Robust Scaler Model
     def __init__(self):
         self.robust_scaler = RobustScaler()
         self.columns = None
 
+    # Fit the robust scaler with the given data and returns the scaling version
     def fit(self, X, y):
         self.columns = X.columns
         self.robust_scaler.fit(X, y)
         return self
 
+    # Scaled version of the dataframe is returned for further processing in the pipeline
     def transform(self, X):
         return pd.DataFrame(self.robust_scaler.transform(X), columns=self.columns)
 
-
+# Main class for the generation of pipeline
 class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
+
+    # Determine the columns that needs to be substracted before the feature generation
     def __init__(self, apply_selection=True):
         self.id_columns = [
             "latitude",
             "longitude",
         ]
+
+        # Defining the pipeline order given different classes created for the pipeline process
         self.pipeline = Pipeline(
             [
                 ("scale", RobustScalerWrapper()),
@@ -185,15 +226,20 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         )
         self.feat_names = None
         self.apply_selection = apply_selection
+
+        # If feature selection is not applied, you can remove the steps from the pipeline. 
+        # Flexible solution to remove the unwanted steps
         if not apply_selection:
             self.pipeline.steps.pop(2)
 
+    # Splitting the initial dataset columns into two, for further processing
     def split(self, data):
         return (
             data[self.id_columns],
             data[[col for col in data.columns.values if col not in self.id_columns]],
         )
 
+    # General order of the feature selection and generation process is defined here
     def fit(self, x_data, y_data):
         """
         Fits to nxm features x_data and n predictions y_data
@@ -202,6 +248,8 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         self.pipeline.fit(x_data, y_data)
         columns = self.pipeline.named_steps["generation"].get_feature_names()
         dfcolumns = pd.DataFrame(columns)
+
+        # If feature selection process is wanted
         if self.apply_selection:
             dfscores = pd.DataFrame(self.pipeline.named_steps["selection"].scores_)
             feats_indices = self.pipeline.named_steps["selection"].feats_indices
@@ -210,7 +258,8 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             # Concat two dataframes for better visualization
             featureScores = pd.concat([dfcolumns, dfscores], axis=1)
             featureScores.columns = ["Specs", "Score"]
-            # print 15% of the total features according to the score features
+
+            # Print defined amount of features according to the assigned scores with descending order
             print(
                 "Features select \n",
                 featureScores.iloc[feats_indices]
@@ -222,6 +271,8 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             self.feat_names = columns
         return self
 
+    # Only return the designated features in addition to the removed features
+    # at the beginning of the pipeline process
     def transform(self, x_data):
         """
         Transforms x_data from nxm to kxm
