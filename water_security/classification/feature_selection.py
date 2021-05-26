@@ -11,9 +11,10 @@ import numpy as np
 class FeatureSelection(BaseEstimator, TransformerMixin):
 
     # Initiation of the variables for the feature selection, using sklearn SelectKBest Algorithm
-    def __init__(self):
+    def __init__(self, feats_num=None):
         self.fitted_selector = None
-        self.min_num_feats = 10
+        self.feats_num = feats_num
+        self.min_feats_num = 10
         self.scores_ = None
 
     # Process of feature selection is done in this part: Select the K-best features
@@ -25,13 +26,14 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
 
         # l = x.columns[x.isna().any()].tolist()
         # print(l)
+        if self.num_features is None:
 
-        var_num = x.shape[0]
-        var_num = max(int((var_num * 15) / 100), self.min_num_feats)
-        print("Picked variable number:", var_num)
+            self.feats_num = x.shape[0]
+            self.feats_num = max(int((self.feats_num * 15) / 100), self.min_feats_num)
+            print("Picked variable number:", self.feats_num)
 
         # Applying select K-best
-        bestFeatures = SelectKBest(score_func=f_regression, k=var_num)
+        bestFeatures = SelectKBest(score_func=f_regression, k=self.feats_num)
         self.fitted_selector = bestFeatures.fit(x, y)
         self.scores_ = self.fitted_selector.scores_
         self.feats_indices = bestFeatures.get_support()
@@ -195,11 +197,12 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
     back for further prediction of the NaN values for a specific risk factor."""
 
     # Determine the columns that needs to be substracted before the feature generation
-    def __init__(self, apply_selection=True):
+    def __init__(self, apply_selection=True, feats_num=None):
         self.id_columns = [
             "latitude",
             "longitude",
         ]
+        self.feats_num = feats_num
 
         # Defining the pipeline order given different classes created for the pipeline process
         self.pipeline = Pipeline(
@@ -216,7 +219,7 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
                         ]
                     ),
                 ),
-                ("selection", FeatureSelection()),
+                ("selection", FeatureSelection(feats_num=self.feats_num)),
             ]
         )
         self.feat_names = None
