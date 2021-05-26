@@ -40,12 +40,8 @@ def main():
             yield from recursive_htmls(submod)
 
     if os.path.isdir(DOCS_DIR):
-<<<<<<< HEAD
         shutil.rmtree(DOCS_DIR, ignore_errors=True)
 
-=======
-        os.remove()
->>>>>>> 7ac724e9c472e920275bb448bc75b6fe2b6cac3d
     for module_name, html, has_subm in recursive_htmls(modules):
         if has_subm:
             fname = os.path.join(
@@ -64,10 +60,6 @@ def main():
     html_exporter.template_name = "classic"
     nb_dir = os.path.join(
         DOCS_DIR,
-<<<<<<< HEAD
-=======
-        # "WaterSecurity",
->>>>>>> 7ac724e9c472e920275bb448bc75b6fe2b6cac3d
         "notebooks",
     )
     os.makedirs(nb_dir, exist_ok=True)
