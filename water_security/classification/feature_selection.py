@@ -1,16 +1,3 @@
-'''
-- - - Feature Generation and Feature Selection Script - - -
-We use this script to generate new features from already existing ones.
-Throughout this process, generation of the new features are done by using 
-PCA and Polynomial Cross Features algorithm. Once feature generation is done,
-script uses all of the generated and original features as an input to perform
-a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
-score is used since numbers in the risk factors are representing a certain value.
-In the end, only selected feature columns, latitude and longitude columns are returned
-back for further prediction of the NaN values for a specific risk factor.
-'''
-
-
 from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import PolynomialFeatures, RobustScaler
@@ -74,7 +61,6 @@ import re
 
 # Class for generation of cross polynomial features
 class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
-
     def __init__(self, element):
         self.element = element
         self.poly = None
@@ -196,8 +182,17 @@ class RobustScalerWrapper:
     def transform(self, X):
         return pd.DataFrame(self.robust_scaler.transform(X), columns=self.columns)
 
+
 # Main class for the generation of pipeline
 class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
+    """
+        Throughout this process, generation of the new features is done by using
+    PCA and Polynomial Cross Features algorithm. Once feature generation is done,
+    script uses all of the generated and original features as an input to perform
+    a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
+    score is used since numbers in the risk factors are representing a certain value.
+    In the end, only selected feature columns, latitude and longitude columns are returned
+    back for further prediction of the NaN values for a specific risk factor."""
 
     # Determine the columns that needs to be substracted before the feature generation
     def __init__(self, apply_selection=True):
@@ -227,7 +222,7 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         self.feat_names = None
         self.apply_selection = apply_selection
 
-        # If feature selection is not applied, you can remove the steps from the pipeline. 
+        # If feature selection is not applied, you can remove the steps from the pipeline.
         # Flexible solution to remove the unwanted steps
         if not apply_selection:
             self.pipeline.steps.pop(2)

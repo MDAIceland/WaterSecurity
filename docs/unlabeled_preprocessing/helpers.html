@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.9.2" />
-<title>modern_data_analytics.utils.download API documentation</title>
+<title>water_security.unlabeled_preprocessing.helpers API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,65 +19,61 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>modern_data_analytics.utils.download</code></h1>
+<h1 class="title">Module <code>water_security.unlabeled_preprocessing.helpers</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import urllib
-from utils.notebook import isnotebook
+<pre><code class="python">from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+import pandas as pd
 
-if isnotebook:
-    from tqdm.notebook import tqdm
-else:
-    from tqdm import tqdm
-
-
-class DownloadProgressBar(tqdm):
+def dropColumnHalf(df):
     &#34;&#34;&#34;
-    Progress Bar for downloading purposes
+    Removes columns where the number of missig values is 50% or more
     &#34;&#34;&#34;
+    df.dropna(thresh=len(df.index)/2, axis=1, inplace=True)
 
-    def update_to(self, b=1, bsize=1, tsize=None):
-        if tsize is not None:
-            self.total = tsize
-        self.update(b * bsize - self.n)
-
-
-def download_url_while_in_notebook(url, output_path):
-    import threading
-    from IPython.display import display
-
-    progress = DownloadProgressBar(
-        unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
-    )
-
-    thread = threading.Thread(
-        target=download_url_while_not_in_notebook, args=(url, output_path, progress)
-    )
-    display(progress)
-    thread.start()
-    return thread
-
-
-def download_url_while_not_in_notebook(url: str, output_path: str, widget=None) -&gt; None:
+def fill_missing_with_column(df, into, fro):
     &#34;&#34;&#34;
-    Download a file from a url and save it to the provided output path
+    Merges one column into the other filling null values of the into colun and removing the fro column
     &#34;&#34;&#34;
-    if widget is None:
-        widget = DownloadProgressBar(
-            unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
-        )
-    with widget as t:
-        urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
+    df[into] = df[into].combine_first(df[fro])
+    df.drop([fro], axis=1, inplace = True)
+
+    
+def impute_df(df,verbose=0, **kwargs):
+    &#34;&#34;&#34;
+    Imputes a df and returns a dataframe with the original and imputed values
+    &#34;&#34;&#34;
+    imp = IterativeImputer(verbose=verbose, **kwargs)
+    imp.fit_transform(df)
+    imputed_df = imp.transform(df)
+    return pd.DataFrame(imputed_df, columns=df.columns,index=df.index)
+
+def print_missing_percentages(df):
+    &#34;&#34;&#34;
+    Max, min and mean number of missing values for the columns
+    &#34;&#34;&#34;
+    percent_missing = df.isnull().sum() * 100 / len(df)
+    max_missing = percent_missing.max()
+    min_missing = percent_missing.min()
+    mean_missing = percent_missing.mean()
+    print(&#34;Max, min and mean number of missing values for the columns&#34;)
+    print(&#34;Max:&#34;, max_missing,&#39;%&#39;)
+    print(&#34;Min:&#34;, min_missing,&#39;%&#39;)
+    print(&#34;Mean:&#34;, mean_missing,&#39;%&#39;)
+    return min_missing, max_missing
 
 
-if isnotebook:
-    download_url = download_url_while_in_notebook
-else:
-    download_url = download_url_while_not_in_notebook</code></pre>
+def find_all_integer_columns(df):
+    &#34;&#34;&#34;
+    Returns an array of all colums that contain only integers or null values
+    &#34;&#34;&#34;
+    integer_columns = df.applymap(lambda x: int(x)==x if pd.notnull(x) else x).prod().values.astype(bool)
+    return df.columns[integer_columns].values</code></pre>
 </details>
 </section>
 <section>
@@ -87,133 +83,102 @@ else:
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="modern_data_analytics.utils.download.download_url"><code class="name flex">
-<span>def <span class="ident">download_url</span></span>(<span>url, output_path)</span>
+<dt id="water_security.unlabeled_preprocessing.helpers.dropColumnHalf"><code class="name flex">
+<span>def <span class="ident">dropColumnHalf</span></span>(<span>df)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Removes columns where the number of missig values is 50% or more</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def download_url_while_in_notebook(url, output_path):
-    import threading
-    from IPython.display import display
-
-    progress = DownloadProgressBar(
-        unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
-    )
-
-    thread = threading.Thread(
-        target=download_url_while_not_in_notebook, args=(url, output_path, progress)
-    )
-    display(progress)
-    thread.start()
-    return thread</code></pre>
+<pre><code class="python">def dropColumnHalf(df):
+    &#34;&#34;&#34;
+    Removes columns where the number of missig values is 50% or more
+    &#34;&#34;&#34;
+    df.dropna(thresh=len(df.index)/2, axis=1, inplace=True)</code></pre>
 </details>
 </dd>
-<dt id="modern_data_analytics.utils.download.download_url_while_in_notebook"><code class="name flex">
-<span>def <span class="ident">download_url_while_in_notebook</span></span>(<span>url, output_path)</span>
+<dt id="water_security.unlabeled_preprocessing.helpers.fill_missing_with_column"><code class="name flex">
+<span>def <span class="ident">fill_missing_with_column</span></span>(<span>df, into, fro)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Merges one column into the other filling null values of the into colun and removing the fro column</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def download_url_while_in_notebook(url, output_path):
-    import threading
-    from IPython.display import display
-
-    progress = DownloadProgressBar(
-        unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
-    )
-
-    thread = threading.Thread(
-        target=download_url_while_not_in_notebook, args=(url, output_path, progress)
-    )
-    display(progress)
-    thread.start()
-    return thread</code></pre>
+<pre><code class="python">def fill_missing_with_column(df, into, fro):
+    &#34;&#34;&#34;
+    Merges one column into the other filling null values of the into colun and removing the fro column
+    &#34;&#34;&#34;
+    df[into] = df[into].combine_first(df[fro])
+    df.drop([fro], axis=1, inplace = True)</code></pre>
 </details>
 </dd>
-<dt id="modern_data_analytics.utils.download.download_url_while_not_in_notebook"><code class="name flex">
-<span>def <span class="ident">download_url_while_not_in_notebook</span></span>(<span>url: str, output_path: str, widget=None) ‑> NoneType</span>
+<dt id="water_security.unlabeled_preprocessing.helpers.find_all_integer_columns"><code class="name flex">
+<span>def <span class="ident">find_all_integer_columns</span></span>(<span>df)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Download a file from a url and save it to the provided output path</p></div>
+<div class="desc"><p>Returns an array of all colums that contain only integers or null values</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def download_url_while_not_in_notebook(url: str, output_path: str, widget=None) -&gt; None:
+<pre><code class="python">def find_all_integer_columns(df):
     &#34;&#34;&#34;
-    Download a file from a url and save it to the provided output path
+    Returns an array of all colums that contain only integers or null values
     &#34;&#34;&#34;
-    if widget is None:
-        widget = DownloadProgressBar(
-            unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
-        )
-    with widget as t:
-        urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)</code></pre>
+    integer_columns = df.applymap(lambda x: int(x)==x if pd.notnull(x) else x).prod().values.astype(bool)
+    return df.columns[integer_columns].values</code></pre>
+</details>
+</dd>
+<dt id="water_security.unlabeled_preprocessing.helpers.impute_df"><code class="name flex">
+<span>def <span class="ident">impute_df</span></span>(<span>df, verbose=0, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Imputes a df and returns a dataframe with the original and imputed values</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def impute_df(df,verbose=0, **kwargs):
+    &#34;&#34;&#34;
+    Imputes a df and returns a dataframe with the original and imputed values
+    &#34;&#34;&#34;
+    imp = IterativeImputer(verbose=verbose, **kwargs)
+    imp.fit_transform(df)
+    imputed_df = imp.transform(df)
+    return pd.DataFrame(imputed_df, columns=df.columns,index=df.index)</code></pre>
+</details>
+</dd>
+<dt id="water_security.unlabeled_preprocessing.helpers.print_missing_percentages"><code class="name flex">
+<span>def <span class="ident">print_missing_percentages</span></span>(<span>df)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Max, min and mean number of missing values for the columns</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_missing_percentages(df):
+    &#34;&#34;&#34;
+    Max, min and mean number of missing values for the columns
+    &#34;&#34;&#34;
+    percent_missing = df.isnull().sum() * 100 / len(df)
+    max_missing = percent_missing.max()
+    min_missing = percent_missing.min()
+    mean_missing = percent_missing.mean()
+    print(&#34;Max, min and mean number of missing values for the columns&#34;)
+    print(&#34;Max:&#34;, max_missing,&#39;%&#39;)
+    print(&#34;Min:&#34;, min_missing,&#39;%&#39;)
+    print(&#34;Mean:&#34;, mean_missing,&#39;%&#39;)
+    return min_missing, max_missing</code></pre>
 </details>
 </dd>
 </dl>
 </section>
 <section>
-<h2 class="section-title" id="header-classes">Classes</h2>
-<dl>
-<dt id="modern_data_analytics.utils.download.DownloadProgressBar"><code class="flex name class">
-<span>class <span class="ident">DownloadProgressBar</span></span>
-<span>(</span><span>*args, **kwargs)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Progress Bar for downloading purposes</p>
-<p>Supports the usual <code>tqdm.tqdm</code> parameters as well as those listed below.</p>
-<h2 id="parameters">Parameters</h2>
-<p>display
-: Whether to call <code>display(self.container)</code> immediately
-[default: True].</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class DownloadProgressBar(tqdm):
-    &#34;&#34;&#34;
-    Progress Bar for downloading purposes
-    &#34;&#34;&#34;
-
-    def update_to(self, b=1, bsize=1, tsize=None):
-        if tsize is not None:
-            self.total = tsize
-        self.update(b * bsize - self.n)</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li>tqdm.notebook.tqdm_notebook</li>
-<li>tqdm.std.tqdm</li>
-<li>tqdm.utils.Comparable</li>
-</ul>
-<h3>Methods</h3>
-<dl>
-<dt id="modern_data_analytics.utils.download.DownloadProgressBar.update_to"><code class="name flex">
-<span>def <span class="ident">update_to</span></span>(<span>self, b=1, bsize=1, tsize=None)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def update_to(self, b=1, bsize=1, tsize=None):
-    if tsize is not None:
-        self.total = tsize
-    self.update(b * bsize - self.n)</code></pre>
-</details>
-</dd>
-</dl>
-</dd>
-</dl>
 </section>
 </article>
 <nav id="sidebar">
@@ -224,24 +189,16 @@ else:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="modern_data_analytics.utils" href="index.html">modern_data_analytics.utils</a></code></li>
+<li><code><a title="water_security.unlabeled_preprocessing" href="index.html">water_security.unlabeled_preprocessing</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="modern_data_analytics.utils.download.download_url" href="#modern_data_analytics.utils.download.download_url">download_url</a></code></li>
-<li><code><a title="modern_data_analytics.utils.download.download_url_while_in_notebook" href="#modern_data_analytics.utils.download.download_url_while_in_notebook">download_url_while_in_notebook</a></code></li>
-<li><code><a title="modern_data_analytics.utils.download.download_url_while_not_in_notebook" href="#modern_data_analytics.utils.download.download_url_while_not_in_notebook">download_url_while_not_in_notebook</a></code></li>
-</ul>
-</li>
-<li><h3><a href="#header-classes">Classes</a></h3>
-<ul>
-<li>
-<h4><code><a title="modern_data_analytics.utils.download.DownloadProgressBar" href="#modern_data_analytics.utils.download.DownloadProgressBar">DownloadProgressBar</a></code></h4>
-<ul class="">
-<li><code><a title="modern_data_analytics.utils.download.DownloadProgressBar.update_to" href="#modern_data_analytics.utils.download.DownloadProgressBar.update_to">update_to</a></code></li>
-</ul>
-</li>
+<li><code><a title="water_security.unlabeled_preprocessing.helpers.dropColumnHalf" href="#water_security.unlabeled_preprocessing.helpers.dropColumnHalf">dropColumnHalf</a></code></li>
+<li><code><a title="water_security.unlabeled_preprocessing.helpers.fill_missing_with_column" href="#water_security.unlabeled_preprocessing.helpers.fill_missing_with_column">fill_missing_with_column</a></code></li>
+<li><code><a title="water_security.unlabeled_preprocessing.helpers.find_all_integer_columns" href="#water_security.unlabeled_preprocessing.helpers.find_all_integer_columns">find_all_integer_columns</a></code></li>
+<li><code><a title="water_security.unlabeled_preprocessing.helpers.impute_df" href="#water_security.unlabeled_preprocessing.helpers.impute_df">impute_df</a></code></li>
+<li><code><a title="water_security.unlabeled_preprocessing.helpers.print_missing_percentages" href="#water_security.unlabeled_preprocessing.helpers.print_missing_percentages">print_missing_percentages</a></code></li>
 </ul>
 </li>
 </ul>

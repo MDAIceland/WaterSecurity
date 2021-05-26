@@ -1,3 +1,6 @@
+import sys
+
+sys.path.append("water_security")
 from utils.geo import get_average_1k_population_density
 
 

@@ -1,12 +1,16 @@
-from nbconvert.exporters.exporter_locator import E
-import pdoc
 import os
-from nbconvert import HTMLExporter
+import shutil
+import sys
+
 import nbformat
+import pdoc
+from nbconvert import HTMLExporter
+from nbconvert.exporters.exporter_locator import E
 
+sys.path.append("water_security")
 
-def _fix_module_names(module_name):
-    return ".".join((["WaterSecurity"] + module_name.split(".")[1:]))
+DOCS_DIR = "docs"
+PACKAGE_NAME = "water_security"
 
 
 def main():
@@ -19,10 +23,10 @@ def main():
         ignore_strings = rf.read().splitlines()
 
     modules = pdoc.Module(
-        ".",
+        PACKAGE_NAME,
         context=context,
         skip_errors=True,
-        docfilter=lambda x: _fix_module_names(x.name) not in ignore_strings,
+        docfilter=lambda x: x.name not in ignore_strings,
     )
 
     pdoc.link_inheritance(context)
@@ -32,19 +36,29 @@ def main():
         for submod in mod.submodules():
             yield from recursive_htmls(submod)
 
+    if os.path.isdir(DOCS_DIR):
+        shutil.rmtree(DOCS_DIR, ignore_errors=True)
+
     for module_name, html, has_subm in recursive_htmls(modules):
-        module_name = _fix_module_names(module_name)
         if has_subm:
-            fname = f"docs/{os.sep.join(module_name.split('.'))[1:]}/index.html"
+            fname = os.path.join(
+                DOCS_DIR, os.sep.join(module_name.split(".")[1:]), "index.html"
+            )
         else:
-            fname = f"docs/{os.sep.join(module_name.split('.'))[1:]}.html"
+            fname = (
+                os.path.join(DOCS_DIR, os.sep.join(module_name.split(".")[1:]))
+                + ".html"
+            )
         os.makedirs(os.path.dirname(fname), exist_ok=True)
         with open(fname, "w", encoding="utf-8") as f:
             f.writelines(html)
 
     html_exporter = HTMLExporter()
     html_exporter.template_name = "classic"
-    nb_dir = os.path.join("docs", "notebooks")  # "WaterSecurity",
+    nb_dir = os.path.join(
+        DOCS_DIR,
+        "notebooks",
+    )
     os.makedirs(nb_dir, exist_ok=True)
     for subdir, dirs, files in os.walk(r"."):
         if any(

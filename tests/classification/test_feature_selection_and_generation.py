@@ -1,4 +1,10 @@
-from classification.feature_selection import FeatureSelectionAndGeneration
+import sys
+
+sys.path.append("water_security")
+
+from classification.feature_selection import (
+    FeatureSelectionAndGeneration,
+)
 from classification.model_handler import ModelHandler
 from sklearn.pipeline import Pipeline
 from classification import RANDOM_SEED
