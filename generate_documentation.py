@@ -35,16 +35,16 @@ def main():
     for module_name, html, has_subm in recursive_htmls(modules):
         module_name = _fix_module_names(module_name)
         if has_subm:
-            fname = f"docs/{os.sep.join(module_name.split('.'))[1:]}/index.html"
+            fname = f"docs/{os.sep.join(module_name.split('.'))}/index.html"
         else:
-            fname = f"docs/{os.sep.join(module_name.split('.'))[1:]}.html"
+            fname = f"docs/{os.sep.join(module_name.split('.'))}.html"
         os.makedirs(os.path.dirname(fname), exist_ok=True)
         with open(fname, "w", encoding="utf-8") as f:
             f.writelines(html)
 
     html_exporter = HTMLExporter()
     html_exporter.template_name = "classic"
-    nb_dir = os.path.join("docs", "notebooks")  # "WaterSecurity",
+    nb_dir = os.path.join("docs", "WaterSecurity", "notebooks")
     os.makedirs(nb_dir, exist_ok=True)
     for subdir, dirs, files in os.walk(r"."):
         if any(
