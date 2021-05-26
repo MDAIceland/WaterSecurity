@@ -16,6 +16,9 @@ PACKAGE_NAME = "water_security"
 DOCS_DIR = "docs"
 
 
+DOCS_DIR = "docs"
+
+
 def main():
     """
     Generates Project Documentation Based on DocStrings
