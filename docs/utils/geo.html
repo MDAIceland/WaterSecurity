@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>water_security.utils.geo API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>water_security.utils.geo</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+import urllib.request
+import xml.etree.ElementTree as ET
+from math import sqrt
+from typing import TypedDict
+
+import haversine as hs
+import requests
+from tqdm import tqdm
+from tqdm.notebook import tqdm
+
+TWO_TO_THREE_LETTER_CODE = {
+    &#34;AF&#34;: &#34;AFG&#34;,
+    &#34;AX&#34;: &#34;ALA&#34;,
+    &#34;AL&#34;: &#34;ALB&#34;,
+    &#34;DZ&#34;: &#34;DZA&#34;,
+    &#34;AS&#34;: &#34;ASM&#34;,
+    &#34;AD&#34;: &#34;AND&#34;,
+    &#34;AO&#34;: &#34;AGO&#34;,
+    &#34;AI&#34;: &#34;AIA&#34;,
+    &#34;AQ&#34;: &#34;ATA&#34;,
+    &#34;AG&#34;: &#34;ATG&#34;,
+    &#34;AR&#34;: &#34;ARG&#34;,
+    &#34;AM&#34;: &#34;ARM&#34;,
+    &#34;AW&#34;: &#34;ABW&#34;,
+    &#34;AU&#34;: &#34;AUS&#34;,
+    &#34;AT&#34;: &#34;AUT&#34;,
+    &#34;AZ&#34;: &#34;AZE&#34;,
+    &#34;BS&#34;: &#34;BHS&#34;,
+    &#34;BH&#34;: &#34;BHR&#34;,
+    &#34;BD&#34;: &#34;BGD&#34;,
+    &#34;BB&#34;: &#34;BRB&#34;,
+    &#34;BY&#34;: &#34;BLR&#34;,
+    &#34;BE&#34;: &#34;BEL&#34;,
+    &#34;BZ&#34;: &#34;BLZ&#34;,
+    &#34;BJ&#34;: &#34;BEN&#34;,
+    &#34;BM&#34;: &#34;BMU&#34;,
+    &#34;BT&#34;: &#34;BTN&#34;,
+    &#34;BO&#34;: &#34;BOL&#34;,
+    &#34;BA&#34;: &#34;BIH&#34;,
+    &#34;BW&#34;: &#34;BWA&#34;,
+    &#34;BV&#34;: &#34;BVT&#34;,
+    &#34;BR&#34;: &#34;BRA&#34;,
+    &#34;IO&#34;: &#34;IOT&#34;,
+    &#34;BN&#34;: &#34;BRN&#34;,
+    &#34;BG&#34;: &#34;BGR&#34;,
+    &#34;BF&#34;: &#34;BFA&#34;,
+    &#34;BI&#34;: &#34;BDI&#34;,
+    &#34;KH&#34;: &#34;KHM&#34;,
+    &#34;CM&#34;: &#34;CMR&#34;,
+    &#34;CA&#34;: &#34;CAN&#34;,
+    &#34;CV&#34;: &#34;CPV&#34;,
+    &#34;KY&#34;: &#34;CYM&#34;,
+    &#34;CF&#34;: &#34;CAF&#34;,
+    &#34;TD&#34;: &#34;TCD&#34;,
+    &#34;CL&#34;: &#34;CHL&#34;,
+    &#34;CN&#34;: &#34;CHN&#34;,
+    &#34;CX&#34;: &#34;CXR&#34;,
+    &#34;CC&#34;: &#34;CCK&#34;,
+    &#34;CO&#34;: &#34;COL&#34;,
+    &#34;KM&#34;: &#34;COM&#34;,
+    &#34;CG&#34;: &#34;COG&#34;,
+    &#34;CD&#34;: &#34;COD&#34;,
+    &#34;CK&#34;: &#34;COK&#34;,
+    &#34;CR&#34;: &#34;CRI&#34;,
+    &#34;CI&#34;: &#34;CIV&#34;,
+    &#34;HR&#34;: &#34;HRV&#34;,
+    &#34;CU&#34;: &#34;CUB&#34;,
+    &#34;CY&#34;: &#34;CYP&#34;,
+    &#34;CZ&#34;: &#34;CZE&#34;,
+    &#34;DK&#34;: &#34;DNK&#34;,
+    &#34;DJ&#34;: &#34;DJI&#34;,
+    &#34;DM&#34;: &#34;DMA&#34;,
+    &#34;DO&#34;: &#34;DOM&#34;,
+    &#34;EC&#34;: &#34;ECU&#34;,
+    &#34;EG&#34;: &#34;EGY&#34;,
+    &#34;SV&#34;: &#34;SLV&#34;,
+    &#34;GQ&#34;: &#34;GNQ&#34;,
+    &#34;ER&#34;: &#34;ERI&#34;,
+    &#34;EE&#34;: &#34;EST&#34;,
+    &#34;ET&#34;: &#34;ETH&#34;,
+    &#34;FK&#34;: &#34;FLK&#34;,
+    &#34;FO&#34;: &#34;FRO&#34;,
+    &#34;FJ&#34;: &#34;FJI&#34;,
+    &#34;FI&#34;: &#34;FIN&#34;,
+    &#34;FR&#34;: &#34;FRA&#34;,
+    &#34;GF&#34;: &#34;GUF&#34;,
+    &#34;PF&#34;: &#34;PYF&#34;,
+    &#34;TF&#34;: &#34;ATF&#34;,
+    &#34;GA&#34;: &#34;GAB&#34;,
+    &#34;GM&#34;: &#34;GMB&#34;,
+    &#34;GE&#34;: &#34;GEO&#34;,
+    &#34;DE&#34;: &#34;DEU&#34;,
+    &#34;GH&#34;: &#34;GHA&#34;,
+    &#34;GI&#34;: &#34;GIB&#34;,
+    &#34;GR&#34;: &#34;GRC&#34;,
+    &#34;GL&#34;: &#34;GRL&#34;,
+    &#34;GD&#34;: &#34;GRD&#34;,
+    &#34;GP&#34;: &#34;GLP&#34;,
+    &#34;GU&#34;: &#34;GUM&#34;,
+    &#34;GT&#34;: &#34;GTM&#34;,
+    &#34;GG&#34;: &#34;GGY&#34;,
+    &#34;GN&#34;: &#34;GIN&#34;,
+    &#34;GW&#34;: &#34;GNB&#34;,
+    &#34;GY&#34;: &#34;GUY&#34;,
+    &#34;HT&#34;: &#34;HTI&#34;,
+    &#34;HM&#34;: &#34;HMD&#34;,
+    &#34;VA&#34;: &#34;VAT&#34;,
+    &#34;HN&#34;: &#34;HND&#34;,
+    &#34;HK&#34;: &#34;HKG&#34;,
+    &#34;HU&#34;: &#34;HUN&#34;,
+    &#34;IS&#34;: &#34;ISL&#34;,
+    &#34;IN&#34;: &#34;IND&#34;,
+    &#34;ID&#34;: &#34;IDN&#34;,
+    &#34;IR&#34;: &#34;IRN&#34;,
+    &#34;IQ&#34;: &#34;IRQ&#34;,
+    &#34;IE&#34;: &#34;IRL&#34;,
+    &#34;IM&#34;: &#34;IMN&#34;,
+    &#34;IL&#34;: &#34;ISR&#34;,
+    &#34;IT&#34;: &#34;ITA&#34;,
+    &#34;JM&#34;: &#34;JAM&#34;,
+    &#34;JP&#34;: &#34;JPN&#34;,
+    &#34;JE&#34;: &#34;JEY&#34;,
+    &#34;JO&#34;: &#34;JOR&#34;,
+    &#34;KZ&#34;: &#34;KAZ&#34;,
+    &#34;KE&#34;: &#34;KEN&#34;,
+    &#34;KI&#34;: &#34;KIR&#34;,
+    &#34;KP&#34;: &#34;PRK&#34;,
+    &#34;KR&#34;: &#34;KOR&#34;,
+    &#34;KW&#34;: &#34;KWT&#34;,
+    &#34;KG&#34;: &#34;KGZ&#34;,
+    &#34;LA&#34;: &#34;LAO&#34;,
+    &#34;LV&#34;: &#34;LVA&#34;,
+    &#34;LB&#34;: &#34;LBN&#34;,
+    &#34;LS&#34;: &#34;LSO&#34;,
+    &#34;LR&#34;: &#34;LBR&#34;,
+    &#34;LY&#34;: &#34;LBY&#34;,
+    &#34;LI&#34;: &#34;LIE&#34;,
+    &#34;LT&#34;: &#34;LTU&#34;,
+    &#34;LU&#34;: &#34;LUX&#34;,
+    &#34;MO&#34;: &#34;MAC&#34;,
+    &#34;MK&#34;: &#34;MKD&#34;,
+    &#34;MG&#34;: &#34;MDG&#34;,
+    &#34;MW&#34;: &#34;MWI&#34;,
+    &#34;MY&#34;: &#34;MYS&#34;,
+    &#34;MV&#34;: &#34;MDV&#34;,
+    &#34;ML&#34;: &#34;MLI&#34;,
+    &#34;MT&#34;: &#34;MLT&#34;,
+    &#34;MH&#34;: &#34;MHL&#34;,
+    &#34;MQ&#34;: &#34;MTQ&#34;,
+    &#34;MR&#34;: &#34;MRT&#34;,
+    &#34;MU&#34;: &#34;MUS&#34;,
+    &#34;YT&#34;: &#34;MYT&#34;,
+    &#34;MX&#34;: &#34;MEX&#34;,
+    &#34;FM&#34;: &#34;FSM&#34;,
+    &#34;MD&#34;: &#34;MDA&#34;,
+    &#34;MC&#34;: &#34;MCO&#34;,
+    &#34;MN&#34;: &#34;MNG&#34;,
+    &#34;ME&#34;: &#34;MNE&#34;,
+    &#34;MS&#34;: &#34;MSR&#34;,
+    &#34;MA&#34;: &#34;MAR&#34;,
+    &#34;MZ&#34;: &#34;MOZ&#34;,
+    &#34;MM&#34;: &#34;MMR&#34;,
+    &#34;NA&#34;: &#34;NAM&#34;,
+    &#34;NR&#34;: &#34;NRU&#34;,
+    &#34;NP&#34;: &#34;NPL&#34;,
+    &#34;NL&#34;: &#34;NLD&#34;,
+    &#34;AN&#34;: &#34;ANT&#34;,
+    &#34;NC&#34;: &#34;NCL&#34;,
+    &#34;NZ&#34;: &#34;NZL&#34;,
+    &#34;NI&#34;: &#34;NIC&#34;,
+    &#34;NE&#34;: &#34;NER&#34;,
+    &#34;NG&#34;: &#34;NGA&#34;,
+    &#34;NU&#34;: &#34;NIU&#34;,
+    &#34;NF&#34;: &#34;NFK&#34;,
+    &#34;MP&#34;: &#34;MNP&#34;,
+    &#34;NO&#34;: &#34;NOR&#34;,
+    &#34;OM&#34;: &#34;OMN&#34;,
+    &#34;PK&#34;: &#34;PAK&#34;,
+    &#34;PW&#34;: &#34;PLW&#34;,
+    &#34;PS&#34;: &#34;PSE&#34;,
+    &#34;PA&#34;: &#34;PAN&#34;,
+    &#34;PG&#34;: &#34;PNG&#34;,
+    &#34;PY&#34;: &#34;PRY&#34;,
+    &#34;PE&#34;: &#34;PER&#34;,
+    &#34;PH&#34;: &#34;PHL&#34;,
+    &#34;PN&#34;: &#34;PCN&#34;,
+    &#34;PL&#34;: &#34;POL&#34;,
+    &#34;PT&#34;: &#34;PRT&#34;,
+    &#34;PR&#34;: &#34;PRI&#34;,
+    &#34;QA&#34;: &#34;QAT&#34;,
+    &#34;RE&#34;: &#34;REU&#34;,
+    &#34;RO&#34;: &#34;ROU&#34;,
+    &#34;RU&#34;: &#34;RUS&#34;,
+    &#34;RW&#34;: &#34;RWA&#34;,
+    &#34;BL&#34;: &#34;BLM&#34;,
+    &#34;SH&#34;: &#34;SHN&#34;,
+    &#34;KN&#34;: &#34;KNA&#34;,
+    &#34;LC&#34;: &#34;LCA&#34;,
+    &#34;MF&#34;: &#34;MAF&#34;,
+    &#34;PM&#34;: &#34;SPM&#34;,
+    &#34;VC&#34;: &#34;VCT&#34;,
+    &#34;WS&#34;: &#34;WSM&#34;,
+    &#34;SM&#34;: &#34;SMR&#34;,
+    &#34;ST&#34;: &#34;STP&#34;,
+    &#34;SA&#34;: &#34;SAU&#34;,
+    &#34;SN&#34;: &#34;SEN&#34;,
+    &#34;RS&#34;: &#34;SRB&#34;,
+    &#34;SC&#34;: &#34;SYC&#34;,
+    &#34;SL&#34;: &#34;SLE&#34;,
+    &#34;SG&#34;: &#34;SGP&#34;,
+    &#34;SK&#34;: &#34;SVK&#34;,
+    &#34;SI&#34;: &#34;SVN&#34;,
+    &#34;SB&#34;: &#34;SLB&#34;,
+    &#34;SO&#34;: &#34;SOM&#34;,
+    &#34;ZA&#34;: &#34;ZAF&#34;,
+    &#34;GS&#34;: &#34;SGS&#34;,
+    &#34;ES&#34;: &#34;ESP&#34;,
+    &#34;LK&#34;: &#34;LKA&#34;,
+    &#34;SD&#34;: &#34;SDN&#34;,
+    &#34;SR&#34;: &#34;SUR&#34;,
+    &#34;SJ&#34;: &#34;SJM&#34;,
+    &#34;SZ&#34;: &#34;SWZ&#34;,
+    &#34;SE&#34;: &#34;SWE&#34;,
+    &#34;CH&#34;: &#34;CHE&#34;,
+    &#34;SY&#34;: &#34;SYR&#34;,
+    &#34;TW&#34;: &#34;TWN&#34;,
+    &#34;TJ&#34;: &#34;TJK&#34;,
+    &#34;TZ&#34;: &#34;TZA&#34;,
+    &#34;TH&#34;: &#34;THA&#34;,
+    &#34;TL&#34;: &#34;TLS&#34;,
+    &#34;TG&#34;: &#34;TGO&#34;,
+    &#34;TK&#34;: &#34;TKL&#34;,
+    &#34;TO&#34;: &#34;TON&#34;,
+    &#34;TT&#34;: &#34;TTO&#34;,
+    &#34;TN&#34;: &#34;TUN&#34;,
+    &#34;TR&#34;: &#34;TUR&#34;,
+    &#34;TM&#34;: &#34;TKM&#34;,
+    &#34;TC&#34;: &#34;TCA&#34;,
+    &#34;TV&#34;: &#34;TUV&#34;,
+    &#34;UG&#34;: &#34;UGA&#34;,
+    &#34;UA&#34;: &#34;UKR&#34;,
+    &#34;AE&#34;: &#34;ARE&#34;,
+    &#34;GB&#34;: &#34;GBR&#34;,
+    &#34;US&#34;: &#34;USA&#34;,
+    &#34;UM&#34;: &#34;UMI&#34;,
+    &#34;UY&#34;: &#34;URY&#34;,
+    &#34;UZ&#34;: &#34;UZB&#34;,
+    &#34;VU&#34;: &#34;VUT&#34;,
+    &#34;VE&#34;: &#34;VEN&#34;,
+    &#34;VN&#34;: &#34;VNM&#34;,
+    &#34;VG&#34;: &#34;VGB&#34;,
+    &#34;VI&#34;: &#34;VIR&#34;,
+    &#34;WF&#34;: &#34;WLF&#34;,
+    &#34;EH&#34;: &#34;ESH&#34;,
+    &#34;YE&#34;: &#34;YEM&#34;,
+    &#34;ZM&#34;: &#34;ZMB&#34;,
+    &#34;ZW&#34;: &#34;ZWE&#34;,
+}
+
+
+class PlaceInfo(TypedDict):
+    city: str
+    country: str
+    code: str
+
+
+def get_place(latitude: float, longitude: float) -&gt; PlaceInfo:
+    &#34;&#34;&#34;
+    Returns city, country and country 3-letter code, given latitude and longitude
+    Raises if the supplied coordinates cannot be matched to a specific country (eg if those refer to sea area)
+    &#34;&#34;&#34;
+    req = requests.get(
+        f&#34;http://api.geonames.org/findNearbyPlaceName?lat={latitude}&amp;lng={longitude}&amp;cities=cities15000&amp;username=vaslem&#34;
+    )
+    tree = ET.fromstring(req.text)
+    geoname = tree.find(&#34;geoname&#34;)
+    try:
+        city = geoname.find(&#34;toponymName&#34;).text
+        country = geoname.find(&#34;countryName&#34;).text
+        code = geoname.find(&#34;countryCode&#34;).text
+        return {
+            &#34;city&#34;: city,
+            &#34;country&#34;: country,
+            &#34;code&#34;: TWO_TO_THREE_LETTER_CODE[code],
+        }
+    except AttributeError:
+        raise
+
+
+def is_close(loc1, loc2, thres: float = 3) -&gt; bool:
+    &#34;&#34;&#34;
+    Accepts 2 points defined by 2 coordinates (iterables of size 2) and based on a distance threshold (in km),
+    returns whether those points are close or not to each other
+    &#34;&#34;&#34;
+    return hs.haversine(loc1, loc2) &lt; thres
+
+
+import rasterio
+import numpy as np
+
+## Answer to
+## https://stackoverflow.com/questions/60127026/python-how-do-i-get-the-pixel-values-from-an-geotiff-map-by-coordinate
+def get_coordinate_pixel(
+    map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs=&#34;WGS84&#34;
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;
+    Given a geotif map, open it,
+    read the pixels values that correspond to the provided latitude and longitude,
+    with a specific bounding box pixels_width, pixels_height, and return them
+    &#34;&#34;&#34;
+    # open map
+    with rasterio.open(map, crs=crs) as dataset:
+        # get pixel x+y of the coordinate
+        py, px = dataset.index(lat, lon)
+        # create 1x1px window of the pixel
+        window = rasterio.windows.Window(
+            px - pixels_width // 2, py - pixels_height // 2, pixels_width, pixels_height
+        )
+        # read rgb values of the window
+        return dataset.read(window=window)
+
+
+CHECKED_DENSITY_SOURCE = False
+
+
+def check_1k_population_density_source():
+    global CHECKED_DENSITY_SOURCE
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not CHECKED_DENSITY_SOURCE:
+        try:
+            get_coordinate_pixel(
+                POPULATION_DENSITY_PATH, 0, 0, pixels_width=3, pixels_height=3
+            )
+
+            rasterio.open(POPULATION_DENSITY_PATH)
+            CHECKED_DENSITY_SOURCE = True
+        except:
+            pass
+    if not CHECKED_DENSITY_SOURCE:
+        print(&#34;Population Density Map is not available, it will be downloaded&#34;)
+        from utils.download import download_url
+
+        try:
+            return download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except KeyboardInterrupt:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass
+
+
+def get_average_1k_population_density(longitude: float, latitude: float) -&gt; int:
+    &#34;&#34;&#34;
+    Based on provided longitude and latitude, get the median population density, as computed
+    in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
+    &#34;&#34;&#34;
+    check_1k_population_density_source()
+    from data.unlabeled import POPULATION_DENSITY_PATH
+
+    oret = get_coordinate_pixel(
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7
+    ).squeeze()
+    cnt = 3
+    ret = oret
+    while cnt:
+        res = np.median(ret[ret &gt; 0])
+        if res &gt; 1:
+            return res
+        cnt -= 1
+        ret = ret[1:-1, -1:1]
+    return np.median(oret[oret &gt; 0])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="water_security.utils.geo.check_1k_population_density_source"><code class="name flex">
+<span>def <span class="ident">check_1k_population_density_source</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_1k_population_density_source():
+    global CHECKED_DENSITY_SOURCE
+    from data.unlabeled import POPULATION_DENSITY_PATH, POPULATION_DENSITY_URL
+
+    if not CHECKED_DENSITY_SOURCE:
+        try:
+            get_coordinate_pixel(
+                POPULATION_DENSITY_PATH, 0, 0, pixels_width=3, pixels_height=3
+            )
+
+            rasterio.open(POPULATION_DENSITY_PATH)
+            CHECKED_DENSITY_SOURCE = True
+        except:
+            pass
+    if not CHECKED_DENSITY_SOURCE:
+        print(&#34;Population Density Map is not available, it will be downloaded&#34;)
+        from utils.download import download_url
+
+        try:
+            return download_url(POPULATION_DENSITY_URL, POPULATION_DENSITY_PATH)
+        except KeyboardInterrupt:
+            try:
+                os.remove(POPULATION_DENSITY_PATH)
+            except:
+                pass</code></pre>
+</details>
+</dd>
+<dt id="water_security.utils.geo.get_average_1k_population_density"><code class="name flex">
+<span>def <span class="ident">get_average_1k_population_density</span></span>(<span>longitude: float, latitude: float) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Based on provided longitude and latitude, get the median population density, as computed
+in a 7x7 square around the pixel of the population density geotif map located in
+POPULATION_DENSITY_PATH.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_average_1k_population_density(longitude: float, latitude: float) -&gt; int:
+    &#34;&#34;&#34;
+    Based on provided longitude and latitude, get the median population density, as computed
+    in a 7x7 square around the pixel of the population density geotif map located in  POPULATION_DENSITY_PATH.
+    &#34;&#34;&#34;
+    check_1k_population_density_source()
+    from data.unlabeled import POPULATION_DENSITY_PATH
+
+    oret = get_coordinate_pixel(
+        POPULATION_DENSITY_PATH, latitude, longitude, pixels_width=7, pixels_height=7
+    ).squeeze()
+    cnt = 3
+    ret = oret
+    while cnt:
+        res = np.median(ret[ret &gt; 0])
+        if res &gt; 1:
+            return res
+        cnt -= 1
+        ret = ret[1:-1, -1:1]
+    return np.median(oret[oret &gt; 0])</code></pre>
+</details>
+</dd>
+<dt id="water_security.utils.geo.get_coordinate_pixel"><code class="name flex">
+<span>def <span class="ident">get_coordinate_pixel</span></span>(<span>map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs='WGS84') ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given a geotif map, open it,
+read the pixels values that correspond to the provided latitude and longitude,
+with a specific bounding box pixels_width, pixels_height, and return them</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_coordinate_pixel(
+    map: str, lat: float, lon: float, pixels_width: int, pixels_height: int, crs=&#34;WGS84&#34;
+) -&gt; np.ndarray:
+    &#34;&#34;&#34;
+    Given a geotif map, open it,
+    read the pixels values that correspond to the provided latitude and longitude,
+    with a specific bounding box pixels_width, pixels_height, and return them
+    &#34;&#34;&#34;
+    # open map
+    with rasterio.open(map, crs=crs) as dataset:
+        # get pixel x+y of the coordinate
+        py, px = dataset.index(lat, lon)
+        # create 1x1px window of the pixel
+        window = rasterio.windows.Window(
+            px - pixels_width // 2, py - pixels_height // 2, pixels_width, pixels_height
+        )
+        # read rgb values of the window
+        return dataset.read(window=window)</code></pre>
+</details>
+</dd>
+<dt id="water_security.utils.geo.get_place"><code class="name flex">
+<span>def <span class="ident">get_place</span></span>(<span>latitude: float, longitude: float) ‑> <a title="water_security.utils.geo.PlaceInfo" href="#water_security.utils.geo.PlaceInfo">PlaceInfo</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns city, country and country 3-letter code, given latitude and longitude
+Raises if the supplied coordinates cannot be matched to a specific country (eg if those refer to sea area)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_place(latitude: float, longitude: float) -&gt; PlaceInfo:
+    &#34;&#34;&#34;
+    Returns city, country and country 3-letter code, given latitude and longitude
+    Raises if the supplied coordinates cannot be matched to a specific country (eg if those refer to sea area)
+    &#34;&#34;&#34;
+    req = requests.get(
+        f&#34;http://api.geonames.org/findNearbyPlaceName?lat={latitude}&amp;lng={longitude}&amp;cities=cities15000&amp;username=vaslem&#34;
+    )
+    tree = ET.fromstring(req.text)
+    geoname = tree.find(&#34;geoname&#34;)
+    try:
+        city = geoname.find(&#34;toponymName&#34;).text
+        country = geoname.find(&#34;countryName&#34;).text
+        code = geoname.find(&#34;countryCode&#34;).text
+        return {
+            &#34;city&#34;: city,
+            &#34;country&#34;: country,
+            &#34;code&#34;: TWO_TO_THREE_LETTER_CODE[code],
+        }
+    except AttributeError:
+        raise</code></pre>
+</details>
+</dd>
+<dt id="water_security.utils.geo.is_close"><code class="name flex">
+<span>def <span class="ident">is_close</span></span>(<span>loc1, loc2, thres: float = 3) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Accepts 2 points defined by 2 coordinates (iterables of size 2) and based on a distance threshold (in km),
+returns whether those points are close or not to each other</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_close(loc1, loc2, thres: float = 3) -&gt; bool:
+    &#34;&#34;&#34;
+    Accepts 2 points defined by 2 coordinates (iterables of size 2) and based on a distance threshold (in km),
+    returns whether those points are close or not to each other
+    &#34;&#34;&#34;
+    return hs.haversine(loc1, loc2) &lt; thres</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="water_security.utils.geo.PlaceInfo"><code class="flex name class">
+<span>class <span class="ident">PlaceInfo</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PlaceInfo(TypedDict):
+    city: str
+    country: str
+    code: str</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="water_security.utils.geo.PlaceInfo.city"><code class="name">var <span class="ident">city</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="water_security.utils.geo.PlaceInfo.code"><code class="name">var <span class="ident">code</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="water_security.utils.geo.PlaceInfo.country"><code class="name">var <span class="ident">country</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="water_security.utils" href="index.html">water_security.utils</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="water_security.utils.geo.check_1k_population_density_source" href="#water_security.utils.geo.check_1k_population_density_source">check_1k_population_density_source</a></code></li>
+<li><code><a title="water_security.utils.geo.get_average_1k_population_density" href="#water_security.utils.geo.get_average_1k_population_density">get_average_1k_population_density</a></code></li>
+<li><code><a title="water_security.utils.geo.get_coordinate_pixel" href="#water_security.utils.geo.get_coordinate_pixel">get_coordinate_pixel</a></code></li>
+<li><code><a title="water_security.utils.geo.get_place" href="#water_security.utils.geo.get_place">get_place</a></code></li>
+<li><code><a title="water_security.utils.geo.is_close" href="#water_security.utils.geo.is_close">is_close</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="water_security.utils.geo.PlaceInfo" href="#water_security.utils.geo.PlaceInfo">PlaceInfo</a></code></h4>
+<ul class="">
+<li><code><a title="water_security.utils.geo.PlaceInfo.city" href="#water_security.utils.geo.PlaceInfo.city">city</a></code></li>
+<li><code><a title="water_security.utils.geo.PlaceInfo.code" href="#water_security.utils.geo.PlaceInfo.code">code</a></code></li>
+<li><code><a title="water_security.utils.geo.PlaceInfo.country" href="#water_security.utils.geo.PlaceInfo.country">country</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
