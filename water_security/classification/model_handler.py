@@ -95,7 +95,7 @@ class ModelHandler:
                 if x not in self.lab_names and x not in self.id_columns
             ]
             self.train_mask = dataset[self.lab_names].apply(
-                lambda x: all(pd.isnull(x)), axis=1
+                lambda x: not all(pd.isnull(x)), axis=1
             )
             self._dataset = dataset
         return self._dataset
