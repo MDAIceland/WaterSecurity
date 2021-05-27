@@ -21,7 +21,7 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
     # using the f_regression function since labels also have a meaning Risk:0 (means low) and 2(means high)
     def fit(self, x, y):
         assert all(~np.isnan(y))
-        if self.num_features is None:
+        if self.feats_num is None:
 
             self.feats_num = x.shape[0]
             self.feats_num = max(int((self.feats_num * 15) / 100), self.min_feats_num)
@@ -98,13 +98,13 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
             if re.match(comb_pattern, feat):
                 out_feat = re.sub(
                     comb_pattern,
-                    r"Feat[\1] * Feat[\2]",
+                    r"Feat{\1} * Feat{\2}",
                     feat,
                 )
             else:
                 out_feat = re.sub(
                     single_pattern,
-                    r"Feat[\1]",
+                    r"Feat{\1}",
                     feat,
                 )
             out_feat = re.sub(
@@ -274,5 +274,6 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         new_x_data = pd.DataFrame(
             self.pipeline.transform(x_data), columns=self.feat_names
         )
+        new_x_data.index = labs.index
 
         return pd.concat([labs, new_x_data], axis=1)
