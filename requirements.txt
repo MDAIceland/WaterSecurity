@@ -12,7 +12,8 @@ nltk
 #ml
 xgboost
 scikit-learn
-
+tensorflow
+keras-tuner
 
 #testing
 pytest
@@ -42,3 +43,4 @@ fiona
 folium
 ipyleaflet
 voila==0.1.24
+
