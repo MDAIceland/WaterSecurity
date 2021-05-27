@@ -20,12 +20,7 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
     # Process of feature selection is done in this part: Select the K-best features
     # using the f_regression function since labels also have a meaning Risk:0 (means low) and 2(means high)
     def fit(self, x, y):
-        # risks.remove(label)
-        # print(risks)
         assert all(~np.isnan(y))
-
-        # l = x.columns[x.isna().any()].tolist()
-        # print(l)
         if self.num_features is None:
 
             self.feats_num = x.shape[0]

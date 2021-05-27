@@ -34,3 +34,18 @@ def test_feature_selection_model():
         )
         d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])
         assert len(d.shape) == 2
+
+
+def test_temp():
+    from classification.model_handler import ModelHandler
+    from classification.feature_selection import FeatureSelectionAndGeneration
+
+    handler = ModelHandler()
+    dataset = handler.dataset
+    train_set = dataset[handler.train_mask]
+    model = {}
+    label = handler.lab_names[0]
+    model[label] = FeatureSelectionAndGeneration(feats_num=200)
+    augmented_features = model[label].fit_transform(
+        train_set[handler.feat_names], train_set[label]
+    )
