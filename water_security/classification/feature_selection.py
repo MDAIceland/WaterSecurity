@@ -1,4 +1,4 @@
-from typing import Iterable, Union
+from typing import Iterable, Union, List
 
 import numpy as np
 import pandas as pd
@@ -14,11 +14,12 @@ from sklearn.preprocessing import PolynomialFeatures, RobustScaler
 class FeatureSelection(BaseEstimator, TransformerMixin):
 
     # Initiation of the variables for the feature selection, using sklearn SelectKBest Algorithm
-    def __init__(self, feats_num=None):
+    def __init__(self, feats_num=None, verbose=False):
         self.fitted_selector = None
         self.feats_num = feats_num
         self.min_feats_num = 10
         self.scores_ = None
+        self.verbose = verbose
 
     # Process of feature selection is done in this part: Select the K-best features
     # using the f_regression function since labels also have a meaning Risk:0 (means low) and 2(means high)
@@ -28,7 +29,8 @@ class FeatureSelection(BaseEstimator, TransformerMixin):
 
             self.feats_num = x.shape[0]
             self.feats_num = max(int((self.feats_num * 15) / 100), self.min_feats_num)
-            print("Picked variable number:", self.feats_num)
+            if self.verbose:
+                print("Picked variable number:", self.feats_num)
 
         # Applying select K-best
         bestFeatures = SelectKBest(score_func=f_regression, k=self.feats_num)
@@ -60,12 +62,15 @@ class DummyTransformer(BaseEstimator, TransformerMixin):
 import re
 
 
-# Class for generation of cross polynomial features
 class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
-    def __init__(self, element):
+    """Class for generation of cross polynomial features
+    It generates features from the columns which contain the value of `element`
+    """
+
+    def __init__(self, element: str):
         self.element = element
-        self.poly = None
-        self.pop_feats = []
+        self.poly: PolynomialFeatures = None
+        self.sgen_feats: List[str] = []
 
     # Returns every column name that has a specific string inside
     @staticmethod
@@ -76,25 +81,22 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
     # Obtaining the list of columns and fitting them to a feature generation model
     def fit(self, X, y=None):
         self.poly = PolynomialFeatures(interaction_only=False, include_bias=False)
-        self.pop_feats = self.getArrayOfFeatures(X, self.element)
-        self.poly.fit(X[self.pop_feats].values)
+        self.sgen_feats = self.getArrayOfFeatures(X, self.element)
+        self.poly.fit(X[self.sgen_feats].values)
         self.mask = np.sum(self.poly.powers_, axis=1) > 1
 
         # print(crossed_df.shape)
         return self
 
-    # Acquire the selected features and generate a dataframe with only selected feature columns
-    def transform(self, data):
-        crossed_feats = self.poly.transform(data[self.pop_feats])[:, self.mask]
-
-        # Convert to Pandas DataFrame and merge to original dataset
+    def transform(self, data: pd.DataFrame) -> pd.DataFrame:
+        crossed_feats = self.poly.transform(data[self.sgen_feats])[:, self.mask]
         crossed_df = pd.DataFrame(crossed_feats)
         return crossed_df
 
     # Obtain the original feature names after the automatic naming of the cross feature algorithm
-    def get_feature_names(self):
+    def get_feature_names(self) -> List[str]:
         feats = []
-        replacement_dict = {cnt: x for cnt, x in enumerate(self.pop_feats)}
+        replacement_dict = {cnt: x for cnt, x in enumerate(self.sgen_feats)}
         comb_pattern = re.compile(r"(x[0-9]+) (x[0-9]+)")
         single_pattern = re.compile(r"(x[0-9]+)")
         pattern = re.compile(r"(x[0-9]+)")
@@ -124,44 +126,45 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
 class PCAWrapper(BaseEstimator, TransformerMixin):
 
     # Initializing necessary variables for performing the PCA
-    def __init__(self):
+    def __init__(self, verbose=False):
         self.num_components = 10
+        self.verbose = verbose
         self.pca = PCA(n_components=self.num_components)
         self.component_cols = ["PC" + str(i + 1) for i in range(self.num_components)]
 
     # Fit the data to Principle Component Generator, return insight regarding the
     # first 10 principle components of the dataset
-    def fit(self, X, y):
+    def fit(self, X: Union[pd.DataFrame, np.ndarray], y=None):
         self.pca.fit(X)
         percentage_list = [
             element * 100 for element in self.pca.explained_variance_ratio_
         ]
-
-        print(
-            "Explained variation percentage per principal component: {}".format(
-                percentage_list
+        if self.verbose:
+            print(
+                "Explained variation percentage per principal component: {}".format(
+                    percentage_list
+                )
             )
-        )
-        total_explained_percentage = sum(self.pca.explained_variance_ratio_) * 100
-        print(
-            "Total percentage of the explained data by",
-            self.pca.n_components,
-            "components is: %.2f" % total_explained_percentage,
-        )
-        print(
-            "Percentage of the information that is lost for using",
-            self.pca.n_components,
-            "components is: %.2f" % (100 - total_explained_percentage),
-        )
+            total_explained_percentage = sum(self.pca.explained_variance_ratio_) * 100
+            print(
+                "Total percentage of the explained data by",
+                self.pca.n_components,
+                "components is: %.2f" % total_explained_percentage,
+            )
+            print(
+                "Percentage of the information that is lost for using",
+                self.pca.n_components,
+                "components is: %.2f" % (100 - total_explained_percentage),
+            )
         return self
 
     # Return the dataframe of generated first 10 Principle Components
-    def transform(self, X):
+    def transform(self, X: np.ndarray) -> pd.DataFrame:
         pca_ret = self.pca.transform(X)
         return pd.DataFrame(data=pca_ret, columns=self.component_cols)
 
     # Get the name of the Principle Components
-    def get_feature_names(self):
+    def get_feature_names(self) -> List[str]:
         return self.component_cols
 
 
@@ -201,13 +204,19 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
     """
 
     # Determine the columns that needs to be substracted before the feature generation
-    def __init__(self, apply_selection=True, feats_num=None, id_columns=None):
+    def __init__(
+        self,
+        apply_selection=True,
+        feats_num=None,
+        id_columns: List[str] = None,
+        verbose=False,
+    ):
         if id_columns is None:
             id_columns = ["latitude", "longitude"]
         self.id_columns = id_columns
         self.feats_num = feats_num
-        self.inp_feats_names = None
-
+        self.inp_feats_names: List[str] = []
+        self.verbose = verbose
         self.imputer = KNNImputer(n_neighbors=5)
 
         # Defining the pipeline order given different classes created for the pipeline process
@@ -219,13 +228,16 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
                     FeatureUnion(
                         [
                             ("scaled", DummyTransformer()),
-                            ("pca", PCAWrapper()),
+                            ("pca", PCAWrapper(verbose=self.verbose)),
                             ("pop_poly", ColumnSubstringPolynomial("population")),
                             ("perc_poly", ColumnSubstringPolynomial("%")),
                         ]
                     ),
                 ),
-                ("selection", FeatureSelection(feats_num=self.feats_num)),
+                (
+                    "selection",
+                    FeatureSelection(feats_num=self.feats_num, verbose=self.verbose),
+                ),
             ]
         )
         self.feat_names = None
@@ -271,12 +283,13 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             featureScores.columns = ["Specs", "Score"]
 
             # Print defined amount of features according to the assigned scores with descending order
-            print(
-                "Features select \n",
-                featureScores.iloc[feats_indices]
-                .sort_values("Score", ascending=False)
-                .to_markdown(),
-            )
+            if self.verbose:
+                print(
+                    "Features select \n",
+                    featureScores.iloc[feats_indices]
+                    .sort_values("Score", ascending=False)
+                    .to_markdown(),
+                )
             self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         else:
             self.feat_names = columns

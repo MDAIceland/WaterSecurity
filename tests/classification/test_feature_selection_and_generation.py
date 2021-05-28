@@ -32,7 +32,10 @@ def test_feature_selection_model():
 
         model[label] = Pipeline(
             [
-                ("FeatureSelection", FeatureSelectionAndGeneration()),
+                (
+                    "FeatureSelection",
+                    FeatureSelectionAndGeneration(verbose=True, apply_selection=True),
+                ),
             ]
         )
         d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])

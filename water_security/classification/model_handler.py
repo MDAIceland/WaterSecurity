@@ -1,3 +1,4 @@
+from typing import Generator
 from sklearn.base import BaseEstimator
 from data.labeled.preprocessed import LABELED_CITIES
 import os
@@ -61,8 +62,9 @@ class ModelHandler:
         """
         if self._model is None:
             try:
-                from data.model import MODEL
+                from data.model import MODEL, MODEL_PATH
 
+                print(f"Loaded model from {MODEL_PATH}.")
                 self._model = MODEL
             except ImportError:
                 raise TrainingRequired("Model")
@@ -131,12 +133,16 @@ class ModelHandler:
         Compute metrics for regression labels of size nx1
         """
         metrics = {}
+
         # Interpolate predictions to labels, eg convert 0.2 to 0, 0.7 to 1 etc.
         y_pred_interp = self.unique_labs[
             np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
         ]
+        print("Interpolated", np.unique(y_pred_interp))
         metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred_interp)
-        metrics["classification_report"] = classification_report(y_true, y_pred)
+        print(metrics["confusion_matrix"])
+        metrics["classification_report"] = classification_report(y_true, y_pred_interp)
+        print(metrics["classification_report"])
         return metrics
 
     @property
@@ -150,6 +156,17 @@ class ModelHandler:
             return False
         return True
 
+    def get_total_train_val_set_per_risk(self) -> Generator:
+        dataset = self.dataset
+        labeled = dataset[self.train_mask]
+        for label in self.lab_names:
+            train_mask = ~pd.isnull(dataset[label])
+            labeled = dataset.loc[train_mask, :]
+            train_set, valid_set = train_test_split(
+                labeled, test_size=0.3, random_state=RANDOM_SEED
+            )
+            yield (label, labeled, [train_set, valid_set])
+
     def train(self) -> None:
         """
         - Trains 7 different models, one per each different water security risk.
@@ -158,23 +175,21 @@ class ModelHandler:
         - Creates the filled dataset and saves it to disk
         - Creates the prediction mask (what labels from the filled dataset were predicted) and saves it to memory
         """
-        dataset = self.dataset
-        labeled = dataset[self.train_mask]
         model = {}
         train_metrics = {}
         valid_metrics = {}
-        filled_dataset = dataset[self.id_columns + self.lab_names].copy()
-        for label in self.lab_names:
-            train_mask = ~pd.isnull(dataset[label])
-            labeled = dataset.loc[train_mask, :]
-            train_set, valid_set = train_test_split(
-                labeled, test_size=0.3, random_state=RANDOM_SEED
-            )
+        filled_dataset: pd.DataFrame = None
+
+        for (
+            label,
+            labeled,
+            [train_set, valid_set],
+        ) in self.get_total_train_val_set_per_risk():
 
             model[label] = Pipeline(
                 [
                     ("FeatureSelection", FeatureSelectionAndGeneration()),
-                    ("Classification", Classifier()),
+                    ("Classification", Classifier(label)),
                 ]
             )
             model[label].fit(train_set[self.feat_names], train_set[label])
@@ -183,9 +198,10 @@ class ModelHandler:
             train_metrics[label] = self.compute_metrics(train_set[label], train_preds)
             valid_metrics[label] = self.compute_metrics(valid_set[label], valid_preds)
             model[label].fit(labeled[self.feat_names], labeled[label])
-
-            filled_dataset.loc[~train_mask, label] = model[label].predict(
-                dataset.loc[~train_mask, self.feat_names]
+            if filled_dataset is None:
+                filled_dataset = self.dataset[self.id_columns + self.lab_names].copy()
+            filled_dataset.loc[~self.train_mask, label] = model[label].predict(
+                self.dataset.loc[~self.train_mask, self.feat_names]
             )
         self.model = model
         self.save_model()
@@ -196,7 +212,7 @@ class ModelHandler:
         self.filled_dataset = filled_dataset
         self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
         prediction_mask = self.filled_dataset[self.id_columns + self.lab_names]
-        prediction_mask[self.lab_names] = pd.isnull(dataset[self.lab_names])
+        prediction_mask[self.lab_names] = pd.isnull(self.dataset[self.lab_names])
         prediction_mask.to_csv(PREDICTION_MASK_PATH, index=False)
         import data.model.metrics
 
@@ -205,7 +221,7 @@ class ModelHandler:
 
         importlib.reload(data.model.predictions)
 
-    def test(self, latitude, longitude):
+    def test(self, latitude: float, longitude: float):
         """
         Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
         ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data

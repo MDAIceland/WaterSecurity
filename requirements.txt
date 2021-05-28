@@ -10,6 +10,7 @@ spacy
 nltk
 
 #ml
+bayesian-optimization
 xgboost
 scikit-learn
 
