@@ -329,6 +329,4 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         new_x_data.index = labs.index
 
         ret = pd.concat([labs, new_x_data], axis=1)
-        if is_series:
-            ret = ret.iloc[0]
         return ret

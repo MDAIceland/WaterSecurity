@@ -16,7 +16,12 @@ from sklearn.metrics import confusion_matrix, classification_report
 from classification import RANDOM_SEED
 from data.model.metrics import VALIDATION_METRICS_PATH, TRAINING_METRICS_PATH
 from data.model.predictions import PREDICTION_MASK_PATH, FILLED_DATASET_PATH
-from utils.geo import is_close, get_place, get_average_1k_population_density
+from utils.geo import (
+    get_elevation,
+    is_close,
+    get_place,
+    get_average_1k_population_density,
+)
 
 
 class TrainingRequired(NotFittedError):
@@ -51,9 +56,16 @@ class ModelHandler:
             "c40",
             "latitude",
             "longitude",
+            "population_1k_density",
+            "elevation",
         ]
         # The id columns to consider also as features
-        self.feat_id_columns = ["latitude", "longitude"]
+        self.feat_id_columns = [
+            "latitude",
+            "longitude",
+            "population_1k_density",
+            "elevation",
+        ]
 
     @property
     def model(self) -> Pipeline:
@@ -138,11 +150,8 @@ class ModelHandler:
         y_pred_interp = self.unique_labs[
             np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
         ]
-        print("Interpolated", np.unique(y_pred_interp))
         metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred_interp)
-        print(metrics["confusion_matrix"])
         metrics["classification_report"] = classification_report(y_true, y_pred_interp)
-        print(metrics["classification_report"])
         return metrics
 
     @property
@@ -188,7 +197,7 @@ class ModelHandler:
 
             model[label] = Pipeline(
                 [
-                    ("FeatureSelection", FeatureSelectionAndGeneration()),
+                    ("FeatureSelection", FeatureSelectionAndGeneration(feats_num=200)),
                     ("Classification", Classifier(label)),
                 ]
             )
@@ -247,6 +256,7 @@ class ModelHandler:
         except AttributeError:
             raise InvalidCoordinates
         population_density = get_average_1k_population_density(latitude, longitude)
+        elevation = get_elevation(latitude, longitude)
 
         from data.unlabeled import COUNTRIES_DATASET
 
@@ -254,6 +264,7 @@ class ModelHandler:
         feats["latitude"] = latitude
         feats["longitude"] = longitude
         feats["population_1k_density"] = population_density
+        feats["elevation"] = elevation
         preds = {}
         mask = {}
         for label in self.model:
