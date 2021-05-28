@@ -13,6 +13,9 @@ import pandas as pd
 import numpy as np
 from data.labeled.preprocessed import RISKS_MAPPING
 
+import xgboost as xgb
+from sklearn.model_selection import GridSearchCV, KFold
+
 
 def test_feature_selection_model():
     handler = ModelHandler()
@@ -34,14 +37,10 @@ def test_feature_selection_model():
         )
         d = model[label].fit_transform(train_set[handler.feat_names], train_set[label])
         assert len(d.shape) == 2
-
-
-import xgboost as xgb
-
-
-import xgboost as xgb
-from sklearn.metrics import accuracy_score, make_scorer
-from sklearn.model_selection import GridSearchCV, KFold
+        v = model[label].transform(
+            valid_set[[x for x in handler.feat_names if x != "population"]]
+        )
+        assert tuple(d.columns.tolist()) == tuple(v.columns.tolist())
 
 
 def boosting_reg(model, train, y_train, risk, best_parameters):

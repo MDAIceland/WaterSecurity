@@ -1,3 +1,5 @@
+from typing import Iterable
+from pandas._libs import missing
 from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import PolynomialFeatures, RobustScaler
@@ -180,24 +182,31 @@ class RobustScalerWrapper:
         return pd.DataFrame(self.robust_scaler.transform(X), columns=self.columns)
 
 
-# Main class for the generation of pipeline
+from sklearn.impute import KNNImputer
+
+
 class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
+    """Main class for the generation of pipeline.
+    The following process is followed:
+    0. Imputation of the incoming data. This is done only during transform step, otherwise an assertion error is raised.
+    1. Generation of the new features is done by using PCA and Polynomial Cross Features algorithm
+    2. All of the generated and original features as an input to perform a feature selection based on the SelectKBest algorithm of the Sklearn, if the
+    flag `apply_selection` is True. F_regression score is used since numbers
+    in the risk factors are representing a certain value. The number of the selected features
+    is calculated from the dimension of the dataset (15%) if the `feats_num` is not provided.
+
+    `id_columns` are the columns to be ignored during computations and will be returned as is, defaults are ['latitude','longitude']
     """
-        Throughout this process, generation of the new features is done by using
-    PCA and Polynomial Cross Features algorithm. Once feature generation is done,
-    script uses all of the generated and original features as an input to perform
-    a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
-    score is used since numbers in the risk factors are representing a certain value.
-    In the end, only selected feature columns, latitude and longitude columns are returned
-    back for further prediction of the NaN values for a specific risk factor."""
 
     # Determine the columns that needs to be substracted before the feature generation
-    def __init__(self, apply_selection=True, feats_num=None):
-        self.id_columns = [
-            "latitude",
-            "longitude",
-        ]
+    def __init__(self, apply_selection=True, feats_num=None, id_columns=None):
+        if id_columns is None:
+            id_columns = ["latitude", "longitude"]
+        self.id_columns = id_columns
         self.feats_num = feats_num
+        self.inp_feats_names = None
+
+        self.imputer = KNNImputer(n_neighbors=5)
 
         # Defining the pipeline order given different classes created for the pipeline process
         self.pipeline = Pipeline(
@@ -225,18 +234,25 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         if not apply_selection:
             self.pipeline.steps.pop(2)
 
-    # Splitting the initial dataset columns into two, for further processing
     def split(self, data):
+        """
+        Splitting the initial dataset columns into two, for further processing
+        """
         return (
             data[self.id_columns],
             data[[col for col in data.columns.values if col not in self.id_columns]],
         )
 
-    # General order of the feature selection and generation process is defined here
-    def fit(self, x_data, y_data):
+    def fit(self, x_data: pd.DataFrame, y_data: Iterable):
         """
         Fits to nxm features x_data and n predictions y_data
+        Both dataframes must carry only numeric values
         """
+        x_data = x_data.copy()
+        assert np.all(~x_data.isnull())
+        self.inp_feats_names = x_data.columns.tolist()
+        x_data[:] = self.imputer.fit_transform(x_data)
+
         _, x_data = self.split(x_data)
         self.pipeline.fit(x_data, y_data)
         columns = self.pipeline.named_steps["generation"].get_feature_names()
@@ -264,12 +280,22 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             self.feat_names = columns
         return self
 
-    # Only return the designated features in addition to the removed features
-    # at the beginning of the pipeline process
-    def transform(self, x_data):
+    def transform(self, x_data: pd.DataFrame):
         """
-        Transforms x_data from nxm to kxm
+        Transforms `x_data` from nxm to nxk
+        Only return the designated features in addition to the removed features
+        at the beginning of the pipeline process
         """
+        missing_feats = [x for x in self.inp_feats_names if x not in x_data.columns]
+        x_data = x_data.copy()
+        if missing_feats:
+            print(
+                f"Warning: Missing feature(s): \n{missing_feats}\nThey are going to be imputed."
+            )
+            x_data[missing_feats] = None
+        x_data = x_data[self.inp_feats_names].copy()
+        x_data[:] = self.imputer.transform(x_data)
+
         labs, x_data = self.split(x_data)
         new_x_data = pd.DataFrame(
             self.pipeline.transform(x_data), columns=self.feat_names
