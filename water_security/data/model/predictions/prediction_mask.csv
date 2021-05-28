@@ -1,1212 +1,1211 @@
-city,country,latitude,longitude,risk0,risk1,risk2,risk3,risk4,risk5,risk6
-Aalborg,Denmark,57.0337,9.9166,True,True,True,True,True,True,True
-Aarhus,Denmark,56.1572,10.2107,True,True,True,True,True,True,True
-Copenhagen,Denmark,55.6786,12.5635,True,False,True,False,True,True,True
-Esbjerg,Denmark,55.467,8.45,True,True,True,True,True,True,True
-Frederikshavn,Denmark,57.4337,10.5333,True,False,True,True,True,True,True
-Odense,Denmark,55.4004,10.3833,True,True,True,True,True,True,True
-Vejle,Denmark,55.709,9.535,True,True,True,True,True,True,True
-Abidjan,Côte d'Ivoire,5.3364,-4.0267,True,True,True,True,False,True,True
-Daloa,Côte d'Ivoire,6.89,-6.45,True,True,True,True,True,True,True
-Korhogo,Côte d'Ivoire,9.4578,-5.6294,True,True,True,True,True,True,True
-Yamoussoukro,Côte d'Ivoire,6.8161,-5.2742,True,True,True,True,True,True,True
-BouakÃ©,Côte d'Ivoire,7.4137,-5.0149,True,True,True,False,True,True,True
-Abington,United States of America,40.1108,-75.1146,True,False,False,False,True,True,True
-Alameda,United States of America,37.767,-122.2672,True,True,False,True,True,True,True
-Alexandria,United States of America,38.8185,-77.0861,True,True,True,True,True,True,True
-Amsterdam,United States of America,42.942,-74.1907,True,True,True,True,True,True,True
-Anchorage,United States of America,61.1508,-149.1091,True,True,False,True,True,True,True
-Arlington,United States of America,32.6998,-97.125,True,True,False,False,True,True,True
-Asheville,United States of America,35.5704,-82.5536,True,False,False,True,False,True,True
-Athens,United States of America,33.9508,-83.3689,True,True,True,True,True,True,True
-Atlanta,United States of America,33.7627,-84.4224,False,True,False,True,True,True,True
-Aurora,United States of America,39.7087,-104.7273,True,True,False,False,False,True,True
-Austin,United States of America,30.3004,-97.7522,False,False,False,False,False,False,False
-Belgrade,United States of America,45.7796,-111.1751,True,True,True,True,True,True,True
-Benicia,United States of America,38.0725,-122.1525,False,True,False,True,True,True,True
-Berlin,United States of America,41.6114,-72.7758,True,True,True,True,True,True,True
-Bern,United States of America,40.4005,-75.9933,True,True,True,True,True,True,True
-Birmingham,United States of America,33.5277,-86.7987,True,True,True,True,True,True,True
-Blacksburg,United States of America,37.23,-80.4279,True,False,True,True,True,True,True
-Bloomington,United States of America,40.4757,-88.9703,True,False,True,False,False,True,True
-Bogota,United States of America,40.875,-74.0293,True,True,True,True,True,True,True
-Boulder,United States of America,40.0249,-105.2523,True,False,False,False,True,True,True
-Boynton Beach,United States of America,26.5281,-80.0811,True,False,True,False,False,True,True
-Breckenridge,United States of America,39.4995,-106.0433,True,True,False,True,True,True,True
-Bremen,United States of America,33.7085,-85.1495,True,True,True,True,True,True,True
-Bridgetown,United States of America,39.1551,-84.6359,True,True,True,True,True,True,True
-Bridgewater,United States of America,40.5934,-74.6076,True,True,True,False,False,True,True
-Cairo,United States of America,30.8791,-84.205,True,True,True,True,True,True,True
-Cambridge,United States of America,42.3759,-71.1185,True,True,False,True,True,True,True
-Chicago,United States of America,41.8373,-87.6862,True,True,True,True,True,True,True
-Chula Vista,United States of America,32.6281,-117.0145,True,True,False,True,True,True,True
-Cincinnati,United States of America,39.1413,-84.5061,False,False,False,False,True,False,True
-Cleveland,United States of America,41.4767,-81.6804,True,False,True,False,True,True,True
-Clinton,United States of America,38.7499,-76.9063,False,True,True,False,False,True,True
-Columbus,United States of America,39.9862,-82.985,False,True,False,False,True,True,True
-Culver City,United States of America,34.0058,-118.3968,True,True,False,False,True,True,True
-Dallas,United States of America,32.7936,-96.7662,True,True,True,True,True,True,True
-Damascus,United States of America,39.2737,-77.2006,True,True,True,True,True,True,True
-Delhi,United States of America,37.4306,-120.7759,True,True,True,True,True,True,True
-Denver,United States of America,39.7621,-104.8759,True,True,False,False,False,True,True
-Detroit,United States of America,42.3834,-83.1024,True,False,True,True,True,True,True
-Douglas,United States of America,31.3602,-109.5394,True,True,True,True,True,True,True
-Dublin,United States of America,37.7161,-121.8963,True,True,True,True,True,True,True
-East Highland Park,United States of America,37.577,-77.3865,True,False,True,True,True,True,True
-East St. Louis,United States of America,38.6156,-90.1304,True,False,False,True,True,True,True
-Easton,United States of America,40.6858,-75.2209,True,True,True,False,True,True,True
-Eldorado at Santa Fe,United States of America,35.5273,-105.934,True,True,False,True,False,True,True
-Emeryville,United States of America,37.8382,-122.2932,True,True,False,True,True,True,True
-Encinitas,United States of America,33.049,-117.2613,True,True,False,True,True,True,True
-Evanston,United States of America,42.0463,-87.6942,True,True,False,False,True,True,True
-Fayetteville,United States of America,36.0713,-94.166,True,False,False,False,False,True,True
-Flagstaff,United States of America,35.1872,-111.6195,False,True,False,True,True,True,True
-Fort Collins,United States of America,40.5478,-105.0656,True,True,False,False,True,True,True
-Fort Worth,United States of America,32.7811,-97.3473,False,True,True,True,True,True,True
-Freetown,United States of America,41.7714,-71.0157,True,True,True,True,True,True,True
-Fremont,United States of America,37.5265,-121.9852,False,True,False,True,False,True,True
-Fresno,United States of America,36.7831,-119.7941,True,True,False,True,False,True,True
-Geneva,United States of America,42.8644,-76.9827,True,True,True,True,True,True,True
-Genoa,United States of America,42.0926,-88.6964,True,True,True,True,True,True,True
-Georgetown,United States of America,30.6668,-97.6953,True,True,True,True,True,True,True
-Gretna,United States of America,29.9101,-90.0515,True,False,False,False,True,True,True
-Hamburg,United States of America,42.7394,-78.8581,True,True,True,True,True,True,True
-Hamilton,United States of America,40.2046,-74.6765,True,True,False,False,True,True,True
-Hayward,United States of America,37.6328,-122.0772,False,True,False,True,True,True,True
-Honolulu,United States of America,21.3294,-157.846,True,False,False,True,True,True,False
-Huntington Beach,United States of America,33.696,-118.0025,True,True,False,True,True,True,True
-Indianapolis,United States of America,39.7771,-86.1458,True,False,False,False,True,True,True
-Kansas City,United States of America,39.1239,-94.5541,True,False,True,True,True,True,True
-Key West,United States of America,24.5637,-81.7768,True,True,False,True,True,True,True
-Kingston,United States of America,41.2652,-75.8875,True,True,True,True,True,True,True
-La Crosse,United States of America,43.824,-91.2268,True,False,True,False,True,True,True
-LaGrange,United States of America,33.0274,-85.0384,True,True,True,False,True,True,True
-Lackawanna,United States of America,42.8182,-78.8326,True,False,True,False,True,False,True
-Lakewood,United States of America,39.6977,-105.1168,False,False,False,False,True,True,True
-Las Vegas,United States of America,36.2333,-115.2654,False,False,False,False,False,False,True
-Leeds,United States of America,33.5429,-86.5636,True,True,True,True,True,True,True
-Leicester,United States of America,42.24,-71.912,True,False,False,True,True,True,True
-Lima,United States of America,40.741,-84.1121,False,False,False,True,True,True,True
-Limerick,United States of America,40.2323,-75.5344,True,True,True,True,True,True,True
-Linden,United States of America,40.6251,-74.2381,True,True,True,True,True,True,True
-Lisbon,United States of America,44.0265,-70.09,True,True,True,True,True,True,True
-London,United States of America,37.1175,-84.0767,False,False,False,False,False,False,False
-Long Beach,United States of America,33.7981,-118.1675,True,False,False,True,True,True,True
-Los Angeles,United States of America,34.1139,-118.4068,True,True,True,True,True,True,True
-Manchester,United States of America,42.9848,-71.4447,True,True,True,True,True,True,True
-Manhattan Beach,United States of America,33.8895,-118.3972,True,True,False,True,True,True,True
-Mecca,United States of America,33.5767,-116.0645,True,True,True,True,True,True,True
-Medina,United States of America,41.1358,-81.8694,True,True,True,True,True,True,True
-Melbourne,United States of America,28.1085,-80.6627,False,False,False,False,False,False,False
-Memphis,United States of America,35.1046,-89.9773,True,True,False,False,True,True,True
-Miami,United States of America,25.7839,-80.2102,True,True,True,True,True,True,True
-Miami Beach,United States of America,25.8171,-80.1396,True,False,False,True,True,True,True
-Milan,United States of America,42.0816,-83.6853,True,True,True,True,True,True,True
-Minneapolis,United States of America,44.9635,-93.2678,True,True,False,True,True,True,True
-Moab,United States of America,38.5701,-109.5477,True,True,False,True,True,True,True
-Monrovia,United States of America,34.165,-117.9921,True,True,True,True,True,True,True
-Montevideo,United States of America,44.9505,-95.7153,True,True,True,True,True,True,True
-Moscow,United States of America,46.7307,-116.9986,True,True,True,True,True,True,True
-Mount Rainier,United States of America,38.9423,-76.9645,False,False,False,False,False,False,False
-Naples,United States of America,26.1504,-81.7936,True,True,True,True,True,True,True
-Nashville,United States of America,36.1715,-86.7843,True,False,False,False,True,True,True
-Natchez,United States of America,31.5437,-91.3867,True,False,True,True,True,True,True
-New Bedford,United States of America,41.6697,-70.9428,True,False,True,True,True,True,True
-New York,United States of America,40.6943,-73.9249,True,True,True,True,True,True,True
-Newcastle,United States of America,47.5303,-122.1633,True,True,True,True,True,True,True
-Oakland,United States of America,37.7903,-122.2165,False,False,False,True,True,False,True
-Ottawa,United States of America,41.3532,-88.8306,True,True,True,True,True,True,True
-Palermo,United States of America,39.4313,-121.5225,True,True,True,True,True,True,True
-Panama City,United States of America,30.1995,-85.6004,True,True,True,True,True,True,True
-Paris,United States of America,33.6688,-95.546,False,False,False,False,False,False,False
-Park City,United States of America,42.3522,-87.8915,True,True,False,True,False,True,True
-Parma,United States of America,41.3843,-81.7286,True,True,False,True,True,True,True
-Philadelphia,United States of America,40.0077,-75.1339,True,True,True,True,True,True,True
-Phoenix,United States of America,33.5722,-112.0891,False,True,False,True,True,True,True
-Piedmont,United States of America,37.8226,-122.23,False,True,False,True,True,True,True
-Pittsburgh,United States of America,40.4396,-79.9762,True,False,False,False,True,True,True
-Ramsey,United States of America,45.2617,-93.4494,True,True,True,True,False,True,True
-Reno,United States of America,39.5497,-119.8483,True,False,False,True,True,True,True
-Riga,United States of America,43.0802,-77.8753,False,False,True,False,True,True,False
-Rochester,United States of America,43.168,-77.6162,True,True,False,False,True,True,True
-Rome,United States of America,34.2661,-85.1862,True,True,True,True,True,True,True
-Rotterdam,United States of America,42.8133,-74.0129,True,True,True,True,True,True,True
-Sacramento,United States of America,38.5667,-121.4683,True,True,False,True,True,True,True
-Salt Lake City,United States of America,40.7777,-111.9306,True,False,False,False,True,True,True
-San Antonio,United States of America,29.4658,-98.5253,True,True,False,True,True,True,True
-San Fernando,United States of America,34.2886,-118.4363,True,True,True,True,True,True,True
-San Francisco,United States of America,37.7562,-122.443,False,False,False,False,False,False,False
-San Jose,United States of America,37.3019,-121.8486,True,True,False,True,True,True,True
-San Juan,United States of America,26.1903,-98.152,True,True,True,True,True,True,True
-San Leandro,United States of America,37.7071,-122.1601,True,False,False,True,True,True,True
-San Lorenzo,United States of America,37.6737,-122.1349,True,True,True,True,True,True,True
-San Luis,United States of America,32.4911,-114.7089,True,True,True,True,True,True,True
-San Marino,United States of America,34.1224,-118.1132,True,True,True,True,True,True,True
-San Ramon,United States of America,37.7625,-121.9365,False,True,False,True,True,True,True
-Santa Ana,United States of America,33.7366,-117.8819,True,True,True,True,True,True,True
-Santa Cruz,United States of America,36.9789,-122.0346,True,True,False,True,True,True,True
-Saratoga Springs,United States of America,43.0674,-73.7775,True,True,True,False,False,True,True
-Seattle,United States of America,47.6211,-122.3244,False,False,False,False,False,False,False
-South Portland,United States of America,43.631,-70.2895,True,False,True,False,True,True,True
-South San Francisco,United States of America,37.6536,-122.4197,True,False,False,True,True,True,True
-Surfside,United States of America,25.8787,-80.125,True,False,False,True,True,True,True
-Tempe,United States of America,33.3881,-111.9318,True,False,False,True,True,True,True
-Toledo,United States of America,41.6639,-83.5822,True,True,True,False,True,True,True
-Vail,United States of America,32.0217,-110.6937,True,True,False,False,True,True,True
-Valparaiso,United States of America,41.4782,-87.0507,True,True,True,True,True,True,True
-Vancouver,United States of America,45.6366,-122.5967,False,False,False,False,False,False,False
-Victoria,United States of America,28.8285,-96.985,True,True,True,True,True,True,True
-Vienna,United States of America,38.8996,-77.2597,True,True,True,True,True,True,True
-Warsaw,United States of America,41.2448,-85.8464,False,False,False,False,False,False,False
-Waterford,United States of America,41.3692,-72.1483,True,True,True,True,True,True,True
-Wellington,United States of America,26.6461,-80.2699,True,False,False,True,True,True,True
-West Haven-Sylvan,United States of America,45.5164,-122.7654,False,False,False,False,False,False,False
-West Hollywood,United States of America,34.0882,-118.3718,True,True,False,True,True,True,True
-West Lampeter,United States of America,39.9947,-76.256,True,False,True,False,True,True,True
-West Palm Beach,United States of America,26.7468,-80.1316,True,False,False,True,True,True,True
-Windsor,United States of America,40.4693,-104.9213,True,True,False,False,True,True,True
-Winston-Salem,United States of America,36.1029,-80.2611,True,True,False,True,True,True,True
-Broward,United States of America,26.1901,80.3659,True,True,True,False,True,True,True
-"Columbia, MO",United States of America,38.9517,-92.3341,True,False,False,False,True,True,True
-"Durham, NC",United States of America,35.994,-78.8986,True,False,False,True,True,True,True
-Abovyan,Armenia,40.2739,44.6256,True,True,True,True,True,True,True
-Ejmiatsin,Armenia,40.1728,44.2925,True,True,True,True,True,True,True
-Gyumri,Armenia,40.7833,43.8333,True,True,True,True,True,True,True
-Kapan,Armenia,39.2011,46.415,True,True,True,True,True,True,True
-Vanadzor,Armenia,40.8128,44.4883,True,True,True,True,True,True,True
-Yerevan,Armenia,40.1814,44.5144,True,True,True,True,True,True,True
-Abu Dhabi,United Arab Emirates,24.4781,54.3686,True,True,True,True,True,True,True
-Dubai,United Arab Emirates,25.2697,55.3094,True,True,True,True,True,True,True
-Sharjah,United Arab Emirates,25.3575,55.3919,True,True,True,True,True,True,True
-Abuja,Nigeria,9.0556,7.4914,False,False,False,True,True,True,True
-Ibadan,Nigeria,7.3964,3.9167,True,True,True,False,True,True,True
-Kano,Nigeria,12.0,8.5167,True,True,True,True,True,True,True
-Lagos,Nigeria,6.45,3.4,False,False,False,False,False,False,False
-Onitsha,Nigeria,6.1667,6.7833,True,True,True,True,True,True,True
-Owerri,Nigeria,5.4833,7.0333,True,True,True,True,True,True,True
-Accra,Ghana,5.6037,-0.187,True,True,True,True,True,True,True
-Kumasi,Ghana,6.6833,-1.6167,True,True,True,True,True,True,True
-Obuase,Ghana,6.2,-1.6833,True,True,True,True,True,True,True
-Sekondi,Ghana,4.9433,-1.704,True,True,True,True,True,True,True
-Tamale,Ghana,9.4075,-0.8533,True,True,True,True,True,True,True
-Tema,Ghana,5.6667,-0.0167,True,True,True,True,True,True,True
-Addis Ababa,Ethiopia,9.0272,38.7369,False,False,False,False,False,False,False
-Dire Dawa,Ethiopia,9.5833,41.8667,True,True,True,True,True,True,True
-Gonder,Ethiopia,12.6,37.4667,True,True,True,True,True,True,True
-Mekele,Ethiopia,13.4833,39.4667,True,True,True,True,True,True,True
-Adelaide,Australia,-34.9289,138.6011,False,False,False,True,True,False,True
-Brisbane,Australia,-27.4678,153.0281,True,True,True,True,True,True,True
-Byron Bay,Australia,-28.6483,153.6178,True,True,True,True,False,True,True
-Canberra,Australia,-35.2931,149.1269,True,True,False,True,True,True,True
-Georgetown,Australia,-18.3,143.55,True,True,True,True,True,True,True
-Gold Coast,Australia,-28.0167,153.4,True,True,True,True,True,True,True
-Hamilton,Australia,-37.7333,142.0167,True,True,False,False,True,True,True
-Kingston,Australia,-42.9769,147.3083,True,True,True,True,True,True,True
-Melbourne,Australia,-37.8136,144.9631,False,False,False,False,False,False,False
-Newcastle,Australia,-32.9167,151.75,True,True,True,True,True,True,True
-Perth,Australia,-31.9522,115.8589,True,True,True,True,True,True,True
-Sale,Australia,-38.1,147.0667,True,True,True,True,True,True,True
-Sydney,Australia,-33.865,151.2094,False,False,False,False,False,False,False
-Waterford,Australia,-27.6833,153.133,True,True,True,True,True,True,True
-Wollongong,Australia,-34.4331,150.8831,True,True,False,False,True,True,True
-Aden,Yemen,12.8,45.0333,True,True,True,True,True,True,True
-Ibb,Yemen,13.9759,44.1709,True,True,True,True,True,True,True
-Sanaa,Yemen,15.35,44.2,True,True,True,True,True,True,True
-Agadez,Niger,16.9959,7.9828,True,True,True,True,True,True,True
-Arlit,Niger,18.82,7.33,True,True,True,True,True,True,True
-Maradi,Niger,13.5,7.1,True,True,True,True,True,True,True
-Niamey,Niger,13.5086,2.1111,True,True,True,True,True,True,True
-Tahoua,Niger,14.9,5.2599,True,True,True,True,True,True,True
-Zinder,Niger,13.8,8.9833,True,True,True,True,True,True,True
-Ainaro,Timor-Leste,-8.9833,125.5,True,True,True,True,True,True,True
-Baucau,Timor-Leste,-8.4667,126.45,True,True,True,True,True,True,True
-Dili,Timor-Leste,-8.5586,125.5736,True,True,True,True,True,True,True
-Gleno,Timor-Leste,-8.7239,125.4361,True,True,True,True,True,True,True
-Maliana,Timor-Leste,-8.9917,125.2197,True,True,True,True,True,True,True
-Manatuto,Timor-Leste,-8.5167,126.0167,True,True,True,True,True,True,True
-Ajax,Canada,43.8583,-79.0364,True,False,True,False,True,True,True
-Aurora,Canada,44.0,-79.4667,True,True,False,False,False,True,True
-Bridgewater,Canada,44.37,-64.52,True,True,True,False,False,True,True
-Calgary,Canada,51.05,-114.0667,True,False,False,True,True,False,True
-Cambridge,Canada,43.3972,-80.3114,True,True,False,True,True,True,True
-Douglas,Canada,46.2819,-66.942,True,True,True,True,True,True,True
-Edmonton,Canada,53.5344,-113.4903,True,True,False,True,True,True,True
-Guelph,Canada,43.55,-80.25,False,False,False,False,False,False,False
-Hamilton,Canada,43.2567,-79.8692,True,True,False,False,True,True,True
-Laval,Canada,45.5833,-73.75,True,True,True,True,False,True,True
-London,Canada,42.9836,-81.2497,False,False,False,False,False,False,False
-North Vancouver,Canada,49.3641,-123.0066,True,False,False,False,False,True,True
-Ottawa,Canada,45.4247,-75.695,True,True,True,True,True,True,True
-Perth,Canada,44.9,-76.25,True,True,True,True,True,True,True
-Prince George,Canada,53.9169,-122.7494,True,False,True,False,True,True,True
-Saskatoon,Canada,52.1333,-106.6833,True,False,False,False,True,True,True
-St. Catharines,Canada,43.1833,-79.2333,False,False,True,False,True,True,True
-Stanley,Canada,49.1331,-98.0656,True,True,True,True,True,True,True
-Toronto,Canada,43.7417,-79.3733,True,True,True,True,True,True,True
-Vancouver,Canada,49.25,-123.1,False,False,False,False,False,False,False
-Victoria,Canada,48.4283,-123.3647,True,True,True,True,True,True,True
-Windsor,Canada,42.2833,-83.0,True,True,False,False,True,True,True
-Akureyri,Iceland,65.6833,-18.1,True,True,True,True,True,True,True
-Kópavogur,Iceland,64.1167,-21.7667,True,True,False,False,True,True,True
-Al Mafraq,Jordan,32.2833,36.2333,True,True,True,True,True,True,True
-Amman,Jordan,31.95,35.9333,False,False,False,False,False,False,False
-Irbid,Jordan,32.5556,35.85,True,True,True,True,True,True,True
-Alajuela,Costa Rica,10.0278,-84.2041,True,True,True,True,True,True,True
-Buenos Aires,Costa Rica,9.1497,-83.3334,True,True,True,True,True,True,True
-Cartago,Costa Rica,9.8667,-83.9167,True,True,True,True,True,True,True
-Liberia,Costa Rica,10.6338,-85.4333,True,True,True,True,True,True,True
-San Juan,Costa Rica,9.9609,-84.0731,True,True,True,True,True,True,True
-Santa Ana,Costa Rica,9.932,-84.176,True,True,True,True,True,True,True
-Santiago,Costa Rica,9.8291,-84.3044,True,True,False,False,True,True,True
-Aleppo,Syrian Arab Republic,36.2,37.15,True,True,True,True,True,True,True
-Damascus,Syrian Arab Republic,33.5131,36.2919,True,True,True,True,True,True,True
-Dayr az Zawr,Syrian Arab Republic,35.3333,40.15,True,True,True,True,True,True,True
-Homs,Syrian Arab Republic,34.7333,36.7167,True,True,True,True,True,True,True
-Latakia,Syrian Arab Republic,35.5236,35.7917,True,True,True,True,True,True,True
-Alexandria,Egypt,31.2,29.9167,True,True,True,True,True,True,True
-Cairo,Egypt,30.0561,31.2394,True,True,True,True,True,True,True
-Giza,Egypt,29.987,31.2118,True,True,True,True,True,True,True
-Alexandria,Romania,43.9686,25.3333,True,True,True,True,True,True,True
-Bucharest,Romania,44.4,26.0833,True,True,True,True,True,True,True
-Cluj-Napoca,Romania,46.78,23.5594,True,True,True,True,True,True,True
-Ungheni,Romania,46.4858,24.4608,True,True,True,True,True,True,True
-Victoria,Romania,45.6466,24.7059,True,True,True,True,True,True,True
-Iasi,Romania,47.1,27.35,True,True,False,True,True,True,True
-Alexandria,United Kingdom,55.98,-4.58,True,True,True,True,True,True,True
-Birmingham,United Kingdom,52.48,-1.9025,True,True,True,True,True,True,True
-Birstall,United Kingdom,52.6736,-1.12,True,True,True,True,True,True,True
-Cambridge,United Kingdom,52.2053,0.1192,True,True,False,True,True,True,True
-Christchurch,United Kingdom,50.73,-1.78,True,True,True,True,True,True,True
-Edmonton,United Kingdom,51.6154,-0.0708,True,True,False,True,True,True,True
-Hamilton,United Kingdom,55.777,-4.039,True,True,False,False,True,True,True
-Leeds,United Kingdom,53.7997,-1.5492,True,True,True,True,True,True,True
-Leicester,United Kingdom,52.6333,-1.1333,True,False,False,True,True,True,True
-London,United Kingdom,51.5072,-0.1275,False,False,False,False,False,False,False
-Manchester,United Kingdom,53.4794,-2.2453,True,True,True,True,True,True,True
-Newcastle,United Kingdom,55.0077,-1.6578,True,True,True,True,True,True,True
-Perth,United Kingdom,56.397,-3.437,True,True,True,True,True,True,True
-Ramsey,United Kingdom,52.45,-0.12,True,True,True,True,False,True,True
-Rochester,United Kingdom,51.375,0.5,True,True,False,False,True,True,True
-Sale,United Kingdom,53.424,-2.322,True,True,True,True,True,True,True
-Stanley,United Kingdom,53.7145,-1.476,True,True,True,True,True,True,True
-Wellington,United Kingdom,52.7001,-2.5157,True,False,False,True,True,True,True
-Windsor,United Kingdom,51.4791,-0.6095,True,True,False,False,True,True,True
-Algiers,Algeria,36.7764,3.0586,True,True,True,True,True,True,True
-Batna,Algeria,35.55,6.1667,True,True,True,True,True,True,True
-Blida,Algeria,36.4722,2.8333,True,True,True,True,True,True,True
-Constantine,Algeria,36.365,6.6147,True,True,True,True,True,True,True
-Oran,Algeria,35.6969,-0.6331,True,True,True,True,True,True,True
-Ali Sabieh,Djibouti,11.1558,42.7125,True,True,True,True,True,True,True
-Dikhil,Djibouti,11.1086,42.3667,True,True,True,True,True,True,True
-Djibouti,Djibouti,11.595,43.1481,True,True,True,True,True,True,True
-Obock,Djibouti,11.9667,43.2833,True,True,True,True,True,True,True
-Tadjourah,Djibouti,11.7833,42.8833,True,True,True,True,True,True,True
-Almaty,Kazakhstan,43.25,76.9,True,True,True,True,True,True,True
-Nur-Sultan,Kazakhstan,51.1333,71.4333,True,True,True,True,True,True,True
-Qaraghandy,Kazakhstan,49.8,73.1167,True,True,True,True,True,True,True
-Shymkent,Kazakhstan,42.3,69.6,True,True,True,True,True,True,True
-Taraz,Kazakhstan,42.8833,71.3667,True,True,True,True,True,True,True
-Alytus,Lithuania,54.4014,24.0492,True,True,True,True,True,True,True
-Kaunas,Lithuania,54.9,23.9333,True,True,True,True,True,True,True
-Vilnius,Lithuania,54.6833,25.2833,True,True,True,True,True,True,True
-Amadora,Portugal,38.75,-9.2333,True,True,True,True,True,True,True
-Braga,Portugal,41.5333,-8.4167,True,True,True,True,True,True,True
-Castelo Branco,Portugal,39.823,-7.4931,True,False,False,False,True,True,True
-Estoril,Portugal,38.7057,-9.3977,True,True,False,False,True,True,True
-Estremoz,Portugal,38.8422,-7.5881,True,True,False,False,True,True,True
-Guimarães,Portugal,41.445,-8.2908,True,True,False,False,True,True,True
-Lagos,Portugal,37.1,-8.6667,False,False,False,False,False,False,False
-Lisbon,Portugal,38.7452,-9.1604,True,True,True,True,True,True,True
-Matosinhos,Portugal,41.2077,-8.6674,True,True,True,True,True,True,True
-Mirandela,Portugal,41.4833,-7.1833,True,True,False,False,True,True,True
-Porto,Portugal,41.1495,-8.6108,True,True,True,True,True,True,True
-Santa Cruz,Portugal,32.675,-16.8309,True,True,False,True,True,True,True
-Santarém,Portugal,39.2369,-8.685,True,True,False,True,True,True,True
-São João da Madeira,Portugal,40.9,-8.5,True,True,False,False,True,True,True
-Torres Vedras,Portugal,39.0833,-9.2667,True,False,False,False,True,True,True
-Vila Nova de Gaia,Portugal,41.1333,-8.6167,True,True,True,True,True,True,True
-Amsterdam,Netherlands,52.35,4.9166,True,True,True,True,True,True,True
-Eindhoven,Netherlands,51.43,5.5,True,True,True,True,True,True,True
-Haarlem,Netherlands,52.3804,4.63,True,True,True,True,True,True,True
-Rotterdam,Netherlands,51.92,4.48,True,True,True,True,True,True,True
-The Hague,Netherlands,52.08,4.27,True,True,False,False,True,True,True
-Utrecht,Netherlands,52.1003,5.12,True,True,True,True,True,True,True
-Nijmegen,Netherlands,51.8449,5.84282,True,True,True,False,True,True,True
-An Najaf,Iraq,32.029,44.3396,True,True,True,True,True,True,True
-Baghdad,Iraq,33.35,44.4167,True,True,True,True,True,True,True
-Erbil,Iraq,36.1911,44.0094,True,True,True,True,True,True,True
-Kirkuk,Iraq,35.4667,44.4,True,True,True,True,True,True,True
-Mosul,Iraq,36.3667,43.1167,True,True,True,True,True,True,True
-Andijon,Uzbekistan,40.7,72.35,True,True,True,True,True,True,True
-Namangan,Uzbekistan,40.9953,71.6725,True,True,True,True,True,True,True
-Samarkand,Uzbekistan,39.6542,66.9597,True,True,True,True,True,True,True
-Tashkent,Uzbekistan,41.3,69.2667,True,True,True,True,True,True,True
-Andorra la Vella,Andorra,42.5,1.5,True,True,True,True,True,True,True
-Ankara,Turkey,39.93,32.85,True,True,True,True,True,True,True
-Antalya,Turkey,36.9081,30.6956,True,True,True,True,True,True,True
-Bor,Turkey,37.8833,34.5667,True,True,True,True,True,True,True
-Bursa,Turkey,40.1833,29.0667,True,True,True,True,True,True,True
-Istanbul,Turkey,41.01,28.9603,True,True,True,True,True,True,True
-Konya,Turkey,37.8714,32.4847,True,True,True,True,True,True,True
-Urla,Turkey,38.3222,26.7647,True,True,True,False,True,True,True
-Tuzla,Turkey,44.5375,18.6735,True,True,False,True,True,True,True
-Anna Regina,Guyana,7.25,-58.5167,True,True,True,True,True,True,True
-Bartica,Guyana,6.4,-58.6167,True,True,True,True,True,True,True
-Georgetown,Guyana,6.7833,-58.1667,True,True,True,True,True,True,True
-Linden,Guyana,6.0,-58.3,True,True,True,True,True,True,True
-New Amsterdam,Guyana,6.25,-57.5167,True,True,True,True,True,True,True
-Princetown,Guyana,5.9,-57.17,True,True,True,True,True,True,True
-Antananarivo,Madagascar,-18.9386,47.5214,True,True,True,True,True,True,True
-Antsirabe,Madagascar,-19.8667,47.0333,True,True,True,True,True,True,True
-Fianarantsoa,Madagascar,-21.4333,47.0833,True,True,True,True,True,True,True
-Mahajanga,Madagascar,-15.67,46.345,True,True,True,True,True,True,True
-Toamasina,Madagascar,-18.1492,49.4023,True,True,True,True,True,True,True
-Toliara,Madagascar,-23.35,43.6667,True,True,True,True,True,True,True
-Antofagasta,Chile,-23.6464,-70.398,True,True,True,True,True,True,True
-Casablanca,Chile,-33.3167,-71.4167,True,True,False,True,True,True,True
-Chicureo Abajo,Chile,-33.2808,-70.6366,True,True,False,True,True,True,True
-San Antonio,Chile,-33.5809,-71.6132,True,True,False,True,True,True,True
-San Bernardo,Chile,-33.6,-70.7,True,True,True,True,True,True,True
-San Fernando,Chile,-34.5839,-70.9891,True,True,True,True,True,True,True
-Santiago,Chile,-33.45,-70.6667,True,True,False,False,True,True,True
-Temuco,Chile,-38.7399,-72.5901,True,True,True,True,True,True,True
-Victoria,Chile,-38.2395,-72.34,True,True,True,True,True,True,True
-Independencia,Chile,-32.8421,-68.8154,True,True,False,True,True,True,True
-Antwerp,Belgium,51.2211,4.3997,True,True,True,True,True,True,True
-Brussels,Belgium,50.8467,4.3517,True,True,True,True,True,True,True
-Charleroi,Belgium,50.4167,4.4442,True,True,True,True,True,True,True
-Gent,Belgium,51.0536,3.7253,True,True,True,True,True,True,True
-Schaarbeek,Belgium,50.8675,4.3736,True,True,True,True,True,True,True
-Anuradhapura,Sri Lanka,8.335,80.4108,True,True,True,True,True,True,True
-Batticaloa,Sri Lanka,7.717,81.7,True,True,True,True,True,True,True
-Colombo,Sri Lanka,6.9167,79.8333,True,True,True,True,True,True,True
-Moratuwa,Sri Lanka,6.7804,79.88,True,True,True,True,True,True,True
-Negombo,Sri Lanka,7.2111,79.8386,True,True,True,True,True,True,True
-Sri Jayewardenepura Kotte,Sri Lanka,6.9,79.9164,True,True,True,True,True,True,True
-Apia,Samoa,-13.8333,-171.8333,True,True,True,True,True,True,True
-Aracaju,Brazil,-10.9111,-37.0717,False,True,False,False,True,True,True
-Belo Horizonte,Brazil,-19.8917,-43.9478,True,True,False,True,True,True,True
-Bertioga,Brazil,-23.8539,-46.1389,True,True,True,False,True,False,True
-Botucatu,Brazil,-22.8858,-48.445,True,True,False,True,True,True,True
-Brotas,Brazil,-22.2839,-48.1269,True,True,False,True,False,True,True
-Campina Grande,Brazil,-7.2306,-35.8811,True,True,False,True,True,True,True
-Campinas,Brazil,-22.9009,-47.0573,False,False,False,False,True,True,True
-Cruzeiro do Sul,Brazil,-7.63,-72.67,True,False,False,True,True,True,True
-Curitiba,Brazil,-25.4297,-49.2719,False,False,False,False,False,False,False
-Fortaleza,Brazil,-3.7275,-38.5275,True,True,False,True,True,True,True
-Franco da Rocha,Brazil,-23.3286,-46.7244,False,False,False,True,True,True,True
-Goiânia,Brazil,-16.6789,-49.2539,True,True,False,True,True,True,True
-Guarujá,Brazil,-23.9936,-46.2564,True,False,False,False,True,False,True
-Limeira,Brazil,-22.5647,-47.4017,True,True,False,True,True,True,True
-Londrina,Brazil,-23.3,-51.18,False,True,True,False,True,True,True
-Maceió,Brazil,-9.6658,-35.735,True,False,True,False,True,True,True
-Natal,Brazil,-6.9838,-60.2699,True,True,False,False,True,True,True
-Niterói,Brazil,-22.8833,-43.1036,True,False,False,True,True,True,True
-Novo Hamburgo,Brazil,-29.7096,-51.14,False,False,False,True,False,True,True
-Olímpia,Brazil,-20.7369,-48.915,True,True,False,True,True,True,True
-Recife,Brazil,-8.0539,-34.8808,True,True,True,False,True,True,True
-Rio Verde,Brazil,-17.8196,-50.93,True,True,True,False,True,True,True
-Rio de Janeiro,Brazil,-22.9083,-43.1964,False,False,False,False,False,False,False
-Salto,Brazil,-23.2008,-47.2869,True,True,True,True,True,True,True
-Salvador,Brazil,-12.9708,-38.5108,True,True,True,True,True,True,True
-Santa Cruz,Brazil,-6.22,-36.03,True,True,False,True,True,True,True
-Santana de Parnaíba,Brazil,-23.4439,-46.9178,True,False,False,True,False,True,True
-Santarém,Brazil,-2.4431,-54.7083,True,True,False,True,True,True,True
-Sorocaba,Brazil,-23.5019,-47.4578,True,False,False,False,False,True,True
-São Bento do Sapucaí,Brazil,-22.6889,-45.7308,True,False,False,False,False,True,True
-São Vicente,Brazil,-23.9633,-46.3922,True,True,True,True,False,True,True
-Taboão da Serra,Brazil,-23.6019,-46.7528,False,False,False,False,False,False,False
-Tatuí,Brazil,-23.3556,-47.8569,True,True,False,False,True,True,True
-Trindade,Brazil,-16.65,-49.5,True,True,True,True,True,True,True
-Vinhedo,Brazil,-23.03,-46.975,True,True,False,True,True,True,True
-Vitória,Brazil,-20.324,-40.366,False,True,False,False,True,True,True
-Angra dos Reis,Brazil,-22.9983,-44.2442,True,False,False,True,False,True,True
-Bayeux,Brazil,-7.12505,-34.9268,True,True,False,True,True,True,True
-Brumadinho,Brazil,-20.1427,-44.1982,True,True,False,False,False,True,True
-Lorena,Brazil,-22.7339,-45.1201,True,False,False,False,True,True,False
-PirenÃ³polis,Brazil,-15.8545,-48.9595,True,True,False,False,True,True,True
-TangarÃ¡ da Serra,Brazil,-14.6194,-57.4858,True,True,False,True,True,True,True
-Arawa,Papua New Guinea,-6.228,155.566,True,True,True,True,True,True,True
-Lae,Papua New Guinea,-6.7333,146.9833,True,True,True,True,True,True,True
-Madang,Papua New Guinea,-5.2248,145.7853,True,True,True,True,True,True,True
-Mount Hagen,Papua New Guinea,-5.8667,144.2167,True,True,True,True,True,True,True
-Popondetta,Papua New Guinea,-8.7656,148.2347,True,True,True,True,True,True,True
-Port Moresby,Papua New Guinea,-9.4789,147.1494,True,True,True,True,True,True,True
-Arequipa,Peru,-16.3988,-71.5369,True,True,False,True,True,True,True
-Callao,Peru,-12.0611,-77.1333,True,True,True,True,True,True,True
-Chiclayo,Peru,-6.763,-79.8366,True,True,True,True,True,True,True
-Chimbote,Peru,-9.0745,-78.5936,True,True,True,True,True,True,True
-Lima,Peru,-12.05,-77.0333,False,False,False,True,True,True,True
-Santiago,Peru,-14.1896,-75.74,True,True,False,False,True,True,True
-Trujillo,Peru,-8.1119,-79.0289,True,True,True,True,True,True,True
-Comas,Peru,-11.95,-77.0667,True,True,False,True,True,True,True
-Santiago de Surco,Peru,-12.1453,-77.0051,True,True,False,True,True,True,True
-Arua,Uganda,3.03,30.91,True,True,True,True,True,True,True
-Gulu,Uganda,2.7667,32.3056,True,True,True,True,True,True,True
-Kampala,Uganda,0.3136,32.5811,True,True,True,True,True,True,True
-Lira,Uganda,2.2604,32.89,True,True,True,True,True,True,True
-Mbale,Uganda,1.0806,34.175,True,True,True,True,True,True,True
-Tororo,Uganda,0.6928,34.1808,True,True,True,True,True,True,True
-Arusha,United Republic of Tanzania,-3.3667,36.6833,True,True,True,True,True,True,True
-Dar es Salaam,United Republic of Tanzania,-6.8,39.2833,False,False,False,False,False,False,False
-Dodoma,United Republic of Tanzania,-6.25,35.75,True,True,True,True,True,True,True
-Mbeya,United Republic of Tanzania,-8.9,33.45,True,True,True,True,True,True,True
-Mwanza,United Republic of Tanzania,-2.5167,32.9,True,True,True,True,True,True,True
-Tanga,United Republic of Tanzania,-5.0667,39.1,True,True,True,True,True,True,True
-Ashdod,Israel,31.7978,34.6503,True,True,True,True,True,True,True
-Haifa,Israel,32.8,34.9833,True,True,True,True,True,True,True
-Jerusalem,Israel,31.7833,35.2167,True,True,True,True,True,True,True
-Tel Aviv-Yafo,Israel,32.0833,34.8,True,True,True,True,True,True,True
-Ashgabat,Turkmenistan,37.95,58.3833,True,True,True,True,True,True,True
-Balkanabat,Turkmenistan,39.5119,54.365,True,True,True,True,True,True,True
-Mary,Turkmenistan,37.6,61.8333,True,True,True,True,True,True,True
-Serdar,Turkmenistan,38.9764,56.2758,True,True,True,True,True,True,True
-Asmara,Eritrea,15.3333,38.9167,True,True,True,True,True,True,True
-Assab,Eritrea,13.0078,42.7411,True,True,True,True,True,True,True
-Keren,Eritrea,15.6804,38.45,True,True,True,True,True,True,True
-Massawa,Eritrea,15.6,39.4333,True,True,True,True,True,True,True
-Mendefera,Eritrea,14.8833,38.8167,True,True,True,True,True,True,True
-Assomada,Cabo Verde,15.0949,-23.6654,True,True,True,True,True,True,True
-Mindelo,Cabo Verde,16.8914,-24.988,True,True,True,True,True,True,True
-Pedra Badejo,Cabo Verde,15.1375,-23.5333,True,True,True,True,True,True,True
-Praia,Cabo Verde,14.9177,-23.5092,True,True,True,True,True,True,True
-Sal Rei,Cabo Verde,16.176,-22.9171,True,True,True,True,True,True,True
-Asunción,Paraguay,-25.3,-57.6333,True,False,False,False,True,True,True
-Ciudad del Este,Paraguay,-25.5167,-54.6167,True,True,True,True,True,True,True
-Coronel Oviedo,Paraguay,-25.45,-56.44,True,True,True,True,True,True,True
-Pedro Juan Caballero,Paraguay,-22.5667,-55.7167,True,True,True,True,True,True,True
-San Lorenzo,Paraguay,-25.3431,-57.5094,True,True,True,True,True,True,True
-Athens,Greece,37.9794,23.7161,True,True,True,True,True,True,True
-Piraeus,Greece,37.95,23.7,True,True,True,True,True,True,True
-Auckland,New Zealand,-36.85,174.7833,False,False,False,False,False,False,False
-Cambridge,New Zealand,-37.8833,175.4667,True,True,False,True,True,True,True
-Christchurch,New Zealand,-43.5309,172.6365,True,True,True,True,True,True,True
-Hamilton,New Zealand,-37.7833,175.2833,True,True,False,False,True,True,True
-Lower Hutt,New Zealand,-41.2167,174.9167,True,True,True,False,True,True,True
-Manukau City,New Zealand,-36.9833,174.8833,True,True,True,True,True,True,True
-Northcote,New Zealand,-36.7913,174.7758,True,True,True,True,True,True,True
-Waitakere,New Zealand,-36.849,174.543,True,True,True,True,True,True,True
-Wellington,New Zealand,-41.2889,174.7772,True,False,False,True,True,True,True
-New Plymouth District,New Zealand,-39.1011,174.354,True,False,True,True,False,True,True
-Autlán de Navarro,Mexico,19.7667,-104.3667,True,False,False,False,False,True,True
-Chapala,Mexico,20.2933,-103.1897,True,False,False,False,True,True,True
-Chihuahua,Mexico,28.6353,-106.0889,True,True,False,True,True,True,True
-Córdoba,Mexico,18.8942,-96.9347,True,True,False,True,True,True,True
-Ecatepec,Mexico,19.6097,-99.06,True,True,True,True,True,True,True
-Escuintla,Mexico,15.3194,-92.6583,True,True,True,True,True,True,True
-Guadalajara,Mexico,20.6767,-103.3475,False,False,False,False,False,False,False
-Juárez,Mexico,31.7386,-106.487,True,True,False,True,True,True,True
-La Barca,Mexico,20.2903,-102.5456,True,False,False,True,False,True,True
-La Paz,Mexico,24.1422,-110.3108,True,True,True,True,True,True,True
-Mexico City,Mexico,19.4333,-99.1333,False,False,False,False,False,False,False
-Monterrey,Mexico,25.6667,-100.3,True,True,True,True,True,True,True
-Mérida,Mexico,20.97,-89.62,True,True,True,False,True,True,True
-Naucalpan de Juárez,Mexico,19.4753,-99.2378,True,True,False,True,True,True,True
-Puebla,Mexico,19.0333,-98.1833,True,True,True,True,True,True,True
-San Fernando,Mexico,24.8504,-98.16,True,True,True,True,True,True,True
-San Francisco,Mexico,20.5333,-102.5,False,False,False,False,False,False,False
-San Pedro,Mexico,25.7589,-102.9844,True,True,True,True,True,True,True
-San Salvador,Mexico,20.2833,-99.0153,True,True,True,True,True,True,True
-Santa Ana,Mexico,30.5406,-111.1205,True,True,True,True,True,True,True
-Santiago,Mexico,25.4333,-100.1333,True,True,False,False,True,True,True
-Tijuana,Mexico,32.525,-117.0333,True,True,True,True,True,True,True
-Torreón,Mexico,25.5394,-103.4486,True,True,False,False,False,True,True
-Victoria,Mexico,21.2122,-100.2144,True,True,True,True,True,True,True
-Villanueva,Mexico,22.3536,-102.8831,True,True,True,True,True,True,True
-Xalapa,Mexico,19.54,-96.9275,False,False,False,True,False,True,True
-JICOSUR,Mexico,19.34,-104.38,True,False,False,False,False,False,True
-Ba,Fiji,-17.5333,177.6833,True,True,True,True,True,True,True
-Labasa,Fiji,-16.4333,179.3667,True,True,True,True,True,True,True
-Lautoka,Fiji,-17.6242,177.4528,True,True,True,True,True,True,True
-Nadi,Fiji,-17.8,177.4167,True,True,True,True,True,True,True
-Nausori,Fiji,-18.0244,178.5454,True,True,True,True,True,True,True
-Suva,Fiji,-18.1333,178.4333,True,True,True,True,True,True,True
-Bafoussam,Cameroon,5.4667,10.4167,True,True,True,True,True,True,True
-Bamenda,Cameroon,5.9333,10.1667,True,True,True,True,True,True,True
-Douala,Cameroon,4.05,9.7,True,True,True,True,True,True,True
-Garoua,Cameroon,9.3,13.4,True,True,True,True,True,True,True
-Maroua,Cameroon,10.5823,14.3275,True,True,True,True,True,True,True
-Yaoundé,Cameroon,3.8578,11.5181,True,False,False,True,True,True,True
-Bago,Myanmar,17.3433,96.4981,True,True,True,True,True,True,True
-Hpa-An,Myanmar,16.8906,97.6333,True,True,True,True,True,True,True
-Mandalay,Myanmar,21.9769,96.0869,True,True,True,True,True,True,True
-Myeik,Myanmar,12.4394,98.6003,True,True,True,True,True,True,True
-Nay Pyi Taw,Myanmar,19.8028,96.1583,True,True,True,True,True,True,True
-Rangoon,Myanmar,16.8,96.15,True,True,True,True,True,True,True
-Bago,Philippines,10.5388,122.8384,True,True,True,True,True,True,True
-Caloocan City,Philippines,14.65,120.9667,True,True,True,True,True,True,True
-Cebu City,Philippines,10.3,123.9,True,True,True,True,True,True,True
-Davao,Philippines,7.0667,125.6,True,True,True,True,True,True,True
-Manila,Philippines,14.5958,120.9772,True,True,True,True,True,True,True
-Quezon City,Philippines,14.6333,121.0333,True,True,True,True,True,True,True
-San Fernando,Philippines,15.0333,120.6833,True,True,True,True,True,True,True
-San Jose,Philippines,15.7833,121.0,True,True,False,True,True,True,True
-San Juan,Philippines,14.6,121.0333,True,True,True,True,True,True,True
-San Pedro,Philippines,14.3583,121.0583,True,True,True,True,True,True,True
-Santiago,Philippines,16.6833,121.55,True,True,False,False,True,True,True
-Toledo,Philippines,10.3833,123.65,True,True,True,False,True,True,True
-Valencia,Philippines,7.9,125.0833,True,True,True,True,True,True,True
-Zamboanga City,Philippines,6.9167,122.0833,True,True,True,True,True,True,True
-Baidoa,Somalia,3.1167,43.65,True,True,True,True,True,True,True
-Beledweyne,Somalia,4.736,45.204,True,True,True,True,True,True,True
-Jamaame,Somalia,0.0722,42.7506,True,True,True,True,True,True,True
-Jawhar,Somalia,2.767,45.5166,True,True,True,True,True,True,True
-Kismaayo,Somalia,-0.3603,42.5489,True,True,True,True,True,True,True
-Mogadishu,Somalia,2.0408,45.3425,True,True,True,True,True,True,True
-Baku,Azerbaijan,40.3667,49.8352,True,True,True,True,True,True,True
-Balboa,Panama,8.9571,-79.5593,True,True,True,True,True,True,True
-David,Panama,8.4333,-82.4333,True,True,True,True,True,True,True
-La Chorrera,Panama,8.8792,-79.7822,True,True,True,True,True,True,True
-Pacora,Panama,9.08,-79.28,True,True,True,True,True,True,True
-Panama City,Panama,9.0,-79.5,True,True,True,True,True,True,True
-Santiago,Panama,8.1004,-80.9833,True,True,False,False,True,True,True
-Bamako,Mali,12.6458,-7.9922,True,True,True,True,True,True,True
-Gao,Mali,16.2666,-0.05,True,True,True,True,True,True,True
-Kayes,Mali,14.45,-11.4167,True,True,True,True,True,True,True
-Koutiala,Mali,12.3904,-5.47,True,True,True,True,True,True,True
-Mopti,Mali,14.49,-4.18,True,True,True,True,True,True,True
-Sikasso,Mali,11.3167,-5.6667,True,True,True,True,True,True,True
-Bambari,Central African Republic,5.7667,20.6833,True,True,True,True,True,True,True
-Bangui,Central African Republic,4.3732,18.5628,True,True,True,True,True,True,True
-Bimbo,Central African Republic,4.3313,18.5163,True,True,True,True,True,True,True
-Bouar,Central African Republic,5.95,15.6,True,True,True,True,True,True,True
-Carnot,Central African Republic,4.9333,15.8667,True,True,True,True,True,True,True
-Bandar Seri Begawan,Brunei Darussalam,4.9167,114.9167,True,True,True,True,True,True,True
-Kuala Belait,Brunei Darussalam,4.5833,114.1833,True,True,True,True,True,True,True
-Seria,Brunei Darussalam,4.6142,114.3303,True,True,True,True,True,True,True
-Bandung,Indonesia,-6.95,107.5667,True,True,True,True,True,True,True
-Bekasi,Indonesia,-6.2333,107.0,True,True,True,True,True,True,True
-Jakarta,Indonesia,-6.2146,106.8451,False,False,False,False,False,False,False
-Medan,Indonesia,3.6667,98.6667,True,True,True,True,True,True,True
-Surabaya,Indonesia,-7.2458,112.7378,True,True,True,True,True,True,True
-Tangerang,Indonesia,-6.1783,106.6319,True,True,True,True,True,True,True
-Banfora,Burkina Faso,10.6308,-4.7589,True,True,True,True,True,True,True
-Bobo-Dioulasso,Burkina Faso,11.1833,-4.2833,True,True,True,True,True,True,True
-Kaya,Burkina Faso,13.0904,-1.09,True,True,True,True,True,True,True
-Koudougou,Burkina Faso,12.25,-2.3667,True,True,True,True,True,True,True
-Ouagadougou,Burkina Faso,12.3572,-1.5353,True,True,True,True,True,True,True
-Ouahigouya,Burkina Faso,13.5833,-2.4167,True,True,True,True,True,True,True
-Bangalore,India,12.9699,77.598,True,True,True,True,True,True,True
-Bharatpur,India,27.2172,77.49,True,True,True,True,True,True,True
-Chennai,India,13.0825,80.275,True,True,True,True,True,True,True
-Delhi,India,28.66,77.23,True,True,True,True,True,True,True
-Kolkāta,India,22.5411,88.3378,False,False,False,False,False,False,False
-Mumbai,India,18.9667,72.8333,True,True,True,True,True,True,True
-Bangkok,Thailand,13.75,100.5167,False,False,False,False,False,False,False
-Chiang Mai,Thailand,18.7889,98.9833,True,True,True,True,True,True,True
-Hat Yai,Thailand,7.0167,100.4667,True,True,True,True,True,True,True
-Nakhon Ratchasima,Thailand,14.9736,102.0831,True,True,True,True,True,True,True
-Nonthaburi,Thailand,13.8667,100.5167,True,True,True,True,True,True,True
-Pak Kret,Thailand,13.9125,100.4978,True,True,True,True,True,True,True
-Banja Luka,Bosnia and Herzegovina,44.7667,17.1833,True,True,True,True,True,True,True
-Bijeljina,Bosnia and Herzegovina,44.75,19.2167,True,True,True,True,True,True,True
-Mostar,Bosnia and Herzegovina,43.3494,17.8125,True,True,True,True,True,True,True
-Prijedor,Bosnia and Herzegovina,44.9667,16.7,True,True,True,True,True,True,True
-Sarajevo,Bosnia and Herzegovina,43.8667,18.4167,True,True,True,True,True,True,True
-Tuzla,Bosnia and Herzegovina,44.5381,18.6761,True,True,True,True,True,True,True
-Banjul,Gambia,13.4531,-16.5775,True,True,True,True,True,True,True
-Bansang,Gambia,13.4336,-14.65,True,True,True,True,True,True,True
-Basse Santa Su,Gambia,13.31,-14.223,True,True,True,True,True,True,True
-Brikama,Gambia,13.2804,-16.6599,True,True,True,True,True,True,True
-Farafenni,Gambia,13.5667,-15.6,True,True,True,True,True,True,True
-Mansa Konko,Gambia,13.3773,-15.6786,True,True,True,True,True,True,True
-Barcelona,Spain,41.3825,2.1769,False,False,False,False,False,False,False
-Cartagena,Spain,37.6,-0.9819,True,True,False,False,True,True,True
-Córdoba,Spain,37.8833,-4.7667,True,True,False,True,True,True,True
-Guadalajara,Spain,40.6335,-3.1669,False,False,False,False,False,False,False
-Madrid,Spain,40.4189,-3.6919,True,True,True,True,True,True,True
-Murcia,Spain,37.9866,-1.1415,True,True,False,False,True,True,True
-Mérida,Spain,38.9158,-6.3333,True,True,True,False,True,True,True
-Santa Cruz,Spain,28.4667,-16.25,True,True,False,True,True,True,True
-Sevilla,Spain,37.3828,-5.9731,True,True,True,True,True,True,True
-Toledo,Spain,39.867,-4.0167,True,True,True,False,True,True,True
-Valencia,Spain,39.4667,-0.375,True,True,True,True,True,True,True
-Zaragoza,Spain,41.6483,-0.883,True,True,True,True,True,True,True
-Barcelona,Venezuela (Bolivarian Republic of),10.1333,-64.6833,False,False,False,False,False,False,False
-Barinas,Venezuela (Bolivarian Republic of),8.6333,-70.2167,True,True,True,True,True,True,True
-Barquisimeto,Venezuela (Bolivarian Republic of),10.0678,-69.3467,True,True,True,True,True,True,True
-Caracas,Venezuela (Bolivarian Republic of),10.5,-66.9333,True,True,True,True,True,True,True
-Ciudad Guayana,Venezuela (Bolivarian Republic of),8.3596,-62.6517,True,True,True,True,True,True,True
-Maracaibo,Venezuela (Bolivarian Republic of),10.6333,-71.6333,True,True,True,True,True,True,True
-Mérida,Venezuela (Bolivarian Republic of),8.5833,-71.1333,True,True,True,False,True,True,True
-San Fernando,Venezuela (Bolivarian Republic of),7.894,-67.473,True,True,True,True,True,True,True
-Trujillo,Venezuela (Bolivarian Republic of),9.3667,-70.4331,True,True,True,True,True,True,True
-Valencia,Venezuela (Bolivarian Republic of),10.1667,-68.0,True,True,True,True,True,True,True
-Barrancabermeja,Colombia,7.09,-73.85,True,True,False,False,True,True,True
-Barranquilla,Colombia,10.96,-74.8,True,True,True,True,True,True,True
-Bucaramanga,Colombia,7.1186,-73.1161,True,True,False,False,True,True,True
-Cali,Colombia,3.44,-76.5197,True,True,True,False,True,True,True
-Cartagena,Colombia,10.4236,-75.5253,True,True,False,False,True,True,True
-Cartago,Colombia,4.75,-75.91,True,True,True,True,True,True,True
-Ibagué,Colombia,4.4378,-75.2006,True,False,False,True,False,True,True
-Leticia,Colombia,-4.215,-69.9411,True,False,True,True,True,True,True
-Medellín,Colombia,6.2447,-75.5748,False,False,False,False,False,False,False
-Montería,Colombia,8.76,-75.8856,True,True,False,False,True,True,True
-San Andrés,Colombia,12.5847,-81.7006,True,True,False,False,False,True,True
-Sincelejo,Colombia,9.2994,-75.3958,False,True,False,False,True,True,True
-Palmira,Colombia,3.53944,-76.3036,True,True,False,False,False,True,True
-SopÃ³,Colombia,4.9075,-73.9384,True,True,True,True,False,True,True
-Basel,Switzerland,47.5606,7.5906,True,True,True,True,True,True,True
-Bern,Switzerland,46.948,7.4474,True,True,True,True,True,True,True
-Geneva,Switzerland,46.2,6.15,True,True,True,True,True,True,True
-Lausanne,Switzerland,46.5333,6.6333,True,True,True,True,True,True,True
-Winterthur,Switzerland,47.4992,8.7267,True,True,True,True,True,True,True
-Bassar,Togo,9.25,0.7833,True,True,True,True,True,True,True
-Basseterre,Saint Kitts and Nevis,17.2983,-62.7342,True,True,True,True,True,True,True
-Bata,Equatorial Guinea,1.85,9.75,True,True,True,True,True,True,True
-Bengonbeyene,Equatorial Guinea,1.6931,11.0342,True,True,True,True,True,True,True
-Malabo,Equatorial Guinea,3.7521,8.7737,True,True,True,True,True,True,True
-Mbini,Equatorial Guinea,1.5833,9.6167,True,True,True,True,True,True,True
-Battambang,Cambodia,13.1,103.2,True,True,True,True,True,True,True
-Kampong Cham,Cambodia,12.0,105.45,True,True,True,True,True,True,True
-Kratie,Cambodia,12.4881,106.0188,True,True,True,True,True,True,True
-Phnom Penh,Cambodia,11.5696,104.921,True,True,True,True,True,True,True
-Prey Veng,Cambodia,11.484,105.324,True,True,True,True,True,True,True
-Siem Reap,Cambodia,13.3622,103.8597,True,True,True,True,True,True,True
-Batumi,Georgia,41.6458,41.6417,True,True,True,True,True,True,True
-Gori,Georgia,41.9817,44.1124,True,True,True,True,True,True,True
-Kutaisi,Georgia,42.25,42.7,True,True,True,True,True,True,True
-Rustavi,Georgia,41.5333,45.0,True,True,True,True,True,True,True
-Sokhumi,Georgia,43.0033,41.0153,True,True,True,True,True,True,True
-Tbilisi,Georgia,41.7225,44.7925,True,True,True,True,True,True,True
-Bayamo,Cuba,20.3817,-76.6428,True,True,True,True,True,True,True
-Havana,Cuba,23.1367,-82.3589,True,True,True,True,True,True,True
-Salvador,Cuba,20.2094,-75.2231,True,True,True,True,True,True,True
-Santiago de Cuba,Cuba,20.0283,-75.8206,True,True,True,True,True,True,True
-Beijing,China,39.905,116.3914,True,True,True,True,True,True,True
-Chengdu,China,30.6636,104.0667,True,True,True,True,True,True,True
-Dalian,China,38.9131,121.61,False,False,False,False,False,False,False
-Guangzhou,China,23.1288,113.259,True,True,True,True,True,True,True
-Nanyang,China,32.9987,112.5292,True,True,True,True,True,True,True
-Shanghai,China,31.1667,121.4667,True,True,True,True,True,True,True
-Shenzhen,China,22.535,114.054,True,True,True,True,True,True,True
-Beira,Mozambique,-19.8333,34.85,True,True,True,True,True,True,True
-Chimoio,Mozambique,-19.1167,33.45,True,True,True,True,True,True,True
-Cidade de Nacala,Mozambique,-14.5186,40.715,True,True,False,True,True,True,True
-Maputo,Mozambique,-25.9153,32.5764,True,True,True,True,True,True,True
-Matola,Mozambique,-25.9667,32.4667,True,True,True,True,True,True,True
-Nampula,Mozambique,-15.1167,39.2667,True,True,True,True,True,True,True
-Pemba,Mozambique,-12.9667,40.5167,True,False,False,True,False,True,False
-Quelimane,Mozambique,-17.8764,36.8872,True,False,True,False,True,False,True
-Ilha,Mozambique,-15.0364,-40.7323,True,False,False,False,True,False,True
-Beirut,Lebanon,33.8869,35.5131,True,True,True,True,True,True,True
-Sidon,Lebanon,33.5606,35.3981,True,True,True,True,True,True,True
-Tripoli,Lebanon,34.4333,35.8333,True,True,True,True,True,True,True
-Tyre,Lebanon,33.2667,35.2,True,True,True,True,True,True,True
-Belgrade,Serbia,44.8167,20.4667,True,True,True,True,True,True,True
-Bor,Serbia,44.1303,22.1036,True,True,True,True,True,True,True
-Kragujevac,Serbia,44.0142,20.9394,True,True,True,True,True,True,True
-Novi Sad,Serbia,45.2644,19.8317,True,True,True,True,True,True,True
-Subotica,Serbia,46.0983,19.67,True,True,True,True,True,True,True
-Zemun,Serbia,44.85,20.4,True,True,True,True,True,True,True
-Belize City,Belize,17.4986,-88.1886,True,True,True,True,True,True,True
-Belmopan,Belize,17.25,-88.7675,True,True,True,True,True,True,True
-Dangriga,Belize,16.9667,-88.2167,True,True,True,True,True,True,True
-Orange Walk,Belize,18.075,-88.5583,True,True,True,True,True,True,True
-San Ignacio,Belize,17.1588,-89.0696,True,True,True,True,True,True,True
-San Pedro,Belize,17.9214,-87.9611,True,True,True,True,True,True,True
-Bender,Republic of Moldova,46.8333,29.4833,True,True,True,True,True,True,True
-Chisinau,Republic of Moldova,47.0056,28.8575,True,True,True,True,True,True,True
-Tiraspol,Republic of Moldova,46.8319,29.5767,True,True,True,True,True,True,True
-Ungheni,Republic of Moldova,47.2042,27.7958,True,True,True,True,True,True,True
-Benghazi,Libya,32.1167,20.0667,True,True,True,True,True,True,True
-Tripoli,Libya,32.8752,13.1875,True,True,True,True,True,True,True
-Benguela,Angola,-12.55,13.4167,True,True,True,True,True,True,True
-Cabinda,Angola,-5.55,12.2,True,True,True,True,True,True,True
-Huambo,Angola,-12.7667,15.7333,True,True,True,True,True,True,True
-Lobito,Angola,-12.37,13.5412,True,True,True,True,True,True,True
-Luanda,Angola,-8.8383,13.2344,True,True,True,True,True,True,True
-Benoni,South Africa,-26.1883,28.3206,True,False,False,False,True,True,True
-Cape Town,South Africa,-33.925,18.425,False,False,False,False,False,False,False
-Durban,South Africa,-29.8583,31.025,False,False,False,False,False,False,False
-Johannesburg,South Africa,-26.2044,28.0416,False,False,False,False,False,False,False
-Pietermaritzburg,South Africa,-29.5833,30.4167,True,True,True,True,True,True,True
-Pretoria,South Africa,-25.7464,28.1881,True,True,True,True,True,True,True
-Vereeniging,South Africa,-26.6736,27.9319,True,True,True,True,True,True,True
-Sekhukhune District Municipality,South Africa,-24.8335,29.974,True,True,True,False,True,True,True
-Vhembe,South Africa,-22.7695,29.974,True,True,False,False,True,True,True
-Bergen,Norway,60.3925,5.3233,True,True,True,True,True,True,True
-Drammen,Norway,59.7572,10.1907,True,True,True,True,True,True,True
-Oslo,Norway,59.9111,10.7528,False,False,False,False,False,False,False
-Stavanger,Norway,58.9701,5.7333,True,True,True,True,True,True,True
-Trondheim,Norway,63.44,10.4,True,True,True,True,True,True,True
-Bergen,Germany,54.4167,13.4333,True,True,True,True,True,True,True
-Berlin,Germany,52.5167,13.3833,True,True,True,True,True,True,True
-Bremen,Germany,53.1153,8.7975,True,True,True,True,True,True,True
-Cologne,Germany,50.9422,6.9578,True,True,True,True,True,True,True
-Frankfurt,Germany,50.1136,8.6797,True,True,True,True,True,True,True
-Hamburg,Germany,53.55,10.0,True,True,True,True,True,True,True
-Mannheim,Germany,49.4878,8.4661,False,True,True,True,True,True,True
-Munich,Germany,48.1372,11.5755,True,True,True,True,True,True,True
-Rostock,Germany,54.0833,12.1333,True,False,True,True,True,True,True
-Bharatpur,Nepal,27.6833,84.4333,True,True,True,True,True,True,True
-Jitpur,Nepal,27.6666,85.3333,True,True,True,True,True,True,True
-Kathmandu,Nepal,27.7167,85.3667,True,True,True,True,True,True,True
-Pokhara,Nepal,28.2097,83.9853,True,True,True,True,True,True,True
-Birkirkara,Malta,35.9,14.4667,True,True,True,True,True,True,True
-Qormi,Malta,35.8794,14.4722,True,True,True,True,True,True,True
-Valletta,Malta,35.8978,14.5125,True,True,True,True,True,True,True
-Bishkek,Kyrgyzstan,42.8667,74.5667,True,True,True,True,True,True,True
-Jalal-Abad,Kyrgyzstan,40.9375,72.9861,True,True,True,True,True,True,True
-Kara-Balta,Kyrgyzstan,42.8306,73.8857,True,True,True,True,True,True,True
-Karakol,Kyrgyzstan,42.5,78.3833,True,True,True,True,True,True,True
-Osh,Kyrgyzstan,40.5333,72.7833,True,True,True,True,True,True,True
-Tokmok,Kyrgyzstan,42.839,75.291,True,True,True,True,True,True,True
-Bissau,Guinea-Bissau,11.8592,-15.5956,True,True,True,True,True,True,True
-Cacheu,Guinea-Bissau,12.278,-16.165,True,True,True,True,True,True,True
-Bitola,North Macedonia,41.0319,21.3347,True,True,True,True,True,True,True
-Kumanovo,North Macedonia,42.1403,21.7136,True,True,True,True,True,True,True
-Ohrid,North Macedonia,41.1169,20.8019,True,True,True,True,True,True,True
-Prilep,North Macedonia,41.3464,21.5542,True,True,True,True,True,True,True
-Skopje,North Macedonia,41.9833,21.4333,True,True,True,True,True,True,True
-Tetovo,North Macedonia,42.0103,20.9714,True,True,True,True,True,True,True
-Blantyre,Malawi,-15.7861,35.0058,True,True,True,True,True,True,True
-Lilongwe,Malawi,-13.9833,33.7833,True,True,False,True,True,True,True
-Mwanza,Malawi,-15.6167,34.5167,True,True,True,True,True,True,True
-Mzuzu,Malawi,-11.45,34.0333,True,True,True,True,True,True,True
-Nkhotakota,Malawi,-12.9163,34.3,True,True,True,True,True,True,True
-Salima,Malawi,-13.7829,34.4333,True,True,True,True,True,True,True
-Zomba,Malawi,-15.3833,35.3333,True,True,True,True,True,True,True
-Bo,Sierra Leone,7.9564,-11.74,True,True,True,True,True,True,True
-Freetown,Sierra Leone,8.4833,-13.2331,True,True,True,True,True,True,True
-Kenema,Sierra Leone,7.8833,-11.1833,True,True,True,True,True,True,True
-Koidu-Bulma,Sierra Leone,8.4405,-10.85,True,True,True,True,True,True,True
-Makeni,Sierra Leone,8.8817,-12.0442,True,True,True,True,True,True,True
-Boaco,Nicaragua,12.4722,-85.6586,True,True,True,True,True,True,True
-Chinandega,Nicaragua,12.6242,-87.1297,True,True,True,True,True,True,True
-Managua,Nicaragua,12.15,-86.2667,True,True,True,True,True,True,True
-Masaya,Nicaragua,11.9667,-86.1,True,True,True,True,True,True,True
-Matagalpa,Nicaragua,12.9167,-85.9167,True,True,True,True,True,True,True
-Bokhtar,Tajikistan,37.8364,68.7803,True,True,True,True,True,True,True
-Dushanbe,Tajikistan,38.5731,68.7864,True,True,True,True,True,True,True
-Istaravshan,Tajikistan,39.9108,69.0064,True,True,True,True,True,True,True
-Konibodom,Tajikistan,40.2833,70.4167,True,True,True,True,True,True,True
-Bologna,Italy,44.4939,11.3428,True,True,False,False,True,True,True
-Ferrara,Italy,44.8353,11.6199,True,True,False,False,True,True,True
-Genoa,Italy,44.4072,8.934,True,True,True,True,True,True,True
-Milan,Italy,45.4669,9.19,True,True,True,True,True,True,True
-Naples,Italy,40.8333,14.25,True,True,True,True,True,True,True
-Palermo,Italy,38.1157,13.3613,True,True,True,True,True,True,True
-Parma,Italy,44.8015,10.328,True,True,False,True,True,True,True
-Reggio Emilia,Italy,44.7,10.6333,True,True,False,True,True,True,True
-Rome,Italy,41.8931,12.4828,True,True,True,True,True,True,True
-Turin,Italy,45.0667,7.7,True,True,True,True,True,True,True
-Oristano,Italy,39.7207,8.898,True,True,False,False,True,True,True
-Roma,Italy,41.53,12.2858,False,False,False,False,False,False,False
-Bor,South Sudan,6.2167,31.55,True,True,True,True,True,True,True
-Gogrial,South Sudan,8.5337,28.1167,True,True,True,True,True,True,True
-Juba,South Sudan,4.85,31.6,True,True,True,True,True,True,True
-Malakal,South Sudan,9.5333,31.65,True,True,True,True,True,True,True
-Wau,South Sudan,7.7,27.9833,True,True,True,True,True,True,True
-Yei,South Sudan,4.0904,30.68,True,True,True,True,True,True,True
-Bor,Russian Federation,56.3603,44.0592,True,True,True,True,True,True,True
-Donetsk,Russian Federation,48.3369,39.9449,True,True,True,True,True,True,True
-Kazan,Russian Federation,55.7908,49.1144,True,True,True,True,True,True,True
-Moscow,Russian Federation,55.7558,37.6178,True,True,True,True,True,True,True
-Nizhniy Novgorod,Russian Federation,56.3269,44.0075,True,True,True,True,True,True,True
-Novosibirsk,Russian Federation,55.0333,82.9167,True,True,True,True,True,True,True
-Parma,Russian Federation,65.923,57.403,True,True,False,True,True,True,True
-Saint Petersburg,Russian Federation,59.95,30.3167,True,True,True,True,True,True,True
-Yekaterinburg,Russian Federation,56.8356,60.6128,True,True,True,True,True,True,True
-Bratislava,Slovakia,48.1447,17.1128,True,True,True,True,True,True,True
-Brazzaville,Congo,-4.2667,15.2833,True,True,True,True,True,True,True
-Dolisie,Congo,-4.1961,12.6731,True,True,True,True,True,True,True
-Kayes,Congo,-4.1806,13.2889,True,True,True,True,True,True,True
-Mossendjo,Congo,-2.9458,12.7147,True,True,True,True,True,True,True
-Owando,Congo,-0.4833,15.9,True,True,True,True,True,True,True
-Pointe-Noire,Congo,-4.7889,11.8653,True,True,True,True,True,True,True
-Brest,Belarus,52.0847,23.6569,True,True,True,True,True,True,True
-Hrodna,Belarus,53.6667,23.8167,True,True,True,True,True,True,True
-Mahilyow,Belarus,53.9089,30.343,True,True,True,True,True,True,True
-Minsk,Belarus,53.9022,27.5618,True,True,True,True,True,True,True
-Vitsyebsk,Belarus,55.1833,30.1667,True,True,True,True,True,True,True
-Brest,France,48.39,-4.49,True,True,True,True,True,True,True
-Grenoble,France,45.1715,5.7224,True,True,True,True,True,True,True
-Laval,France,48.0733,-0.7689,True,True,True,True,False,True,True
-Marseille,France,43.2964,5.37,True,True,True,True,True,True,True
-Nice,France,43.7034,7.2663,True,True,True,True,True,True,True
-Paris,France,48.8566,2.3522,False,False,False,False,False,False,False
-Rennes,France,48.1147,-1.6794,True,True,True,True,True,True,True
-Saint-Denis,France,48.9356,2.3539,True,True,True,True,True,True,True
-Saint-Louis,France,47.59,7.57,True,True,True,True,True,True,True
-Toulouse,France,43.6045,1.444,True,True,True,True,True,True,True
-Bridgetown,Barbados,13.0975,-59.6167,True,True,True,True,True,True,True
-Brno,Czechia,49.1953,16.6083,True,True,True,True,True,True,True
-Liberec,Czechia,50.77,15.0584,True,True,True,True,True,True,True
-Olomouc,Czechia,49.5939,17.2508,True,True,True,True,True,True,True
-Ostrava,Czechia,49.8356,18.2925,True,True,True,True,True,True,True
-Prague,Czechia,50.0833,14.4167,True,True,True,True,True,True,True
-Brokopondo,Suriname,5.0404,-55.02,True,True,True,True,True,True,True
-Cottica,Suriname,3.8547,-54.2289,True,True,True,True,True,True,True
-Moengo,Suriname,5.6167,-54.4,True,True,True,True,True,True,True
-Nieuw Nickerie,Suriname,5.9261,-56.9731,True,True,True,True,True,True,True
-Paramaribo,Suriname,5.8667,-55.1667,True,True,True,True,True,True,True
-Tamanredjo,Suriname,5.7667,-55.0,True,True,True,True,True,True,True
-Budapest,Hungary,47.4983,19.0408,True,True,True,True,True,True,True
-Debrecen,Hungary,47.53,21.6392,True,True,True,True,True,True,True
-Miskolc,Hungary,48.1,20.7833,True,True,True,True,True,True,True
-Szeged,Hungary,46.25,20.1667,True,True,True,True,True,True,True
-Budva,Montenegro,42.2847,18.8453,True,True,True,True,True,True,True
-Cetinje,Montenegro,42.3933,18.9219,True,True,True,True,True,True,True
-Herceg Novi,Montenegro,42.4531,18.5375,True,True,True,True,True,True,True
-Pljevlja,Montenegro,43.3566,19.3502,True,True,True,True,True,True,True
-Podgorica,Montenegro,42.4397,19.2661,False,False,False,False,True,True,True
-Ulcinj,Montenegro,41.9236,19.2056,True,True,True,True,True,True,True
-Buenos Aires,Argentina,-34.5997,-58.3819,True,True,True,True,True,True,True
-Córdoba,Argentina,-31.4167,-64.1833,True,True,False,True,True,True,True
-La Paz,Argentina,-33.4661,-67.55,True,True,True,True,True,True,True
-Mar del Plata,Argentina,-38.0,-57.55,True,True,True,True,True,True,True
-Mendoza,Argentina,-32.8833,-68.8333,True,False,False,True,True,True,True
-Rosario,Argentina,-32.9575,-60.6394,True,True,True,True,True,True,True
-Salta,Argentina,-24.7883,-65.4106,True,True,True,True,True,True,True
-San Francisco,Argentina,-31.4356,-62.0714,False,False,False,False,False,False,False
-San Juan,Argentina,-31.5375,-68.5364,True,True,True,True,True,True,True
-San Lorenzo,Argentina,-28.12,-58.77,True,True,True,True,True,True,True
-San Luis,Argentina,-33.2994,-66.3392,True,True,True,True,True,True,True
-San Pedro,Argentina,-24.2196,-64.87,True,True,True,True,True,True,True
-Victoria,Argentina,-32.6167,-60.1667,True,True,True,True,True,True,True
-"General Alvear, Buenos Aires",Argentina,-34.978,-67.6955,True,False,False,False,True,True,True
-Bujumbura,Burundi,-3.3825,29.3611,True,True,True,True,True,True,True
-Gitega,Burundi,-3.4264,29.9306,True,True,True,True,True,True,True
-Kayanza,Burundi,-2.9221,29.6293,True,True,True,True,True,True,True
-Ngozi,Burundi,-2.9,29.8167,True,True,True,True,True,True,True
-Rutana,Burundi,-3.931,29.993,True,True,True,True,True,True,True
-Bulawayo,Zimbabwe,-20.1667,28.5667,True,True,True,True,True,True,True
-Chitungwiza,Zimbabwe,-18.0,31.1,True,True,True,True,True,True,True
-Gweru,Zimbabwe,-19.458,29.82,True,True,True,True,True,True,True
-Harare,Zimbabwe,-17.8292,31.0522,True,False,False,True,True,True,True
-Kwekwe,Zimbabwe,-18.9167,29.9833,True,True,True,True,True,True,True
-Mutare,Zimbabwe,-18.9728,32.6694,True,True,True,True,True,True,True
-Burgas,Bulgaria,42.5,27.4667,True,True,True,True,True,True,True
-Plovdiv,Bulgaria,42.1433,24.7489,True,True,True,True,True,True,True
-Ruse,Bulgaria,43.8475,25.9544,True,True,True,True,True,True,True
-Sofia,Bulgaria,42.6975,23.3241,True,True,True,True,True,True,True
-Stara Zagora,Bulgaria,42.4247,25.6256,True,True,True,True,True,True,True
-Varna,Bulgaria,43.2078,27.9169,True,True,True,True,True,True,True
-Busan,Republic of Korea,35.1,129.0403,True,True,True,True,True,True,True
-Changwon,Republic of Korea,35.2281,128.6811,False,False,False,False,False,False,False
-Daegu,Republic of Korea,35.8667,128.6,True,True,True,True,True,True,True
-Daejeon,Republic of Korea,36.351,127.385,True,True,True,True,True,True,True
-Gwangju,Republic of Korea,35.1667,126.9167,True,True,True,True,True,True,True
-Incheon,Republic of Korea,37.4639,126.6486,True,True,True,True,True,True,True
-Seoul,Republic of Korea,37.5833,127.0,True,True,True,True,True,True,True
-Suwon,Republic of Korea,37.2858,127.01,True,True,False,True,True,True,True
-Butare,Rwanda,-2.6,29.75,True,True,True,True,True,True,True
-Gisenyi,Rwanda,-1.6928,29.25,True,True,True,True,True,True,True
-Gitarama,Rwanda,-2.0696,29.76,True,True,True,True,True,True,True
-Kigali,Rwanda,-1.9536,30.0606,True,True,True,True,True,True,True
-Nyanza,Rwanda,-2.3496,29.74,True,True,True,True,True,True,True
-Ruhengeri,Rwanda,-1.4944,29.6417,True,True,True,True,True,True,True
-Butterworth,Malaysia,5.3942,100.3664,True,True,True,True,True,True,True
-George Town,Malaysia,5.4145,100.3292,True,True,True,True,True,True,True
-Ipoh,Malaysia,4.6,101.07,True,True,True,True,True,True,True
-Klang,Malaysia,3.0333,101.45,True,True,True,True,True,True,True
-Kuala Lumpur,Malaysia,3.1478,101.6953,True,True,True,True,True,True,True
-Petaling Jaya,Malaysia,3.1073,101.6067,True,True,True,True,True,True,True
-Iskandar,Malaysia,5.71447,100.992,True,True,False,True,True,True,True
-Cap Malheureux,Mauritius,-19.9861,57.6119,True,True,True,True,True,True,True
-Centre de Flacq,Mauritius,-20.2002,57.7177,True,True,True,True,True,True,True
-Curepipe,Mauritius,-20.3162,57.5166,True,True,True,True,True,True,True
-Port Louis,Mauritius,-20.1667,57.5,True,True,True,True,True,True,True
-Port Mathurin,Mauritius,-19.6833,63.4211,True,True,True,True,True,True,True
-Quartier Militaire,Mauritius,-20.25,57.55,True,True,True,True,True,True,True
-Carrefour,Haiti,18.5333,-72.4,True,True,True,True,True,True,True
-Delmas,Haiti,18.55,-72.3,True,True,True,True,True,True,True
-Port-au-Prince,Haiti,18.5425,-72.3386,True,True,True,True,True,True,True
-Casablanca,Morocco,33.5992,-7.62,True,True,False,True,True,True,True
-Marrakech,Morocco,31.6295,-7.9811,True,True,True,True,True,True,True
-Rabat,Morocco,34.0253,-6.8361,True,True,True,True,True,True,True
-Sale,Morocco,34.05,-6.8167,True,True,True,True,True,True,True
-Tangier,Morocco,35.7847,-5.8125,True,True,True,True,True,True,True
-Castries,Saint Lucia,14.0167,-60.9833,True,True,True,True,True,True,True
-Gros Islet,Saint Lucia,14.081,-60.953,True,True,True,True,True,True,True
-Celje,Slovenia,46.2291,15.2641,True,True,True,True,True,True,True
-Koper,Slovenia,45.5475,13.7307,True,True,True,True,True,True,True
-Kranj,Slovenia,46.2389,14.3556,True,True,True,True,True,True,True
-Ljubljana,Slovenia,46.05,14.5167,True,True,True,True,True,True,True
-Maribor,Slovenia,46.55,15.6333,True,True,True,True,True,True,True
-Velenje,Slovenia,46.3667,15.1167,True,True,True,True,True,True,True
-Chaguanas,Trinidad and Tobago,10.5144,-61.4075,True,True,True,True,True,True,True
-Couva,Trinidad and Tobago,10.4167,-61.45,True,True,True,True,True,True,True
-Laventille,Trinidad and Tobago,10.65,-61.4833,True,True,True,True,True,True,True
-Port of Spain,Trinidad and Tobago,10.6667,-61.5167,True,True,True,True,True,True,True
-San Fernando,Trinidad and Tobago,10.2833,-61.4667,True,True,True,True,True,True,True
-San Juan,Trinidad and Tobago,10.65,-61.45,True,True,True,True,True,True,True
-Tunapuna,Trinidad and Tobago,10.6333,-61.3833,True,True,True,True,True,True,True
-Chattogram,Bangladesh,22.335,91.8325,True,True,True,True,True,True,True
-Comilla,Bangladesh,23.4704,91.17,True,True,True,True,True,True,True
-Dhaka,Bangladesh,23.7161,90.3961,False,False,False,False,False,False,False
-Khulna,Bangladesh,22.8167,89.55,True,True,True,True,True,True,True
-Sylhet,Bangladesh,24.9,91.8667,True,True,True,True,True,True,True
-Choybalsan,Mongolia,48.0706,114.5228,True,True,True,True,True,True,True
-Darhan,Mongolia,49.4689,105.9575,True,True,True,True,True,True,True
-Erdenet,Mongolia,49.0278,104.0444,True,True,True,True,True,True,True
-Ulaanbaatar,Mongolia,47.9203,106.9172,True,True,True,True,True,True,True
-Ciudad de la Costa,Uruguay,-34.8167,-55.95,True,True,True,True,True,True,True
-Montevideo,Uruguay,-34.8667,-56.1667,True,True,True,True,True,True,True
-Punta del Este,Uruguay,-34.97,-54.95,True,True,True,True,True,True,True
-Rivera,Uruguay,-30.9025,-55.5506,True,True,True,True,True,True,True
-Rosario,Uruguay,-34.3139,-57.3525,True,True,True,True,True,True,True
-Salto,Uruguay,-31.3883,-57.9606,True,True,True,True,True,True,True
-Cochabamba,Bolivia (Plurinational State of),-17.3935,-66.157,True,True,True,True,True,True,True
-La Paz,Bolivia (Plurinational State of),-16.4942,-68.1475,True,True,True,True,True,True,True
-Oruro,Bolivia (Plurinational State of),-17.9667,-67.1167,True,True,True,True,True,True,True
-San Lorenzo,Bolivia (Plurinational State of),-21.4799,-64.77,True,True,True,True,True,True,True
-Santa Cruz,Bolivia (Plurinational State of),-17.7892,-63.1975,True,True,False,True,True,True,True
-Sucre,Bolivia (Plurinational State of),-19.0431,-65.2592,True,True,True,True,True,True,True
-Conakry,Guinea,9.5092,-13.7122,True,True,True,True,True,True,True
-Kankan,Guinea,10.39,-9.31,True,True,True,True,True,True,True
-Kindia,Guinea,10.06,-12.87,True,True,True,True,True,True,True
-Cork,Ireland,51.9,-8.4731,True,True,True,True,True,True,True
-Drogheda,Ireland,53.7139,-6.3503,True,True,True,True,True,True,True
-Dublin,Ireland,53.3425,-6.2658,True,True,True,True,True,True,True
-Galway,Ireland,53.2729,-9.0418,True,True,True,True,True,True,True
-Limerick,Ireland,52.6653,-8.6238,True,True,True,True,True,True,True
-Waterford,Ireland,52.2583,-7.119,True,True,True,True,True,True,True
-Cotonou,Benin,6.4,2.52,True,True,True,True,True,True,True
-Djougou,Benin,9.7004,1.68,True,True,True,True,True,True,True
-Kandi,Benin,11.1304,2.94,True,True,True,True,True,True,True
-Lokossa,Benin,6.615,1.715,True,True,True,True,True,True,True
-Parakou,Benin,9.34,2.62,True,True,True,True,True,True,True
-Porto-Novo,Benin,6.4833,2.6167,True,True,True,True,True,True,True
-Cuenca,Ecuador,-2.8974,-79.0045,True,True,False,True,True,True,True
-Guayaquil,Ecuador,-2.1833,-79.8833,True,True,False,True,True,True,True
-Machala,Ecuador,-3.2667,-79.9667,True,True,True,True,True,True,True
-Manta,Ecuador,-0.95,-80.7162,True,True,True,True,True,True,True
-Quito,Ecuador,-0.2186,-78.5097,False,False,False,False,False,False,False
-Santa Cruz,Ecuador,-0.5333,-90.35,True,True,False,True,True,True,True
-Santo Domingo de los Colorados,Ecuador,-0.2542,-79.1719,True,True,True,True,True,True,True
-Valencia,Ecuador,-0.9525,-79.3531,True,True,True,True,True,True,True
-Dakar,Senegal,14.7319,-17.4572,True,True,True,True,True,True,True
-Kaolack,Senegal,14.152,-16.0726,True,True,True,True,True,True,True
-Rufisque,Senegal,14.7167,-17.2667,True,True,True,True,True,True,True
-Saint-Louis,Senegal,16.0333,-16.5,True,True,True,True,True,True,True
-Ziguinchor,Senegal,12.5833,-16.2667,True,True,True,True,True,True,True
-Daugavpils,Latvia,55.8714,26.5161,True,True,True,True,True,True,True
-Jelgava,Latvia,56.6522,23.7244,True,True,True,True,True,True,True
-Riga,Latvia,56.9475,24.1069,False,False,True,False,True,True,False
-Ventspils,Latvia,57.3897,21.5644,True,True,True,True,True,True,True
-Diekirch,Luxembourg,49.8678,6.1558,True,True,True,True,True,True,True
-Echternach,Luxembourg,49.8117,6.4217,True,True,True,True,True,True,True
-Esch-sur-Alzette,Luxembourg,49.4969,5.9806,True,True,True,True,True,True,True
-Luxembourg,Luxembourg,49.6106,6.1328,True,True,True,True,True,True,True
-Rumelange,Luxembourg,49.4597,6.0306,True,True,True,True,True,True,True
-Steinfort,Luxembourg,49.66,5.9156,True,True,True,True,True,True,True
-Dnipro,Ukraine,48.45,34.9833,True,True,True,True,True,True,True
-Donetsk,Ukraine,48.0089,37.8042,True,True,True,True,True,True,True
-Kharkiv,Ukraine,50.0,36.2292,True,True,True,True,True,True,True
-Kyiv,Ukraine,50.45,30.5236,True,True,True,True,True,True,True
-Odesa,Ukraine,46.4775,30.7326,True,True,True,True,True,True,True
-Zaporizhzhia,Ukraine,47.8378,35.1383,True,True,True,True,True,True,True
-Doha,Qatar,25.3,51.5333,True,True,True,True,True,True,True
-El Obeid,Sudan,13.1833,30.2167,True,True,True,True,True,True,True
-Kassala,Sudan,15.45,36.4,True,True,True,True,True,True,True
-Khartoum,Sudan,15.6031,32.5265,True,True,True,True,True,True,True
-Khartoum North,Sudan,15.6333,32.6333,True,True,True,True,True,True,True
-Omdurman,Sudan,15.6835,32.4629,True,True,True,True,True,True,True
-Port Sudan,Sudan,19.6158,37.2164,True,True,True,True,True,True,True
-Eldoret,Kenya,0.5167,35.2833,True,True,True,True,True,True,True
-Kisumu,Kenya,-0.1,34.75,True,True,True,False,False,True,True
-Meru,Kenya,0.05,37.65,True,True,True,True,True,True,True
-Mombasa,Kenya,-4.05,39.6667,True,True,True,True,True,True,True
-Nairobi,Kenya,-1.2864,36.8172,False,False,False,False,False,False,False
-Nakuru,Kenya,-0.2833,36.0667,True,False,False,False,False,True,True
-Escuintla,Guatemala,14.305,-90.785,True,True,True,True,True,True,True
-Guatemala City,Guatemala,14.6099,-90.5252,True,True,True,True,True,True,True
-Jalapa,Guatemala,14.6379,-89.9904,True,True,True,True,True,True,True
-Puerto Barrios,Guatemala,15.73,-88.6,True,True,False,False,True,True,True
-Quetzaltenango,Guatemala,14.8333,-91.5167,True,True,True,True,True,True,True
-San Luis,Guatemala,16.2,-89.44,True,True,True,True,True,True,True
-Espoo,Finland,60.21,24.66,True,True,True,True,True,True,True
-Helsinki,Finland,60.1756,24.9342,True,True,True,True,True,True,True
-Lahti,Finland,60.9833,25.6556,True,False,False,False,True,True,True
-Oulu,Finland,65.0142,25.4719,True,True,True,True,True,True,True
-Tampere,Finland,61.4981,23.7608,True,True,True,True,True,True,True
-Turku,Finland,60.4517,22.27,True,True,True,True,True,True,True
-Vantaa,Finland,60.3,25.0333,True,True,True,True,True,True,True
-Faisalabad,Pakistan,31.418,73.079,True,True,True,True,True,True,True
-Karachi,Pakistan,24.86,67.01,False,False,False,False,False,False,False
-Lahore,Pakistan,31.5497,74.3436,True,True,True,True,True,True,True
-Peshawar,Pakistan,34.0,71.5,True,True,True,True,True,True,True
-Rawalpindi,Pakistan,33.6007,73.0679,True,True,True,True,True,True,True
-Sialkot City,Pakistan,32.5,74.5333,True,True,True,True,True,True,True
-Famagusta,Cyprus,35.1167,33.95,True,True,True,True,True,True,True
-Kyrenia,Cyprus,35.3403,33.3192,True,True,True,True,True,True,True
-Larnaca,Cyprus,34.9233,33.6305,True,True,True,True,True,True,True
-Limassol,Cyprus,34.675,33.0443,True,True,True,True,True,True,True
-Nicosia,Cyprus,35.1725,33.365,True,True,True,True,True,True,True
-Paphos,Cyprus,34.7761,32.4265,True,True,True,True,True,True,True
-Fier,Albania,40.7167,19.55,True,True,True,True,True,True,True
-Tirana,Albania,41.33,19.82,True,True,True,True,True,True,True
-Franceville,Gabon,-1.6333,13.5833,True,True,True,True,True,True,True
-Libreville,Gabon,0.3901,9.4544,True,True,True,True,True,True,True
-Moanda,Gabon,-1.5655,13.2,True,True,True,True,True,True,True
-Oyem,Gabon,1.6,11.5667,True,True,True,True,True,True,True
-Port-Gentil,Gabon,-0.7167,8.7833,True,True,True,True,True,True,True
-Francistown,Botswana,-21.1736,27.5125,True,True,True,True,True,True,True
-Gaborone,Botswana,-24.6569,25.9086,True,True,True,True,True,True,True
-Mahalapye,Botswana,-23.1041,26.8142,True,True,True,True,True,True,True
-Maun,Botswana,-19.9833,23.4167,True,True,True,True,True,True,True
-Molepolole,Botswana,-24.4066,25.4951,True,True,True,True,True,True,True
-Selibe Phikwe,Botswana,-21.9667,27.9167,True,True,True,True,True,True,True
-Freeport City,Bahamas,26.5333,-78.7,True,True,True,True,True,True,True
-Marsh Harbour,Bahamas,26.4,-77.17,True,True,True,True,True,True,True
-Nassau,Bahamas,25.0667,-77.3333,True,True,True,True,True,True,True
-Fukuoka,Japan,33.5903,130.4019,True,True,True,True,True,True,True
-Kasama,Japan,36.345,140.3042,True,True,True,True,True,True,True
-Nagoya,Japan,35.1167,136.9333,True,False,True,False,True,True,True
-Sapporo,Japan,43.0621,141.3544,True,True,True,True,True,True,True
-Tokyo,Japan,35.6897,139.6922,False,False,False,False,False,False,False
-Yao,Japan,34.6269,135.6008,True,True,True,True,True,True,True
-Yokohama,Japan,35.4333,139.6333,False,False,False,False,False,False,False
-Funafuti,Tuvalu,-8.5167,179.2167,True,True,True,True,True,True,True
-Gbarnga,Liberia,7.0104,-9.49,True,True,True,True,True,True,True
-Harper,Liberia,4.3754,-7.717,True,True,True,True,True,True,True
-Kakata,Liberia,6.53,-10.3517,True,True,True,True,True,True,True
-Monrovia,Liberia,6.3106,-10.8047,True,True,True,True,True,True,True
-Upper Buchanan,Liberia,5.9161,-10.0525,True,True,True,True,True,True,True
-Voinjama,Liberia,8.4167,-9.75,True,True,True,True,True,True,True
-Gizo,Solomon Islands,-8.1,156.85,True,True,True,True,True,True,True
-Honiara,Solomon Islands,-9.4333,159.95,True,True,True,True,True,True,True
-Lata,Solomon Islands,-10.738,165.8567,True,True,True,True,True,True,True
-Gothenburg,Sweden,57.6717,11.981,True,True,True,True,True,True,True
-Stockholm,Sweden,59.3294,18.0686,False,False,False,False,False,False,False
-Uppsala,Sweden,59.8498,17.6389,True,True,True,True,True,True,True
-Örebro,Sweden,59.2669,15.1965,True,True,False,True,True,True,True
-Graz,Austria,47.0667,15.4333,True,True,True,True,True,True,True
-Innsbruck,Austria,47.2683,11.3933,True,True,True,True,True,True,True
-Klagenfurt,Austria,46.6167,14.3,True,True,True,True,True,True,True
-Linz,Austria,48.3,14.2833,True,True,True,True,True,True,True
-Salzburg,Austria,47.7972,13.0477,True,True,True,True,True,True,True
-Vienna,Austria,48.2083,16.3731,True,True,True,True,True,True,True
-Haiphong,Viet Nam,20.8,106.6667,True,True,True,True,True,True,True
-Hanoi,Viet Nam,21.0245,105.8412,True,True,True,True,True,True,True
-Ho Chi Minh City,Viet Nam,10.8167,106.6333,False,False,False,False,False,False,False
-Half Way Tree,Jamaica,18.0106,-76.7975,True,True,True,True,True,True,True
-Kingston,Jamaica,17.9714,-76.7931,True,True,True,True,True,True,True
-May Pen,Jamaica,17.95,-77.25,True,True,True,True,True,True,True
-Montego Bay,Jamaica,18.4667,-77.9167,True,True,True,True,True,True,True
-Portmore,Jamaica,17.9667,-76.8667,True,True,True,True,True,True,True
-Spanish Town,Jamaica,17.9961,-76.9547,True,True,True,True,True,True,True
-Jeddah,Saudi Arabia,21.5428,39.1728,True,True,True,True,True,True,True
-Mecca,Saudi Arabia,21.4225,39.8261,True,True,True,True,True,True,True
-Medina,Saudi Arabia,24.4667,39.6,True,True,True,True,True,True,True
-Riyadh,Saudi Arabia,24.65,46.71,True,True,True,True,True,True,True
-Kabul,Afghanistan,34.5328,69.1658,True,True,True,True,True,True,True
-Kunduz,Afghanistan,36.728,68.8725,True,True,True,True,True,True,True
-Kairouan,Tunisia,35.6804,10.1,True,True,True,True,True,True,True
-Sfax,Tunisia,34.75,10.72,True,True,True,True,True,True,True
-Sousse,Tunisia,35.83,10.625,True,True,True,True,True,True,True
-Tunis,Tunisia,36.8008,10.18,True,True,True,True,True,True,True
-Zarzis,Tunisia,33.5104,11.1,True,True,True,True,True,True,True
-Kananga,Democratic Republic of the Congo,-5.897,22.4488,True,True,True,True,True,True,True
-Kikwit,Democratic Republic of the Congo,-5.0333,18.8167,True,True,True,True,True,True,True
-Kinshasa,Democratic Republic of the Congo,-4.3317,15.3139,True,True,True,True,True,True,True
-Kisangani,Democratic Republic of the Congo,0.5153,25.1911,True,True,True,True,True,True,True
-Lubumbashi,Democratic Republic of the Congo,-11.6697,27.4581,True,True,True,True,True,True,True
-Mbuji-Mayi,Democratic Republic of the Congo,-6.1209,23.5967,True,True,True,True,True,True,True
-Moanda,Democratic Republic of the Congo,-5.9229,12.355,True,True,True,True,True,True,True
-Karaj,Iran (Islamic Republic of),35.8327,50.9915,True,True,True,True,True,True,True
-Mashhad,Iran (Islamic Republic of),36.3069,59.6042,True,True,True,True,True,True,True
-Tehran,Iran (Islamic Republic of),35.7,51.4167,True,True,True,True,True,True,True
-Kasama,Zambia,-10.1996,31.1799,True,True,True,True,True,True,True
-Kashikishi,Zambia,-9.3172,28.7331,True,True,True,True,True,True,True
-Kitwe,Zambia,-12.8208,28.2119,True,True,True,True,True,True,True
-Lusaka,Zambia,-15.4167,28.2833,True,True,True,True,True,True,True
-Mazabuka,Zambia,-15.86,27.76,True,True,False,False,True,True,True
-Nchelenge,Zambia,-9.3467,28.7344,True,True,True,True,True,True,True
-Ndola,Zambia,-12.9683,28.6337,True,True,True,True,True,True,True
-Katima Mulilo,Namibia,-17.5039,24.275,True,True,True,True,True,True,True
-Otjiwarongo,Namibia,-20.4642,16.6528,True,True,True,True,True,True,True
-Rundu,Namibia,-17.9167,19.7667,True,True,True,True,True,True,True
-Swakopmund,Namibia,-22.6667,14.5333,True,True,True,True,True,True,True
-Walvisbaai,Namibia,-22.9494,14.5069,True,True,True,True,True,True,True
-Windhoek,Namibia,-22.57,17.0836,True,True,False,True,True,True,True
-Kelo,Chad,9.3171,15.8,True,True,True,True,True,True,True
-Moundou,Chad,8.5667,16.0833,True,True,True,True,True,True,True
-Sarh,Chad,9.15,18.3833,True,True,True,True,True,True,True
-Yao,Chad,12.8508,17.5608,True,True,True,True,True,True,True
-Kiffa,Mauritania,16.6164,-11.4044,True,True,True,True,True,True,True
-Nouadhibou,Mauritania,20.95,-17.0333,True,True,True,True,True,True,True
-Nouakchott,Mauritania,18.0783,-15.9744,True,True,True,True,True,True,True
-Rosso,Mauritania,16.5128,-15.805,True,True,True,True,True,True,True
-Zouerate,Mauritania,22.7344,-12.4725,True,True,True,True,True,True,True
-Kingstown,Saint Vincent and the Grenadines,13.1667,-61.2333,True,True,True,True,True,True,True
-Koror,Palau,7.3433,134.4804,True,True,True,True,True,True,True
-Melekeok,Palau,7.4874,134.6265,True,True,True,True,True,True,True
-Kuwait City,Kuwait,29.375,47.98,True,True,True,True,True,True,True
-La Paz,Honduras,14.3169,-87.6831,True,True,True,True,True,True,True
-San Lorenzo,Honduras,13.3667,-87.2667,True,True,True,True,True,True,True
-San Pedro Sula,Honduras,15.5,-88.0333,True,True,True,True,True,True,True
-Tegucigalpa,Honduras,14.0942,-87.2067,False,True,True,True,True,True,True
-Tegucigalpita,Honduras,15.78,-86.7878,True,True,True,True,True,True,True
-Trujillo,Honduras,15.9167,-86.0,True,True,True,True,True,True,True
-Villanueva,Honduras,15.3167,-88.0167,True,True,True,True,True,True,True
-La Romana,Dominican Republic,18.417,-68.9666,True,True,True,True,True,True,True
-La Vega,Dominican Republic,19.2242,-70.5283,True,True,True,True,True,True,True
-San Juan,Dominican Republic,18.807,-71.229,True,True,True,True,True,True,True
-Santiago,Dominican Republic,19.5,-70.67,True,True,False,False,True,True,True
-Santo Domingo,Dominican Republic,18.4764,-69.8933,True,True,True,True,True,True,True
-Lakatoro,Vanuatu,-16.1069,167.4208,True,True,True,True,True,True,True
-Luganville,Vanuatu,-15.5126,167.1766,True,True,True,True,True,True,True
-Port-Vila,Vanuatu,-17.75,168.3,True,True,True,True,True,True,True
-Leribe,Lesotho,-28.8734,28.0416,True,True,True,True,True,True,True
-Mafeteng,Lesotho,-29.8167,27.25,True,True,True,True,True,True,True
-Maputsoe,Lesotho,-28.8833,27.9,True,True,True,True,True,True,True
-Maseru,Lesotho,-29.31,27.48,True,True,True,True,True,True,True
-Teyateyaneng,Lesotho,-29.15,27.7333,True,True,True,True,True,True,True
-Lobamba,Eswatini,-26.4167,31.1667,True,True,True,True,True,True,True
-Manzini,Eswatini,-26.4833,31.3667,True,True,True,True,True,True,True
-Mbabane,Eswatini,-26.3167,31.1333,True,True,True,True,True,True,True
-Mhlume,Eswatini,-26.0333,31.85,True,True,True,True,True,True,True
-Piggs Peak,Eswatini,-25.961,31.247,True,True,True,True,True,True,True
-Siteki,Eswatini,-26.45,31.95,True,True,True,True,True,True,True
-Louangphabang,Lao People's Democratic Republic,19.8931,102.1381,True,True,True,True,True,True,True
-Savannakhet,Lao People's Democratic Republic,16.55,104.75,True,True,True,True,True,True,True
-Vientiane,Lao People's Democratic Republic,17.9667,102.6,True,True,True,True,True,True,True
-Xam Nua,Lao People's Democratic Republic,20.4133,104.048,True,True,True,True,True,True,True
-Majuro,Marshall Islands,7.1167,171.3667,True,True,True,True,True,True,True
-Male,Maldives,4.175,73.5083,True,True,True,True,True,True,True
-Manama,Bahrain,26.2167,50.5831,True,True,True,True,True,True,True
-Mauren,Liechtenstein,47.2197,9.5428,True,True,True,True,True,True,True
-Schaan,Liechtenstein,47.1667,9.5167,True,True,True,True,True,True,True
-Vaduz,Liechtenstein,47.1415,9.5215,True,True,True,True,True,True,True
-Mitsamiouli,Comoros,-11.3819,43.3,True,True,True,True,True,True,True
-Mkazi,Comoros,-11.7323,43.2671,True,True,True,True,True,True,True
-Moroni,Comoros,-11.7036,43.2536,True,True,True,True,True,True,True
-Mutsamudu,Comoros,-12.1667,44.4,True,True,True,True,True,True,True
-Monaco,Monaco,43.7396,7.4069,True,True,True,True,True,True,True
-Muscat,Oman,23.6139,58.5922,True,True,True,True,True,True,True
-Narva,Estonia,59.3792,28.2006,True,True,True,True,True,True,True
-Pärnu,Estonia,58.3844,24.4989,True,True,False,True,True,True,True
-Tallinn,Estonia,59.4372,24.745,True,True,True,True,True,True,True
-Tartu,Estonia,58.38,26.7225,True,True,True,True,True,True,True
-Viljandi,Estonia,58.3633,25.5956,True,True,True,True,True,True,True
-Neiafu,Tonga,-18.6496,-173.9833,True,True,True,True,True,True,True
-Osijek,Croatia,45.5603,18.6703,True,True,True,True,True,True,True
-Rijeka,Croatia,45.3297,14.4322,True,True,True,True,True,True,True
-Split,Croatia,43.51,16.45,True,True,True,True,True,True,True
-Velika Gorica,Croatia,45.7,16.0667,True,True,True,True,True,True,True
-Zadar,Croatia,44.1167,15.2167,True,True,True,True,True,True,True
-Zagreb,Croatia,45.8,15.95,True,True,True,True,True,True,True
-Palikir,Micronesia (Federated States of),6.9178,158.185,True,True,True,True,True,True,True
-Paro,Bhutan,27.4333,89.4167,True,True,True,True,True,True,True
-Punakha,Bhutan,27.6167,89.8667,True,True,True,True,True,True,True
-Thimphu,Bhutan,27.4833,89.6333,True,True,True,True,True,True,True
-Wangdue Phodrang,Bhutan,27.4333,89.9167,True,True,True,True,True,True,True
-Pyongyang,Democratic People's Republic of Korea,39.03,125.73,True,True,True,True,True,True,True
-Roseau,Dominica,15.3,-61.3833,True,True,True,True,True,True,True
-San Francisco,El Salvador,13.7,-88.1,False,False,False,False,False,False,False
-San Miguel,El Salvador,13.4833,-88.1833,True,True,True,True,True,True,True
-San Salvador,El Salvador,13.6989,-89.1914,True,True,True,True,True,True,True
-Santa Ana,El Salvador,13.9833,-89.5333,True,True,True,True,True,True,True
-Santa Tecla,El Salvador,13.674,-89.29,True,True,True,True,True,True,True
-Sonsonate,El Salvador,13.72,-89.73,True,True,True,True,True,True,True
-San Marino,San Marino,43.932,12.4484,True,True,True,True,True,True,True
-Singapore,Singapore,1.3,103.8,True,True,True,True,True,True,True
-Tarawa,Kiribati,1.3382,173.0176,True,True,True,True,True,True,True
-Teaoraereke,Kiribati,1.3333,173.0,True,True,True,True,True,True,True
-Trindade,Sao Tome and Principe,0.3,6.6667,True,True,True,True,True,True,True
-Victoria,Seychelles,-4.6236,55.4544,True,True,True,True,True,True,True
-Warsaw,Poland,52.2167,21.0333,False,False,False,False,False,False,False
-Abasan Al-Kabira,Palestine,31.3231,34.344,True,False,False,False,True,True,True
+city,country,country_code,c40,latitude,longitude,risk0,risk1,risk2,risk3,risk4,risk5,risk6
+Aalborg,Denmark,DNK,False,57.0337,9.9166,True,True,True,True,True,True,True
+Aarhus,Denmark,DNK,False,56.1572,10.2107,True,True,True,True,True,True,True
+Copenhagen,Denmark,DNK,False,55.6786,12.5635,True,False,True,False,True,True,True
+Esbjerg,Denmark,DNK,False,55.467,8.45,True,True,True,True,True,True,True
+Frederikshavn,Denmark,DNK,False,57.4337,10.5333,True,False,True,True,True,True,True
+Odense,Denmark,DNK,False,55.4004,10.3833,True,True,True,True,True,True,True
+Vejle,Denmark,DNK,False,55.709,9.535,True,True,True,True,True,True,True
+Abidjan,Côte d'Ivoire,CIV,False,5.3364,-4.0267,True,True,True,True,False,True,True
+Daloa,Côte d'Ivoire,CIV,False,6.89,-6.45,True,True,True,True,True,True,True
+Korhogo,Côte d'Ivoire,CIV,False,9.4578,-5.6294,True,True,True,True,True,True,True
+Yamoussoukro,Côte d'Ivoire,CIV,False,6.8161,-5.2742,True,True,True,True,True,True,True
+BouakÃ©,Côte d'Ivoire,CIV,False,7.4137,-5.0149,True,True,True,False,True,True,True
+Abington,United States of America,USA,False,40.1108,-75.1146,True,False,False,False,True,True,True
+Alameda,United States of America,USA,False,37.767,-122.2672,True,True,False,True,True,True,True
+Alexandria,United States of America,USA,False,38.8185,-77.0861,True,True,True,True,True,True,True
+Amsterdam,United States of America,USA,False,42.942,-74.1907,True,True,True,True,True,True,True
+Anchorage,United States of America,USA,False,61.2181,-149.9003,True,True,False,True,True,True,True
+Arlington,United States of America,USA,False,32.6998,-97.125,True,True,False,False,True,True,True
+Asheville,United States of America,USA,False,35.5704,-82.5536,True,False,False,True,False,True,True
+Athens,United States of America,USA,False,33.9508,-83.3689,True,True,True,True,True,True,True
+Atlanta,United States of America,USA,False,33.7627,-84.4224,False,True,False,True,True,True,True
+Aurora,United States of America,USA,False,39.7087,-104.7273,True,True,False,False,False,True,True
+Austin,United States of America,USA,True,30.3004,-97.7522,False,False,False,False,False,False,False
+Belgrade,United States of America,USA,False,45.7796,-111.1751,True,True,True,True,True,True,True
+Benicia,United States of America,USA,False,38.0725,-122.1525,False,True,False,True,True,True,True
+Berlin,United States of America,USA,False,41.6114,-72.7758,True,True,True,True,True,True,True
+Bern,United States of America,USA,False,40.4005,-75.9933,True,True,True,True,True,True,True
+Birmingham,United States of America,USA,False,33.5277,-86.7987,True,True,True,True,True,True,True
+Blacksburg,United States of America,USA,False,37.23,-80.4279,True,False,True,True,True,True,True
+Bloomington,United States of America,USA,False,40.4757,-88.9703,True,False,True,False,False,True,True
+Bogota,United States of America,USA,False,40.875,-74.0293,True,True,True,True,True,True,True
+Boulder,United States of America,USA,False,40.0249,-105.2523,True,False,False,False,True,True,True
+Boynton Beach,United States of America,USA,False,26.5281,-80.0811,True,False,True,False,False,True,True
+Breckenridge,United States of America,USA,False,39.4995,-106.0433,True,True,False,True,True,True,True
+Bremen,United States of America,USA,False,33.7085,-85.1495,True,True,True,True,True,True,True
+Bridgetown,United States of America,USA,False,39.1551,-84.6359,True,True,True,True,True,True,True
+Bridgewater,United States of America,USA,False,40.5934,-74.6076,True,True,True,False,False,True,True
+Cairo,United States of America,USA,False,30.8791,-84.205,True,True,True,True,True,True,True
+Cambridge,United States of America,USA,False,42.3759,-71.1185,True,True,False,True,True,True,True
+Chicago,United States of America,USA,False,41.8373,-87.6862,True,True,True,True,True,True,True
+Chula Vista,United States of America,USA,False,32.6281,-117.0145,True,True,False,True,True,True,True
+Cincinnati,United States of America,USA,False,39.1413,-84.5061,False,False,False,False,True,False,True
+Cleveland,United States of America,USA,False,41.4767,-81.6804,True,False,True,False,True,True,True
+Clinton,United States of America,USA,False,38.7499,-76.9063,False,True,True,False,False,True,True
+Columbus,United States of America,USA,False,39.9862,-82.985,False,True,False,False,True,True,True
+Culver City,United States of America,USA,False,34.0058,-118.3968,True,True,False,False,True,True,True
+Dallas,United States of America,USA,False,32.7936,-96.7662,True,True,True,True,True,True,True
+Damascus,United States of America,USA,False,39.2737,-77.2006,True,True,True,True,True,True,True
+Delhi,United States of America,USA,False,37.4306,-120.7759,True,True,True,True,True,True,True
+Denver,United States of America,USA,False,39.7621,-104.8759,True,True,False,False,False,True,True
+Detroit,United States of America,USA,False,42.3834,-83.1024,True,False,True,True,True,True,True
+Douglas,United States of America,USA,False,31.3602,-109.5394,True,True,True,True,True,True,True
+Dublin,United States of America,USA,False,37.7161,-121.8963,True,True,True,True,True,True,True
+East Highland Park,United States of America,USA,False,37.577,-77.3865,True,False,True,True,True,True,True
+East St. Louis,United States of America,USA,False,38.6156,-90.1304,True,False,False,True,True,True,True
+Easton,United States of America,USA,False,40.6858,-75.2209,True,True,True,False,True,True,True
+Eldorado at Santa Fe,United States of America,USA,False,35.5273,-105.934,True,True,False,True,False,True,True
+Emeryville,United States of America,USA,False,37.8382,-122.2932,True,True,False,True,True,True,True
+Encinitas,United States of America,USA,False,33.049,-117.2613,True,True,False,True,True,True,True
+Evanston,United States of America,USA,False,42.0463,-87.6942,True,True,False,False,True,True,True
+Fayetteville,United States of America,USA,False,36.0713,-94.166,True,False,False,False,False,True,True
+Flagstaff,United States of America,USA,False,35.1872,-111.6195,False,True,False,True,True,True,True
+Fort Collins,United States of America,USA,False,40.5478,-105.0656,True,True,False,False,True,True,True
+Fort Worth,United States of America,USA,False,32.7811,-97.3473,False,True,True,True,True,True,True
+Freetown,United States of America,USA,False,41.7714,-71.0157,True,True,True,True,True,True,True
+Fremont,United States of America,USA,False,37.5265,-121.9852,False,True,False,True,False,True,True
+Fresno,United States of America,USA,False,36.7831,-119.7941,True,True,False,True,False,True,True
+Geneva,United States of America,USA,False,42.8644,-76.9827,True,True,True,True,True,True,True
+Genoa,United States of America,USA,False,42.0926,-88.6964,True,True,True,True,True,True,True
+Georgetown,United States of America,USA,False,30.6668,-97.6953,True,True,True,True,True,True,True
+Gretna,United States of America,USA,False,29.9101,-90.0515,True,False,False,False,True,True,True
+Hamburg,United States of America,USA,False,42.7394,-78.8581,True,True,True,True,True,True,True
+Hamilton,United States of America,USA,False,40.2046,-74.6765,True,True,False,False,True,True,True
+Hayward,United States of America,USA,False,37.6328,-122.0772,False,True,False,True,True,True,True
+Honolulu,United States of America,USA,False,21.3294,-157.846,True,False,False,True,True,True,False
+Huntington Beach,United States of America,USA,False,33.696,-118.0025,True,True,False,True,True,True,True
+Indianapolis,United States of America,USA,False,39.7771,-86.1458,True,False,False,False,True,True,True
+Kansas City,United States of America,USA,False,39.1239,-94.5541,True,False,True,True,True,True,True
+Key West,United States of America,USA,False,24.5637,-81.7768,True,True,False,True,True,True,True
+Kingston,United States of America,USA,False,41.2652,-75.8875,True,True,True,True,True,True,True
+La Crosse,United States of America,USA,False,43.824,-91.2268,True,False,True,False,True,True,True
+LaGrange,United States of America,USA,False,33.0274,-85.0384,True,True,True,False,True,True,True
+Lackawanna,United States of America,USA,False,42.8182,-78.8326,True,False,True,False,True,False,True
+Lakewood,United States of America,USA,False,39.6977,-105.1168,False,False,False,False,True,True,True
+Las Vegas,United States of America,USA,False,36.2333,-115.2654,False,False,False,False,False,False,True
+Leeds,United States of America,USA,False,33.5429,-86.5636,True,True,True,True,True,True,True
+Leicester,United States of America,USA,False,42.24,-71.912,True,False,False,True,True,True,True
+Lima,United States of America,USA,False,40.741,-84.1121,False,False,False,True,True,True,True
+Limerick,United States of America,USA,False,40.2323,-75.5344,True,True,True,True,True,True,True
+Linden,United States of America,USA,False,40.6251,-74.2381,True,True,True,True,True,True,True
+Lisbon,United States of America,USA,False,44.0265,-70.09,True,True,True,True,True,True,True
+London,United States of America,USA,True,37.1175,-84.0767,False,False,False,False,False,False,False
+Long Beach,United States of America,USA,False,33.7981,-118.1675,True,False,False,True,True,True,True
+Los Angeles,United States of America,USA,False,34.1139,-118.4068,True,True,True,True,True,True,True
+Manchester,United States of America,USA,False,42.9848,-71.4447,True,True,True,True,True,True,True
+Manhattan Beach,United States of America,USA,False,33.8895,-118.3972,True,True,False,True,True,True,True
+Mecca,United States of America,USA,False,33.5767,-116.0645,True,True,True,True,True,True,True
+Medina,United States of America,USA,False,41.1358,-81.8694,True,True,True,True,True,True,True
+Melbourne,United States of America,USA,True,28.1085,-80.6627,False,False,False,False,False,False,False
+Memphis,United States of America,USA,False,35.1046,-89.9773,True,True,False,False,True,True,True
+Miami,United States of America,USA,False,25.7839,-80.2102,True,True,True,True,True,True,True
+Miami Beach,United States of America,USA,False,25.8171,-80.1396,True,False,False,True,True,True,True
+Milan,United States of America,USA,False,42.0816,-83.6853,True,True,True,True,True,True,True
+Minneapolis,United States of America,USA,False,44.9635,-93.2678,True,True,False,True,True,True,True
+Moab,United States of America,USA,False,38.5701,-109.5477,True,True,False,True,True,True,True
+Monrovia,United States of America,USA,False,34.165,-117.9921,True,True,True,True,True,True,True
+Montevideo,United States of America,USA,False,44.9505,-95.7153,True,True,True,True,True,True,True
+Moscow,United States of America,USA,False,46.7307,-116.9986,True,True,True,True,True,True,True
+Mount Rainier,United States of America,USA,True,38.9423,-76.9645,False,False,False,False,False,False,False
+Naples,United States of America,USA,False,26.1504,-81.7936,True,True,True,True,True,True,True
+Nashville,United States of America,USA,False,36.1715,-86.7843,True,False,False,False,True,True,True
+Natchez,United States of America,USA,False,31.5437,-91.3867,True,False,True,True,True,True,True
+New Bedford,United States of America,USA,False,41.6697,-70.9428,True,False,True,True,True,True,True
+New York,United States of America,USA,False,40.6943,-73.9249,True,True,True,True,True,True,True
+Newcastle,United States of America,USA,False,47.5303,-122.1633,True,True,True,True,True,True,True
+Oakland,United States of America,USA,False,37.7903,-122.2165,False,False,False,True,True,False,True
+Ottawa,United States of America,USA,False,41.3532,-88.8306,True,True,True,True,True,True,True
+Palermo,United States of America,USA,False,39.4313,-121.5225,True,True,True,True,True,True,True
+Panama City,United States of America,USA,False,30.1995,-85.6004,True,True,True,True,True,True,True
+Paris,United States of America,USA,True,33.6688,-95.546,False,False,False,False,False,False,False
+Park City,United States of America,USA,False,42.3522,-87.8915,True,True,False,True,False,True,True
+Parma,United States of America,USA,False,41.3843,-81.7286,True,True,False,True,True,True,True
+Philadelphia,United States of America,USA,False,40.0077,-75.1339,True,True,True,True,True,True,True
+Phoenix,United States of America,USA,False,33.5722,-112.0891,False,True,False,True,True,True,True
+Piedmont,United States of America,USA,False,37.8226,-122.23,False,True,False,True,True,True,True
+Pittsburgh,United States of America,USA,False,40.4396,-79.9762,True,False,False,False,True,True,True
+Ramsey,United States of America,USA,False,45.2617,-93.4494,True,True,True,True,False,True,True
+Reno,United States of America,USA,False,39.5497,-119.8483,True,False,False,True,True,True,True
+Riga,United States of America,USA,False,43.0802,-77.8753,False,False,True,False,True,True,False
+Rochester,United States of America,USA,False,43.168,-77.6162,True,True,False,False,True,True,True
+Rome,United States of America,USA,False,34.2661,-85.1862,True,True,True,True,True,True,True
+Rotterdam,United States of America,USA,False,42.8133,-74.0129,True,True,True,True,True,True,True
+Sacramento,United States of America,USA,False,38.5667,-121.4683,True,True,False,True,True,True,True
+Salt Lake City,United States of America,USA,False,40.7777,-111.9306,True,False,False,False,True,True,True
+San Antonio,United States of America,USA,False,29.4658,-98.5253,True,True,False,True,True,True,True
+San Fernando,United States of America,USA,False,34.2886,-118.4363,True,True,True,True,True,True,True
+San Francisco,United States of America,USA,True,37.7562,-122.443,False,False,False,False,False,False,False
+San Jose,United States of America,USA,False,37.3019,-121.8486,True,True,False,True,True,True,True
+San Juan,United States of America,USA,False,26.1903,-98.152,True,True,True,True,True,True,True
+San Leandro,United States of America,USA,False,37.7071,-122.1601,True,False,False,True,True,True,True
+San Lorenzo,United States of America,USA,False,37.6737,-122.1349,True,True,True,True,True,True,True
+San Luis,United States of America,USA,False,32.4911,-114.7089,True,True,True,True,True,True,True
+San Marino,United States of America,USA,False,34.1224,-118.1132,True,True,True,True,True,True,True
+San Ramon,United States of America,USA,False,37.7625,-121.9365,False,True,False,True,True,True,True
+Santa Ana,United States of America,USA,False,33.7366,-117.8819,True,True,True,True,True,True,True
+Santa Cruz,United States of America,USA,False,36.9789,-122.0346,True,True,False,True,True,True,True
+Saratoga Springs,United States of America,USA,False,43.0674,-73.7775,True,True,True,False,False,True,True
+Seattle,United States of America,USA,True,47.6211,-122.3244,False,False,False,False,False,False,False
+South Portland,United States of America,USA,False,43.631,-70.2895,True,False,True,False,True,True,True
+South San Francisco,United States of America,USA,False,37.6536,-122.4197,True,False,False,True,True,True,True
+Surfside,United States of America,USA,False,25.8787,-80.125,True,False,False,True,True,True,True
+Tempe,United States of America,USA,False,33.3881,-111.9318,True,False,False,True,True,True,True
+Toledo,United States of America,USA,False,41.6639,-83.5822,True,True,True,False,True,True,True
+Vail,United States of America,USA,False,32.0217,-110.6937,True,True,False,False,True,True,True
+Valparaiso,United States of America,USA,False,41.4782,-87.0507,True,True,True,True,True,True,True
+Vancouver,United States of America,USA,True,45.6366,-122.5967,False,False,False,False,False,False,False
+Victoria,United States of America,USA,False,28.8285,-96.985,True,True,True,True,True,True,True
+Vienna,United States of America,USA,False,38.8996,-77.2597,True,True,True,True,True,True,True
+Warsaw,United States of America,USA,True,41.2448,-85.8464,False,False,False,False,False,False,False
+Waterford,United States of America,USA,False,41.3692,-72.1483,True,True,True,True,True,True,True
+Wellington,United States of America,USA,False,26.6461,-80.2699,True,False,False,True,True,True,True
+West Haven-Sylvan,United States of America,USA,True,45.5164,-122.7654,False,False,False,False,False,False,False
+West Hollywood,United States of America,USA,False,34.0882,-118.3718,True,True,False,True,True,True,True
+West Lampeter,United States of America,USA,False,39.9947,-76.256,True,False,True,False,True,True,True
+West Palm Beach,United States of America,USA,False,26.7468,-80.1316,True,False,False,True,True,True,True
+Windsor,United States of America,USA,False,40.4693,-104.9213,True,True,False,False,True,True,True
+Winston-Salem,United States of America,USA,False,36.1029,-80.2611,True,True,False,True,True,True,True
+Broward,United States of America,USA,False,26.1901,80.3659,True,True,True,False,True,True,True
+"Columbia, MO",United States of America,USA,False,38.9517,-92.3341,True,False,False,False,True,True,True
+"Durham, NC",United States of America,USA,False,35.994,-78.8986,True,False,False,True,True,True,True
+Abovyan,Armenia,ARM,False,40.2739,44.6256,True,True,True,True,True,True,True
+Ejmiatsin,Armenia,ARM,False,40.1728,44.2925,True,True,True,True,True,True,True
+Gyumri,Armenia,ARM,False,40.7833,43.8333,True,True,True,True,True,True,True
+Kapan,Armenia,ARM,False,39.2011,46.415,True,True,True,True,True,True,True
+Vanadzor,Armenia,ARM,False,40.8128,44.4883,True,True,True,True,True,True,True
+Yerevan,Armenia,ARM,False,40.1814,44.5144,True,True,True,True,True,True,True
+Abu Dhabi,United Arab Emirates,ARE,False,24.4781,54.3686,True,True,True,True,True,True,True
+Dubai,United Arab Emirates,ARE,False,25.2697,55.3094,True,True,True,True,True,True,True
+Sharjah,United Arab Emirates,ARE,False,25.3575,55.3919,True,True,True,True,True,True,True
+Abuja,Nigeria,NGA,False,9.0556,7.4914,False,False,False,True,True,True,True
+Ibadan,Nigeria,NGA,False,7.3964,3.9167,True,True,True,False,True,True,True
+Kano,Nigeria,NGA,False,12.0,8.5167,True,True,True,True,True,True,True
+Lagos,Nigeria,NGA,True,6.45,3.4,False,False,False,False,False,False,False
+Onitsha,Nigeria,NGA,False,6.1667,6.7833,True,True,True,True,True,True,True
+Owerri,Nigeria,NGA,False,5.4833,7.0333,True,True,True,True,True,True,True
+Accra,Ghana,GHA,False,5.6037,-0.187,True,True,True,True,True,True,True
+Kumasi,Ghana,GHA,False,6.6833,-1.6167,True,True,True,True,True,True,True
+Obuase,Ghana,GHA,False,6.2,-1.6833,True,True,True,True,True,True,True
+Sekondi,Ghana,GHA,False,4.9433,-1.704,True,True,True,True,True,True,True
+Tamale,Ghana,GHA,False,9.4075,-0.8533,True,True,True,True,True,True,True
+Tema,Ghana,GHA,False,5.6667,-0.0167,True,True,True,True,True,True,True
+Addis Ababa,Ethiopia,ETH,True,9.0272,38.7369,False,False,False,False,False,False,False
+Dire Dawa,Ethiopia,ETH,False,9.5833,41.8667,True,True,True,True,True,True,True
+Gonder,Ethiopia,ETH,False,12.6,37.4667,True,True,True,True,True,True,True
+Mekele,Ethiopia,ETH,False,13.4833,39.4667,True,True,True,True,True,True,True
+Adelaide,Australia,AUS,False,-34.9289,138.6011,False,False,False,True,True,False,True
+Brisbane,Australia,AUS,False,-27.4678,153.0281,True,True,True,True,True,True,True
+Byron Bay,Australia,AUS,False,-28.6483,153.6178,True,True,True,True,False,True,True
+Canberra,Australia,AUS,False,-35.2931,149.1269,True,True,False,True,True,True,True
+Georgetown,Australia,AUS,False,-18.247,143.036,True,True,True,True,True,True,True
+Gold Coast,Australia,AUS,False,-28.0167,153.4,True,True,True,True,True,True,True
+Hamilton,Australia,AUS,False,-37.7333,142.0167,True,True,False,False,True,True,True
+Kingston,Australia,AUS,False,-42.9769,147.3083,True,True,True,True,True,True,True
+Melbourne,Australia,AUS,True,-37.8136,144.9631,False,False,False,False,False,False,False
+Newcastle,Australia,AUS,False,-32.9167,151.75,True,True,True,True,True,True,True
+Perth,Australia,AUS,False,-31.9522,115.8589,True,True,True,True,True,True,True
+Sale,Australia,AUS,False,-38.1,147.0667,True,True,True,True,True,True,True
+Sydney,Australia,AUS,True,-33.865,151.2094,False,False,False,False,False,False,False
+Waterford,Australia,AUS,False,-27.6833,153.133,True,True,True,True,True,True,True
+Wollongong,Australia,AUS,False,-34.4331,150.8831,True,True,False,False,True,True,True
+Aden,Yemen,YEM,False,12.8,45.0333,True,True,True,True,True,True,True
+Ibb,Yemen,YEM,False,13.9759,44.1709,True,True,True,True,True,True,True
+Sanaa,Yemen,YEM,False,15.35,44.2,True,True,True,True,True,True,True
+Agadez,Niger,NER,False,16.9959,7.9828,True,True,True,True,True,True,True
+Arlit,Niger,NER,False,18.82,7.33,True,True,True,True,True,True,True
+Maradi,Niger,NER,False,13.5,7.1,True,True,True,True,True,True,True
+Niamey,Niger,NER,False,13.5086,2.1111,True,True,True,True,True,True,True
+Tahoua,Niger,NER,False,14.9,5.2599,True,True,True,True,True,True,True
+Zinder,Niger,NER,False,13.8,8.9833,True,True,True,True,True,True,True
+Ainaro,Timor-Leste,TLS,False,-8.9833,125.5,True,True,True,True,True,True,True
+Baucau,Timor-Leste,TLS,False,-8.4667,126.45,True,True,True,True,True,True,True
+Dili,Timor-Leste,TLS,False,-8.5586,125.5736,True,True,True,True,True,True,True
+Gleno,Timor-Leste,TLS,False,-8.7239,125.4361,True,True,True,True,True,True,True
+Maliana,Timor-Leste,TLS,False,-8.9917,125.2197,True,True,True,True,True,True,True
+Manatuto,Timor-Leste,TLS,False,-8.5167,126.0167,True,True,True,True,True,True,True
+Ajax,Canada,CAN,False,43.8583,-79.0364,True,False,True,False,True,True,True
+Aurora,Canada,CAN,False,44.0,-79.4667,True,True,False,False,False,True,True
+Bridgewater,Canada,CAN,False,44.37,-64.52,True,True,True,False,False,True,True
+Calgary,Canada,CAN,False,51.05,-114.0667,True,False,False,True,True,False,True
+Cambridge,Canada,CAN,False,43.3972,-80.3114,True,True,False,True,True,True,True
+Douglas,Canada,CAN,False,49.0056,-122.7452,True,True,True,True,True,True,True
+Edmonton,Canada,CAN,False,53.5344,-113.4903,True,True,False,True,True,True,True
+Guelph,Canada,CAN,False,43.55,-80.25,False,False,False,False,False,False,False
+Hamilton,Canada,CAN,False,43.2567,-79.8692,True,True,False,False,True,True,True
+Laval,Canada,CAN,False,45.5833,-73.75,True,True,True,True,False,True,True
+London,Canada,CAN,True,42.9836,-81.2497,False,False,False,False,False,False,False
+North Vancouver,Canada,CAN,False,49.3641,-123.0066,True,False,False,False,False,True,True
+Ottawa,Canada,CAN,False,45.4247,-75.695,True,True,True,True,True,True,True
+Perth,Canada,CAN,False,44.9,-76.25,True,True,True,True,True,True,True
+Prince George,Canada,CAN,False,53.9169,-122.7494,True,False,True,False,True,True,True
+Saskatoon,Canada,CAN,False,52.1333,-106.6833,True,False,False,False,True,True,True
+St. Catharines,Canada,CAN,False,43.1833,-79.2333,False,False,True,False,True,True,True
+Stanley,Canada,CAN,False,49.1331,-98.0656,True,True,True,True,True,True,True
+Toronto,Canada,CAN,False,43.7417,-79.3733,True,True,True,True,True,True,True
+Vancouver,Canada,CAN,True,49.25,-123.1,False,False,False,False,False,False,False
+Victoria,Canada,CAN,False,48.4283,-123.3647,True,True,True,True,True,True,True
+Windsor,Canada,CAN,False,42.2833,-83.0,True,True,False,False,True,True,True
+Akureyri,Iceland,ISL,False,65.6833,-18.1,True,True,True,True,True,True,True
+Kópavogur,Iceland,ISL,False,64.1167,-21.7667,True,True,False,False,True,True,True
+Al Mafraq,Jordan,JOR,False,32.2833,36.2333,True,True,True,True,True,True,True
+Amman,Jordan,JOR,True,31.95,35.9333,False,False,False,False,False,False,False
+Irbid,Jordan,JOR,False,32.5556,35.85,True,True,True,True,True,True,True
+Alajuela,Costa Rica,CRI,False,10.0278,-84.2041,True,True,True,True,True,True,True
+Buenos Aires,Costa Rica,CRI,False,9.1497,-83.3334,True,True,True,True,True,True,True
+Cartago,Costa Rica,CRI,False,9.8667,-83.9167,True,True,True,True,True,True,True
+Liberia,Costa Rica,CRI,False,10.6338,-85.4333,True,True,True,True,True,True,True
+San Juan,Costa Rica,CRI,False,9.9609,-84.0731,True,True,True,True,True,True,True
+Santa Ana,Costa Rica,CRI,False,9.932,-84.176,True,True,True,True,True,True,True
+Santiago,Costa Rica,CRI,False,9.8291,-84.3044,True,True,False,False,True,True,True
+Aleppo,Syrian Arab Republic,SYR,False,36.2,37.15,True,True,True,True,True,True,True
+Damascus,Syrian Arab Republic,SYR,False,33.5131,36.2919,True,True,True,True,True,True,True
+Dayr az Zawr,Syrian Arab Republic,SYR,False,35.3333,40.15,True,True,True,True,True,True,True
+Homs,Syrian Arab Republic,SYR,False,34.7333,36.7167,True,True,True,True,True,True,True
+Latakia,Syrian Arab Republic,SYR,False,35.5236,35.7917,True,True,True,True,True,True,True
+Alexandria,Egypt,EGY,False,31.2,29.9167,True,True,True,True,True,True,True
+Cairo,Egypt,EGY,False,30.0561,31.2394,True,True,True,True,True,True,True
+Giza,Egypt,EGY,False,29.987,31.2118,True,True,True,True,True,True,True
+Alexandria,Romania,ROU,False,43.9686,25.3333,True,True,True,True,True,True,True
+Bucharest,Romania,ROU,False,44.4,26.0833,True,True,True,True,True,True,True
+Cluj-Napoca,Romania,ROU,False,46.78,23.5594,True,True,True,True,True,True,True
+Ungheni,Romania,ROU,False,46.4858,24.4608,True,True,True,True,True,True,True
+Victoria,Romania,ROU,False,45.6466,24.7059,True,True,True,True,True,True,True
+Iasi,Romania,ROU,False,47.1,27.35,True,True,False,True,True,True,True
+Alexandria,United Kingdom,GBR,False,55.98,-4.58,True,True,True,True,True,True,True
+Birmingham,United Kingdom,GBR,False,52.48,-1.9025,True,True,True,True,True,True,True
+Birstall,United Kingdom,GBR,False,52.6736,-1.12,True,True,True,True,True,True,True
+Cambridge,United Kingdom,GBR,False,52.2053,0.1192,True,True,False,True,True,True,True
+Christchurch,United Kingdom,GBR,False,50.73,-1.78,True,True,True,True,True,True,True
+Edmonton,United Kingdom,GBR,False,51.6154,-0.0708,True,True,False,True,True,True,True
+Hamilton,United Kingdom,GBR,False,55.777,-4.039,True,True,False,False,True,True,True
+Leeds,United Kingdom,GBR,False,53.7997,-1.5492,True,True,True,True,True,True,True
+Leicester,United Kingdom,GBR,False,52.6333,-1.1333,True,False,False,True,True,True,True
+London,United Kingdom,GBR,True,51.5072,-0.1275,False,False,False,False,False,False,False
+Manchester,United Kingdom,GBR,False,53.4794,-2.2453,True,True,True,True,True,True,True
+Newcastle,United Kingdom,GBR,False,55.0077,-1.6578,True,True,True,True,True,True,True
+Perth,United Kingdom,GBR,False,56.397,-3.437,True,True,True,True,True,True,True
+Ramsey,United Kingdom,GBR,False,52.45,-0.12,True,True,True,True,False,True,True
+Rochester,United Kingdom,GBR,False,51.375,0.5,True,True,False,False,True,True,True
+Sale,United Kingdom,GBR,False,53.424,-2.322,True,True,True,True,True,True,True
+Stanley,United Kingdom,GBR,False,53.7145,-1.476,True,True,True,True,True,True,True
+Wellington,United Kingdom,GBR,False,52.7001,-2.5157,True,False,False,True,True,True,True
+Windsor,United Kingdom,GBR,False,51.4791,-0.6095,True,True,False,False,True,True,True
+Algiers,Algeria,DZA,False,36.7764,3.0586,True,True,True,True,True,True,True
+Batna,Algeria,DZA,False,35.55,6.1667,True,True,True,True,True,True,True
+Blida,Algeria,DZA,False,36.4722,2.8333,True,True,True,True,True,True,True
+Constantine,Algeria,DZA,False,36.365,6.6147,True,True,True,True,True,True,True
+Oran,Algeria,DZA,False,35.6969,-0.6331,True,True,True,True,True,True,True
+Ali Sabieh,Djibouti,DJI,False,11.1558,42.7125,True,True,True,True,True,True,True
+Dikhil,Djibouti,DJI,False,11.1086,42.3667,True,True,True,True,True,True,True
+Djibouti,Djibouti,DJI,False,11.595,43.1481,True,True,True,True,True,True,True
+Obock,Djibouti,DJI,False,11.9667,43.2833,True,True,True,True,True,True,True
+Tadjourah,Djibouti,DJI,False,11.7833,42.8833,True,True,True,True,True,True,True
+Almaty,Kazakhstan,KAZ,False,43.25,76.9,True,True,True,True,True,True,True
+Nur-Sultan,Kazakhstan,KAZ,False,51.1333,71.4333,True,True,True,True,True,True,True
+Qaraghandy,Kazakhstan,KAZ,False,49.8,73.1167,True,True,True,True,True,True,True
+Shymkent,Kazakhstan,KAZ,False,42.3,69.6,True,True,True,True,True,True,True
+Taraz,Kazakhstan,KAZ,False,42.8833,71.3667,True,True,True,True,True,True,True
+Alytus,Lithuania,LTU,False,54.4014,24.0492,True,True,True,True,True,True,True
+Kaunas,Lithuania,LTU,False,54.9,23.9333,True,True,True,True,True,True,True
+Vilnius,Lithuania,LTU,False,54.6833,25.2833,True,True,True,True,True,True,True
+Amadora,Portugal,PRT,False,38.75,-9.2333,True,True,True,True,True,True,True
+Braga,Portugal,PRT,False,41.5333,-8.4167,True,True,True,True,True,True,True
+Castelo Branco,Portugal,PRT,False,39.823,-7.4931,True,False,False,False,True,True,True
+Estoril,Portugal,PRT,False,38.7057,-9.3977,True,True,False,False,True,True,True
+Estremoz,Portugal,PRT,False,38.8422,-7.5881,True,True,False,False,True,True,True
+Guimarães,Portugal,PRT,False,41.445,-8.2908,True,True,False,False,True,True,True
+Lagos,Portugal,PRT,True,37.1,-8.6667,False,False,False,False,False,False,False
+Lisbon,Portugal,PRT,False,38.7452,-9.1604,True,True,True,True,True,True,True
+Matosinhos,Portugal,PRT,False,41.2077,-8.6674,True,True,True,True,True,True,True
+Mirandela,Portugal,PRT,False,41.4833,-7.1833,True,True,False,False,True,True,True
+Porto,Portugal,PRT,False,41.1495,-8.6108,True,True,True,True,True,True,True
+Santa Cruz,Portugal,PRT,False,32.675,-16.8309,True,True,False,True,True,True,True
+Santarém,Portugal,PRT,False,39.2369,-8.685,True,True,False,True,True,True,True
+São João da Madeira,Portugal,PRT,False,40.9,-8.5,True,True,False,False,True,True,True
+Torres Vedras,Portugal,PRT,False,39.0833,-9.2667,True,False,False,False,True,True,True
+Vila Nova de Gaia,Portugal,PRT,False,41.1333,-8.6167,True,True,True,True,True,True,True
+Amsterdam,Netherlands,NLD,False,52.35,4.9166,True,True,True,True,True,True,True
+Eindhoven,Netherlands,NLD,False,51.43,5.5,True,True,True,True,True,True,True
+Haarlem,Netherlands,NLD,False,52.3804,4.63,True,True,True,True,True,True,True
+Rotterdam,Netherlands,NLD,False,51.92,4.48,True,True,True,True,True,True,True
+The Hague,Netherlands,NLD,False,52.08,4.27,True,True,False,False,True,True,True
+Utrecht,Netherlands,NLD,False,52.1003,5.12,True,True,True,True,True,True,True
+Nijmegen,Netherlands,NLD,False,51.8449,5.84282,True,True,True,False,True,True,True
+An Najaf,Iraq,IRQ,False,32.029,44.3396,True,True,True,True,True,True,True
+Baghdad,Iraq,IRQ,False,33.35,44.4167,True,True,True,True,True,True,True
+Erbil,Iraq,IRQ,False,36.1911,44.0094,True,True,True,True,True,True,True
+Kirkuk,Iraq,IRQ,False,35.4667,44.4,True,True,True,True,True,True,True
+Mosul,Iraq,IRQ,False,36.3667,43.1167,True,True,True,True,True,True,True
+Andijon,Uzbekistan,UZB,False,40.7,72.35,True,True,True,True,True,True,True
+Namangan,Uzbekistan,UZB,False,40.9953,71.6725,True,True,True,True,True,True,True
+Samarkand,Uzbekistan,UZB,False,39.6542,66.9597,True,True,True,True,True,True,True
+Tashkent,Uzbekistan,UZB,False,41.3,69.2667,True,True,True,True,True,True,True
+Andorra la Vella,Andorra,AND,False,42.5,1.5,True,True,True,True,True,True,True
+Ankara,Turkey,TUR,False,39.93,32.85,True,True,True,True,True,True,True
+Antalya,Turkey,TUR,False,36.9081,30.6956,True,True,True,True,True,True,True
+Bor,Turkey,TUR,False,37.8833,34.5667,True,True,True,True,True,True,True
+Bursa,Turkey,TUR,False,40.1833,29.0667,True,True,True,True,True,True,True
+Istanbul,Turkey,TUR,False,41.01,28.9603,True,True,True,True,True,True,True
+Konya,Turkey,TUR,False,37.8714,32.4847,True,True,True,True,True,True,True
+Urla,Turkey,TUR,False,38.3222,26.7647,True,True,True,False,True,True,True
+Tuzla,Turkey,TUR,False,44.5375,18.6735,True,True,False,True,True,True,True
+Anna Regina,Guyana,GUY,False,7.25,-58.5167,True,True,True,True,True,True,True
+Bartica,Guyana,GUY,False,6.4,-58.6167,True,True,True,True,True,True,True
+Georgetown,Guyana,GUY,False,6.7833,-58.1667,True,True,True,True,True,True,True
+Linden,Guyana,GUY,False,6.0,-58.3,True,True,True,True,True,True,True
+New Amsterdam,Guyana,GUY,False,6.25,-57.5167,True,True,True,True,True,True,True
+Princetown,Guyana,GUY,False,5.9,-57.17,True,True,True,True,True,True,True
+Antananarivo,Madagascar,MDG,False,-18.9386,47.5214,True,True,True,True,True,True,True
+Antsirabe,Madagascar,MDG,False,-19.8667,47.0333,True,True,True,True,True,True,True
+Fianarantsoa,Madagascar,MDG,False,-21.4333,47.0833,True,True,True,True,True,True,True
+Mahajanga,Madagascar,MDG,False,-15.67,46.345,True,True,True,True,True,True,True
+Toamasina,Madagascar,MDG,False,-18.1492,49.4023,True,True,True,True,True,True,True
+Toliara,Madagascar,MDG,False,-23.35,43.6667,True,True,True,True,True,True,True
+Antofagasta,Chile,CHL,False,-23.6464,-70.398,True,True,True,True,True,True,True
+Casablanca,Chile,CHL,False,-33.3167,-71.4167,True,True,False,True,True,True,True
+Chicureo Abajo,Chile,CHL,False,-33.2808,-70.6366,True,True,False,True,True,True,True
+San Antonio,Chile,CHL,False,-33.5809,-71.6132,True,True,False,True,True,True,True
+San Bernardo,Chile,CHL,False,-33.6,-70.7,True,True,True,True,True,True,True
+San Fernando,Chile,CHL,False,-34.5839,-70.9891,True,True,True,True,True,True,True
+Santiago,Chile,CHL,False,-33.45,-70.6667,True,True,False,False,True,True,True
+Temuco,Chile,CHL,False,-38.7399,-72.5901,True,True,True,True,True,True,True
+Victoria,Chile,CHL,False,-38.2395,-72.34,True,True,True,True,True,True,True
+Independencia,Chile,CHL,False,-32.8421,-68.8154,True,True,False,True,True,True,True
+Antwerp,Belgium,BEL,False,51.2211,4.3997,True,True,True,True,True,True,True
+Brussels,Belgium,BEL,False,50.8467,4.3517,True,True,True,True,True,True,True
+Charleroi,Belgium,BEL,False,50.4167,4.4442,True,True,True,True,True,True,True
+Gent,Belgium,BEL,False,51.0536,3.7253,True,True,True,True,True,True,True
+Schaarbeek,Belgium,BEL,False,50.8675,4.3736,True,True,True,True,True,True,True
+Anuradhapura,Sri Lanka,LKA,False,8.335,80.4108,True,True,True,True,True,True,True
+Batticaloa,Sri Lanka,LKA,False,7.717,81.7,True,True,True,True,True,True,True
+Colombo,Sri Lanka,LKA,False,6.9167,79.8333,True,True,True,True,True,True,True
+Moratuwa,Sri Lanka,LKA,False,6.7804,79.88,True,True,True,True,True,True,True
+Negombo,Sri Lanka,LKA,False,7.2111,79.8386,True,True,True,True,True,True,True
+Sri Jayewardenepura Kotte,Sri Lanka,LKA,False,6.9,79.9164,True,True,True,True,True,True,True
+Apia,Samoa,WSM,False,-13.8333,-171.8333,True,True,True,True,True,True,True
+Aracaju,Brazil,BRA,False,-10.9111,-37.0717,False,True,False,False,True,True,True
+Belo Horizonte,Brazil,BRA,False,-19.8917,-43.9478,True,True,False,True,True,True,True
+Bertioga,Brazil,BRA,False,-23.8539,-46.1389,True,True,True,False,True,False,True
+Botucatu,Brazil,BRA,False,-22.8858,-48.445,True,True,False,True,True,True,True
+Brotas,Brazil,BRA,False,-22.2839,-48.1269,True,True,False,True,False,True,True
+Campina Grande,Brazil,BRA,False,-7.2306,-35.8811,True,True,False,True,True,True,True
+Campinas,Brazil,BRA,False,-22.9009,-47.0573,False,False,False,False,True,True,True
+Cruzeiro do Sul,Brazil,BRA,False,-7.63,-72.67,True,False,False,True,True,True,True
+Curitiba,Brazil,BRA,True,-25.4297,-49.2719,False,False,False,False,False,False,False
+Fortaleza,Brazil,BRA,False,-3.7275,-38.5275,True,True,False,True,True,True,True
+Franco da Rocha,Brazil,BRA,False,-23.3286,-46.7244,False,False,False,True,True,True,True
+Goiânia,Brazil,BRA,False,-16.6789,-49.2539,True,True,False,True,True,True,True
+Guarujá,Brazil,BRA,False,-23.9936,-46.2564,True,False,False,False,True,False,True
+Limeira,Brazil,BRA,False,-22.5647,-47.4017,True,True,False,True,True,True,True
+Londrina,Brazil,BRA,False,-23.3,-51.18,False,True,True,False,True,True,True
+Maceió,Brazil,BRA,False,-9.6658,-35.735,True,False,True,False,True,True,True
+Natal,Brazil,BRA,False,-5.7793,-35.2009,True,True,False,False,True,True,True
+Niterói,Brazil,BRA,False,-22.8833,-43.1036,True,False,False,True,True,True,True
+Novo Hamburgo,Brazil,BRA,False,-29.7096,-51.14,False,False,False,True,False,True,True
+Olímpia,Brazil,BRA,False,-20.7369,-48.915,True,True,False,True,True,True,True
+Recife,Brazil,BRA,False,-8.0539,-34.8808,True,True,True,False,True,True,True
+Rio Verde,Brazil,BRA,False,-17.8196,-50.93,True,True,True,False,True,True,True
+Rio de Janeiro,Brazil,BRA,True,-22.9083,-43.1964,False,False,False,False,False,False,False
+Salto,Brazil,BRA,False,-23.2008,-47.2869,True,True,True,True,True,True,True
+Salvador,Brazil,BRA,False,-12.9708,-38.5108,True,True,True,True,True,True,True
+Santa Cruz,Brazil,BRA,False,-6.22,-36.03,True,True,False,True,True,True,True
+Santana de Parnaíba,Brazil,BRA,False,-23.4439,-46.9178,True,False,False,True,False,True,True
+Santarém,Brazil,BRA,False,-2.4431,-54.7083,True,True,False,True,True,True,True
+Sorocaba,Brazil,BRA,False,-23.5019,-47.4578,True,False,False,False,False,True,True
+São Bento do Sapucaí,Brazil,BRA,False,-22.6889,-45.7308,True,False,False,False,False,True,True
+São Vicente,Brazil,BRA,False,-23.9633,-46.3922,True,True,True,True,False,True,True
+Taboão da Serra,Brazil,BRA,True,-23.6019,-46.7528,False,False,False,False,False,False,False
+Tatuí,Brazil,BRA,False,-23.3556,-47.8569,True,True,False,False,True,True,True
+Trindade,Brazil,BRA,False,-16.65,-49.5,True,True,True,True,True,True,True
+Vinhedo,Brazil,BRA,False,-23.03,-46.975,True,True,False,True,True,True,True
+Vitória,Brazil,BRA,False,-20.324,-40.366,False,True,False,False,True,True,True
+Angra dos Reis,Brazil,BRA,False,-22.9983,-44.2442,True,False,False,True,False,True,True
+Bayeux,Brazil,BRA,False,-7.12505,-34.9268,True,True,False,True,True,True,True
+Brumadinho,Brazil,BRA,False,-20.1427,-44.1982,True,True,False,False,False,True,True
+Lorena,Brazil,BRA,False,-22.7339,-45.1201,True,False,False,False,True,True,False
+PirenÃ³polis,Brazil,BRA,False,-15.8545,-48.9595,True,True,False,False,True,True,True
+TangarÃ¡ da Serra,Brazil,BRA,False,-14.6194,-57.4858,True,True,False,True,True,True,True
+Arawa,Papua New Guinea,PNG,False,-6.228,155.566,True,True,True,True,True,True,True
+Lae,Papua New Guinea,PNG,False,-6.7333,146.9833,True,True,True,True,True,True,True
+Madang,Papua New Guinea,PNG,False,-5.2248,145.7853,True,True,True,True,True,True,True
+Mount Hagen,Papua New Guinea,PNG,False,-5.8667,144.2167,True,True,True,True,True,True,True
+Popondetta,Papua New Guinea,PNG,False,-8.7656,148.2347,True,True,True,True,True,True,True
+Port Moresby,Papua New Guinea,PNG,False,-9.4789,147.1494,True,True,True,True,True,True,True
+Arequipa,Peru,PER,False,-16.3988,-71.5369,True,True,False,True,True,True,True
+Callao,Peru,PER,False,-12.0611,-77.1333,True,True,True,True,True,True,True
+Chiclayo,Peru,PER,False,-6.763,-79.8366,True,True,True,True,True,True,True
+Chimbote,Peru,PER,False,-9.0745,-78.5936,True,True,True,True,True,True,True
+Lima,Peru,PER,False,-12.05,-77.0333,False,False,False,True,True,True,True
+Santiago,Peru,PER,False,-14.1896,-75.74,True,True,False,False,True,True,True
+Trujillo,Peru,PER,False,-8.1119,-79.0289,True,True,True,True,True,True,True
+Comas,Peru,PER,False,-11.95,-77.0667,True,True,False,True,True,True,True
+Santiago de Surco,Peru,PER,False,-12.1453,-77.0051,True,True,False,True,True,True,True
+Arua,Uganda,UGA,False,3.03,30.91,True,True,True,True,True,True,True
+Gulu,Uganda,UGA,False,2.7667,32.3056,True,True,True,True,True,True,True
+Kampala,Uganda,UGA,False,0.3136,32.5811,True,True,True,True,True,True,True
+Lira,Uganda,UGA,False,2.2604,32.89,True,True,True,True,True,True,True
+Mbale,Uganda,UGA,False,1.0806,34.175,True,True,True,True,True,True,True
+Tororo,Uganda,UGA,False,0.6928,34.1808,True,True,True,True,True,True,True
+Arusha,United Republic of Tanzania,TZA,False,-3.3667,36.6833,True,True,True,True,True,True,True
+Dar es Salaam,United Republic of Tanzania,TZA,True,-6.8,39.2833,False,False,False,False,False,False,False
+Dodoma,United Republic of Tanzania,TZA,False,-6.25,35.75,True,True,True,True,True,True,True
+Mbeya,United Republic of Tanzania,TZA,False,-8.9,33.45,True,True,True,True,True,True,True
+Mwanza,United Republic of Tanzania,TZA,False,-2.5167,32.9,True,True,True,True,True,True,True
+Tanga,United Republic of Tanzania,TZA,False,-5.0667,39.1,True,True,True,True,True,True,True
+Ashdod,Israel,ISR,False,31.7978,34.6503,True,True,True,True,True,True,True
+Haifa,Israel,ISR,False,32.8,34.9833,True,True,True,True,True,True,True
+Jerusalem,Israel,ISR,False,31.7833,35.2167,True,True,True,True,True,True,True
+Tel Aviv-Yafo,Israel,ISR,False,32.0833,34.8,True,True,True,True,True,True,True
+Ashgabat,Turkmenistan,TKM,False,37.95,58.3833,True,True,True,True,True,True,True
+Balkanabat,Turkmenistan,TKM,False,39.5119,54.365,True,True,True,True,True,True,True
+Mary,Turkmenistan,TKM,False,37.6,61.8333,True,True,True,True,True,True,True
+Serdar,Turkmenistan,TKM,False,38.9764,56.2758,True,True,True,True,True,True,True
+Asmara,Eritrea,ERI,False,15.3333,38.9167,True,True,True,True,True,True,True
+Assab,Eritrea,ERI,False,13.0078,42.7411,True,True,True,True,True,True,True
+Keren,Eritrea,ERI,False,15.6804,38.45,True,True,True,True,True,True,True
+Massawa,Eritrea,ERI,False,15.6,39.4333,True,True,True,True,True,True,True
+Mendefera,Eritrea,ERI,False,14.8833,38.8167,True,True,True,True,True,True,True
+Assomada,Cabo Verde,CPV,False,15.0949,-23.6654,True,True,True,True,True,True,True
+Mindelo,Cabo Verde,CPV,False,16.8914,-24.988,True,True,True,True,True,True,True
+Pedra Badejo,Cabo Verde,CPV,False,15.1375,-23.5333,True,True,True,True,True,True,True
+Praia,Cabo Verde,CPV,False,14.9177,-23.5092,True,True,True,True,True,True,True
+Sal Rei,Cabo Verde,CPV,False,16.176,-22.9171,True,True,True,True,True,True,True
+Asunción,Paraguay,PRY,False,-25.3,-57.6333,True,False,False,False,True,True,True
+Ciudad del Este,Paraguay,PRY,False,-25.5167,-54.6167,True,True,True,True,True,True,True
+Coronel Oviedo,Paraguay,PRY,False,-25.45,-56.44,True,True,True,True,True,True,True
+Pedro Juan Caballero,Paraguay,PRY,False,-22.5667,-55.7167,True,True,True,True,True,True,True
+San Lorenzo,Paraguay,PRY,False,-25.3431,-57.5094,True,True,True,True,True,True,True
+Athens,Greece,GRC,False,37.9794,23.7161,True,True,True,True,True,True,True
+Piraeus,Greece,GRC,False,37.95,23.7,True,True,True,True,True,True,True
+Auckland,New Zealand,NZL,True,-36.85,174.7833,False,False,False,False,False,False,False
+Cambridge,New Zealand,NZL,False,-37.8833,175.4667,True,True,False,True,True,True,True
+Christchurch,New Zealand,NZL,False,-43.5309,172.6365,True,True,True,True,True,True,True
+Hamilton,New Zealand,NZL,False,-37.7833,175.2833,True,True,False,False,True,True,True
+Lower Hutt,New Zealand,NZL,False,-41.2167,174.9167,True,True,True,False,True,True,True
+Manukau City,New Zealand,NZL,False,-36.9833,174.8833,True,True,True,True,True,True,True
+Northcote,New Zealand,NZL,False,-36.7913,174.7758,True,True,True,True,True,True,True
+Waitakere,New Zealand,NZL,False,-36.849,174.543,True,True,True,True,True,True,True
+Wellington,New Zealand,NZL,False,-41.2889,174.7772,True,False,False,True,True,True,True
+New Plymouth District,New Zealand,NZL,False,-39.1011,174.354,True,False,True,True,False,True,True
+Autlán de Navarro,Mexico,MEX,False,19.7667,-104.3667,True,False,False,False,False,True,True
+Chapala,Mexico,MEX,False,20.2933,-103.1897,True,False,False,False,True,True,True
+Chihuahua,Mexico,MEX,False,28.6353,-106.0889,True,True,False,True,True,True,True
+Córdoba,Mexico,MEX,False,18.8942,-96.9347,True,True,False,True,True,True,True
+Ecatepec,Mexico,MEX,False,19.6097,-99.06,True,True,True,True,True,True,True
+Escuintla,Mexico,MEX,False,15.3194,-92.6583,True,True,True,True,True,True,True
+Guadalajara,Mexico,MEX,True,20.6767,-103.3475,False,False,False,False,False,False,False
+Juárez,Mexico,MEX,False,31.7386,-106.487,True,True,False,True,True,True,True
+La Barca,Mexico,MEX,False,20.2903,-102.5456,True,False,False,True,False,True,True
+La Paz,Mexico,MEX,False,24.1422,-110.3108,True,True,True,True,True,True,True
+Mexico City,Mexico,MEX,True,19.4333,-99.1333,False,False,False,False,False,False,False
+Monterrey,Mexico,MEX,False,25.6667,-100.3,True,True,True,True,True,True,True
+Mérida,Mexico,MEX,False,20.97,-89.62,True,True,True,False,True,True,True
+Naucalpan de Juárez,Mexico,MEX,False,19.4753,-99.2378,True,True,False,True,True,True,True
+Puebla,Mexico,MEX,False,19.0333,-98.1833,True,True,True,True,True,True,True
+San Fernando,Mexico,MEX,False,24.8504,-98.16,True,True,True,True,True,True,True
+San Francisco,Mexico,MEX,True,20.5333,-102.5,False,False,False,False,False,False,False
+San Pedro,Mexico,MEX,False,25.7589,-102.9844,True,True,True,True,True,True,True
+San Salvador,Mexico,MEX,False,20.2833,-99.0153,True,True,True,True,True,True,True
+Santa Ana,Mexico,MEX,False,30.5406,-111.1205,True,True,True,True,True,True,True
+Santiago,Mexico,MEX,False,25.4333,-100.1333,True,True,False,False,True,True,True
+Tijuana,Mexico,MEX,False,32.525,-117.0333,True,True,True,True,True,True,True
+Torreón,Mexico,MEX,False,25.5394,-103.4486,True,True,False,False,False,True,True
+Victoria,Mexico,MEX,False,21.2122,-100.2144,True,True,True,True,True,True,True
+Villanueva,Mexico,MEX,False,22.3536,-102.8831,True,True,True,True,True,True,True
+Xalapa,Mexico,MEX,False,19.54,-96.9275,False,False,False,True,False,True,True
+Cihuatlán,Mexico,MEX,False,19.34,-104.38,True,False,False,False,False,False,True
+Ba,Fiji,FJI,False,-17.5333,177.6833,True,True,True,True,True,True,True
+Labasa,Fiji,FJI,False,-16.4333,179.3667,True,True,True,True,True,True,True
+Lautoka,Fiji,FJI,False,-17.6242,177.4528,True,True,True,True,True,True,True
+Nadi,Fiji,FJI,False,-17.8,177.4167,True,True,True,True,True,True,True
+Nausori,Fiji,FJI,False,-18.0244,178.5454,True,True,True,True,True,True,True
+Suva,Fiji,FJI,False,-18.1333,178.4333,True,True,True,True,True,True,True
+Bafoussam,Cameroon,CMR,False,5.4667,10.4167,True,True,True,True,True,True,True
+Bamenda,Cameroon,CMR,False,5.9333,10.1667,True,True,True,True,True,True,True
+Douala,Cameroon,CMR,False,4.05,9.7,True,True,True,True,True,True,True
+Garoua,Cameroon,CMR,False,9.3,13.4,True,True,True,True,True,True,True
+Maroua,Cameroon,CMR,False,10.5823,14.3275,True,True,True,True,True,True,True
+Yaoundé,Cameroon,CMR,False,3.8578,11.5181,True,False,False,True,True,True,True
+Bago,Myanmar,MMR,False,17.3433,96.4981,True,True,True,True,True,True,True
+Hpa-An,Myanmar,MMR,False,16.8906,97.6333,True,True,True,True,True,True,True
+Mandalay,Myanmar,MMR,False,21.9769,96.0869,True,True,True,True,True,True,True
+Myeik,Myanmar,MMR,False,12.4394,98.6003,True,True,True,True,True,True,True
+Nay Pyi Taw,Myanmar,MMR,False,19.8028,96.1583,True,True,True,True,True,True,True
+Rangoon,Myanmar,MMR,False,16.8,96.15,True,True,True,True,True,True,True
+Bago,Philippines,PHL,False,10.5388,122.8384,True,True,True,True,True,True,True
+Caloocan City,Philippines,PHL,False,14.65,120.9667,True,True,True,True,True,True,True
+Cebu City,Philippines,PHL,False,10.3,123.9,True,True,True,True,True,True,True
+Davao,Philippines,PHL,False,7.0667,125.6,True,True,True,True,True,True,True
+Manila,Philippines,PHL,False,14.5958,120.9772,True,True,True,True,True,True,True
+Quezon City,Philippines,PHL,False,14.6333,121.0333,True,True,True,True,True,True,True
+San Fernando,Philippines,PHL,False,15.0333,120.6833,True,True,True,True,True,True,True
+San Jose,Philippines,PHL,False,15.7833,121.0,True,True,False,True,True,True,True
+San Juan,Philippines,PHL,False,14.6,121.0333,True,True,True,True,True,True,True
+San Pedro,Philippines,PHL,False,14.3583,121.0583,True,True,True,True,True,True,True
+Santiago,Philippines,PHL,False,16.6833,121.55,True,True,False,False,True,True,True
+Toledo,Philippines,PHL,False,10.3833,123.65,True,True,True,False,True,True,True
+Valencia,Philippines,PHL,False,7.9,125.0833,True,True,True,True,True,True,True
+Zamboanga City,Philippines,PHL,False,6.9167,122.0833,True,True,True,True,True,True,True
+Baidoa,Somalia,SOM,False,3.1167,43.65,True,True,True,True,True,True,True
+Beledweyne,Somalia,SOM,False,4.736,45.204,True,True,True,True,True,True,True
+Jamaame,Somalia,SOM,False,0.0722,42.7506,True,True,True,True,True,True,True
+Jawhar,Somalia,SOM,False,2.767,45.5166,True,True,True,True,True,True,True
+Kismaayo,Somalia,SOM,False,-0.3603,42.5489,True,True,True,True,True,True,True
+Mogadishu,Somalia,SOM,False,2.0408,45.3425,True,True,True,True,True,True,True
+Baku,Azerbaijan,AZE,False,40.3667,49.8352,True,True,True,True,True,True,True
+Balboa,Panama,PAN,False,8.9571,-79.5593,True,True,True,True,True,True,True
+David,Panama,PAN,False,8.4333,-82.4333,True,True,True,True,True,True,True
+La Chorrera,Panama,PAN,False,8.8792,-79.7822,True,True,True,True,True,True,True
+Pacora,Panama,PAN,False,9.08,-79.28,True,True,True,True,True,True,True
+Panama City,Panama,PAN,False,9.0,-79.5,True,True,True,True,True,True,True
+Santiago,Panama,PAN,False,8.1004,-80.9833,True,True,False,False,True,True,True
+Bamako,Mali,MLI,False,12.6458,-7.9922,True,True,True,True,True,True,True
+Gao,Mali,MLI,False,16.2666,-0.05,True,True,True,True,True,True,True
+Kayes,Mali,MLI,False,14.45,-11.4167,True,True,True,True,True,True,True
+Koutiala,Mali,MLI,False,12.3904,-5.47,True,True,True,True,True,True,True
+Mopti,Mali,MLI,False,14.49,-4.18,True,True,True,True,True,True,True
+Sikasso,Mali,MLI,False,11.3167,-5.6667,True,True,True,True,True,True,True
+Bambari,Central African Republic,CAF,False,5.7667,20.6833,True,True,True,True,True,True,True
+Bangui,Central African Republic,CAF,False,4.3732,18.5628,True,True,True,True,True,True,True
+Bimbo,Central African Republic,CAF,False,4.3313,18.5163,True,True,True,True,True,True,True
+Bouar,Central African Republic,CAF,False,5.95,15.6,True,True,True,True,True,True,True
+Carnot,Central African Republic,CAF,False,4.9333,15.8667,True,True,True,True,True,True,True
+Bandar Seri Begawan,Brunei Darussalam,BRN,False,4.9167,114.9167,True,True,True,True,True,True,True
+Kuala Belait,Brunei Darussalam,BRN,False,4.5833,114.1833,True,True,True,True,True,True,True
+Seria,Brunei Darussalam,BRN,False,4.6142,114.3303,True,True,True,True,True,True,True
+Bandung,Indonesia,IDN,False,-6.95,107.5667,True,True,True,True,True,True,True
+Bekasi,Indonesia,IDN,False,-6.2333,107.0,True,True,True,True,True,True,True
+Jakarta,Indonesia,IDN,True,-6.2146,106.8451,False,False,False,False,False,False,False
+Medan,Indonesia,IDN,False,3.6667,98.6667,True,True,True,True,True,True,True
+Surabaya,Indonesia,IDN,False,-7.2458,112.7378,True,True,True,True,True,True,True
+Tangerang,Indonesia,IDN,False,-6.1783,106.6319,True,True,True,True,True,True,True
+Banfora,Burkina Faso,BFA,False,10.6308,-4.7589,True,True,True,True,True,True,True
+Bobo-Dioulasso,Burkina Faso,BFA,False,11.1833,-4.2833,True,True,True,True,True,True,True
+Kaya,Burkina Faso,BFA,False,13.0904,-1.09,True,True,True,True,True,True,True
+Koudougou,Burkina Faso,BFA,False,12.25,-2.3667,True,True,True,True,True,True,True
+Ouagadougou,Burkina Faso,BFA,False,12.3572,-1.5353,True,True,True,True,True,True,True
+Ouahigouya,Burkina Faso,BFA,False,13.5833,-2.4167,True,True,True,True,True,True,True
+Bangalore,India,IND,False,12.9699,77.598,True,True,True,True,True,True,True
+Bharatpur,India,IND,False,27.2172,77.49,True,True,True,True,True,True,True
+Chennai,India,IND,False,13.0825,80.275,True,True,True,True,True,True,True
+Delhi,India,IND,False,28.66,77.23,True,True,True,True,True,True,True
+Kolkāta,India,IND,True,22.5411,88.3378,False,False,False,False,False,False,False
+Mumbai,India,IND,False,18.9667,72.8333,True,True,True,True,True,True,True
+Bangkok,Thailand,THA,True,13.75,100.5167,False,False,False,False,False,False,False
+Chiang Mai,Thailand,THA,False,18.7889,98.9833,True,True,True,True,True,True,True
+Hat Yai,Thailand,THA,False,7.0167,100.4667,True,True,True,True,True,True,True
+Nakhon Ratchasima,Thailand,THA,False,14.9736,102.0831,True,True,True,True,True,True,True
+Nonthaburi,Thailand,THA,False,13.8667,100.5167,True,True,True,True,True,True,True
+Pak Kret,Thailand,THA,False,13.9125,100.4978,True,True,True,True,True,True,True
+Banja Luka,Bosnia and Herzegovina,BIH,False,44.7667,17.1833,True,True,True,True,True,True,True
+Bijeljina,Bosnia and Herzegovina,BIH,False,44.75,19.2167,True,True,True,True,True,True,True
+Mostar,Bosnia and Herzegovina,BIH,False,43.3494,17.8125,True,True,True,True,True,True,True
+Prijedor,Bosnia and Herzegovina,BIH,False,44.9667,16.7,True,True,True,True,True,True,True
+Sarajevo,Bosnia and Herzegovina,BIH,False,43.8667,18.4167,True,True,True,True,True,True,True
+Tuzla,Bosnia and Herzegovina,BIH,False,44.5381,18.6761,True,True,True,True,True,True,True
+Banjul,Gambia,GMB,False,13.4531,-16.5775,True,True,True,True,True,True,True
+Bansang,Gambia,GMB,False,13.4336,-14.65,True,True,True,True,True,True,True
+Basse Santa Su,Gambia,GMB,False,13.31,-14.223,True,True,True,True,True,True,True
+Brikama,Gambia,GMB,False,13.2804,-16.6599,True,True,True,True,True,True,True
+Farafenni,Gambia,GMB,False,13.5667,-15.6,True,True,True,True,True,True,True
+Mansa Konko,Gambia,GMB,False,13.3773,-15.6786,True,True,True,True,True,True,True
+Barcelona,Spain,ESP,True,41.3825,2.1769,False,False,False,False,False,False,False
+Cartagena,Spain,ESP,False,37.6,-0.9819,True,True,False,False,True,True,True
+Córdoba,Spain,ESP,False,37.8833,-4.7667,True,True,False,True,True,True,True
+Guadalajara,Spain,ESP,True,40.6335,-3.1669,False,False,False,False,False,False,False
+Madrid,Spain,ESP,False,40.4189,-3.6919,True,True,True,True,True,True,True
+Murcia,Spain,ESP,False,37.9866,-1.1415,True,True,False,False,True,True,True
+Mérida,Spain,ESP,False,38.9158,-6.3333,True,True,True,False,True,True,True
+Santa Cruz,Spain,ESP,False,28.4667,-16.25,True,True,False,True,True,True,True
+Sevilla,Spain,ESP,False,37.3828,-5.9731,True,True,True,True,True,True,True
+Toledo,Spain,ESP,False,39.867,-4.0167,True,True,True,False,True,True,True
+Valencia,Spain,ESP,False,39.4667,-0.375,True,True,True,True,True,True,True
+Zaragoza,Spain,ESP,False,41.6483,-0.883,True,True,True,True,True,True,True
+Barcelona,Venezuela (Bolivarian Republic of),VEN,True,10.1333,-64.6833,False,False,False,False,False,False,False
+Barinas,Venezuela (Bolivarian Republic of),VEN,False,8.6333,-70.2167,True,True,True,True,True,True,True
+Barquisimeto,Venezuela (Bolivarian Republic of),VEN,False,10.0678,-69.3467,True,True,True,True,True,True,True
+Caracas,Venezuela (Bolivarian Republic of),VEN,False,10.5,-66.9333,True,True,True,True,True,True,True
+Ciudad Guayana,Venezuela (Bolivarian Republic of),VEN,False,8.3596,-62.6517,True,True,True,True,True,True,True
+Maracaibo,Venezuela (Bolivarian Republic of),VEN,False,10.6333,-71.6333,True,True,True,True,True,True,True
+Mérida,Venezuela (Bolivarian Republic of),VEN,False,8.5833,-71.1333,True,True,True,False,True,True,True
+San Fernando,Venezuela (Bolivarian Republic of),VEN,False,7.894,-67.473,True,True,True,True,True,True,True
+Trujillo,Venezuela (Bolivarian Republic of),VEN,False,9.3667,-70.4331,True,True,True,True,True,True,True
+Valencia,Venezuela (Bolivarian Republic of),VEN,False,10.1667,-68.0,True,True,True,True,True,True,True
+Barrancabermeja,Colombia,COL,False,7.09,-73.85,True,True,False,False,True,True,True
+Barranquilla,Colombia,COL,False,10.96,-74.8,True,True,True,True,True,True,True
+Bucaramanga,Colombia,COL,False,7.1186,-73.1161,True,True,False,False,True,True,True
+Cali,Colombia,COL,False,3.44,-76.5197,True,True,True,False,True,True,True
+Cartagena,Colombia,COL,False,10.4236,-75.5253,True,True,False,False,True,True,True
+Cartago,Colombia,COL,False,4.75,-75.91,True,True,True,True,True,True,True
+Ibagué,Colombia,COL,False,4.4378,-75.2006,True,False,False,True,False,True,True
+Leticia,Colombia,COL,False,-4.215,-69.9411,True,False,True,True,True,True,True
+Medellín,Colombia,COL,True,6.2447,-75.5748,False,False,False,False,False,False,False
+Montería,Colombia,COL,False,8.76,-75.8856,True,True,False,False,True,True,True
+San Andrés,Colombia,COL,False,12.5847,-81.7006,True,True,False,False,False,True,True
+Sincelejo,Colombia,COL,False,9.2994,-75.3958,False,True,False,False,True,True,True
+Palmira,Colombia,COL,False,3.53944,-76.3036,True,True,False,False,False,True,True
+SopÃ³,Colombia,COL,False,4.9075,-73.9384,True,True,True,True,False,True,True
+Basel,Switzerland,CHE,False,47.5606,7.5906,True,True,True,True,True,True,True
+Bern,Switzerland,CHE,False,46.948,7.4474,True,True,True,True,True,True,True
+Geneva,Switzerland,CHE,False,46.2,6.15,True,True,True,True,True,True,True
+Lausanne,Switzerland,CHE,False,46.5333,6.6333,True,True,True,True,True,True,True
+Winterthur,Switzerland,CHE,False,47.4992,8.7267,True,True,True,True,True,True,True
+Bassar,Togo,TGO,False,9.25,0.7833,True,True,True,True,True,True,True
+Basseterre,Saint Kitts and Nevis,KNA,False,17.2983,-62.7342,True,True,True,True,True,True,True
+Bata,Equatorial Guinea,GNQ,False,1.85,9.75,True,True,True,True,True,True,True
+Bengonbeyene,Equatorial Guinea,GNQ,False,1.6931,11.0342,True,True,True,True,True,True,True
+Malabo,Equatorial Guinea,GNQ,False,3.7521,8.7737,True,True,True,True,True,True,True
+Mbini,Equatorial Guinea,GNQ,False,1.5833,9.6167,True,True,True,True,True,True,True
+Battambang,Cambodia,KHM,False,13.1,103.2,True,True,True,True,True,True,True
+Kampong Cham,Cambodia,KHM,False,12.0,105.45,True,True,True,True,True,True,True
+Kratie,Cambodia,KHM,False,12.4881,106.0188,True,True,True,True,True,True,True
+Phnom Penh,Cambodia,KHM,False,11.5696,104.921,True,True,True,True,True,True,True
+Prey Veng,Cambodia,KHM,False,11.484,105.324,True,True,True,True,True,True,True
+Siem Reap,Cambodia,KHM,False,13.3622,103.8597,True,True,True,True,True,True,True
+Batumi,Georgia,GEO,False,41.6458,41.6417,True,True,True,True,True,True,True
+Gori,Georgia,GEO,False,41.9817,44.1124,True,True,True,True,True,True,True
+Kutaisi,Georgia,GEO,False,42.25,42.7,True,True,True,True,True,True,True
+Rustavi,Georgia,GEO,False,41.5333,45.0,True,True,True,True,True,True,True
+Sokhumi,Georgia,GEO,False,43.0033,41.0153,True,True,True,True,True,True,True
+Tbilisi,Georgia,GEO,False,41.7225,44.7925,True,True,True,True,True,True,True
+Bayamo,Cuba,CUB,False,20.3817,-76.6428,True,True,True,True,True,True,True
+Havana,Cuba,CUB,False,23.1367,-82.3589,True,True,True,True,True,True,True
+Salvador,Cuba,CUB,False,20.2094,-75.2231,True,True,True,True,True,True,True
+Santiago de Cuba,Cuba,CUB,False,20.0283,-75.8206,True,True,True,True,True,True,True
+Beijing,China,CHN,False,39.905,116.3914,True,True,True,True,True,True,True
+Chengdu,China,CHN,False,30.6636,104.0667,True,True,True,True,True,True,True
+Dalian,China,CHN,True,38.9131,121.61,False,False,False,False,False,False,False
+Guangzhou,China,CHN,False,23.1288,113.259,True,True,True,True,True,True,True
+Nanyang,China,CHN,False,32.9987,112.5292,True,True,True,True,True,True,True
+Shanghai,China,CHN,False,31.1667,121.4667,True,True,True,True,True,True,True
+Shenzhen,China,CHN,False,22.535,114.054,True,True,True,True,True,True,True
+Beira,Mozambique,MOZ,False,-19.8333,34.85,True,True,True,True,True,True,True
+Chimoio,Mozambique,MOZ,False,-19.1167,33.45,True,True,True,True,True,True,True
+Cidade de Nacala,Mozambique,MOZ,False,-14.5186,40.715,True,True,False,True,True,True,True
+Maputo,Mozambique,MOZ,False,-25.9153,32.5764,True,True,True,True,True,True,True
+Matola,Mozambique,MOZ,False,-25.9667,32.4667,True,True,True,True,True,True,True
+Nampula,Mozambique,MOZ,False,-15.1167,39.2667,True,True,True,True,True,True,True
+Pemba,Mozambique,MOZ,False,-12.9667,40.5167,True,False,False,True,False,True,False
+Quelimane,Mozambique,MOZ,False,-17.8764,36.8872,True,False,True,False,True,False,True
+Ilha,Mozambique,MOZ,False,-15.0364,-40.7323,True,False,False,False,True,False,True
+Beirut,Lebanon,LBN,False,33.8869,35.5131,True,True,True,True,True,True,True
+Sidon,Lebanon,LBN,False,33.5606,35.3981,True,True,True,True,True,True,True
+Tripoli,Lebanon,LBN,False,34.4333,35.8333,True,True,True,True,True,True,True
+Tyre,Lebanon,LBN,False,33.2667,35.2,True,True,True,True,True,True,True
+Belgrade,Serbia,SRB,False,44.8167,20.4667,True,True,True,True,True,True,True
+Bor,Serbia,SRB,False,44.1303,22.1036,True,True,True,True,True,True,True
+Kragujevac,Serbia,SRB,False,44.0142,20.9394,True,True,True,True,True,True,True
+Novi Sad,Serbia,SRB,False,45.2644,19.8317,True,True,True,True,True,True,True
+Subotica,Serbia,SRB,False,46.0983,19.67,True,True,True,True,True,True,True
+Zemun,Serbia,SRB,False,44.85,20.4,True,True,True,True,True,True,True
+Belize City,Belize,BLZ,False,17.4986,-88.1886,True,True,True,True,True,True,True
+Belmopan,Belize,BLZ,False,17.25,-88.7675,True,True,True,True,True,True,True
+Dangriga,Belize,BLZ,False,16.9667,-88.2167,True,True,True,True,True,True,True
+Orange Walk,Belize,BLZ,False,18.075,-88.5583,True,True,True,True,True,True,True
+San Ignacio,Belize,BLZ,False,17.1588,-89.0696,True,True,True,True,True,True,True
+San Pedro,Belize,BLZ,False,17.9214,-87.9611,True,True,True,True,True,True,True
+Bender,Republic of Moldova,MDA,False,46.8333,29.4833,True,True,True,True,True,True,True
+Chisinau,Republic of Moldova,MDA,False,47.0056,28.8575,True,True,True,True,True,True,True
+Tiraspol,Republic of Moldova,MDA,False,46.8319,29.5767,True,True,True,True,True,True,True
+Ungheni,Republic of Moldova,MDA,False,47.2042,27.7958,True,True,True,True,True,True,True
+Benghazi,Libya,LBY,False,32.1167,20.0667,True,True,True,True,True,True,True
+Tripoli,Libya,LBY,False,32.8752,13.1875,True,True,True,True,True,True,True
+Benguela,Angola,AGO,False,-12.55,13.4167,True,True,True,True,True,True,True
+Cabinda,Angola,AGO,False,-5.55,12.2,True,True,True,True,True,True,True
+Huambo,Angola,AGO,False,-12.7667,15.7333,True,True,True,True,True,True,True
+Lobito,Angola,AGO,False,-12.37,13.5412,True,True,True,True,True,True,True
+Luanda,Angola,AGO,False,-8.8383,13.2344,True,True,True,True,True,True,True
+Benoni,South Africa,ZAF,False,-26.1883,28.3206,True,False,False,False,True,True,True
+Cape Town,South Africa,ZAF,True,-33.925,18.425,False,False,False,False,False,False,False
+Durban,South Africa,ZAF,True,-29.8583,31.025,False,False,False,False,False,False,False
+Johannesburg,South Africa,ZAF,True,-26.2044,28.0416,False,False,False,False,False,False,False
+Pietermaritzburg,South Africa,ZAF,False,-29.5833,30.4167,True,True,True,True,True,True,True
+Pretoria,South Africa,ZAF,False,-25.7464,28.1881,True,True,True,True,True,True,True
+Vereeniging,South Africa,ZAF,False,-26.6736,27.9319,True,True,True,True,True,True,True
+Sekhukhune District Municipality,South Africa,ZAF,False,-24.8335,29.974,True,True,True,False,True,True,True
+Bergen,Norway,NOR,False,60.3925,5.3233,True,True,True,True,True,True,True
+Drammen,Norway,NOR,False,59.7572,10.1907,True,True,True,True,True,True,True
+Oslo,Norway,NOR,True,59.9111,10.7528,False,False,False,False,False,False,False
+Stavanger,Norway,NOR,False,58.9701,5.7333,True,True,True,True,True,True,True
+Trondheim,Norway,NOR,False,63.44,10.4,True,True,True,True,True,True,True
+Bergen,Germany,DEU,False,54.4167,13.4333,True,True,True,True,True,True,True
+Berlin,Germany,DEU,False,52.5167,13.3833,True,True,True,True,True,True,True
+Bremen,Germany,DEU,False,53.1153,8.7975,True,True,True,True,True,True,True
+Cologne,Germany,DEU,False,50.9422,6.9578,True,True,True,True,True,True,True
+Frankfurt,Germany,DEU,False,50.1136,8.6797,True,True,True,True,True,True,True
+Hamburg,Germany,DEU,False,53.55,10.0,True,True,True,True,True,True,True
+Mannheim,Germany,DEU,False,49.4878,8.4661,False,True,True,True,True,True,True
+Munich,Germany,DEU,False,48.1372,11.5755,True,True,True,True,True,True,True
+Rostock,Germany,DEU,False,54.0833,12.1333,True,False,True,True,True,True,True
+Bharatpur,Nepal,NPL,False,27.6833,84.4333,True,True,True,True,True,True,True
+Jitpur,Nepal,NPL,False,27.6666,85.3333,True,True,True,True,True,True,True
+Kathmandu,Nepal,NPL,False,27.7167,85.3667,True,True,True,True,True,True,True
+Pokhara,Nepal,NPL,False,28.2097,83.9853,True,True,True,True,True,True,True
+Birkirkara,Malta,MLT,False,35.9,14.4667,True,True,True,True,True,True,True
+Qormi,Malta,MLT,False,35.8794,14.4722,True,True,True,True,True,True,True
+Valletta,Malta,MLT,False,35.8978,14.5125,True,True,True,True,True,True,True
+Bishkek,Kyrgyzstan,KGZ,False,42.8667,74.5667,True,True,True,True,True,True,True
+Jalal-Abad,Kyrgyzstan,KGZ,False,40.9375,72.9861,True,True,True,True,True,True,True
+Kara-Balta,Kyrgyzstan,KGZ,False,42.8306,73.8857,True,True,True,True,True,True,True
+Karakol,Kyrgyzstan,KGZ,False,42.5,78.3833,True,True,True,True,True,True,True
+Osh,Kyrgyzstan,KGZ,False,40.5333,72.7833,True,True,True,True,True,True,True
+Tokmok,Kyrgyzstan,KGZ,False,42.839,75.291,True,True,True,True,True,True,True
+Bissau,Guinea-Bissau,GNB,False,11.8592,-15.5956,True,True,True,True,True,True,True
+Cacheu,Guinea-Bissau,GNB,False,12.278,-16.165,True,True,True,True,True,True,True
+Bitola,North Macedonia,MKD,False,41.0319,21.3347,True,True,True,True,True,True,True
+Kumanovo,North Macedonia,MKD,False,42.1403,21.7136,True,True,True,True,True,True,True
+Ohrid,North Macedonia,MKD,False,41.1169,20.8019,True,True,True,True,True,True,True
+Prilep,North Macedonia,MKD,False,41.3464,21.5542,True,True,True,True,True,True,True
+Skopje,North Macedonia,MKD,False,41.9833,21.4333,True,True,True,True,True,True,True
+Tetovo,North Macedonia,MKD,False,42.0103,20.9714,True,True,True,True,True,True,True
+Blantyre,Malawi,MWI,False,-15.7861,35.0058,True,True,True,True,True,True,True
+Lilongwe,Malawi,MWI,False,-13.9833,33.7833,True,True,False,True,True,True,True
+Mwanza,Malawi,MWI,False,-15.6167,34.5167,True,True,True,True,True,True,True
+Mzuzu,Malawi,MWI,False,-11.45,34.0333,True,True,True,True,True,True,True
+Nkhotakota,Malawi,MWI,False,-12.9163,34.3,True,True,True,True,True,True,True
+Salima,Malawi,MWI,False,-13.7829,34.4333,True,True,True,True,True,True,True
+Zomba,Malawi,MWI,False,-15.3833,35.3333,True,True,True,True,True,True,True
+Bo,Sierra Leone,SLE,False,7.9564,-11.74,True,True,True,True,True,True,True
+Freetown,Sierra Leone,SLE,False,8.4833,-13.2331,True,True,True,True,True,True,True
+Kenema,Sierra Leone,SLE,False,7.8833,-11.1833,True,True,True,True,True,True,True
+Koidu-Bulma,Sierra Leone,SLE,False,8.4405,-10.85,True,True,True,True,True,True,True
+Makeni,Sierra Leone,SLE,False,8.8817,-12.0442,True,True,True,True,True,True,True
+Boaco,Nicaragua,NIC,False,12.4722,-85.6586,True,True,True,True,True,True,True
+Chinandega,Nicaragua,NIC,False,12.6242,-87.1297,True,True,True,True,True,True,True
+Managua,Nicaragua,NIC,False,12.15,-86.2667,True,True,True,True,True,True,True
+Masaya,Nicaragua,NIC,False,11.9667,-86.1,True,True,True,True,True,True,True
+Matagalpa,Nicaragua,NIC,False,12.9167,-85.9167,True,True,True,True,True,True,True
+Bokhtar,Tajikistan,TJK,False,37.8364,68.7803,True,True,True,True,True,True,True
+Dushanbe,Tajikistan,TJK,False,38.5731,68.7864,True,True,True,True,True,True,True
+Istaravshan,Tajikistan,TJK,False,39.9108,69.0064,True,True,True,True,True,True,True
+Konibodom,Tajikistan,TJK,False,40.2833,70.4167,True,True,True,True,True,True,True
+Bologna,Italy,ITA,False,44.4939,11.3428,True,True,False,False,True,True,True
+Ferrara,Italy,ITA,False,44.8353,11.6199,True,True,False,False,True,True,True
+Genoa,Italy,ITA,False,44.4072,8.934,True,True,True,True,True,True,True
+Milan,Italy,ITA,False,45.4669,9.19,True,True,True,True,True,True,True
+Naples,Italy,ITA,False,40.8333,14.25,True,True,True,True,True,True,True
+Palermo,Italy,ITA,False,38.1157,13.3613,True,True,True,True,True,True,True
+Parma,Italy,ITA,False,44.8015,10.328,True,True,False,True,True,True,True
+Reggio Emilia,Italy,ITA,False,44.7,10.6333,True,True,False,True,True,True,True
+Rome,Italy,ITA,False,41.8931,12.4828,True,True,True,True,True,True,True
+Turin,Italy,ITA,False,45.0667,7.7,True,True,True,True,True,True,True
+Oristano,Italy,ITA,False,39.9062,8.5884,True,True,False,False,True,True,True
+Roma,Italy,ITA,True,41.9028,12.4964,False,False,False,False,False,False,False
+Bor,South Sudan,SSD,False,6.2167,31.55,True,True,True,True,True,True,True
+Gogrial,South Sudan,SSD,False,8.5337,28.1167,True,True,True,True,True,True,True
+Juba,South Sudan,SSD,False,4.85,31.6,True,True,True,True,True,True,True
+Malakal,South Sudan,SSD,False,9.5333,31.65,True,True,True,True,True,True,True
+Wau,South Sudan,SSD,False,7.7,27.9833,True,True,True,True,True,True,True
+Yei,South Sudan,SSD,False,4.0904,30.68,True,True,True,True,True,True,True
+Bor,Russian Federation,RUS,False,56.3603,44.0592,True,True,True,True,True,True,True
+Donetsk,Russian Federation,RUS,False,48.3369,39.9449,True,True,True,True,True,True,True
+Kazan,Russian Federation,RUS,False,55.7908,49.1144,True,True,True,True,True,True,True
+Moscow,Russian Federation,RUS,False,55.7558,37.6178,True,True,True,True,True,True,True
+Nizhniy Novgorod,Russian Federation,RUS,False,56.3269,44.0075,True,True,True,True,True,True,True
+Novosibirsk,Russian Federation,RUS,False,55.0333,82.9167,True,True,True,True,True,True,True
+Parma,Russian Federation,RUS,False,65.923,57.403,True,True,False,True,True,True,True
+Saint Petersburg,Russian Federation,RUS,False,59.95,30.3167,True,True,True,True,True,True,True
+Yekaterinburg,Russian Federation,RUS,False,56.8356,60.6128,True,True,True,True,True,True,True
+Bratislava,Slovakia,SVK,False,48.1447,17.1128,True,True,True,True,True,True,True
+Brazzaville,Congo,COG,False,-4.2667,15.2833,True,True,True,True,True,True,True
+Dolisie,Congo,COG,False,-4.1961,12.6731,True,True,True,True,True,True,True
+Kayes,Congo,COG,False,-4.1806,13.2889,True,True,True,True,True,True,True
+Mossendjo,Congo,COG,False,-2.9458,12.7147,True,True,True,True,True,True,True
+Owando,Congo,COG,False,-0.4833,15.9,True,True,True,True,True,True,True
+Pointe-Noire,Congo,COG,False,-4.7889,11.8653,True,True,True,True,True,True,True
+Brest,Belarus,BLR,False,52.0847,23.6569,True,True,True,True,True,True,True
+Hrodna,Belarus,BLR,False,53.6667,23.8167,True,True,True,True,True,True,True
+Mahilyow,Belarus,BLR,False,53.9089,30.343,True,True,True,True,True,True,True
+Minsk,Belarus,BLR,False,53.9022,27.5618,True,True,True,True,True,True,True
+Vitsyebsk,Belarus,BLR,False,55.1833,30.1667,True,True,True,True,True,True,True
+Brest,France,FRA,False,48.39,-4.49,True,True,True,True,True,True,True
+Grenoble,France,FRA,False,45.1715,5.7224,True,True,True,True,True,True,True
+Laval,France,FRA,False,48.0733,-0.7689,True,True,True,True,False,True,True
+Marseille,France,FRA,False,43.2964,5.37,True,True,True,True,True,True,True
+Nice,France,FRA,False,43.7034,7.2663,True,True,True,True,True,True,True
+Paris,France,FRA,True,48.8566,2.3522,False,False,False,False,False,False,False
+Rennes,France,FRA,False,48.1147,-1.6794,True,True,True,True,True,True,True
+Saint-Denis,France,FRA,False,48.9356,2.3539,True,True,True,True,True,True,True
+Saint-Louis,France,FRA,False,47.59,7.57,True,True,True,True,True,True,True
+Toulouse,France,FRA,False,43.6045,1.444,True,True,True,True,True,True,True
+Bridgetown,Barbados,BRB,False,13.0975,-59.6167,True,True,True,True,True,True,True
+Brno,Czechia,CZE,False,49.1953,16.6083,True,True,True,True,True,True,True
+Liberec,Czechia,CZE,False,50.77,15.0584,True,True,True,True,True,True,True
+Olomouc,Czechia,CZE,False,49.5939,17.2508,True,True,True,True,True,True,True
+Ostrava,Czechia,CZE,False,49.8356,18.2925,True,True,True,True,True,True,True
+Prague,Czechia,CZE,False,50.0833,14.4167,True,True,True,True,True,True,True
+Brokopondo,Suriname,SUR,False,5.0404,-55.02,True,True,True,True,True,True,True
+Cottica,Suriname,SUR,False,3.8547,-54.2289,True,True,True,True,True,True,True
+Moengo,Suriname,SUR,False,5.6167,-54.4,True,True,True,True,True,True,True
+Nieuw Nickerie,Suriname,SUR,False,5.9261,-56.9731,True,True,True,True,True,True,True
+Paramaribo,Suriname,SUR,False,5.8667,-55.1667,True,True,True,True,True,True,True
+Tamanredjo,Suriname,SUR,False,5.7667,-55.0,True,True,True,True,True,True,True
+Budapest,Hungary,HUN,False,47.4983,19.0408,True,True,True,True,True,True,True
+Debrecen,Hungary,HUN,False,47.53,21.6392,True,True,True,True,True,True,True
+Miskolc,Hungary,HUN,False,48.1,20.7833,True,True,True,True,True,True,True
+Szeged,Hungary,HUN,False,46.25,20.1667,True,True,True,True,True,True,True
+Budva,Montenegro,MNE,False,42.2847,18.8453,True,True,True,True,True,True,True
+Cetinje,Montenegro,MNE,False,42.3933,18.9219,True,True,True,True,True,True,True
+Herceg Novi,Montenegro,MNE,False,42.4531,18.5375,True,True,True,True,True,True,True
+Pljevlja,Montenegro,MNE,False,43.3566,19.3502,True,True,True,True,True,True,True
+Podgorica,Montenegro,MNE,False,42.4397,19.2661,False,False,False,False,True,True,True
+Ulcinj,Montenegro,MNE,False,41.9236,19.2056,True,True,True,True,True,True,True
+Buenos Aires,Argentina,ARG,False,-34.5997,-58.3819,True,True,True,True,True,True,True
+Córdoba,Argentina,ARG,False,-31.4167,-64.1833,True,True,False,True,True,True,True
+La Paz,Argentina,ARG,False,-33.4661,-67.55,True,True,True,True,True,True,True
+Mar del Plata,Argentina,ARG,False,-38.0,-57.55,True,True,True,True,True,True,True
+Mendoza,Argentina,ARG,False,-32.8833,-68.8333,True,False,False,True,True,True,True
+Rosario,Argentina,ARG,False,-32.9575,-60.6394,True,True,True,True,True,True,True
+Salta,Argentina,ARG,False,-24.7883,-65.4106,True,True,True,True,True,True,True
+San Francisco,Argentina,ARG,True,-31.4356,-62.0714,False,False,False,False,False,False,False
+San Juan,Argentina,ARG,False,-31.5375,-68.5364,True,True,True,True,True,True,True
+San Lorenzo,Argentina,ARG,False,-28.12,-58.77,True,True,True,True,True,True,True
+San Luis,Argentina,ARG,False,-33.2994,-66.3392,True,True,True,True,True,True,True
+San Pedro,Argentina,ARG,False,-24.2196,-64.87,True,True,True,True,True,True,True
+Victoria,Argentina,ARG,False,-32.6167,-60.1667,True,True,True,True,True,True,True
+"General Alvear, Buenos Aires",Argentina,ARG,False,-34.978,-67.6955,True,False,False,False,True,True,True
+Bujumbura,Burundi,BDI,False,-3.3825,29.3611,True,True,True,True,True,True,True
+Gitega,Burundi,BDI,False,-3.4264,29.9306,True,True,True,True,True,True,True
+Kayanza,Burundi,BDI,False,-2.9221,29.6293,True,True,True,True,True,True,True
+Ngozi,Burundi,BDI,False,-2.9,29.8167,True,True,True,True,True,True,True
+Rutana,Burundi,BDI,False,-3.931,29.993,True,True,True,True,True,True,True
+Bulawayo,Zimbabwe,ZWE,False,-20.1667,28.5667,True,True,True,True,True,True,True
+Chitungwiza,Zimbabwe,ZWE,False,-18.0,31.1,True,True,True,True,True,True,True
+Gweru,Zimbabwe,ZWE,False,-19.458,29.82,True,True,True,True,True,True,True
+Harare,Zimbabwe,ZWE,False,-17.8292,31.0522,True,False,False,True,True,True,True
+Kwekwe,Zimbabwe,ZWE,False,-18.9167,29.9833,True,True,True,True,True,True,True
+Mutare,Zimbabwe,ZWE,False,-18.9728,32.6694,True,True,True,True,True,True,True
+Burgas,Bulgaria,BGR,False,42.5,27.4667,True,True,True,True,True,True,True
+Plovdiv,Bulgaria,BGR,False,42.1433,24.7489,True,True,True,True,True,True,True
+Ruse,Bulgaria,BGR,False,43.8475,25.9544,True,True,True,True,True,True,True
+Sofia,Bulgaria,BGR,False,42.6975,23.3241,True,True,True,True,True,True,True
+Stara Zagora,Bulgaria,BGR,False,42.4247,25.6256,True,True,True,True,True,True,True
+Varna,Bulgaria,BGR,False,43.2078,27.9169,True,True,True,True,True,True,True
+Busan,Republic of Korea,KOR,False,35.1,129.0403,True,True,True,True,True,True,True
+Changwon,Republic of Korea,KOR,True,35.2281,128.6811,False,False,False,False,False,False,False
+Daegu,Republic of Korea,KOR,False,35.8667,128.6,True,True,True,True,True,True,True
+Daejeon,Republic of Korea,KOR,False,36.351,127.385,True,True,True,True,True,True,True
+Gwangju,Republic of Korea,KOR,False,35.1667,126.9167,True,True,True,True,True,True,True
+Incheon,Republic of Korea,KOR,False,37.4639,126.6486,True,True,True,True,True,True,True
+Seoul,Republic of Korea,KOR,False,37.5833,127.0,True,True,True,True,True,True,True
+Suwon,Republic of Korea,KOR,False,37.2858,127.01,True,True,False,True,True,True,True
+Butare,Rwanda,RWA,False,-2.6,29.75,True,True,True,True,True,True,True
+Gisenyi,Rwanda,RWA,False,-1.6928,29.25,True,True,True,True,True,True,True
+Gitarama,Rwanda,RWA,False,-2.0696,29.76,True,True,True,True,True,True,True
+Kigali,Rwanda,RWA,False,-1.9536,30.0606,True,True,True,True,True,True,True
+Nyanza,Rwanda,RWA,False,-2.3496,29.74,True,True,True,True,True,True,True
+Ruhengeri,Rwanda,RWA,False,-1.4944,29.6417,True,True,True,True,True,True,True
+Butterworth,Malaysia,MYS,False,5.3942,100.3664,True,True,True,True,True,True,True
+George Town,Malaysia,MYS,False,5.4145,100.3292,True,True,True,True,True,True,True
+Ipoh,Malaysia,MYS,False,4.6,101.07,True,True,True,True,True,True,True
+Klang,Malaysia,MYS,False,3.0333,101.45,True,True,True,True,True,True,True
+Kuala Lumpur,Malaysia,MYS,False,3.1478,101.6953,True,True,True,True,True,True,True
+Petaling Jaya,Malaysia,MYS,False,3.1073,101.6067,True,True,True,True,True,True,True
+Iskandar,Malaysia,MYS,False,5.71447,100.992,True,True,False,True,True,True,True
+Cap Malheureux,Mauritius,MUS,False,-19.9861,57.6119,True,True,True,True,True,True,True
+Centre de Flacq,Mauritius,MUS,False,-20.2002,57.7177,True,True,True,True,True,True,True
+Curepipe,Mauritius,MUS,False,-20.3162,57.5166,True,True,True,True,True,True,True
+Port Louis,Mauritius,MUS,False,-20.1667,57.5,True,True,True,True,True,True,True
+Port Mathurin,Mauritius,MUS,False,-19.6833,63.4211,True,True,True,True,True,True,True
+Quartier Militaire,Mauritius,MUS,False,-20.25,57.55,True,True,True,True,True,True,True
+Carrefour,Haiti,HTI,False,18.5333,-72.4,True,True,True,True,True,True,True
+Delmas,Haiti,HTI,False,18.55,-72.3,True,True,True,True,True,True,True
+Port-au-Prince,Haiti,HTI,False,18.5425,-72.3386,True,True,True,True,True,True,True
+Casablanca,Morocco,MAR,False,33.5992,-7.62,True,True,False,True,True,True,True
+Marrakech,Morocco,MAR,False,31.6295,-7.9811,True,True,True,True,True,True,True
+Rabat,Morocco,MAR,False,34.0253,-6.8361,True,True,True,True,True,True,True
+Sale,Morocco,MAR,False,34.05,-6.8167,True,True,True,True,True,True,True
+Tangier,Morocco,MAR,False,35.7847,-5.8125,True,True,True,True,True,True,True
+Castries,Saint Lucia,LCA,False,14.0167,-60.9833,True,True,True,True,True,True,True
+Gros Islet,Saint Lucia,LCA,False,14.081,-60.953,True,True,True,True,True,True,True
+Celje,Slovenia,SVN,False,46.2291,15.2641,True,True,True,True,True,True,True
+Koper,Slovenia,SVN,False,45.5475,13.7307,True,True,True,True,True,True,True
+Kranj,Slovenia,SVN,False,46.2389,14.3556,True,True,True,True,True,True,True
+Ljubljana,Slovenia,SVN,False,46.05,14.5167,True,True,True,True,True,True,True
+Maribor,Slovenia,SVN,False,46.55,15.6333,True,True,True,True,True,True,True
+Velenje,Slovenia,SVN,False,46.3667,15.1167,True,True,True,True,True,True,True
+Chaguanas,Trinidad and Tobago,TTO,False,10.5144,-61.4075,True,True,True,True,True,True,True
+Couva,Trinidad and Tobago,TTO,False,10.4167,-61.45,True,True,True,True,True,True,True
+Laventille,Trinidad and Tobago,TTO,False,10.65,-61.4833,True,True,True,True,True,True,True
+Port of Spain,Trinidad and Tobago,TTO,False,10.6667,-61.5167,True,True,True,True,True,True,True
+San Fernando,Trinidad and Tobago,TTO,False,10.2833,-61.4667,True,True,True,True,True,True,True
+San Juan,Trinidad and Tobago,TTO,False,10.65,-61.45,True,True,True,True,True,True,True
+Tunapuna,Trinidad and Tobago,TTO,False,10.6333,-61.3833,True,True,True,True,True,True,True
+Chattogram,Bangladesh,BGD,False,22.335,91.8325,True,True,True,True,True,True,True
+Comilla,Bangladesh,BGD,False,23.4704,91.17,True,True,True,True,True,True,True
+Dhaka,Bangladesh,BGD,True,23.7161,90.3961,False,False,False,False,False,False,False
+Khulna,Bangladesh,BGD,False,22.8167,89.55,True,True,True,True,True,True,True
+Sylhet,Bangladesh,BGD,False,24.9,91.8667,True,True,True,True,True,True,True
+Choybalsan,Mongolia,MNG,False,48.0706,114.5228,True,True,True,True,True,True,True
+Darhan,Mongolia,MNG,False,49.4689,105.9575,True,True,True,True,True,True,True
+Erdenet,Mongolia,MNG,False,49.0278,104.0444,True,True,True,True,True,True,True
+Ulaanbaatar,Mongolia,MNG,False,47.9203,106.9172,True,True,True,True,True,True,True
+Ciudad de la Costa,Uruguay,URY,False,-34.8167,-55.95,True,True,True,True,True,True,True
+Montevideo,Uruguay,URY,False,-34.8667,-56.1667,True,True,True,True,True,True,True
+Punta del Este,Uruguay,URY,False,-34.97,-54.95,True,True,True,True,True,True,True
+Rivera,Uruguay,URY,False,-30.9025,-55.5506,True,True,True,True,True,True,True
+Rosario,Uruguay,URY,False,-34.3139,-57.3525,True,True,True,True,True,True,True
+Salto,Uruguay,URY,False,-31.3883,-57.9606,True,True,True,True,True,True,True
+Cochabamba,Bolivia (Plurinational State of),BOL,False,-17.3935,-66.157,True,True,True,True,True,True,True
+La Paz,Bolivia (Plurinational State of),BOL,False,-16.4942,-68.1475,True,True,True,True,True,True,True
+Oruro,Bolivia (Plurinational State of),BOL,False,-17.9667,-67.1167,True,True,True,True,True,True,True
+San Lorenzo,Bolivia (Plurinational State of),BOL,False,-21.4799,-64.77,True,True,True,True,True,True,True
+Santa Cruz,Bolivia (Plurinational State of),BOL,False,-17.7892,-63.1975,True,True,False,True,True,True,True
+Sucre,Bolivia (Plurinational State of),BOL,False,-19.0431,-65.2592,True,True,True,True,True,True,True
+Conakry,Guinea,GIN,False,9.5092,-13.7122,True,True,True,True,True,True,True
+Kankan,Guinea,GIN,False,10.39,-9.31,True,True,True,True,True,True,True
+Kindia,Guinea,GIN,False,10.06,-12.87,True,True,True,True,True,True,True
+Cork,Ireland,IRL,False,51.9,-8.4731,True,True,True,True,True,True,True
+Drogheda,Ireland,IRL,False,53.7139,-6.3503,True,True,True,True,True,True,True
+Dublin,Ireland,IRL,False,53.3425,-6.2658,True,True,True,True,True,True,True
+Galway,Ireland,IRL,False,53.2729,-9.0418,True,True,True,True,True,True,True
+Limerick,Ireland,IRL,False,52.6653,-8.6238,True,True,True,True,True,True,True
+Waterford,Ireland,IRL,False,52.2583,-7.119,True,True,True,True,True,True,True
+Cotonou,Benin,BEN,False,6.4,2.52,True,True,True,True,True,True,True
+Djougou,Benin,BEN,False,9.7004,1.68,True,True,True,True,True,True,True
+Kandi,Benin,BEN,False,11.1304,2.94,True,True,True,True,True,True,True
+Lokossa,Benin,BEN,False,6.615,1.715,True,True,True,True,True,True,True
+Parakou,Benin,BEN,False,9.34,2.62,True,True,True,True,True,True,True
+Porto-Novo,Benin,BEN,False,6.4833,2.6167,True,True,True,True,True,True,True
+Cuenca,Ecuador,ECU,False,-2.8974,-79.0045,True,True,False,True,True,True,True
+Guayaquil,Ecuador,ECU,False,-2.1833,-79.8833,True,True,False,True,True,True,True
+Machala,Ecuador,ECU,False,-3.2667,-79.9667,True,True,True,True,True,True,True
+Manta,Ecuador,ECU,False,-0.95,-80.7162,True,True,True,True,True,True,True
+Quito,Ecuador,ECU,True,-0.2186,-78.5097,False,False,False,False,False,False,False
+Santa Cruz,Ecuador,ECU,False,-0.6394,-90.3372,True,True,False,True,True,True,True
+Santo Domingo de los Colorados,Ecuador,ECU,False,-0.2542,-79.1719,True,True,True,True,True,True,True
+Valencia,Ecuador,ECU,False,-0.9525,-79.3531,True,True,True,True,True,True,True
+Dakar,Senegal,SEN,False,14.7319,-17.4572,True,True,True,True,True,True,True
+Kaolack,Senegal,SEN,False,14.152,-16.0726,True,True,True,True,True,True,True
+Rufisque,Senegal,SEN,False,14.7167,-17.2667,True,True,True,True,True,True,True
+Saint-Louis,Senegal,SEN,False,16.0333,-16.5,True,True,True,True,True,True,True
+Ziguinchor,Senegal,SEN,False,12.5833,-16.2667,True,True,True,True,True,True,True
+Daugavpils,Latvia,LVA,False,55.8714,26.5161,True,True,True,True,True,True,True
+Jelgava,Latvia,LVA,False,56.6522,23.7244,True,True,True,True,True,True,True
+Riga,Latvia,LVA,False,56.9475,24.1069,False,False,True,False,True,True,False
+Ventspils,Latvia,LVA,False,57.3897,21.5644,True,True,True,True,True,True,True
+Diekirch,Luxembourg,LUX,False,49.8678,6.1558,True,True,True,True,True,True,True
+Echternach,Luxembourg,LUX,False,49.8117,6.4217,True,True,True,True,True,True,True
+Esch-sur-Alzette,Luxembourg,LUX,False,49.4969,5.9806,True,True,True,True,True,True,True
+Luxembourg,Luxembourg,LUX,False,49.6106,6.1328,True,True,True,True,True,True,True
+Rumelange,Luxembourg,LUX,False,49.4597,6.0306,True,True,True,True,True,True,True
+Steinfort,Luxembourg,LUX,False,49.66,5.9156,True,True,True,True,True,True,True
+Dnipro,Ukraine,UKR,False,48.45,34.9833,True,True,True,True,True,True,True
+Donetsk,Ukraine,UKR,False,48.0089,37.8042,True,True,True,True,True,True,True
+Kharkiv,Ukraine,UKR,False,50.0,36.2292,True,True,True,True,True,True,True
+Kyiv,Ukraine,UKR,False,50.45,30.5236,True,True,True,True,True,True,True
+Odesa,Ukraine,UKR,False,46.4775,30.7326,True,True,True,True,True,True,True
+Zaporizhzhia,Ukraine,UKR,False,47.8378,35.1383,True,True,True,True,True,True,True
+Doha,Qatar,QAT,False,25.3,51.5333,True,True,True,True,True,True,True
+El Obeid,Sudan,SDN,False,13.1833,30.2167,True,True,True,True,True,True,True
+Kassala,Sudan,SDN,False,15.45,36.4,True,True,True,True,True,True,True
+Khartoum,Sudan,SDN,False,15.6031,32.5265,True,True,True,True,True,True,True
+Khartoum North,Sudan,SDN,False,15.6333,32.6333,True,True,True,True,True,True,True
+Omdurman,Sudan,SDN,False,15.6835,32.4629,True,True,True,True,True,True,True
+Port Sudan,Sudan,SDN,False,19.6158,37.2164,True,True,True,True,True,True,True
+Eldoret,Kenya,KEN,False,0.5167,35.2833,True,True,True,True,True,True,True
+Kisumu,Kenya,KEN,False,-0.1,34.75,True,True,True,False,False,True,True
+Meru,Kenya,KEN,False,0.05,37.65,True,True,True,True,True,True,True
+Mombasa,Kenya,KEN,False,-4.05,39.6667,True,True,True,True,True,True,True
+Nairobi,Kenya,KEN,True,-1.2864,36.8172,False,False,False,False,False,False,False
+Nakuru,Kenya,KEN,False,-0.2833,36.0667,True,False,False,False,False,True,True
+Escuintla,Guatemala,GTM,False,14.305,-90.785,True,True,True,True,True,True,True
+Guatemala City,Guatemala,GTM,False,14.6099,-90.5252,True,True,True,True,True,True,True
+Jalapa,Guatemala,GTM,False,14.6379,-89.9904,True,True,True,True,True,True,True
+Puerto Barrios,Guatemala,GTM,False,15.73,-88.6,True,True,False,False,True,True,True
+Quetzaltenango,Guatemala,GTM,False,14.8333,-91.5167,True,True,True,True,True,True,True
+San Luis,Guatemala,GTM,False,16.2,-89.44,True,True,True,True,True,True,True
+Espoo,Finland,FIN,False,60.21,24.66,True,True,True,True,True,True,True
+Helsinki,Finland,FIN,False,60.1756,24.9342,True,True,True,True,True,True,True
+Lahti,Finland,FIN,False,60.9833,25.6556,True,False,False,False,True,True,True
+Oulu,Finland,FIN,False,65.0142,25.4719,True,True,True,True,True,True,True
+Tampere,Finland,FIN,False,61.4981,23.7608,True,True,True,True,True,True,True
+Turku,Finland,FIN,False,60.4517,22.27,True,True,True,True,True,True,True
+Vantaa,Finland,FIN,False,60.3,25.0333,True,True,True,True,True,True,True
+Faisalabad,Pakistan,PAK,False,31.418,73.079,True,True,True,True,True,True,True
+Karachi,Pakistan,PAK,True,24.86,67.01,False,False,False,False,False,False,False
+Lahore,Pakistan,PAK,False,31.5497,74.3436,True,True,True,True,True,True,True
+Peshawar,Pakistan,PAK,False,34.0,71.5,True,True,True,True,True,True,True
+Rawalpindi,Pakistan,PAK,False,33.6007,73.0679,True,True,True,True,True,True,True
+Sialkot City,Pakistan,PAK,False,32.5,74.5333,True,True,True,True,True,True,True
+Famagusta,Cyprus,CYP,False,35.1167,33.95,True,True,True,True,True,True,True
+Kyrenia,Cyprus,CYP,False,35.3403,33.3192,True,True,True,True,True,True,True
+Larnaca,Cyprus,CYP,False,34.9233,33.6305,True,True,True,True,True,True,True
+Limassol,Cyprus,CYP,False,34.675,33.0443,True,True,True,True,True,True,True
+Nicosia,Cyprus,CYP,False,35.1725,33.365,True,True,True,True,True,True,True
+Paphos,Cyprus,CYP,False,34.7761,32.4265,True,True,True,True,True,True,True
+Fier,Albania,ALB,False,40.7167,19.55,True,True,True,True,True,True,True
+Tirana,Albania,ALB,False,41.33,19.82,True,True,True,True,True,True,True
+Franceville,Gabon,GAB,False,-1.6333,13.5833,True,True,True,True,True,True,True
+Libreville,Gabon,GAB,False,0.3901,9.4544,True,True,True,True,True,True,True
+Moanda,Gabon,GAB,False,-1.5655,13.2,True,True,True,True,True,True,True
+Oyem,Gabon,GAB,False,1.6,11.5667,True,True,True,True,True,True,True
+Port-Gentil,Gabon,GAB,False,-0.7167,8.7833,True,True,True,True,True,True,True
+Francistown,Botswana,BWA,False,-21.1736,27.5125,True,True,True,True,True,True,True
+Gaborone,Botswana,BWA,False,-24.6569,25.9086,True,True,True,True,True,True,True
+Mahalapye,Botswana,BWA,False,-23.1041,26.8142,True,True,True,True,True,True,True
+Maun,Botswana,BWA,False,-19.9833,23.4167,True,True,True,True,True,True,True
+Molepolole,Botswana,BWA,False,-24.4066,25.4951,True,True,True,True,True,True,True
+Selibe Phikwe,Botswana,BWA,False,-21.9667,27.9167,True,True,True,True,True,True,True
+Freeport City,Bahamas,BHS,False,26.5333,-78.7,True,True,True,True,True,True,True
+Marsh Harbour,Bahamas,BHS,False,26.4,-77.17,True,True,True,True,True,True,True
+Nassau,Bahamas,BHS,False,25.0667,-77.3333,True,True,True,True,True,True,True
+Fukuoka,Japan,JPN,False,33.5903,130.4019,True,True,True,True,True,True,True
+Kasama,Japan,JPN,False,36.345,140.3042,True,True,True,True,True,True,True
+Nagoya,Japan,JPN,False,35.1167,136.9333,True,False,True,False,True,True,True
+Sapporo,Japan,JPN,False,43.0621,141.3544,True,True,True,True,True,True,True
+Tokyo,Japan,JPN,True,35.6897,139.6922,False,False,False,False,False,False,False
+Yao,Japan,JPN,False,34.6269,135.6008,True,True,True,True,True,True,True
+Yokohama,Japan,JPN,True,35.4333,139.6333,False,False,False,False,False,False,False
+Funafuti,Tuvalu,TUV,False,-8.5167,179.2167,True,True,True,True,True,True,True
+Gbarnga,Liberia,LBR,False,7.0104,-9.49,True,True,True,True,True,True,True
+Harper,Liberia,LBR,False,4.3754,-7.717,True,True,True,True,True,True,True
+Kakata,Liberia,LBR,False,6.53,-10.3517,True,True,True,True,True,True,True
+Monrovia,Liberia,LBR,False,6.3106,-10.8047,True,True,True,True,True,True,True
+Upper Buchanan,Liberia,LBR,False,5.9161,-10.0525,True,True,True,True,True,True,True
+Voinjama,Liberia,LBR,False,8.4167,-9.75,True,True,True,True,True,True,True
+Gizo,Solomon Islands,SLB,False,-8.1,156.85,True,True,True,True,True,True,True
+Honiara,Solomon Islands,SLB,False,-9.4333,159.95,True,True,True,True,True,True,True
+Lata,Solomon Islands,SLB,False,-10.738,165.8567,True,True,True,True,True,True,True
+Gothenburg,Sweden,SWE,False,57.6717,11.981,True,True,True,True,True,True,True
+Stockholm,Sweden,SWE,True,59.3294,18.0686,False,False,False,False,False,False,False
+Uppsala,Sweden,SWE,False,59.8498,17.6389,True,True,True,True,True,True,True
+Örebro,Sweden,SWE,False,59.2669,15.1965,True,True,False,True,True,True,True
+Graz,Austria,AUT,False,47.0667,15.4333,True,True,True,True,True,True,True
+Innsbruck,Austria,AUT,False,47.2683,11.3933,True,True,True,True,True,True,True
+Klagenfurt,Austria,AUT,False,46.6167,14.3,True,True,True,True,True,True,True
+Linz,Austria,AUT,False,48.3,14.2833,True,True,True,True,True,True,True
+Salzburg,Austria,AUT,False,47.7972,13.0477,True,True,True,True,True,True,True
+Vienna,Austria,AUT,False,48.2083,16.3731,True,True,True,True,True,True,True
+Haiphong,Viet Nam,VNM,False,20.8,106.6667,True,True,True,True,True,True,True
+Hanoi,Viet Nam,VNM,False,21.0245,105.8412,True,True,True,True,True,True,True
+Ho Chi Minh City,Viet Nam,VNM,True,10.8167,106.6333,False,False,False,False,False,False,False
+Half Way Tree,Jamaica,JAM,False,18.0106,-76.7975,True,True,True,True,True,True,True
+Kingston,Jamaica,JAM,False,17.9714,-76.7931,True,True,True,True,True,True,True
+May Pen,Jamaica,JAM,False,17.95,-77.25,True,True,True,True,True,True,True
+Montego Bay,Jamaica,JAM,False,18.4667,-77.9167,True,True,True,True,True,True,True
+Portmore,Jamaica,JAM,False,17.9667,-76.8667,True,True,True,True,True,True,True
+Spanish Town,Jamaica,JAM,False,17.9961,-76.9547,True,True,True,True,True,True,True
+Jeddah,Saudi Arabia,SAU,False,21.5428,39.1728,True,True,True,True,True,True,True
+Mecca,Saudi Arabia,SAU,False,21.4225,39.8261,True,True,True,True,True,True,True
+Medina,Saudi Arabia,SAU,False,24.4667,39.6,True,True,True,True,True,True,True
+Riyadh,Saudi Arabia,SAU,False,24.65,46.71,True,True,True,True,True,True,True
+Kabul,Afghanistan,AFG,False,34.5328,69.1658,True,True,True,True,True,True,True
+Kunduz,Afghanistan,AFG,False,36.728,68.8725,True,True,True,True,True,True,True
+Kairouan,Tunisia,TUN,False,35.6804,10.1,True,True,True,True,True,True,True
+Sfax,Tunisia,TUN,False,34.75,10.72,True,True,True,True,True,True,True
+Sousse,Tunisia,TUN,False,35.83,10.625,True,True,True,True,True,True,True
+Tunis,Tunisia,TUN,False,36.8008,10.18,True,True,True,True,True,True,True
+Zarzis,Tunisia,TUN,False,33.5104,11.1,True,True,True,True,True,True,True
+Kananga,Democratic Republic of the Congo,COD,False,-5.897,22.4488,True,True,True,True,True,True,True
+Kikwit,Democratic Republic of the Congo,COD,False,-5.0333,18.8167,True,True,True,True,True,True,True
+Kinshasa,Democratic Republic of the Congo,COD,False,-4.3317,15.3139,True,True,True,True,True,True,True
+Kisangani,Democratic Republic of the Congo,COD,False,0.5153,25.1911,True,True,True,True,True,True,True
+Lubumbashi,Democratic Republic of the Congo,COD,False,-11.6697,27.4581,True,True,True,True,True,True,True
+Mbuji-Mayi,Democratic Republic of the Congo,COD,False,-6.1209,23.5967,True,True,True,True,True,True,True
+Moanda,Democratic Republic of the Congo,COD,False,-5.9229,12.355,True,True,True,True,True,True,True
+Karaj,Iran (Islamic Republic of),IRN,False,35.8327,50.9915,True,True,True,True,True,True,True
+Mashhad,Iran (Islamic Republic of),IRN,False,36.3069,59.6042,True,True,True,True,True,True,True
+Tehran,Iran (Islamic Republic of),IRN,False,35.7,51.4167,True,True,True,True,True,True,True
+Kasama,Zambia,ZMB,False,-10.1996,31.1799,True,True,True,True,True,True,True
+Kashikishi,Zambia,ZMB,False,-9.3172,28.7331,True,True,True,True,True,True,True
+Kitwe,Zambia,ZMB,False,-12.8208,28.2119,True,True,True,True,True,True,True
+Lusaka,Zambia,ZMB,False,-15.4167,28.2833,True,True,True,True,True,True,True
+Mazabuka,Zambia,ZMB,False,-15.86,27.76,True,True,False,False,True,True,True
+Nchelenge,Zambia,ZMB,False,-9.3467,28.7344,True,True,True,True,True,True,True
+Ndola,Zambia,ZMB,False,-12.9683,28.6337,True,True,True,True,True,True,True
+Katima Mulilo,Namibia,NAM,False,-17.5039,24.275,True,True,True,True,True,True,True
+Otjiwarongo,Namibia,NAM,False,-20.4642,16.6528,True,True,True,True,True,True,True
+Rundu,Namibia,NAM,False,-17.9167,19.7667,True,True,True,True,True,True,True
+Swakopmund,Namibia,NAM,False,-22.6667,14.5333,True,True,True,True,True,True,True
+Walvisbaai,Namibia,NAM,False,-22.9494,14.5069,True,True,True,True,True,True,True
+Windhoek,Namibia,NAM,False,-22.57,17.0836,True,True,False,True,True,True,True
+Kelo,Chad,TCD,False,9.3171,15.8,True,True,True,True,True,True,True
+Moundou,Chad,TCD,False,8.5667,16.0833,True,True,True,True,True,True,True
+Sarh,Chad,TCD,False,9.15,18.3833,True,True,True,True,True,True,True
+Yao,Chad,TCD,False,12.8508,17.5608,True,True,True,True,True,True,True
+Kiffa,Mauritania,MRT,False,16.6164,-11.4044,True,True,True,True,True,True,True
+Nouadhibou,Mauritania,MRT,False,20.95,-17.0333,True,True,True,True,True,True,True
+Nouakchott,Mauritania,MRT,False,18.0783,-15.9744,True,True,True,True,True,True,True
+Rosso,Mauritania,MRT,False,16.5128,-15.805,True,True,True,True,True,True,True
+Zouerate,Mauritania,MRT,False,22.7344,-12.4725,True,True,True,True,True,True,True
+Kingstown,Saint Vincent and the Grenadines,VCT,False,13.1667,-61.2333,True,True,True,True,True,True,True
+Koror,Palau,PLW,False,7.3433,134.4804,True,True,True,True,True,True,True
+Melekeok,Palau,PLW,False,7.4874,134.6265,True,True,True,True,True,True,True
+Kuwait City,Kuwait,KWT,False,29.375,47.98,True,True,True,True,True,True,True
+La Paz,Honduras,HND,False,14.3169,-87.6831,True,True,True,True,True,True,True
+San Lorenzo,Honduras,HND,False,13.3667,-87.2667,True,True,True,True,True,True,True
+San Pedro Sula,Honduras,HND,False,15.5,-88.0333,True,True,True,True,True,True,True
+Tegucigalpa,Honduras,HND,False,14.0942,-87.2067,False,True,True,True,True,True,True
+Tegucigalpita,Honduras,HND,False,15.78,-86.7878,True,True,True,True,True,True,True
+Trujillo,Honduras,HND,False,15.9167,-86.0,True,True,True,True,True,True,True
+Villanueva,Honduras,HND,False,15.3167,-88.0167,True,True,True,True,True,True,True
+La Romana,Dominican Republic,DOM,False,18.417,-68.9666,True,True,True,True,True,True,True
+La Vega,Dominican Republic,DOM,False,19.2242,-70.5283,True,True,True,True,True,True,True
+San Juan,Dominican Republic,DOM,False,18.807,-71.229,True,True,True,True,True,True,True
+Santiago,Dominican Republic,DOM,False,19.5,-70.67,True,True,False,False,True,True,True
+Santo Domingo,Dominican Republic,DOM,False,18.4764,-69.8933,True,True,True,True,True,True,True
+Lakatoro,Vanuatu,VUT,False,-16.1069,167.4208,True,True,True,True,True,True,True
+Luganville,Vanuatu,VUT,False,-15.5126,167.1766,True,True,True,True,True,True,True
+Port-Vila,Vanuatu,VUT,False,-17.75,168.3,True,True,True,True,True,True,True
+Leribe,Lesotho,LSO,False,-28.8734,28.0416,True,True,True,True,True,True,True
+Mafeteng,Lesotho,LSO,False,-29.8167,27.25,True,True,True,True,True,True,True
+Maputsoe,Lesotho,LSO,False,-28.8833,27.9,True,True,True,True,True,True,True
+Maseru,Lesotho,LSO,False,-29.31,27.48,True,True,True,True,True,True,True
+Teyateyaneng,Lesotho,LSO,False,-29.15,27.7333,True,True,True,True,True,True,True
+Lobamba,Eswatini,SWZ,False,-26.4167,31.1667,True,True,True,True,True,True,True
+Manzini,Eswatini,SWZ,False,-26.4833,31.3667,True,True,True,True,True,True,True
+Mbabane,Eswatini,SWZ,False,-26.3167,31.1333,True,True,True,True,True,True,True
+Mhlume,Eswatini,SWZ,False,-26.0333,31.85,True,True,True,True,True,True,True
+Piggs Peak,Eswatini,SWZ,False,-25.961,31.247,True,True,True,True,True,True,True
+Siteki,Eswatini,SWZ,False,-26.45,31.95,True,True,True,True,True,True,True
+Louangphabang,Lao People's Democratic Republic,LAO,False,19.8931,102.1381,True,True,True,True,True,True,True
+Savannakhet,Lao People's Democratic Republic,LAO,False,16.55,104.75,True,True,True,True,True,True,True
+Vientiane,Lao People's Democratic Republic,LAO,False,17.9667,102.6,True,True,True,True,True,True,True
+Xam Nua,Lao People's Democratic Republic,LAO,False,20.4133,104.048,True,True,True,True,True,True,True
+Majuro,Marshall Islands,MHL,False,7.1167,171.3667,True,True,True,True,True,True,True
+Male,Maldives,MDV,False,4.175,73.5083,True,True,True,True,True,True,True
+Manama,Bahrain,BHR,False,26.2167,50.5831,True,True,True,True,True,True,True
+Mauren,Liechtenstein,LIE,False,47.2197,9.5428,True,True,True,True,True,True,True
+Schaan,Liechtenstein,LIE,False,47.1667,9.5167,True,True,True,True,True,True,True
+Vaduz,Liechtenstein,LIE,False,47.1415,9.5215,True,True,True,True,True,True,True
+Mitsamiouli,Comoros,COM,False,-11.3819,43.3,True,True,True,True,True,True,True
+Mkazi,Comoros,COM,False,-11.7323,43.2671,True,True,True,True,True,True,True
+Moroni,Comoros,COM,False,-11.7036,43.2536,True,True,True,True,True,True,True
+Mutsamudu,Comoros,COM,False,-12.1667,44.4,True,True,True,True,True,True,True
+Monaco,Monaco,MCO,False,43.7396,7.4069,True,True,True,True,True,True,True
+Muscat,Oman,OMN,False,23.6139,58.5922,True,True,True,True,True,True,True
+Narva,Estonia,EST,False,59.3792,28.2006,True,True,True,True,True,True,True
+Pärnu,Estonia,EST,False,58.3844,24.4989,True,True,False,True,True,True,True
+Tallinn,Estonia,EST,False,59.4372,24.745,True,True,True,True,True,True,True
+Tartu,Estonia,EST,False,58.38,26.7225,True,True,True,True,True,True,True
+Viljandi,Estonia,EST,False,58.3633,25.5956,True,True,True,True,True,True,True
+Neiafu,Tonga,TON,False,-18.6496,-173.9833,True,True,True,True,True,True,True
+Osijek,Croatia,HRV,False,45.5603,18.6703,True,True,True,True,True,True,True
+Rijeka,Croatia,HRV,False,45.3297,14.4322,True,True,True,True,True,True,True
+Split,Croatia,HRV,False,43.51,16.45,True,True,True,True,True,True,True
+Velika Gorica,Croatia,HRV,False,45.7,16.0667,True,True,True,True,True,True,True
+Zadar,Croatia,HRV,False,44.1167,15.2167,True,True,True,True,True,True,True
+Zagreb,Croatia,HRV,False,45.8,15.95,True,True,True,True,True,True,True
+Palikir,Micronesia (Federated States of),FSM,False,6.9178,158.185,True,True,True,True,True,True,True
+Paro,Bhutan,BTN,False,27.4333,89.4167,True,True,True,True,True,True,True
+Punakha,Bhutan,BTN,False,27.6167,89.8667,True,True,True,True,True,True,True
+Thimphu,Bhutan,BTN,False,27.4833,89.6333,True,True,True,True,True,True,True
+Wangdue Phodrang,Bhutan,BTN,False,27.4333,89.9167,True,True,True,True,True,True,True
+Pyongyang,Democratic People's Republic of Korea,PRK,False,39.03,125.73,True,True,True,True,True,True,True
+Roseau,Dominica,DMA,False,15.3,-61.3833,True,True,True,True,True,True,True
+San Francisco,El Salvador,SLV,True,13.7,-88.1,False,False,False,False,False,False,False
+San Miguel,El Salvador,SLV,False,13.4833,-88.1833,True,True,True,True,True,True,True
+San Salvador,El Salvador,SLV,False,13.6989,-89.1914,True,True,True,True,True,True,True
+Santa Ana,El Salvador,SLV,False,13.9833,-89.5333,True,True,True,True,True,True,True
+Santa Tecla,El Salvador,SLV,False,13.674,-89.29,True,True,True,True,True,True,True
+Sonsonate,El Salvador,SLV,False,13.72,-89.73,True,True,True,True,True,True,True
+San Marino,San Marino,SMR,False,43.932,12.4484,True,True,True,True,True,True,True
+Singapore,Singapore,SGP,False,1.3,103.8,True,True,True,True,True,True,True
+Tarawa,Kiribati,KIR,False,1.3382,173.0176,True,True,True,True,True,True,True
+Teaoraereke,Kiribati,KIR,False,1.3333,173.0,True,True,True,True,True,True,True
+Trindade,Sao Tome and Principe,STP,False,0.3,6.6667,True,True,True,True,True,True,True
+Victoria,Seychelles,SYC,False,-4.6236,55.4544,True,True,True,True,True,True,True
+Warsaw,Poland,POL,True,52.2167,21.0333,False,False,False,False,False,False,False
+Abasan Al-Kabira,Palestine,PSE,False,31.3231,34.344,True,False,False,False,True,True,True

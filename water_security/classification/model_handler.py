@@ -43,7 +43,16 @@ class ModelHandler:
         self.feat_names = None
         self.lab_names = None
         # The id columns to remain in the filled dataset
-        self.id_columns = ["city", "country", "country_code", "c40"]
+        self.id_columns = [
+            "city",
+            "country",
+            "country_code",
+            "c40",
+            "latitude",
+            "longitude",
+        ]
+        # The id columns to consider also as features
+        self.feat_id_columns = ["latitude", "longitude"]
 
     @property
     def model(self) -> Pipeline:
@@ -92,7 +101,8 @@ class ModelHandler:
             self.feat_names = [
                 x
                 for x in dataset.columns
-                if x not in self.lab_names and x not in self.id_columns
+                if x not in self.lab_names
+                and (x in self.feat_id_columns or x not in self.id_columns)
             ]
             self.train_mask = dataset[self.lab_names].apply(
                 lambda x: not all(pd.isnull(x)), axis=1
@@ -225,6 +235,8 @@ class ModelHandler:
         from data.unlabeled import COUNTRIES_DATASET
 
         feats = COUNTRIES_DATASET.loc[place["code"]].copy()
+        feats["latitude"] = latitude
+        feats["longitude"] = longitude
         feats["population_1k_density"] = population_density
         preds = {}
         mask = {}

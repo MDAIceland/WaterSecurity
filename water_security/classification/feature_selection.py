@@ -1,12 +1,13 @@
-from typing import Iterable
-from pandas._libs import missing
-from sklearn.feature_selection import SelectKBest, f_regression
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.preprocessing import PolynomialFeatures, RobustScaler
-from sklearn.decomposition import PCA
-from sklearn.base import BaseEstimator, TransformerMixin
-import pandas as pd
+from typing import Iterable, Union
+
 import numpy as np
+import pandas as pd
+from pandas._libs import missing
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.decomposition import PCA
+from sklearn.feature_selection import SelectKBest, f_regression
+from sklearn.pipeline import FeatureUnion, Pipeline
+from sklearn.preprocessing import PolynomialFeatures, RobustScaler
 
 
 # Generation of the Feature Selection Class for the Pipeline
@@ -57,6 +58,7 @@ class DummyTransformer(BaseEstimator, TransformerMixin):
 
 
 import re
+
 
 # Class for generation of cross polynomial features
 class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
@@ -280,19 +282,30 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             self.feat_names = columns
         return self
 
-    def transform(self, x_data: pd.DataFrame):
+    def transform(self, x_data: Union[pd.DataFrame, pd.Series]):
         """
         Transforms `x_data` from nxm to nxk
         Only return the designated features in addition to the removed features
         at the beginning of the pipeline process
         """
-        missing_feats = [x for x in self.inp_feats_names if x not in x_data.columns]
+        is_series = isinstance(x_data, pd.Series)
+        if is_series:
+            x_data = pd.DataFrame(x_data).transpose()
+        missing_feats = [
+            x
+            for x in self.inp_feats_names
+            if x
+            not in (
+                x_data.columns if isinstance(x_data, pd.DataFrame) else x_data.index
+            )
+        ]
         x_data = x_data.copy()
         if missing_feats:
             print(
                 f"Warning: Missing feature(s): \n{missing_feats}\nThey are going to be imputed."
             )
-            x_data[missing_feats] = None
+            for f in missing_feats:
+                x_data[f] = None
         x_data = x_data[self.inp_feats_names].copy()
         x_data[:] = self.imputer.transform(x_data)
 
@@ -302,4 +315,7 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         )
         new_x_data.index = labs.index
 
-        return pd.concat([labs, new_x_data], axis=1)
+        ret = pd.concat([labs, new_x_data], axis=1)
+        if is_series:
+            ret = ret.iloc[0]
+        return ret
