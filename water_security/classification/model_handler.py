@@ -7,7 +7,11 @@ import numpy as np
 import pandas as pd
 import shap
 from data.model import MODEL_PATH
-from data.model.metrics import TRAINING_METRICS_PATH, VALIDATION_METRICS_PATH
+from data.model.metrics import (
+    TRAINING_METRICS_PATH,
+    VALIDATION_METRICS_PATH,
+    FEATURES_IMPORTANCES_PATH,
+)
 from data.model.predictions import FILLED_DATASET_PATH, PREDICTION_MASK_PATH
 from sklearn.base import BaseEstimator
 from sklearn.exceptions import NotFittedError
@@ -196,9 +200,23 @@ class ModelHandler:
         for label in self.lab_names:
             train_mask = ~pd.isnull(dataset[label])
             labeled = dataset.loc[train_mask, :]
-            train_set, valid_set = train_test_split(
-                labeled, test_size=0.3, random_state=RANDOM_SEED
-            )
+            try:
+                train_set, valid_set = train_test_split(
+                    labeled,
+                    test_size=0.3,
+                    random_state=RANDOM_SEED,
+                    stratify=labeled[label],
+                )
+            except ValueError:
+                print(
+                    f"Using normal split for label {label} due to underrepresentated levels."
+                    f" The levels counts for that label are:\n {labeled[label].value_counts()}"
+                )
+                train_set, valid_set = train_test_split(
+                    labeled,
+                    test_size=0.3,
+                    random_state=RANDOM_SEED,
+                )
             yield (label, labeled, [train_set, valid_set])
 
     @property
@@ -227,7 +245,7 @@ class ModelHandler:
         train_metrics = {}
         valid_metrics = {}
         filled_dataset: pd.DataFrame = None
-
+        importances = {}
         for (
             label,
             labeled,
@@ -236,7 +254,7 @@ class ModelHandler:
 
             model[label] = Pipeline(
                 [
-                    ("FeatureSelection", FeatureSelectionAndGeneration(feats_num=200)),
+                    ("FeatureSelection", FeatureSelectionAndGeneration(feats_num=500)),
                     ("Classification", Classifier(label)),
                 ]
             )
@@ -246,6 +264,9 @@ class ModelHandler:
             train_metrics[label] = self.compute_metrics(train_set[label], train_preds)
             valid_metrics[label] = self.compute_metrics(valid_set[label], valid_preds)
             model[label].fit(labeled[self.feat_names], labeled[label])
+            importances[label] = (
+                model[label].named_steps["Classification"].feature_importances_
+            )
             if filled_dataset is None:
                 filled_dataset = self.dataset[self.id_columns + self.lab_names].copy()
             filled_dataset.loc[~self.train_mask, label] = model[label].predict(
@@ -257,6 +278,8 @@ class ModelHandler:
             pickle.dump(valid_metrics, out)
         with open(TRAINING_METRICS_PATH, "wb") as out:
             pickle.dump(train_metrics, out)
+        with open(FEATURES_IMPORTANCES_PATH, "wb") as out:
+            pickle.dump(importances, out)
         self.filled_dataset = filled_dataset
         self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
         prediction_mask = self.filled_dataset[self.id_columns + self.lab_names]
