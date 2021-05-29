@@ -82,7 +82,15 @@ def test_xgboost():
 
 def test_online_prediction():
     handler = ModelHandler()
-    handler.test(0, 30)
+    ret = handler.test(0, 30)
+    assert len(ret) == 3
+
+
+def test_online_prediction_for_existing():
+    # Tokyo
+    handler = ModelHandler()
+    ret = handler.test(35.6897, 139.6922)
+    assert len(ret) == 2
 
 
 def test_train():

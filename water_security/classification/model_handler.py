@@ -1,33 +1,35 @@
-from typing import Generator
-from sklearn.base import BaseEstimator
-from data.labeled.preprocessed import LABELED_CITIES
+import importlib
 import os
 import pickle
-import pandas as pd
+from typing import Generator
+
 import numpy as np
-import importlib
+import pandas as pd
+import shap
 from data.model import MODEL_PATH
-from sklearn.pipeline import Pipeline
-from classification.classifier import Classifier
-from classification.feature_selection import FeatureSelectionAndGeneration
+from data.model.metrics import TRAINING_METRICS_PATH, VALIDATION_METRICS_PATH
+from data.model.predictions import FILLED_DATASET_PATH, PREDICTION_MASK_PATH
+from sklearn.base import BaseEstimator
 from sklearn.exceptions import NotFittedError
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    explained_variance_score,
     mean_absolute_error,
     mean_squared_error,
-    explained_variance_score,
 )
-from sklearn.metrics import confusion_matrix, classification_report
-from classification import RANDOM_SEED
-from data.model.metrics import VALIDATION_METRICS_PATH, TRAINING_METRICS_PATH
-from data.model.predictions import PREDICTION_MASK_PATH, FILLED_DATASET_PATH
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
 from utils.geo import (
-    get_elevation,
-    is_close,
-    get_place,
     get_average_1k_population_density,
+    get_elevation,
+    get_place,
+    is_close,
 )
-import shap
+
+from classification import RANDOM_SEED
+from classification.classifier import Classifier
+from classification.feature_selection import FeatureSelectionAndGeneration
 
 
 def regression_report(y_true, y_pred):
@@ -54,10 +56,13 @@ class ModelHandler:
     """
     Trains and Tests the model, while also computing metrics.
     During training the model is first fitted, then produces predictions for any unlabled points inside the dataset
+    During testing, it receives latitude, longitude, computes the required features for the city, merges with the country features,
+    uses the model to predict the output and also output the shap values associated with it.
     """
 
     def __init__(self):
         self._model = None
+        self._explainers = None
         self._dataset = None
         self._valid_metrics = None
         self._train_metrics = None
@@ -124,8 +129,8 @@ class ModelHandler:
             - train_mask: the mask that refers to the cities that are labeled at least for one risk
         """
         if self._dataset is None:
-            from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
             from data.dataset import DATASET as dataset
+            from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
 
             self.lab_names = sorted(RISKS_MAPPING.keys())
             self.unique_labs = np.unique(dataset[self.lab_names].T.stack().values)
@@ -196,6 +201,20 @@ class ModelHandler:
             )
             yield (label, labeled, [train_set, valid_set])
 
+    @property
+    def explainers(self):
+        """
+        The SHAP explainers per model
+        """
+        if self._explainers is None:
+            self._explainers = {
+                label: shap.Explainer(
+                    self.model[label].named_steps["Classification"].regressor,
+                )
+                for label in self.model
+            }
+        return self._explainers
+
     def train(self) -> None:
         """
         - Trains 7 different models, one per each different water security risk.
@@ -255,7 +274,9 @@ class ModelHandler:
         Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
         ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
         to create the feature vector and computes the prediction using the trained models.
-        Returns the series of the found labels, which also contain city and country, and the series of booleans which shows which predictions were predicted and which where not.
+        Returns the series of the found labels, which also contain city and country,
+        and the series of booleans which shows which predictions were predicted and which where not.
+        IF it is an online prediction, it also returns the shap values associated with the prediction.
         """
         try:
             from data.model.predictions import FILLED_DATASET, PREDICTION_MASK
@@ -271,6 +292,9 @@ class ModelHandler:
                 FILLED_DATASET.loc[check_existing, labs + ["city", "country"]].iloc[0],
                 PREDICTION_MASK.loc[check_existing, labs].iloc[0],
             )
+        return self._test_online_prediction(latitude, longitude)
+
+    def _test_online_prediction(self, latitude, longitude):
         try:
             place = get_place(latitude, longitude)
         except AttributeError:
@@ -289,19 +313,14 @@ class ModelHandler:
         preds = {}
         mask = {}
         shap_values = {}
-        explainers = {}
         for label in self.model:
             preds[label] = self.model[label].predict(feats)[0]
             mask[label] = True
             transformed = (
                 self.model[label].named_steps["FeatureSelection"].transform(feats)
             )
-
-            explainers[label] = shap.Explainer(
-                self.model[label].named_steps["Classification"].regressor,
-            )
-            shap_values[label] = explainers[label](transformed)
+            shap_values[label] = self.explainers[label](transformed)
 
         preds["city"] = place["city"]
         preds["country"] = place["country"]
-        return pd.Series(preds), pd.Series(mask), explainers, shap_values
+        return pd.Series(preds), pd.Series(mask), shap_values
