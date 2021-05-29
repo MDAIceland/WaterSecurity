@@ -199,8 +199,6 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
     flag `apply_selection` is True. F_regression score is used since numbers
     in the risk factors are representing a certain value. The number of the selected features
     is calculated from the dimension of the dataset (15%) if the `feats_num` is not provided.
-
-    `id_columns` are the columns to be ignored during computations and will be returned as is, defaults are ['latitude','longitude']
     """
 
     # Determine the columns that needs to be substracted before the feature generation
@@ -212,7 +210,7 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         verbose=False,
     ):
         if id_columns is None:
-            id_columns = ["latitude", "longitude"]
+            id_columns = []
         self.id_columns = id_columns
         self.feats_num = feats_num
         self.inp_feats_names: List[str] = []
