@@ -109,3 +109,8 @@ def test_xgboost():
         gbm, features, best_parameters = boosting_reg(
             model, labeled[handler.feat_names], labeled[label], label, best_parameters
         )
+
+
+def test_online_prediction():
+    handler = ModelHandler()
+    handler.test(0, 30)

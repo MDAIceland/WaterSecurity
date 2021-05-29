@@ -12,6 +12,11 @@ from classification.classifier import Classifier
 from classification.feature_selection import FeatureSelectionAndGeneration
 from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    explained_variance_score,
+)
 from sklearn.metrics import confusion_matrix, classification_report
 from classification import RANDOM_SEED
 from data.model.metrics import VALIDATION_METRICS_PATH, TRAINING_METRICS_PATH
@@ -22,6 +27,18 @@ from utils.geo import (
     get_place,
     get_average_1k_population_density,
 )
+import shap
+
+
+def regression_report(y_true, y_pred):
+    """
+    Returns a regression report, including Mean Absolute and Squared Errors and Explained Variance
+    """
+    return {
+        "MAE": mean_absolute_error(y_true, y_pred),
+        "MSE": mean_squared_error(y_true, y_pred),
+        "Explained Variance": explained_variance_score(y_true, y_pred),
+    }
 
 
 class TrainingRequired(NotFittedError):
@@ -151,7 +168,10 @@ class ModelHandler:
             np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
         ]
         metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred_interp)
-        metrics["classification_report"] = classification_report(y_true, y_pred_interp)
+        metrics["classification_report"] = classification_report(
+            y_true, y_pred_interp, output_dict=True
+        )
+        metrics["regression_report"] = regression_report(y_true, y_pred)
         return metrics
 
     @property
@@ -265,11 +285,23 @@ class ModelHandler:
         feats["longitude"] = longitude
         feats["population_1k_density"] = population_density
         feats["elevation"] = elevation
+        feats["population"] = None
         preds = {}
         mask = {}
+        shap_values = {}
+        explainers = {}
         for label in self.model:
             preds[label] = self.model[label].predict(feats)[0]
             mask[label] = True
+            transformed = (
+                self.model[label].named_steps["FeatureSelection"].transform(feats)
+            )
+
+            explainers[label] = shap.Explainer(
+                self.model[label].named_steps["Classification"].regressor,
+            )
+            shap_values[label] = explainers[label](transformed)
+
         preds["city"] = place["city"]
         preds["country"] = place["country"]
-        return pd.Series(preds), pd.Series(mask)
+        return pd.Series(preds), pd.Series(mask), explainers, shap_values

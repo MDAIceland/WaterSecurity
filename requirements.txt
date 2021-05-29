@@ -13,6 +13,7 @@ nltk
 bayesian-optimization
 xgboost
 scikit-learn
+shap
 
 
 #testing
