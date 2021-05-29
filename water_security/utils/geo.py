@@ -265,6 +265,16 @@ class PlaceInfo(TypedDict):
     code: str
 
 
+def get_elevation(latitude: float, longitude: float):
+    """
+    Returns coarse modeled elevation from gtopo30 for a specific latitude and longitude
+    """
+    req = requests.get(
+        f"http://api.geonames.org/gtopo30?lat={latitude}&lng={longitude}&username=vaslem"
+    )
+    return int(req.text)
+
+
 def get_place(latitude: float, longitude: float) -> PlaceInfo:
     """
     Returns city, country and country 3-letter code, given latitude and longitude
