@@ -13262,7 +13262,6 @@ div#notebook {
     <span class="n">markers</span> <span class="o">=</span> <span class="n">markers</span> <span class="o">+</span> <span class="p">(</span><span class="n">marker</span><span class="p">,)</span>
     
 <span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span> <span class="n">check_1k_population_density_source</span>
-<span class="kn">from</span> <span class="nn">utils.download</span> <span class="kn">import</span> <span class="n">DOWNLOAD_PROGRESS_</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">queues</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13334,6 +13333,24 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Loaded model from water_security/data/model/model.pkl.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13356,6 +13373,7 @@ div#notebook {
 <h3 id="Click-on-the-map-to-get-online-prediction.-Click-the-created-red-dot-to-remove.">Click on the map to get online prediction. Click the created red dot to remove.<a class="anchor-link" href="#Click-on-the-map-to-get-online-prediction.-Click-the-created-red-dot-to-remove.">&#182;</a></h3><ul>
 <li>In this view the features SHAP values can also be seen for the predictions by clicking on the "Details" tab.</li>
 <li>The details can only be accessed only on the first click. Once you click on a different location or close the window, only hover can be done for that point.</li>
+<li>To close the window there is an <code>X</code> on the top right, you might need to drag the map to reach it.</li>
 <li>There will be a short delay between the click and the appearance of the red dot/information</li>
 </ul>
 <p><strong>(For online prediction, a file containing population densities is required to be downloaded, which is ~900MB in size)</strong></p>
@@ -13376,6 +13394,35 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="d1fc6606-27e0-42ad-b54e-141f9430fd11"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#d1fc6606-27e0-42ad-b54e-141f9430fd11');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "6ad87f41adc3446a9045610e9f5e716b", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
 </div>
 </div>
 
