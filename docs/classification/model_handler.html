@@ -26,24 +26,53 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from sklearn.base import BaseEstimator
-from data.labeled.preprocessed import LABELED_CITIES
+<pre><code class="python">import importlib
 import os
 import pickle
-import pandas as pd
+from typing import Generator
+
 import numpy as np
-import importlib
+import pandas as pd
+import shap
 from data.model import MODEL_PATH
+from data.model.metrics import (
+    TRAINING_METRICS_PATH,
+    VALIDATION_METRICS_PATH,
+    FEATURES_IMPORTANCES_PATH,
+)
+from data.model.predictions import FILLED_DATASET_PATH, PREDICTION_MASK_PATH
+from sklearn.base import BaseEstimator
+from sklearn.exceptions import NotFittedError
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    explained_variance_score,
+    mean_absolute_error,
+    mean_squared_error,
+)
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
+from utils.geo import (
+    get_average_1k_population_density,
+    get_elevation,
+    get_place,
+    is_close,
+)
+
+from classification import RANDOM_SEED
 from classification.classifier import Classifier
 from classification.feature_selection import FeatureSelectionAndGeneration
-from sklearn.exceptions import NotFittedError
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report
-from classification import RANDOM_SEED
-from data.model.metrics import VALIDATION_METRICS_PATH, TRAINING_METRICS_PATH
-from data.model.predictions import PREDICTION_MASK_PATH, FILLED_DATASET_PATH
-from utils.geo import is_close, get_place, get_average_1k_population_density
+
+
+def regression_report(y_true, y_pred):
+    &#34;&#34;&#34;
+    Returns a regression report, including Mean Absolute and Squared Errors and Explained Variance
+    &#34;&#34;&#34;
+    return {
+        &#34;MAE&#34;: mean_absolute_error(y_true, y_pred),
+        &#34;MSE&#34;: mean_squared_error(y_true, y_pred),
+        &#34;Explained Variance&#34;: explained_variance_score(y_true, y_pred),
+    }
 
 
 class TrainingRequired(NotFittedError):
@@ -59,10 +88,13 @@ class ModelHandler:
     &#34;&#34;&#34;
     Trains and Tests the model, while also computing metrics.
     During training the model is first fitted, then produces predictions for any unlabled points inside the dataset
+    During testing, it receives latitude, longitude, computes the required features for the city, merges with the country features,
+    uses the model to predict the output and also output the shap values associated with it.
     &#34;&#34;&#34;
 
     def __init__(self):
         self._model = None
+        self._explainers = None
         self._dataset = None
         self._valid_metrics = None
         self._train_metrics = None
@@ -71,7 +103,23 @@ class ModelHandler:
         self.feat_names = None
         self.lab_names = None
         # The id columns to remain in the filled dataset
-        self.id_columns = [&#34;city&#34;, &#34;country&#34;, &#34;country_code&#34;, &#34;c40&#34;]
+        self.id_columns = [
+            &#34;city&#34;,
+            &#34;country&#34;,
+            &#34;country_code&#34;,
+            &#34;c40&#34;,
+            &#34;latitude&#34;,
+            &#34;longitude&#34;,
+            &#34;population_1k_density&#34;,
+            &#34;elevation&#34;,
+        ]
+        # The id columns to consider also as features
+        self.feat_id_columns = [
+            &#34;latitude&#34;,
+            &#34;longitude&#34;,
+            &#34;population_1k_density&#34;,
+            &#34;elevation&#34;,
+        ]
 
     @property
     def model(self) -&gt; Pipeline:
@@ -80,8 +128,9 @@ class ModelHandler:
         &#34;&#34;&#34;
         if self._model is None:
             try:
-                from data.model import MODEL
+                from data.model import MODEL, MODEL_PATH
 
+                print(f&#34;Loaded model from {MODEL_PATH}.&#34;)
                 self._model = MODEL
             except ImportError:
                 raise TrainingRequired(&#34;Model&#34;)
@@ -112,18 +161,19 @@ class ModelHandler:
             - train_mask: the mask that refers to the cities that are labeled at least for one risk
         &#34;&#34;&#34;
         if self._dataset is None:
-            from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
             from data.dataset import DATASET as dataset
+            from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
 
             self.lab_names = sorted(RISKS_MAPPING.keys())
             self.unique_labs = np.unique(dataset[self.lab_names].T.stack().values)
             self.feat_names = [
                 x
                 for x in dataset.columns
-                if x not in self.lab_names and x not in self.id_columns
+                if x not in self.lab_names
+                and (x in self.feat_id_columns or x not in self.id_columns)
             ]
             self.train_mask = dataset[self.lab_names].apply(
-                lambda x: all(pd.isnull(x)), axis=1
+                lambda x: not all(pd.isnull(x)), axis=1
             )
             self._dataset = dataset
         return self._dataset
@@ -149,12 +199,16 @@ class ModelHandler:
         Compute metrics for regression labels of size nx1
         &#34;&#34;&#34;
         metrics = {}
+
         # Interpolate predictions to labels, eg convert 0.2 to 0, 0.7 to 1 etc.
         y_pred_interp = self.unique_labs[
             np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
         ]
         metrics[&#34;confusion_matrix&#34;] = confusion_matrix(y_true, y_pred_interp)
-        metrics[&#34;classification_report&#34;] = classification_report(y_true, y_pred)
+        metrics[&#34;classification_report&#34;] = classification_report(
+            y_true, y_pred_interp, output_dict=True
+        )
+        metrics[&#34;regression_report&#34;] = regression_report(y_true, y_pred)
         return metrics
 
     @property
@@ -168,6 +222,45 @@ class ModelHandler:
             return False
         return True
 
+    def get_total_train_val_set_per_risk(self) -&gt; Generator:
+        dataset = self.dataset
+        labeled = dataset[self.train_mask]
+        for label in self.lab_names:
+            train_mask = ~pd.isnull(dataset[label])
+            labeled = dataset.loc[train_mask, :]
+            try:
+                train_set, valid_set = train_test_split(
+                    labeled,
+                    test_size=0.3,
+                    random_state=RANDOM_SEED,
+                    stratify=labeled[label],
+                )
+            except ValueError:
+                print(
+                    f&#34;Using normal split for label {label} due to underrepresentated levels.&#34;
+                    f&#34; The levels counts for that label are:\n {labeled[label].value_counts()}&#34;
+                )
+                train_set, valid_set = train_test_split(
+                    labeled,
+                    test_size=0.3,
+                    random_state=RANDOM_SEED,
+                )
+            yield (label, labeled, [train_set, valid_set])
+
+    @property
+    def explainers(self):
+        &#34;&#34;&#34;
+        The SHAP explainers per model
+        &#34;&#34;&#34;
+        if self._explainers is None:
+            self._explainers = {
+                label: shap.Explainer(
+                    self.model[label].named_steps[&#34;Classification&#34;].regressor,
+                )
+                for label in self.model
+            }
+        return self._explainers
+
     def train(self) -&gt; None:
         &#34;&#34;&#34;
         - Trains 7 different models, one per each different water security risk.
@@ -176,23 +269,21 @@ class ModelHandler:
         - Creates the filled dataset and saves it to disk
         - Creates the prediction mask (what labels from the filled dataset were predicted) and saves it to memory
         &#34;&#34;&#34;
-        dataset = self.dataset
-        labeled = dataset[self.train_mask]
         model = {}
         train_metrics = {}
         valid_metrics = {}
-        filled_dataset = dataset[self.id_columns + self.lab_names].copy()
-        for label in self.lab_names:
-            train_mask = ~pd.isnull(dataset[label])
-            labeled = dataset.loc[train_mask, :]
-            train_set, valid_set = train_test_split(
-                labeled, test_size=0.3, random_state=RANDOM_SEED
-            )
+        filled_dataset: pd.DataFrame = None
+        importances = {}
+        for (
+            label,
+            labeled,
+            [train_set, valid_set],
+        ) in self.get_total_train_val_set_per_risk():
 
             model[label] = Pipeline(
                 [
-                    (&#34;FeatureSelection&#34;, FeatureSelectionAndGeneration()),
-                    (&#34;Classification&#34;, Classifier()),
+                    (&#34;FeatureSelection&#34;, FeatureSelectionAndGeneration(feats_num=500)),
+                    (&#34;Classification&#34;, Classifier(label)),
                 ]
             )
             model[label].fit(train_set[self.feat_names], train_set[label])
@@ -201,9 +292,13 @@ class ModelHandler:
             train_metrics[label] = self.compute_metrics(train_set[label], train_preds)
             valid_metrics[label] = self.compute_metrics(valid_set[label], valid_preds)
             model[label].fit(labeled[self.feat_names], labeled[label])
-
-            filled_dataset.loc[~train_mask, label] = model[label].predict(
-                dataset.loc[~train_mask, self.feat_names]
+            importances[label] = (
+                model[label].named_steps[&#34;Classification&#34;].feature_importances_
+            )
+            if filled_dataset is None:
+                filled_dataset = self.dataset[self.id_columns + self.lab_names].copy()
+            filled_dataset.loc[~self.train_mask, label] = model[label].predict(
+                self.dataset.loc[~self.train_mask, self.feat_names]
             )
         self.model = model
         self.save_model()
@@ -211,10 +306,12 @@ class ModelHandler:
             pickle.dump(valid_metrics, out)
         with open(TRAINING_METRICS_PATH, &#34;wb&#34;) as out:
             pickle.dump(train_metrics, out)
+        with open(FEATURES_IMPORTANCES_PATH, &#34;wb&#34;) as out:
+            pickle.dump(importances, out)
         self.filled_dataset = filled_dataset
         self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
         prediction_mask = self.filled_dataset[self.id_columns + self.lab_names]
-        prediction_mask[self.lab_names] = pd.isnull(dataset[self.lab_names])
+        prediction_mask[self.lab_names] = pd.isnull(self.dataset[self.lab_names])
         prediction_mask.to_csv(PREDICTION_MASK_PATH, index=False)
         import data.model.metrics
 
@@ -223,12 +320,14 @@ class ModelHandler:
 
         importlib.reload(data.model.predictions)
 
-    def test(self, latitude, longitude):
+    def test(self, latitude: float, longitude: float):
         &#34;&#34;&#34;
         Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
         ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
         to create the feature vector and computes the prediction using the trained models.
-        Returns the series of the found labels, which also contain city and country, and the series of booleans which shows which predictions were predicted and which where not.
+        Returns the series of the found labels, which also contain city and country,
+        and the series of booleans which shows which predictions were predicted and which where not.
+        IF it is an online prediction, it also returns the shap values associated with the prediction.
         &#34;&#34;&#34;
         try:
             from data.model.predictions import FILLED_DATASET, PREDICTION_MASK
@@ -244,24 +343,38 @@ class ModelHandler:
                 FILLED_DATASET.loc[check_existing, labs + [&#34;city&#34;, &#34;country&#34;]].iloc[0],
                 PREDICTION_MASK.loc[check_existing, labs].iloc[0],
             )
+        return self._test_online_prediction(latitude, longitude)
+
+    def _test_online_prediction(self, latitude, longitude):
         try:
             place = get_place(latitude, longitude)
         except AttributeError:
             raise InvalidCoordinates
         population_density = get_average_1k_population_density(latitude, longitude)
+        elevation = get_elevation(latitude, longitude)
 
         from data.unlabeled import COUNTRIES_DATASET
 
         feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]].copy()
+        feats[&#34;latitude&#34;] = latitude
+        feats[&#34;longitude&#34;] = longitude
         feats[&#34;population_1k_density&#34;] = population_density
+        feats[&#34;elevation&#34;] = elevation
+        feats[&#34;population&#34;] = None
         preds = {}
         mask = {}
+        shap_values = {}
         for label in self.model:
             preds[label] = self.model[label].predict(feats)[0]
             mask[label] = True
+            transformed = (
+                self.model[label].named_steps[&#34;FeatureSelection&#34;].transform(feats)
+            )
+            shap_values[label] = self.explainers[label](transformed)
+
         preds[&#34;city&#34;] = place[&#34;city&#34;]
         preds[&#34;country&#34;] = place[&#34;country&#34;]
-        return pd.Series(preds), pd.Series(mask)</code></pre>
+        return pd.Series(preds), pd.Series(mask), shap_values</code></pre>
 </details>
 </section>
 <section>
@@ -269,6 +382,29 @@ class ModelHandler:
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="water_security.classification.model_handler.regression_report"><code class="name flex">
+<span>def <span class="ident">regression_report</span></span>(<span>y_true, y_pred)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a regression report, including Mean Absolute and Squared Errors and Explained Variance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def regression_report(y_true, y_pred):
+    &#34;&#34;&#34;
+    Returns a regression report, including Mean Absolute and Squared Errors and Explained Variance
+    &#34;&#34;&#34;
+    return {
+        &#34;MAE&#34;: mean_absolute_error(y_true, y_pred),
+        &#34;MSE&#34;: mean_squared_error(y_true, y_pred),
+        &#34;Explained Variance&#34;: explained_variance_score(y_true, y_pred),
+    }</code></pre>
+</details>
+</dd>
+</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
@@ -296,7 +432,9 @@ class ModelHandler:
 </code></dt>
 <dd>
 <div class="desc"><p>Trains and Tests the model, while also computing metrics.
-During training the model is first fitted, then produces predictions for any unlabled points inside the dataset</p></div>
+During training the model is first fitted, then produces predictions for any unlabled points inside the dataset
+During testing, it receives latitude, longitude, computes the required features for the city, merges with the country features,
+uses the model to predict the output and also output the shap values associated with it.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -305,10 +443,13 @@ During training the model is first fitted, then produces predictions for any unl
     &#34;&#34;&#34;
     Trains and Tests the model, while also computing metrics.
     During training the model is first fitted, then produces predictions for any unlabled points inside the dataset
+    During testing, it receives latitude, longitude, computes the required features for the city, merges with the country features,
+    uses the model to predict the output and also output the shap values associated with it.
     &#34;&#34;&#34;
 
     def __init__(self):
         self._model = None
+        self._explainers = None
         self._dataset = None
         self._valid_metrics = None
         self._train_metrics = None
@@ -317,7 +458,23 @@ During training the model is first fitted, then produces predictions for any unl
         self.feat_names = None
         self.lab_names = None
         # The id columns to remain in the filled dataset
-        self.id_columns = [&#34;city&#34;, &#34;country&#34;, &#34;country_code&#34;, &#34;c40&#34;]
+        self.id_columns = [
+            &#34;city&#34;,
+            &#34;country&#34;,
+            &#34;country_code&#34;,
+            &#34;c40&#34;,
+            &#34;latitude&#34;,
+            &#34;longitude&#34;,
+            &#34;population_1k_density&#34;,
+            &#34;elevation&#34;,
+        ]
+        # The id columns to consider also as features
+        self.feat_id_columns = [
+            &#34;latitude&#34;,
+            &#34;longitude&#34;,
+            &#34;population_1k_density&#34;,
+            &#34;elevation&#34;,
+        ]
 
     @property
     def model(self) -&gt; Pipeline:
@@ -326,8 +483,9 @@ During training the model is first fitted, then produces predictions for any unl
         &#34;&#34;&#34;
         if self._model is None:
             try:
-                from data.model import MODEL
+                from data.model import MODEL, MODEL_PATH
 
+                print(f&#34;Loaded model from {MODEL_PATH}.&#34;)
                 self._model = MODEL
             except ImportError:
                 raise TrainingRequired(&#34;Model&#34;)
@@ -358,18 +516,19 @@ During training the model is first fitted, then produces predictions for any unl
             - train_mask: the mask that refers to the cities that are labeled at least for one risk
         &#34;&#34;&#34;
         if self._dataset is None:
-            from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
             from data.dataset import DATASET as dataset
+            from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
 
             self.lab_names = sorted(RISKS_MAPPING.keys())
             self.unique_labs = np.unique(dataset[self.lab_names].T.stack().values)
             self.feat_names = [
                 x
                 for x in dataset.columns
-                if x not in self.lab_names and x not in self.id_columns
+                if x not in self.lab_names
+                and (x in self.feat_id_columns or x not in self.id_columns)
             ]
             self.train_mask = dataset[self.lab_names].apply(
-                lambda x: all(pd.isnull(x)), axis=1
+                lambda x: not all(pd.isnull(x)), axis=1
             )
             self._dataset = dataset
         return self._dataset
@@ -395,12 +554,16 @@ During training the model is first fitted, then produces predictions for any unl
         Compute metrics for regression labels of size nx1
         &#34;&#34;&#34;
         metrics = {}
+
         # Interpolate predictions to labels, eg convert 0.2 to 0, 0.7 to 1 etc.
         y_pred_interp = self.unique_labs[
             np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
         ]
         metrics[&#34;confusion_matrix&#34;] = confusion_matrix(y_true, y_pred_interp)
-        metrics[&#34;classification_report&#34;] = classification_report(y_true, y_pred)
+        metrics[&#34;classification_report&#34;] = classification_report(
+            y_true, y_pred_interp, output_dict=True
+        )
+        metrics[&#34;regression_report&#34;] = regression_report(y_true, y_pred)
         return metrics
 
     @property
@@ -414,6 +577,45 @@ During training the model is first fitted, then produces predictions for any unl
             return False
         return True
 
+    def get_total_train_val_set_per_risk(self) -&gt; Generator:
+        dataset = self.dataset
+        labeled = dataset[self.train_mask]
+        for label in self.lab_names:
+            train_mask = ~pd.isnull(dataset[label])
+            labeled = dataset.loc[train_mask, :]
+            try:
+                train_set, valid_set = train_test_split(
+                    labeled,
+                    test_size=0.3,
+                    random_state=RANDOM_SEED,
+                    stratify=labeled[label],
+                )
+            except ValueError:
+                print(
+                    f&#34;Using normal split for label {label} due to underrepresentated levels.&#34;
+                    f&#34; The levels counts for that label are:\n {labeled[label].value_counts()}&#34;
+                )
+                train_set, valid_set = train_test_split(
+                    labeled,
+                    test_size=0.3,
+                    random_state=RANDOM_SEED,
+                )
+            yield (label, labeled, [train_set, valid_set])
+
+    @property
+    def explainers(self):
+        &#34;&#34;&#34;
+        The SHAP explainers per model
+        &#34;&#34;&#34;
+        if self._explainers is None:
+            self._explainers = {
+                label: shap.Explainer(
+                    self.model[label].named_steps[&#34;Classification&#34;].regressor,
+                )
+                for label in self.model
+            }
+        return self._explainers
+
     def train(self) -&gt; None:
         &#34;&#34;&#34;
         - Trains 7 different models, one per each different water security risk.
@@ -422,23 +624,21 @@ During training the model is first fitted, then produces predictions for any unl
         - Creates the filled dataset and saves it to disk
         - Creates the prediction mask (what labels from the filled dataset were predicted) and saves it to memory
         &#34;&#34;&#34;
-        dataset = self.dataset
-        labeled = dataset[self.train_mask]
         model = {}
         train_metrics = {}
         valid_metrics = {}
-        filled_dataset = dataset[self.id_columns + self.lab_names].copy()
-        for label in self.lab_names:
-            train_mask = ~pd.isnull(dataset[label])
-            labeled = dataset.loc[train_mask, :]
-            train_set, valid_set = train_test_split(
-                labeled, test_size=0.3, random_state=RANDOM_SEED
-            )
+        filled_dataset: pd.DataFrame = None
+        importances = {}
+        for (
+            label,
+            labeled,
+            [train_set, valid_set],
+        ) in self.get_total_train_val_set_per_risk():
 
             model[label] = Pipeline(
                 [
-                    (&#34;FeatureSelection&#34;, FeatureSelectionAndGeneration()),
-                    (&#34;Classification&#34;, Classifier()),
+                    (&#34;FeatureSelection&#34;, FeatureSelectionAndGeneration(feats_num=500)),
+                    (&#34;Classification&#34;, Classifier(label)),
                 ]
             )
             model[label].fit(train_set[self.feat_names], train_set[label])
@@ -447,9 +647,13 @@ During training the model is first fitted, then produces predictions for any unl
             train_metrics[label] = self.compute_metrics(train_set[label], train_preds)
             valid_metrics[label] = self.compute_metrics(valid_set[label], valid_preds)
             model[label].fit(labeled[self.feat_names], labeled[label])
-
-            filled_dataset.loc[~train_mask, label] = model[label].predict(
-                dataset.loc[~train_mask, self.feat_names]
+            importances[label] = (
+                model[label].named_steps[&#34;Classification&#34;].feature_importances_
+            )
+            if filled_dataset is None:
+                filled_dataset = self.dataset[self.id_columns + self.lab_names].copy()
+            filled_dataset.loc[~self.train_mask, label] = model[label].predict(
+                self.dataset.loc[~self.train_mask, self.feat_names]
             )
         self.model = model
         self.save_model()
@@ -457,10 +661,12 @@ During training the model is first fitted, then produces predictions for any unl
             pickle.dump(valid_metrics, out)
         with open(TRAINING_METRICS_PATH, &#34;wb&#34;) as out:
             pickle.dump(train_metrics, out)
+        with open(FEATURES_IMPORTANCES_PATH, &#34;wb&#34;) as out:
+            pickle.dump(importances, out)
         self.filled_dataset = filled_dataset
         self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
         prediction_mask = self.filled_dataset[self.id_columns + self.lab_names]
-        prediction_mask[self.lab_names] = pd.isnull(dataset[self.lab_names])
+        prediction_mask[self.lab_names] = pd.isnull(self.dataset[self.lab_names])
         prediction_mask.to_csv(PREDICTION_MASK_PATH, index=False)
         import data.model.metrics
 
@@ -469,12 +675,14 @@ During training the model is first fitted, then produces predictions for any unl
 
         importlib.reload(data.model.predictions)
 
-    def test(self, latitude, longitude):
+    def test(self, latitude: float, longitude: float):
         &#34;&#34;&#34;
         Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
         ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
         to create the feature vector and computes the prediction using the trained models.
-        Returns the series of the found labels, which also contain city and country, and the series of booleans which shows which predictions were predicted and which where not.
+        Returns the series of the found labels, which also contain city and country,
+        and the series of booleans which shows which predictions were predicted and which where not.
+        IF it is an online prediction, it also returns the shap values associated with the prediction.
         &#34;&#34;&#34;
         try:
             from data.model.predictions import FILLED_DATASET, PREDICTION_MASK
@@ -490,24 +698,38 @@ During training the model is first fitted, then produces predictions for any unl
                 FILLED_DATASET.loc[check_existing, labs + [&#34;city&#34;, &#34;country&#34;]].iloc[0],
                 PREDICTION_MASK.loc[check_existing, labs].iloc[0],
             )
+        return self._test_online_prediction(latitude, longitude)
+
+    def _test_online_prediction(self, latitude, longitude):
         try:
             place = get_place(latitude, longitude)
         except AttributeError:
             raise InvalidCoordinates
         population_density = get_average_1k_population_density(latitude, longitude)
+        elevation = get_elevation(latitude, longitude)
 
         from data.unlabeled import COUNTRIES_DATASET
 
         feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]].copy()
+        feats[&#34;latitude&#34;] = latitude
+        feats[&#34;longitude&#34;] = longitude
         feats[&#34;population_1k_density&#34;] = population_density
+        feats[&#34;elevation&#34;] = elevation
+        feats[&#34;population&#34;] = None
         preds = {}
         mask = {}
+        shap_values = {}
         for label in self.model:
             preds[label] = self.model[label].predict(feats)[0]
             mask[label] = True
+            transformed = (
+                self.model[label].named_steps[&#34;FeatureSelection&#34;].transform(feats)
+            )
+            shap_values[label] = self.explainers[label](transformed)
+
         preds[&#34;city&#34;] = place[&#34;city&#34;]
         preds[&#34;country&#34;] = place[&#34;country&#34;]
-        return pd.Series(preds), pd.Series(mask)</code></pre>
+        return pd.Series(preds), pd.Series(mask), shap_values</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
@@ -534,21 +756,44 @@ def dataset(self) -&gt; pd.DataFrame:
         - train_mask: the mask that refers to the cities that are labeled at least for one risk
     &#34;&#34;&#34;
     if self._dataset is None:
-        from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
         from data.dataset import DATASET as dataset
+        from data.labeled.preprocessed import LABELED_CITIES, RISKS_MAPPING
 
         self.lab_names = sorted(RISKS_MAPPING.keys())
         self.unique_labs = np.unique(dataset[self.lab_names].T.stack().values)
         self.feat_names = [
             x
             for x in dataset.columns
-            if x not in self.lab_names and x not in self.id_columns
+            if x not in self.lab_names
+            and (x in self.feat_id_columns or x not in self.id_columns)
         ]
         self.train_mask = dataset[self.lab_names].apply(
-            lambda x: all(pd.isnull(x)), axis=1
+            lambda x: not all(pd.isnull(x)), axis=1
         )
         self._dataset = dataset
     return self._dataset</code></pre>
+</details>
+</dd>
+<dt id="water_security.classification.model_handler.ModelHandler.explainers"><code class="name">var <span class="ident">explainers</span></code></dt>
+<dd>
+<div class="desc"><p>The SHAP explainers per model</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def explainers(self):
+    &#34;&#34;&#34;
+    The SHAP explainers per model
+    &#34;&#34;&#34;
+    if self._explainers is None:
+        self._explainers = {
+            label: shap.Explainer(
+                self.model[label].named_steps[&#34;Classification&#34;].regressor,
+            )
+            for label in self.model
+        }
+    return self._explainers</code></pre>
 </details>
 </dd>
 <dt id="water_security.classification.model_handler.ModelHandler.filled_dataset"><code class="name">var <span class="ident">filled_dataset</span> : pandas.core.frame.DataFrame</code></dt>
@@ -604,8 +849,9 @@ def model(self) -&gt; Pipeline:
     &#34;&#34;&#34;
     if self._model is None:
         try:
-            from data.model import MODEL
+            from data.model import MODEL, MODEL_PATH
 
+            print(f&#34;Loaded model from {MODEL_PATH}.&#34;)
             self._model = MODEL
         except ImportError:
             raise TrainingRequired(&#34;Model&#34;)
@@ -629,13 +875,52 @@ def model(self) -&gt; Pipeline:
     Compute metrics for regression labels of size nx1
     &#34;&#34;&#34;
     metrics = {}
+
     # Interpolate predictions to labels, eg convert 0.2 to 0, 0.7 to 1 etc.
     y_pred_interp = self.unique_labs[
         np.abs(np.reshape(self.unique_labs, (-1, 1)) - y_pred).argmin(axis=0)
     ]
     metrics[&#34;confusion_matrix&#34;] = confusion_matrix(y_true, y_pred_interp)
-    metrics[&#34;classification_report&#34;] = classification_report(y_true, y_pred)
+    metrics[&#34;classification_report&#34;] = classification_report(
+        y_true, y_pred_interp, output_dict=True
+    )
+    metrics[&#34;regression_report&#34;] = regression_report(y_true, y_pred)
     return metrics</code></pre>
+</details>
+</dd>
+<dt id="water_security.classification.model_handler.ModelHandler.get_total_train_val_set_per_risk"><code class="name flex">
+<span>def <span class="ident">get_total_train_val_set_per_risk</span></span>(<span>self) ‑> Generator</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_total_train_val_set_per_risk(self) -&gt; Generator:
+    dataset = self.dataset
+    labeled = dataset[self.train_mask]
+    for label in self.lab_names:
+        train_mask = ~pd.isnull(dataset[label])
+        labeled = dataset.loc[train_mask, :]
+        try:
+            train_set, valid_set = train_test_split(
+                labeled,
+                test_size=0.3,
+                random_state=RANDOM_SEED,
+                stratify=labeled[label],
+            )
+        except ValueError:
+            print(
+                f&#34;Using normal split for label {label} due to underrepresentated levels.&#34;
+                f&#34; The levels counts for that label are:\n {labeled[label].value_counts()}&#34;
+            )
+            train_set, valid_set = train_test_split(
+                labeled,
+                test_size=0.3,
+                random_state=RANDOM_SEED,
+            )
+        yield (label, labeled, [train_set, valid_set])</code></pre>
 </details>
 </dd>
 <dt id="water_security.classification.model_handler.ModelHandler.save_model"><code class="name flex">
@@ -659,23 +944,27 @@ def model(self) -&gt; Pipeline:
 </details>
 </dd>
 <dt id="water_security.classification.model_handler.ModelHandler.test"><code class="name flex">
-<span>def <span class="ident">test</span></span>(<span>self, latitude, longitude)</span>
+<span>def <span class="ident">test</span></span>(<span>self, latitude: float, longitude: float)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
 ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
 to create the feature vector and computes the prediction using the trained models.
-Returns the series of the found labels, which also contain city and country, and the series of booleans which shows which predictions were predicted and which where not.</p></div>
+Returns the series of the found labels, which also contain city and country,
+and the series of booleans which shows which predictions were predicted and which where not.
+IF it is an online prediction, it also returns the shap values associated with the prediction.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def test(self, latitude, longitude):
+<pre><code class="python">def test(self, latitude: float, longitude: float):
     &#34;&#34;&#34;
     Given a specific latitude and longitude value, either returns saved predictions from the filled dataset, if the point is close to the
     ones that have already been predicted, or uses a REST API to load the country to which the latitude and longitude refer, uses the country data
     to create the feature vector and computes the prediction using the trained models.
-    Returns the series of the found labels, which also contain city and country, and the series of booleans which shows which predictions were predicted and which where not.
+    Returns the series of the found labels, which also contain city and country,
+    and the series of booleans which shows which predictions were predicted and which where not.
+    IF it is an online prediction, it also returns the shap values associated with the prediction.
     &#34;&#34;&#34;
     try:
         from data.model.predictions import FILLED_DATASET, PREDICTION_MASK
@@ -691,24 +980,7 @@ Returns the series of the found labels, which also contain city and country, and
             FILLED_DATASET.loc[check_existing, labs + [&#34;city&#34;, &#34;country&#34;]].iloc[0],
             PREDICTION_MASK.loc[check_existing, labs].iloc[0],
         )
-    try:
-        place = get_place(latitude, longitude)
-    except AttributeError:
-        raise InvalidCoordinates
-    population_density = get_average_1k_population_density(latitude, longitude)
-
-    from data.unlabeled import COUNTRIES_DATASET
-
-    feats = COUNTRIES_DATASET.loc[place[&#34;code&#34;]].copy()
-    feats[&#34;population_1k_density&#34;] = population_density
-    preds = {}
-    mask = {}
-    for label in self.model:
-        preds[label] = self.model[label].predict(feats)[0]
-        mask[label] = True
-    preds[&#34;city&#34;] = place[&#34;city&#34;]
-    preds[&#34;country&#34;] = place[&#34;country&#34;]
-    return pd.Series(preds), pd.Series(mask)</code></pre>
+    return self._test_online_prediction(latitude, longitude)</code></pre>
 </details>
 </dd>
 <dt id="water_security.classification.model_handler.ModelHandler.train"><code class="name flex">
@@ -734,23 +1006,21 @@ Returns the series of the found labels, which also contain city and country, and
     - Creates the filled dataset and saves it to disk
     - Creates the prediction mask (what labels from the filled dataset were predicted) and saves it to memory
     &#34;&#34;&#34;
-    dataset = self.dataset
-    labeled = dataset[self.train_mask]
     model = {}
     train_metrics = {}
     valid_metrics = {}
-    filled_dataset = dataset[self.id_columns + self.lab_names].copy()
-    for label in self.lab_names:
-        train_mask = ~pd.isnull(dataset[label])
-        labeled = dataset.loc[train_mask, :]
-        train_set, valid_set = train_test_split(
-            labeled, test_size=0.3, random_state=RANDOM_SEED
-        )
+    filled_dataset: pd.DataFrame = None
+    importances = {}
+    for (
+        label,
+        labeled,
+        [train_set, valid_set],
+    ) in self.get_total_train_val_set_per_risk():
 
         model[label] = Pipeline(
             [
-                (&#34;FeatureSelection&#34;, FeatureSelectionAndGeneration()),
-                (&#34;Classification&#34;, Classifier()),
+                (&#34;FeatureSelection&#34;, FeatureSelectionAndGeneration(feats_num=500)),
+                (&#34;Classification&#34;, Classifier(label)),
             ]
         )
         model[label].fit(train_set[self.feat_names], train_set[label])
@@ -759,9 +1029,13 @@ Returns the series of the found labels, which also contain city and country, and
         train_metrics[label] = self.compute_metrics(train_set[label], train_preds)
         valid_metrics[label] = self.compute_metrics(valid_set[label], valid_preds)
         model[label].fit(labeled[self.feat_names], labeled[label])
-
-        filled_dataset.loc[~train_mask, label] = model[label].predict(
-            dataset.loc[~train_mask, self.feat_names]
+        importances[label] = (
+            model[label].named_steps[&#34;Classification&#34;].feature_importances_
+        )
+        if filled_dataset is None:
+            filled_dataset = self.dataset[self.id_columns + self.lab_names].copy()
+        filled_dataset.loc[~self.train_mask, label] = model[label].predict(
+            self.dataset.loc[~self.train_mask, self.feat_names]
         )
     self.model = model
     self.save_model()
@@ -769,10 +1043,12 @@ Returns the series of the found labels, which also contain city and country, and
         pickle.dump(valid_metrics, out)
     with open(TRAINING_METRICS_PATH, &#34;wb&#34;) as out:
         pickle.dump(train_metrics, out)
+    with open(FEATURES_IMPORTANCES_PATH, &#34;wb&#34;) as out:
+        pickle.dump(importances, out)
     self.filled_dataset = filled_dataset
     self.filled_dataset.to_csv(FILLED_DATASET_PATH, index=False)
     prediction_mask = self.filled_dataset[self.id_columns + self.lab_names]
-    prediction_mask[self.lab_names] = pd.isnull(dataset[self.lab_names])
+    prediction_mask[self.lab_names] = pd.isnull(self.dataset[self.lab_names])
     prediction_mask.to_csv(PREDICTION_MASK_PATH, index=False)
     import data.model.metrics
 
@@ -837,6 +1113,11 @@ appropriate arguments before using this estimator.&quot;...)
 <li><code><a title="water_security.classification" href="index.html">water_security.classification</a></code></li>
 </ul>
 </li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="water_security.classification.model_handler.regression_report" href="#water_security.classification.model_handler.regression_report">regression_report</a></code></li>
+</ul>
+</li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
@@ -844,10 +1125,12 @@ appropriate arguments before using this estimator.&quot;...)
 </li>
 <li>
 <h4><code><a title="water_security.classification.model_handler.ModelHandler" href="#water_security.classification.model_handler.ModelHandler">ModelHandler</a></code></h4>
-<ul class="two-column">
+<ul class="">
 <li><code><a title="water_security.classification.model_handler.ModelHandler.compute_metrics" href="#water_security.classification.model_handler.ModelHandler.compute_metrics">compute_metrics</a></code></li>
 <li><code><a title="water_security.classification.model_handler.ModelHandler.dataset" href="#water_security.classification.model_handler.ModelHandler.dataset">dataset</a></code></li>
+<li><code><a title="water_security.classification.model_handler.ModelHandler.explainers" href="#water_security.classification.model_handler.ModelHandler.explainers">explainers</a></code></li>
 <li><code><a title="water_security.classification.model_handler.ModelHandler.filled_dataset" href="#water_security.classification.model_handler.ModelHandler.filled_dataset">filled_dataset</a></code></li>
+<li><code><a title="water_security.classification.model_handler.ModelHandler.get_total_train_val_set_per_risk" href="#water_security.classification.model_handler.ModelHandler.get_total_train_val_set_per_risk">get_total_train_val_set_per_risk</a></code></li>
 <li><code><a title="water_security.classification.model_handler.ModelHandler.is_fitted" href="#water_security.classification.model_handler.ModelHandler.is_fitted">is_fitted</a></code></li>
 <li><code><a title="water_security.classification.model_handler.ModelHandler.model" href="#water_security.classification.model_handler.ModelHandler.model">model</a></code></li>
 <li><code><a title="water_security.classification.model_handler.ModelHandler.save_model" href="#water_security.classification.model_handler.ModelHandler.save_model">save_model</a></code></li>

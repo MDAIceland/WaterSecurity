@@ -13079,158 +13079,84 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="ADABoost-regressor-gave-worse-results-than-xgboost,-so-it-was-dropped">ADABoost regressor gave worse results than xgboost, so it was dropped<a class="anchor-link" href="#ADABoost-regressor-gave-worse-results-than-xgboost,-so-it-was-dropped">&#182;</a></h1>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipyleaflet</span> <span class="kn">import</span> <span class="n">Map</span><span class="p">,</span> <span class="n">basemaps</span><span class="p">,</span> <span class="n">CircleMarker</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span><span class="n">Tab</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">Box</span><span class="p">,</span> <span class="n">HBox</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;water_security&quot;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">data.labeled.preprocessed</span> <span class="kn">import</span>  <span class="n">RISKS_MAPPING</span> <span class="k">as</span> <span class="n">risks</span>
-<span class="kn">from</span> <span class="nn">data.labeled.preprocessed</span> <span class="kn">import</span> <span class="n">SEVERITY_MAPPING</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">ipyleaflet</span> <span class="kn">import</span> <span class="n">Icon</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">MarkerCluster</span><span class="p">,</span> <span class="n">Popup</span>
-<span class="kn">import</span> <span class="nn">shap</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sfs</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">import</span> <span class="nn">base64</span> 
-<span class="n">m</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="n">basemaps</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">Terrain</span><span class="p">,</span><span class="n">world_copy_jump</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">model_handler</span> <span class="kn">import</span> <span class="n">ModelHandler</span>
+<span class="kn">from</span> <span class="nn">feature_selection</span> <span class="kn">import</span> <span class="n">FeatureSelectionAndGeneration</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">ModelHandler</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">dataset</span>
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">handler</span><span class="o">.</span><span class="n">train_mask</span><span class="p">]</span>
+</pre></div>
 
-<span class="n">markers</span> <span class="o">=</span> <span class="p">()</span>
+    </div>
+</div>
+</div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The dataset includes different risks that need a prediction. Every risk is considered as a different target of labels, namely a response variable.</p>
+<p>The aim is to build a model able to predict each risk in the most accurate way possible. However, the learning process is different for each of them, meaning that the minimum set of variables that best explain the largest amount of variance in the dataset is unique for every risk. As a consequence, the following pipeline will be executed as much time as the number of risks in order to return as more precise predictions as possible.</p>
 
-<span class="n">popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;popup&#39;</span><span class="p">,</span>
-            <span class="n">close_button</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">close_on_escape_key</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">auto_pan</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="p">)</span>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Dataset-splitting">Dataset splitting<a class="anchor-link" href="#Dataset-splitting">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first step consists in splitting the dataset into training and test sets. The first will be used during the feature selection part, which is implemented using a boosted logistic regression model. This is a supervised learning approach, thus labels are needed for the regression to be carried out. In this dataset risks are assigned to only some of the cities, therefore it's wise to select as training set all the entries containing values for the given risk. All the rest will be referred to as test set, used for the classification task, since those cities will be the ones needing a prediction.</p>
 
-<span class="n">feats_popup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;feats_popup&#39;</span><span class="p">,</span>
-            <span class="n">close_button</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">close_on_escape_key</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">auto_pan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">min_width</span><span class="o">=</span><span class="mi">1000</span>
-        <span class="p">)</span>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Feature-selection">Feature selection<a class="anchor-link" href="#Feature-selection">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When there is a highly non-linear and complex relationship between the predictors and the labels decision trees are preferable. The dataset has many different predictors and we don't know whether this relationship is linear or not.</p>
+<p>The most robust approach among the ensemble method is <code>Boosting</code>. It allows to aggregate many decision trees, differently from <code>Random Forest</code>, and grow them sequentially, instead of using boostrap sampling like in <code>Bagging</code>.</p>
+<p>The procedure consists in fitting small trees to the residuals in order to slowly improve the prediction error. Generally, model that learn slowly tend to perform better. A pitfall of Boosting, however, is that it relies very much on its tuning parameters. Hence, it's important to undergo <code>Cross Validation</code> in order to select the combination returning the highest accuracy, for every target. 
+For this purpose we decided to use 10-fold cross validation in such a way to speed up the tuning process, which is already slow given the amount of parameters that need to be optimized.</p>
 
-<span class="n">dpopup</span> <span class="o">=</span> <span class="n">Popup</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;download_popup&#39;</span><span class="p">,</span>
-            <span class="n">close_button</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">close_on_escape_key</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">auto_pan</span><span class="o">=</span><span class="kc">False</span>
-        <span class="p">)</span>
-<span class="k">def</span> <span class="nf">mouseover_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span><span class="n">location</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">pred_mask</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">popup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">populate_per_city</span><span class="p">(</span><span class="n">city</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">city</span><span class="o">.</span><span class="n">country</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span><span class="n">pred_mask</span><span class="p">)</span>
-        <span class="n">popup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">popup</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">callback</span>
-
-<span class="k">def</span> <span class="nf">mouseout_callback</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">popup</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">pass</span>
-    <span class="k">return</span> <span class="n">callback</span>
-
-
-<span class="k">def</span> <span class="nf">plot_shap</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
-    <span class="n">shap</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">waterfall</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_display</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">shap_plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
-    
-    <span class="n">dpi</span> <span class="o">=</span> <span class="mi">100</span>
-    <span class="n">size</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">shap_plot</span><span class="o">.</span><span class="n">get_size_inches</span><span class="p">()</span><span class="o">*</span><span class="n">dpi</span><span class="p">]</span> <span class="c1"># size in pixels</span>
-    <span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
-    <span class="n">shap_plot</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span>
-                <span class="nb">format</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span>
-                <span class="n">dpi</span> <span class="o">=</span> <span class="n">dpi</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span>
-                <span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">(),</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>
-    <span class="n">width</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span>
-    <span class="n">height</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">img</span>
-
-<span class="k">def</span> <span class="nf">show_feats</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">risks_dict</span><span class="p">,</span> <span class="n">pred_mask</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">):</span>
-    <span class="n">html</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    &lt;h4&gt;&lt;b&gt; </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2"> &lt;/b&gt;&lt;/h4&gt;&quot;&quot;&quot;</span> <span class="c1">#&lt;/p&gt;</span>
-    
-    <span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">risk</span> <span class="ow">in</span> <span class="n">risks</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">pred_mask</span><span class="p">[</span><span class="n">risk</span><span class="p">]:</span>
-            <span class="k">continue</span>
-        <span class="k">if</span> <span class="n">risk</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">risks_dict</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">risk_value</span> <span class="o">=</span> <span class="n">risks_dict</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">risk_value</span><span class="p">):</span>
-            <span class="n">risk_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">risk_value</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">risk_value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-                <span class="k">continue</span>
-            <span class="n">risk_value</span> <span class="o">=</span> <span class="n">SEVERITY_MAPPING</span><span class="p">[</span><span class="n">risk_value</span><span class="p">]</span>
-            
-            <span class="n">to_add</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;&lt;b&gt;</span><span class="si">{</span><span class="n">risks</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">risk_value</span><span class="si">}</span><span class="s2">&lt;/b&gt;&quot;&quot;&quot;</span><span class="p">)</span>
-            <span class="n">im</span> <span class="o">=</span> <span class="n">plot_shap</span><span class="p">(</span><span class="n">shap_values</span><span class="p">[</span><span class="n">risk</span><span class="p">])</span>
-            <span class="n">to_add</span> <span class="o">=</span> <span class="n">im</span>
-            <span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_add</span><span class="p">)</span>
-            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">risks</span><span class="p">[</span><span class="n">risk</span><span class="p">])</span>
-    <span class="n">tab</span> <span class="o">=</span> <span class="n">Tab</span><span class="p">()</span>
-    
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">1000</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">400</span><span class="si">}</span><span class="s2">px&quot;</span> <span class="p">)</span>
-        <span class="n">c</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">object_fit</span> <span class="o">=</span> <span class="s1">&#39;scale-down&#39;</span>
-    <span class="n">tab</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">children</span>
-    <span class="n">tab</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">1050</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">400</span><span class="si">}</span><span class="s2">px&quot;</span> <span class="p">)</span>
-    
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)):</span>
-        <span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">tab</span>  
-
-<span class="k">def</span> <span class="nf">populate_per_city</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">risks_dict</span><span class="p">,</span><span class="n">pred_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">shap_values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">html</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    &lt;p&gt; &lt;h4&gt;&lt;b&gt; </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2"> &lt;/b&gt;&lt;/h4&gt;&quot;&quot;&quot;</span> <span class="c1">#&lt;/p&gt;</span>
-    <span class="k">for</span> <span class="n">risk</span> <span class="ow">in</span> <span class="n">risks</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">risk</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">risks_dict</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">risk_value</span> <span class="o">=</span> <span class="n">risks_dict</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">risk_value</span><span class="p">):</span>
-            <span class="n">risk_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">risk_value</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">risk_value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-                <span class="k">continue</span>
-            <span class="n">risk_value</span> <span class="o">=</span> <span class="n">SEVERITY_MAPPING</span><span class="p">[</span><span class="n">risk_value</span><span class="p">]</span>
-            <span class="n">to_add</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">      &lt;b&gt;</span><span class="si">{</span><span class="n">risks</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span><span class="si">}</span><span class="s2">&lt;/b&gt;:</span><span class="si">{</span><span class="n">risk_value</span><span class="si">}</span><span class="s2"></span>
-<span class="s2">   </span>
-<span class="s2">    &quot;&quot;&quot;</span>
-            <span class="k">if</span> <span class="n">pred_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">pred_mask</span><span class="p">[</span><span class="n">risk</span><span class="p">]:</span>
-                    <span class="n">to_add</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&lt;h4 style=&quot;color:blue&quot;&gt;</span><span class="si">{</span><span class="n">to_add</span><span class="si">}</span><span class="s1">&lt;/h4&gt;&#39;</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">to_add</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39; &lt;h4&gt;</span><span class="si">{</span><span class="n">to_add</span><span class="si">}</span><span class="s1">&lt;/h4&gt;&#39;</span>
-            <span class="n">html</span> <span class="o">+=</span> <span class="n">to_add</span>
-            
-    <span class="n">html</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">shap_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">html</span>
-    <span class="n">stacked</span> <span class="o">=</span> <span class="n">Tab</span><span class="p">()</span>
-    <span class="n">stacked</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">html</span><span class="p">,</span> <span class="n">show_feats</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">risks_dict</span><span class="p">,</span> <span class="n">pred_mask</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">)]</span>
-    <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Briefly&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stacked</span><span class="o">.</span><span class="n">children</span><span class="p">)):</span>
-        <span class="n">stacked</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">stacked</span>
-    
-
-
-    
-<span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span>  <span class="n">is_close</span>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostRegressor</span>
 </pre></div>
 
     </div>
@@ -13240,93 +13166,89 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">classification.model_handler</span> <span class="kn">import</span> <span class="n">ModelHandler</span><span class="p">,</span> <span class="n">InvalidCoordinates</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">make_scorer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">memory_dir</span> <span class="o">=</span> <span class="s1">&#39;.pipeline_cache.tmp&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>XgBoost has as default objective function <code>reg:squarederror</code>, which corresponds to a linear regression with mean-squared error as loss function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bayes_opt</span> <span class="kn">import</span> <span class="n">BayesianOptimization</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">memory_dir</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">memory_dir</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">init_model</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;generation_and_selection&#39;</span><span class="p">,</span> <span class="n">FeatureSelectionAndGeneration</span><span class="p">(</span><span class="n">feats_num</span><span class="o">=</span><span class="mi">200</span><span class="p">)),</span>
+                     <span class="p">(</span><span class="s1">&#39;regressor&#39;</span><span class="p">,</span> <span class="n">AdaBoostRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">))],</span><span class="n">memory</span><span class="o">=</span><span class="n">memory_dir</span><span class="p">)</span>
+    
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 <span class="kn">from</span> <span class="nn">data.labeled.preprocessed</span> <span class="kn">import</span> <span class="n">RISKS_MAPPING</span>
+<span class="kn">from</span> <span class="nn">classification</span> <span class="kn">import</span> <span class="n">RANDOM_SEED</span>
+<span class="n">optimal_params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">CONSTANTS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="n">RANDOM_SEED</span><span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">risk</span><span class="p">,</span> <span class="n">total_set</span><span class="p">,</span> <span class="p">[</span><span class="n">train_set</span><span class="p">,</span> <span class="n">valid_set</span><span class="p">])</span> <span class="ow">in</span> <span class="n">handler</span><span class="o">.</span><span class="n">get_total_train_val_set_per_risk</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">**Risk: </span><span class="si">{</span><span class="n">RISKS_MAPPING</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span><span class="si">}</span><span class="s2">**</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annotated Samples Size: </span><span class="si">{</span><span class="n">total_set</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;To be used for parameters estimation: </span><span class="si">{</span><span class="n">train_set</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">):</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">),</span>
+                 <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span><span class="n">learning_rate</span><span class="p">}</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">CONSTANTS</span><span class="p">)</span>
 
-<span class="n">handler</span> <span class="o">=</span> <span class="n">ModelHandler</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">handler</span><span class="o">.</span><span class="n">is_fitted</span><span class="p">:</span>
-    <span class="n">handler</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">init_model</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">train_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="n">handler</span><span class="o">.</span><span class="n">feat_names</span><span class="p">],</span> <span class="n">train_set</span><span class="p">[</span><span class="n">risk</span><span class="p">])</span>
+        <span class="n">reg_cv</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="n">train_tuple</span><span class="p">)</span>
+        <span class="n">cv_result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">train_tuple</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">cv_result</span>
+    <span class="n">xgb_bo</span> <span class="o">=</span> <span class="n">BayesianOptimization</span><span class="p">(</span><span class="n">evaluate</span><span class="p">,</span> <span class="p">{</span>
+                                                 <span class="s2">&quot;n_estimators&quot;</span><span class="p">:[</span><span class="mi">200</span><span class="p">,</span><span class="mi">500</span><span class="p">],</span>
+                                                 <span class="s2">&quot;learning_rate&quot;</span><span class="p">:[</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+                                                <span class="p">}</span>
+                                  
+                                 <span class="p">)</span>
     
-<span class="n">risks_ids</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">RISKS_MAPPING</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">data.model.predictions</span> <span class="kn">import</span> <span class="n">FILLED_DATASET</span> <span class="k">as</span> <span class="n">dataset</span> <span class="p">,</span><span class="n">PREDICTION_MASK</span> <span class="k">as</span> <span class="n">prediction_mask</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="n">city</span><span class="p">),(</span><span class="n">_</span><span class="p">,</span><span class="n">pred_mask</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span><span class="n">prediction_mask</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()):</span>
-    <span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span><span class="n">city</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
-    
-    <span class="n">marker</span> <span class="o">=</span> <span class="n">CircleMarker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span><span class="n">fill_color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseover</span><span class="p">(</span><span class="n">mouseover_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span><span class="n">location</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="n">pred_mask</span><span class="p">))</span>
-    <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseout</span><span class="p">(</span><span class="n">mouseout_callback</span><span class="p">())</span>
-    <span class="n">markers</span> <span class="o">=</span> <span class="n">markers</span> <span class="o">+</span> <span class="p">(</span><span class="n">marker</span><span class="p">,)</span>
-    
-<span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span> <span class="n">check_1k_population_density_source</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">queues</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">def</span> <span class="nf">on_download</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-            <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Still Downloading.. </span><span class="si">{</span><span class="n">queues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="n">dpopup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">coords</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="n">threads</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="n">queues</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">check_1k_population_density_source</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">dthread</span><span class="p">,</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">ret</span>
-        <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dthread</span><span class="p">)</span>
-        <span class="n">queues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
-        <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Downloading required resource..&quot;</span><span class="p">)</span>
-        <span class="n">dpopup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">coords</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">return</span> <span class="kc">False</span>
-
-<span class="n">manually_added_markers</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">def</span> <span class="nf">handle_click</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;click&#39;</span><span class="p">:</span>
-        <span class="n">coords</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coordinates&#39;</span><span class="p">)</span>
-        <span class="n">check</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">is_close</span><span class="p">((</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">x</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="k">if</span> <span class="n">on_download</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
-            <span class="k">return</span> 
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">output</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span> <span class="n">shap_values</span> <span class="o">=</span> <span class="n">handler</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-        <span class="k">except</span> <span class="n">InvalidCoordinates</span><span class="p">:</span>
-            <span class="k">return</span>
-    
-        <span class="n">output</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Close To: &quot;</span> <span class="o">+</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;city&#39;</span><span class="p">]</span>
-        <span class="n">marker</span> <span class="o">=</span> <span class="n">CircleMarker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span><span class="n">fill_color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">check</span> <span class="o">=</span> <span class="p">[</span><span class="n">is_close</span><span class="p">(</span><span class="n">marker</span><span class="o">.</span><span class="n">location</span><span class="p">,</span><span class="n">mark</span><span class="o">.</span><span class="n">location</span><span class="p">)</span> <span class="k">for</span> <span class="n">mark</span> <span class="ow">in</span> <span class="n">manually_added_markers</span><span class="p">]</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">check</span><span class="p">):</span>
-            
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">feats_popup</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseover</span><span class="p">(</span><span class="n">mouseover_callback</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span><span class="n">coords</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span><span class="n">mask</span><span class="p">))</span>
-            <span class="n">marker</span><span class="o">.</span><span class="n">on_mouseout</span><span class="p">(</span><span class="n">mouseout_callback</span><span class="p">())</span>
-            <span class="n">manually_added_markers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">marker</span><span class="p">)</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">marker</span><span class="p">)</span>
-            <span class="n">feats_popup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">populate_per_city</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">city</span><span class="p">,</span> <span class="n">output</span><span class="o">.</span><span class="n">country</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">)</span>
-            <span class="n">feats_popup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">marker</span><span class="o">.</span><span class="n">location</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">feats_popup</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">to_rem</span> <span class="o">=</span> <span class="p">[</span><span class="n">cnt</span> <span class="k">for</span> <span class="n">cnt</span><span class="p">,(</span><span class="n">m</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">manually_added_markers</span><span class="p">,</span><span class="n">check</span><span class="p">))</span> <span class="k">if</span> <span class="n">c</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">manually_added_markers</span><span class="p">[</span><span class="n">to_rem</span><span class="p">])</span>
-            <span class="n">manually_added_markers</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">to_rem</span><span class="p">)</span>
-
-<span class="n">m</span><span class="o">.</span><span class="n">on_interaction</span><span class="p">(</span><span class="n">handle_click</span><span class="p">)</span>
-<span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">MarkerCluster</span><span class="p">(</span><span class="n">markers</span> <span class="o">=</span> <span class="n">markers</span><span class="p">))</span>
+    <span class="c1"># Use the expected improvement acquisition function to handle negative numbers</span>
+    <span class="c1"># Optimally needs quite a few more initiation points and number of iterations</span>
+    <span class="n">xgb_bo</span><span class="o">.</span><span class="n">maximize</span><span class="p">(</span><span class="n">init_points</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">xgb_bo</span><span class="o">.</span><span class="n">max</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span>
+    <span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">])</span>
+    <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">CONSTANTS</span><span class="p">)</span>
+    <span class="n">optimal_params</span><span class="p">[</span><span class="n">risk</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span>
 </pre></div>
 
     </div>
@@ -13343,7 +13265,216 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Loaded model from water_security/data/model/model.pkl.
+<pre>
+
+**Risk: Higher water prices**
+
+Annotated Samples Size: 87
+To be used for parameters estimation: 60
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -1.965    |  3.01     |  425.5    |
+|  2        | -2.01     |  2.664    |  399.6    |
+| <span class="ansi-magenta-intense-fg"> 3       </span> | <span class="ansi-magenta-intense-fg">-1.717   </span> | <span class="ansi-magenta-intense-fg"> 6.241   </span> | <span class="ansi-magenta-intense-fg"> 380.4   </span> |
+|  4        | -5.05     |  9.546    |  286.7    |
+|  5        | -1.883    |  6.565    |  487.1    |
+|  6        | -5.05     |  9.719    |  240.8    |
+| <span class="ansi-magenta-intense-fg"> 7       </span> | <span class="ansi-magenta-intense-fg">-1.49    </span> | <span class="ansi-magenta-intense-fg"> 0.8848  </span> | <span class="ansi-magenta-intense-fg"> 440.6   </span> |
+|  8        | -2.481    |  3.183    |  495.0    |
+|  9        | -4.05     |  6.968    |  375.0    |
+|  10       | -1.53     |  0.2746   |  306.1    |
+|  11       | -2.166    |  3.871    |  247.5    |
+|  12       | -1.5      |  0.8264   |  440.7    |
+|  13       | -2.65     |  6.068    |  385.6    |
+| <span class="ansi-magenta-intense-fg"> 14      </span> | <span class="ansi-magenta-intense-fg">-1.25    </span> | <span class="ansi-magenta-intense-fg"> 5.231   </span> | <span class="ansi-magenta-intense-fg"> 442.7   </span> |
+|  15       | -5.183    |  7.267    |  437.6    |
+|  16       | -1.55     |  3.134    |  444.8    |
+|  17       | -4.85     |  7.371    |  446.1    |
+|  18       | -2.555    |  3.04     |  442.6    |
+|  19       | -1.502    |  0.8823   |  308.4    |
+|  20       | -1.417    |  3.114    |  306.3    |
+=================================================
+
+
+**Risk: Inadequate or aging infrastructure**
+
+Annotated Samples Size: 148
+To be used for parameters estimation: 103
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -2.304    |  5.569    |  228.1    |
+|  2        | -2.991    |  5.131    |  490.6    |
+| <span class="ansi-magenta-intense-fg"> 3       </span> | <span class="ansi-magenta-intense-fg">-1.825   </span> | <span class="ansi-magenta-intense-fg"> 3.882   </span> | <span class="ansi-magenta-intense-fg"> 203.0   </span> |
+| <span class="ansi-magenta-intense-fg"> 4       </span> | <span class="ansi-magenta-intense-fg">-1.704   </span> | <span class="ansi-magenta-intense-fg"> 5.704   </span> | <span class="ansi-magenta-intense-fg"> 213.3   </span> |
+|  5        | -2.991    |  9.979    |  226.2    |
+|  6        | -2.932    |  7.909    |  242.6    |
+| <span class="ansi-magenta-intense-fg"> 7       </span> | <span class="ansi-magenta-intense-fg">-1.408   </span> | <span class="ansi-magenta-intense-fg"> 2.913   </span> | <span class="ansi-magenta-intense-fg"> 387.4   </span> |
+| <span class="ansi-magenta-intense-fg"> 8       </span> | <span class="ansi-magenta-intense-fg">-1.02    </span> | <span class="ansi-magenta-intense-fg"> 0.3351  </span> | <span class="ansi-magenta-intense-fg"> 225.5   </span> |
+|  9        | -2.285    |  5.265    |  316.6    |
+| <span class="ansi-magenta-intense-fg"> 10      </span> | <span class="ansi-magenta-intense-fg">-0.9829  </span> | <span class="ansi-magenta-intense-fg"> 0.8706  </span> | <span class="ansi-magenta-intense-fg"> 333.9   </span> |
+|  11       | -1.106    |  0.1      |  338.0    |
+|  12       | -2.932    |  9.456    |  336.4    |
+|  13       | -1.018    |  0.2771   |  220.4    |
+|  14       | -1.579    |  3.369    |  397.4    |
+|  15       | -2.991    |  9.841    |  379.4    |
+|  16       | -1.106    |  0.1      |  327.5    |
+|  17       | -1.103    |  0.1      |  351.4    |
+|  18       | -1.103    |  0.1      |  360.4    |
+|  19       | -3.191    |  9.08     |  356.8    |
+|  20       | -1.103    |  0.1      |  367.8    |
+=================================================
+
+
+**Risk: Increased water stress or scarcity**
+
+Annotated Samples Size: 261
+To be used for parameters estimation: 182
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -0.5282   |  2.514    |  249.8    |
+|  2        | -1.382    |  5.48     |  497.2    |
+|  3        | -1.028    |  3.152    |  297.1    |
+|  4        | -1.298    |  6.206    |  309.0    |
+| <span class="ansi-magenta-intense-fg"> 5       </span> | <span class="ansi-magenta-intense-fg">-0.4459  </span> | <span class="ansi-magenta-intense-fg"> 0.7588  </span> | <span class="ansi-magenta-intense-fg"> 395.0   </span> |
+|  6        | -0.52     |  2.351    |  364.3    |
+|  7        | -4.561    |  6.462    |  407.9    |
+| <span class="ansi-magenta-intense-fg"> 8       </span> | <span class="ansi-magenta-intense-fg">-0.3961  </span> | <span class="ansi-magenta-intense-fg"> 0.1275  </span> | <span class="ansi-magenta-intense-fg"> 359.8   </span> |
+|  9        | -2.065    |  7.644    |  413.9    |
+|  10       | -0.4509   |  2.155    |  390.5    |
+|  11       | -2.496    |  7.785    |  357.8    |
+|  12       | -1.229    |  7.883    |  393.1    |
+|  13       | -0.4734   |  2.233    |  256.7    |
+|  14       | -4.561    |  9.149    |  253.8    |
+| <span class="ansi-magenta-intense-fg"> 15      </span> | <span class="ansi-magenta-intense-fg">-0.3803  </span> | <span class="ansi-magenta-intense-fg"> 0.1261  </span> | <span class="ansi-magenta-intense-fg"> 252.9   </span> |
+|  16       | -0.3877   |  0.1      |  244.5    |
+|  17       | -0.4212   |  0.3707   |  262.7    |
+|  18       | -0.4046   |  0.3885   |  371.9    |
+|  19       | -0.4121   |  0.3545   |  380.6    |
+|  20       | -3.295    |  7.194    |  376.3    |
+=================================================
+
+
+**Risk: Declining water quality**
+
+Annotated Samples Size: 183
+To be used for parameters estimation: 128
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -2.631    |  4.409    |  498.5    |
+|  2        | -3.562    |  7.169    |  232.2    |
+| <span class="ansi-magenta-intense-fg"> 3       </span> | <span class="ansi-magenta-intense-fg">-1.047   </span> | <span class="ansi-magenta-intense-fg"> 0.6939  </span> | <span class="ansi-magenta-intense-fg"> 477.2   </span> |
+| <span class="ansi-magenta-intense-fg"> 4       </span> | <span class="ansi-magenta-intense-fg">-1.017   </span> | <span class="ansi-magenta-intense-fg"> 1.994   </span> | <span class="ansi-magenta-intense-fg"> 307.4   </span> |
+|  5        | -2.631    |  9.357    |  344.3    |
+|  6        | -3.562    |  6.819    |  426.0    |
+|  7        | -3.562    |  7.45     |  357.4    |
+|  8        | -3.12     |  9.436    |  460.1    |
+|  9        | -3.12     |  6.74     |  246.2    |
+|  10       | -1.18     |  2.409    |  449.8    |
+|  11       | -1.031    |  2.063    |  449.5    |
+|  12       | -1.026    |  0.6423   |  444.8    |
+|  13       | -3.562    |  7.448    |  302.9    |
+|  14       | -1.02     |  0.4752   |  311.9    |
+|  15       | -1.089    |  6.263    |  480.5    |
+| <span class="ansi-magenta-intense-fg"> 16      </span> | <span class="ansi-magenta-intense-fg">-0.9587  </span> | <span class="ansi-magenta-intense-fg"> 0.1328  </span> | <span class="ansi-magenta-intense-fg"> 483.9   </span> |
+|  17       | -3.562    |  7.14     |  318.4    |
+|  18       | -2.631    |  6.864    |  487.4    |
+|  19       | -3.562    |  7.265    |  474.0    |
+|  20       | -1.321    |  2.443    |  481.1    |
+=================================================
+
+
+**Risk: Increased water demand**
+
+Annotated Samples Size: 98
+To be used for parameters estimation: 68
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -1.524    |  0.9663   |  409.4    |
+|  2        | -2.294    |  8.569    |  376.6    |
+|  3        | -2.62     |  2.884    |  425.2    |
+|  4        | -2.294    |  9.593    |  227.2    |
+|  5        | -2.772    |  9.375    |  428.7    |
+|  6        | -3.337    |  7.097    |  211.7    |
+|  7        | -4.883    |  7.126    |  497.2    |
+|  8        | -1.544    |  2.891    |  253.6    |
+|  9        | -2.004    |  3.842    |  414.7    |
+|  10       | -2.212    |  2.601    |  451.4    |
+|  11       | -2.294    |  10.0     |  280.5    |
+| <span class="ansi-magenta-intense-fg"> 12      </span> | <span class="ansi-magenta-intense-fg">-1.488   </span> | <span class="ansi-magenta-intense-fg"> 0.1     </span> | <span class="ansi-magenta-intense-fg"> 327.5   </span> |
+|  13       | -2.294    |  9.727    |  345.2    |
+|  14       | -2.294    |  10.0     |  311.2    |
+|  15       | -1.489    |  0.1      |  394.4    |
+|  16       | -2.294    |  9.736    |  399.0    |
+|  17       | -1.499    |  0.1      |  240.9    |
+|  18       | -2.294    |  10.0     |  245.4    |
+|  19       | -1.492    |  0.1      |  266.6    |
+|  20       | -2.294    |  9.988    |  328.0    |
+=================================================
+
+
+**Risk: Regulatory**
+
+Annotated Samples Size: 65
+To be used for parameters estimation: 45
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -1.444    |  3.192    |  244.6    |
+|  2        | -2.867    |  8.913    |  278.5    |
+|  3        | -2.867    |  9.166    |  273.4    |
+|  4        | -2.333    |  8.254    |  251.2    |
+| <span class="ansi-magenta-intense-fg"> 5       </span> | <span class="ansi-magenta-intense-fg">-0.9507  </span> | <span class="ansi-magenta-intense-fg"> 1.456   </span> | <span class="ansi-magenta-intense-fg"> 375.1   </span> |
+|  6        | -2.422    |  4.016    |  281.8    |
+| <span class="ansi-magenta-intense-fg"> 7       </span> | <span class="ansi-magenta-intense-fg">-0.887   </span> | <span class="ansi-magenta-intense-fg"> 0.5896  </span> | <span class="ansi-magenta-intense-fg"> 389.9   </span> |
+|  8        | -2.333    |  8.073    |  233.8    |
+|  9        | -1.028    |  2.702    |  394.7    |
+|  10       | -0.9073   |  0.9862   |  438.4    |
+| <span class="ansi-magenta-intense-fg"> 11      </span> | <span class="ansi-magenta-intense-fg">-0.85    </span> | <span class="ansi-magenta-intense-fg"> 0.1     </span> | <span class="ansi-magenta-intense-fg"> 420.8   </span> |
+|  12       | -1.444    |  10.0     |  459.5    |
+|  13       | -1.444    |  10.0     |  428.4    |
+|  14       | -2.422    |  9.789    |  353.8    |
+|  15       | -1.444    |  10.0     |  383.6    |
+| <span class="ansi-magenta-intense-fg"> 16      </span> | <span class="ansi-magenta-intense-fg">-0.8277  </span> | <span class="ansi-magenta-intense-fg"> 0.3296  </span> | <span class="ansi-magenta-intense-fg"> 409.3   </span> |
+|  17       | -0.851    |  0.1      |  495.9    |
+|  18       | -0.8575   |  0.1      |  479.8    |
+|  19       | -2.422    |  9.876    |  487.1    |
+|  20       | -0.8567   |  0.1      |  468.5    |
+=================================================
+
+
+**Risk: Energy supply issues**
+
+Annotated Samples Size: 59
+To be used for parameters estimation: 41
+
+|   iter    |  target   | learni... | n_esti... |
+-------------------------------------------------
+|  1        | -0.8187   |  1.329    |  335.1    |
+|  2        | -6.557    |  5.026    |  346.0    |
+|  3        | -3.319    |  4.79     |  280.4    |
+| <span class="ansi-magenta-intense-fg"> 4       </span> | <span class="ansi-magenta-intense-fg">-0.7692  </span> | <span class="ansi-magenta-intense-fg"> 1.569   </span> | <span class="ansi-magenta-intense-fg"> 313.3   </span> |
+|  5        | -3.985    |  6.47     |  314.0    |
+|  6        | -3.198    |  9.982    |  321.0    |
+|  7        | -5.89     |  7.906    |  260.5    |
+|  8        | -0.7881   |  1.506    |  262.5    |
+|  9        | -1.755    |  5.953    |  364.0    |
+|  10       | -1.293    |  2.671    |  468.0    |
+|  11       | -1.293    |  2.62     |  467.9    |
+| <span class="ansi-magenta-intense-fg"> 12      </span> | <span class="ansi-magenta-intense-fg">-0.7387  </span> | <span class="ansi-magenta-intense-fg"> 0.1     </span> | <span class="ansi-magenta-intense-fg"> 309.9   </span> |
+|  13       | -0.7387   |  0.1      |  266.9    |
+| <span class="ansi-magenta-intense-fg"> 14      </span> | <span class="ansi-magenta-intense-fg">-0.6044  </span> | <span class="ansi-magenta-intense-fg"> 0.3689  </span> | <span class="ansi-magenta-intense-fg"> 329.5   </span> |
+|  15       | -3.864    |  6.728    |  331.2    |
+|  16       | -0.7387   |  0.1      |  323.5    |
+|  17       | -5.89     |  7.801    |  462.3    |
+|  18       | -0.7711   |  0.1502   |  317.7    |
+|  19       | -0.7387   |  0.1      |  474.6    |
+|  20       | -2.421    |  5.991    |  479.6    |
+=================================================
 </pre>
 </div>
 </div>
@@ -13352,87 +13483,13 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Instructions">Instructions<a class="anchor-link" href="#Instructions">&#182;</a></h2><h3 id="Click-on-clouds-of-cities-to-expand-or-hover-over-single-points-to-view-risks">Click on clouds of cities to expand or hover over single points to view risks<a class="anchor-link" href="#Click-on-clouds-of-cities-to-expand-or-hover-over-single-points-to-view-risks">&#182;</a></h3><ul>
-<li>Risks shown in black are result of ground truth</li>
-<li>Risks shown in blue are result of prediction</li>
-<li>The documented risks are the following:<ul>
-<li>Higher water prices</li>
-<li>Inadequate or aging infrastructure</li>
-<li>Increased water stress or scarcity</li>
-<li>Declining water quality</li>
-<li>Increased water demand</li>
-<li>Regulatory</li>
-<li>Energy supply issues</li>
-</ul>
-</li>
-<li>The Risks can have one of the following levels: Less Serious, Serious, Extremely Serious. If there is a risk not mentioned, then it has been determined that there is no such risk for the prediction point.</li>
-</ul>
-<h3 id="Click-on-the-map-to-get-online-prediction.-Click-the-created-red-dot-to-remove.">Click on the map to get online prediction. Click the created red dot to remove.<a class="anchor-link" href="#Click-on-the-map-to-get-online-prediction.-Click-the-created-red-dot-to-remove.">&#182;</a></h3><ul>
-<li>In this view the features SHAP values can also be seen for the predictions by clicking on the "Details" tab.</li>
-<li>The details can only be accessed only on the first click. Once you click on a different location or close the window, only hover can be done for that point.</li>
-<li>To close the window there is an <code>X</code> on the top right, you might need to drag the map to reach it.</li>
-<li>There will be a short delay between the click and the appearance of the red dot/information</li>
-</ul>
-<p><strong>(For online prediction, a file containing population densities is required to be downloaded, which is ~900MB in size)</strong></p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="s1">&#39;80%&#39;</span>
-<span class="n">m</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="s1">&#39;1000px&#39;</span>
-<span class="n">m</span><span class="o">.</span><span class="n">zoom</span><span class="o">=</span><span class="mf">2.2</span>
-<span class="n">m</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="d1fc6606-27e0-42ad-b54e-141f9430fd11"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#d1fc6606-27e0-42ad-b54e-141f9430fd11');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6ad87f41adc3446a9045610e9f5e716b", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from data.model import MODEL_BEST_PARAMS_PATH</span>
+<span class="c1"># pd.DataFrame(optimal_params).to_csv(MODEL_BEST_PARAMS_PATH)</span>
 </pre></div>
 
     </div>

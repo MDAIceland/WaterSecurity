@@ -26,17 +26,38 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from sklearn.base import BaseEstimator, RegressorMixin
-import numpy as np
+<pre><code class="python">from typing import Dict
+from sklearn.base import BaseEstimator, RegressorMixin
+import pandas as pd
+import xgboost as xgb
 
 
 class Classifier(BaseEstimator, RegressorMixin):
-    # @TODO implement
-    def fit(self, x_data, y_data):
+    def __init__(self, risk):
+        self.regressor = None
+        self.risk = risk
+        self._parameters = None
+
+    @property
+    def parameters(self) -&gt; Dict:
+        if self._parameters is None:
+            from data.model import MODEL_BEST_PARAMS
+
+            self._parameters = MODEL_BEST_PARAMS[self.risk]
+        return self._parameters
+
+    def fit(self, x_data: pd.DataFrame, y_data):
         &#34;&#34;&#34;
         x_data: the nxm features
         y_data: the n labels, with values 0,1,2 or 3
         &#34;&#34;&#34;
+        self.regressor = xgb.XGBRegressor(**self.parameters).fit(x_data, y_data)
+        self.feature_importances_ = pd.Series(
+            self.regressor.feature_importances_, index=x_data.columns.tolist()
+        )
+        self.feature_importances_ = self.feature_importances_[
+            self.feature_importances_ &gt; 0
+        ].sort_values(ascending=False)
         return self
 
     def predict(self, x_data):
@@ -44,7 +65,7 @@ class Classifier(BaseEstimator, RegressorMixin):
         x_data: the nxm features
         Returns n predictions, which have values 0 to 3, they can be floats
         &#34;&#34;&#34;
-        return np.zeros(x_data.shape[0])</code></pre>
+        return self.regressor.predict(x_data)</code></pre>
 </details>
 </section>
 <section>
@@ -58,6 +79,7 @@ class Classifier(BaseEstimator, RegressorMixin):
 <dl>
 <dt id="water_security.classification.classifier.Classifier"><code class="flex name class">
 <span>class <span class="ident">Classifier</span></span>
+<span>(</span><span>risk)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Base class for all estimators in scikit-learn.</p>
@@ -70,12 +92,31 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Classifier(BaseEstimator, RegressorMixin):
-    # @TODO implement
-    def fit(self, x_data, y_data):
+    def __init__(self, risk):
+        self.regressor = None
+        self.risk = risk
+        self._parameters = None
+
+    @property
+    def parameters(self) -&gt; Dict:
+        if self._parameters is None:
+            from data.model import MODEL_BEST_PARAMS
+
+            self._parameters = MODEL_BEST_PARAMS[self.risk]
+        return self._parameters
+
+    def fit(self, x_data: pd.DataFrame, y_data):
         &#34;&#34;&#34;
         x_data: the nxm features
         y_data: the n labels, with values 0,1,2 or 3
         &#34;&#34;&#34;
+        self.regressor = xgb.XGBRegressor(**self.parameters).fit(x_data, y_data)
+        self.feature_importances_ = pd.Series(
+            self.regressor.feature_importances_, index=x_data.columns.tolist()
+        )
+        self.feature_importances_ = self.feature_importances_[
+            self.feature_importances_ &gt; 0
+        ].sort_values(ascending=False)
         return self
 
     def predict(self, x_data):
@@ -83,17 +124,36 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
         x_data: the nxm features
         Returns n predictions, which have values 0 to 3, they can be floats
         &#34;&#34;&#34;
-        return np.zeros(x_data.shape[0])</code></pre>
+        return self.regressor.predict(x_data)</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
 <li>sklearn.base.BaseEstimator</li>
 <li>sklearn.base.RegressorMixin</li>
 </ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="water_security.classification.classifier.Classifier.parameters"><code class="name">var <span class="ident">parameters</span> : Dict</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def parameters(self) -&gt; Dict:
+    if self._parameters is None:
+        from data.model import MODEL_BEST_PARAMS
+
+        self._parameters = MODEL_BEST_PARAMS[self.risk]
+    return self._parameters</code></pre>
+</details>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
 <dt id="water_security.classification.classifier.Classifier.fit"><code class="name flex">
-<span>def <span class="ident">fit</span></span>(<span>self, x_data, y_data)</span>
+<span>def <span class="ident">fit</span></span>(<span>self, x_data: pandas.core.frame.DataFrame, y_data)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>x_data: the nxm features
@@ -102,11 +162,18 @@ y_data: the n labels, with values 0,1,2 or 3</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def fit(self, x_data, y_data):
+<pre><code class="python">def fit(self, x_data: pd.DataFrame, y_data):
     &#34;&#34;&#34;
     x_data: the nxm features
     y_data: the n labels, with values 0,1,2 or 3
     &#34;&#34;&#34;
+    self.regressor = xgb.XGBRegressor(**self.parameters).fit(x_data, y_data)
+    self.feature_importances_ = pd.Series(
+        self.regressor.feature_importances_, index=x_data.columns.tolist()
+    )
+    self.feature_importances_ = self.feature_importances_[
+        self.feature_importances_ &gt; 0
+    ].sort_values(ascending=False)
     return self</code></pre>
 </details>
 </dd>
@@ -125,7 +192,7 @@ Returns n predictions, which have values 0 to 3, they can be floats</p></div>
     x_data: the nxm features
     Returns n predictions, which have values 0 to 3, they can be floats
     &#34;&#34;&#34;
-    return np.zeros(x_data.shape[0])</code></pre>
+    return self.regressor.predict(x_data)</code></pre>
 </details>
 </dd>
 </dl>
@@ -150,6 +217,7 @@ Returns n predictions, which have values 0 to 3, they can be floats</p></div>
 <h4><code><a title="water_security.classification.classifier.Classifier" href="#water_security.classification.classifier.Classifier">Classifier</a></code></h4>
 <ul class="">
 <li><code><a title="water_security.classification.classifier.Classifier.fit" href="#water_security.classification.classifier.Classifier.fit">fit</a></code></li>
+<li><code><a title="water_security.classification.classifier.Classifier.parameters" href="#water_security.classification.classifier.Classifier.parameters">parameters</a></code></li>
 <li><code><a title="water_security.classification.classifier.Classifier.predict" href="#water_security.classification.classifier.Classifier.predict">predict</a></code></li>
 </ul>
 </li>

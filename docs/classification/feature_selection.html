@@ -26,40 +26,42 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from sklearn.feature_selection import SelectKBest, f_regression
-from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.preprocessing import PolynomialFeatures, RobustScaler
-from sklearn.decomposition import PCA
-from sklearn.base import BaseEstimator, TransformerMixin
-import pandas as pd
+<pre><code class="python">from typing import Iterable, Union, List
+
 import numpy as np
+import pandas as pd
+from pandas._libs import missing
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.decomposition import PCA
+from sklearn.feature_selection import SelectKBest, f_regression
+from sklearn.pipeline import FeatureUnion, Pipeline
+from sklearn.preprocessing import PolynomialFeatures, RobustScaler
 
 
 # Generation of the Feature Selection Class for the Pipeline
 class FeatureSelection(BaseEstimator, TransformerMixin):
 
     # Initiation of the variables for the feature selection, using sklearn SelectKBest Algorithm
-    def __init__(self):
+    def __init__(self, feats_num=None, verbose=False):
         self.fitted_selector = None
-        self.min_num_feats = 10
+        self.feats_num = feats_num
+        self.min_feats_num = 10
         self.scores_ = None
+        self.verbose = verbose
 
     # Process of feature selection is done in this part: Select the K-best features
     # using the f_regression function since labels also have a meaning Risk:0 (means low) and 2(means high)
     def fit(self, x, y):
-        # risks.remove(label)
-        # print(risks)
         assert all(~np.isnan(y))
+        if self.feats_num is None:
 
-        # l = x.columns[x.isna().any()].tolist()
-        # print(l)
-
-        var_num = x.shape[0]
-        var_num = max(int((var_num * 15) / 100), self.min_num_feats)
-        print(&#34;Picked variable number:&#34;, var_num)
+            self.feats_num = x.shape[0]
+            self.feats_num = max(int((self.feats_num * 15) / 100), self.min_feats_num)
+            if self.verbose:
+                print(&#34;Picked variable number:&#34;, self.feats_num)
 
         # Applying select K-best
-        bestFeatures = SelectKBest(score_func=f_regression, k=var_num)
+        bestFeatures = SelectKBest(score_func=f_regression, k=self.feats_num)
         self.fitted_selector = bestFeatures.fit(x, y)
         self.scores_ = self.fitted_selector.scores_
         self.feats_indices = bestFeatures.get_support()
@@ -87,12 +89,16 @@ class DummyTransformer(BaseEstimator, TransformerMixin):
 
 import re
 
-# Class for generation of cross polynomial features
+
 class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
-    def __init__(self, element):
+    &#34;&#34;&#34;Class for generation of cross polynomial features
+    It generates features from the columns which contain the value of `element`
+    &#34;&#34;&#34;
+
+    def __init__(self, element: str):
         self.element = element
-        self.poly = None
-        self.pop_feats = []
+        self.poly: PolynomialFeatures = None
+        self.sgen_feats: List[str] = []
 
     # Returns every column name that has a specific string inside
     @staticmethod
@@ -103,25 +109,22 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
     # Obtaining the list of columns and fitting them to a feature generation model
     def fit(self, X, y=None):
         self.poly = PolynomialFeatures(interaction_only=False, include_bias=False)
-        self.pop_feats = self.getArrayOfFeatures(X, self.element)
-        self.poly.fit(X[self.pop_feats].values)
+        self.sgen_feats = self.getArrayOfFeatures(X, self.element)
+        self.poly.fit(X[self.sgen_feats].values)
         self.mask = np.sum(self.poly.powers_, axis=1) &gt; 1
 
         # print(crossed_df.shape)
         return self
 
-    # Acquire the selected features and generate a dataframe with only selected feature columns
-    def transform(self, data):
-        crossed_feats = self.poly.transform(data[self.pop_feats])[:, self.mask]
-
-        # Convert to Pandas DataFrame and merge to original dataset
+    def transform(self, data: pd.DataFrame) -&gt; pd.DataFrame:
+        crossed_feats = self.poly.transform(data[self.sgen_feats])[:, self.mask]
         crossed_df = pd.DataFrame(crossed_feats)
         return crossed_df
 
     # Obtain the original feature names after the automatic naming of the cross feature algorithm
-    def get_feature_names(self):
+    def get_feature_names(self) -&gt; List[str]:
         feats = []
-        replacement_dict = {cnt: x for cnt, x in enumerate(self.pop_feats)}
+        replacement_dict = {cnt: x for cnt, x in enumerate(self.sgen_feats)}
         comb_pattern = re.compile(r&#34;(x[0-9]+) (x[0-9]+)&#34;)
         single_pattern = re.compile(r&#34;(x[0-9]+)&#34;)
         pattern = re.compile(r&#34;(x[0-9]+)&#34;)
@@ -129,13 +132,13 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
             if re.match(comb_pattern, feat):
                 out_feat = re.sub(
                     comb_pattern,
-                    r&#34;Feat[\1] * Feat[\2]&#34;,
+                    r&#34;Feat{\1} * Feat{\2}&#34;,
                     feat,
                 )
             else:
                 out_feat = re.sub(
                     single_pattern,
-                    r&#34;Feat[\1]&#34;,
+                    r&#34;Feat{\1}&#34;,
                     feat,
                 )
             out_feat = re.sub(
@@ -151,44 +154,45 @@ class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
 class PCAWrapper(BaseEstimator, TransformerMixin):
 
     # Initializing necessary variables for performing the PCA
-    def __init__(self):
+    def __init__(self, verbose=False):
         self.num_components = 10
+        self.verbose = verbose
         self.pca = PCA(n_components=self.num_components)
         self.component_cols = [&#34;PC&#34; + str(i + 1) for i in range(self.num_components)]
 
     # Fit the data to Principle Component Generator, return insight regarding the
     # first 10 principle components of the dataset
-    def fit(self, X, y):
+    def fit(self, X: Union[pd.DataFrame, np.ndarray], y=None):
         self.pca.fit(X)
         percentage_list = [
             element * 100 for element in self.pca.explained_variance_ratio_
         ]
-
-        print(
-            &#34;Explained variation percentage per principal component: {}&#34;.format(
-                percentage_list
+        if self.verbose:
+            print(
+                &#34;Explained variation percentage per principal component: {}&#34;.format(
+                    percentage_list
+                )
             )
-        )
-        total_explained_percentage = sum(self.pca.explained_variance_ratio_) * 100
-        print(
-            &#34;Total percentage of the explained data by&#34;,
-            self.pca.n_components,
-            &#34;components is: %.2f&#34; % total_explained_percentage,
-        )
-        print(
-            &#34;Percentage of the information that is lost for using&#34;,
-            self.pca.n_components,
-            &#34;components is: %.2f&#34; % (100 - total_explained_percentage),
-        )
+            total_explained_percentage = sum(self.pca.explained_variance_ratio_) * 100
+            print(
+                &#34;Total percentage of the explained data by&#34;,
+                self.pca.n_components,
+                &#34;components is: %.2f&#34; % total_explained_percentage,
+            )
+            print(
+                &#34;Percentage of the information that is lost for using&#34;,
+                self.pca.n_components,
+                &#34;components is: %.2f&#34; % (100 - total_explained_percentage),
+            )
         return self
 
     # Return the dataframe of generated first 10 Principle Components
-    def transform(self, X):
+    def transform(self, X: np.ndarray) -&gt; pd.DataFrame:
         pca_ret = self.pca.transform(X)
         return pd.DataFrame(data=pca_ret, columns=self.component_cols)
 
     # Get the name of the Principle Components
-    def get_feature_names(self):
+    def get_feature_names(self) -&gt; List[str]:
         return self.component_cols
 
 
@@ -211,20 +215,38 @@ class RobustScalerWrapper:
         return pd.DataFrame(self.robust_scaler.transform(X), columns=self.columns)
 
 
-# Main class for the generation of pipeline
+from sklearn.impute import KNNImputer
+
+
 class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
+    &#34;&#34;&#34;Main class for the generation of pipeline.
+    The following process is followed:
+    0. Imputation of the incoming data. This is done only during transform step, otherwise an assertion error is raised.
+    1. Generation of the new features is done by using PCA and Polynomial Cross Features algorithm
+    2. All of the generated and original features as an input to perform a feature selection based on the SelectKBest algorithm of the Sklearn, if the
+    flag `apply_selection` is True. F_regression score is used since numbers
+    in the risk factors are representing a certain value. The number of the selected features
+    is calculated from the dimension of the dataset (15%) if the `feats_num` is not provided.
     &#34;&#34;&#34;
-        Throughout this process, generation of the new features is done by using
-    PCA and Polynomial Cross Features algorithm. Once feature generation is done,
-    script uses all of the generated and original features as an input to perform
-    a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
-    score is used since numbers in the risk factors are representing a certain value.
-    In the end, only selected feature columns, latitude and longitude columns are returned
-    back for further prediction of the NaN values for a specific risk factor.&#34;&#34;&#34;
 
     # Determine the columns that needs to be substracted before the feature generation
-    def __init__(self, apply_selection=True):
-        self.id_columns = [
+    def __init__(
+        self,
+        apply_selection=True,
+        feats_num=None,
+        id_columns: List[str] = None,
+        verbose=False,
+    ):
+        if id_columns is None:
+            id_columns = []
+        self.id_columns = id_columns
+        self.feats_num = feats_num
+        self.inp_feats_names: List[str] = []
+        self.verbose = verbose
+        self.imputer = KNNImputer(n_neighbors=5)
+        self.feats_to_skip_selection = [
+            &#34;population_1k_density&#34;,
+            &#34;elevation&#34;,
             &#34;latitude&#34;,
             &#34;longitude&#34;,
         ]
@@ -238,44 +260,51 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
                     FeatureUnion(
                         [
                             (&#34;scaled&#34;, DummyTransformer()),
-                            (&#34;pca&#34;, PCAWrapper()),
+                            (&#34;pca&#34;, PCAWrapper(verbose=self.verbose)),
                             (&#34;pop_poly&#34;, ColumnSubstringPolynomial(&#34;population&#34;)),
                             (&#34;perc_poly&#34;, ColumnSubstringPolynomial(&#34;%&#34;)),
                         ]
                     ),
                 ),
-                (&#34;selection&#34;, FeatureSelection()),
             ]
         )
-        self.feat_names = None
+        self.feature_selection = FeatureSelection(
+            feats_num=self.feats_num, verbose=self.verbose
+        )
+        self.feat_names: List[str] = []
+        if self.feats_num is not None:
+            apply_selection = True
         self.apply_selection = apply_selection
 
-        # If feature selection is not applied, you can remove the steps from the pipeline.
-        # Flexible solution to remove the unwanted steps
-        if not apply_selection:
-            self.pipeline.steps.pop(2)
-
-    # Splitting the initial dataset columns into two, for further processing
     def split(self, data):
+        &#34;&#34;&#34;
+        Splitting the initial dataset columns into two, for further processing
+        &#34;&#34;&#34;
         return (
             data[self.id_columns],
             data[[col for col in data.columns.values if col not in self.id_columns]],
         )
 
-    # General order of the feature selection and generation process is defined here
-    def fit(self, x_data, y_data):
+    def fit(self, x_data: pd.DataFrame, y_data: Iterable):
         &#34;&#34;&#34;
         Fits to nxm features x_data and n predictions y_data
+        Both dataframes must carry only numeric values
         &#34;&#34;&#34;
+        x_data = x_data.copy()
+        assert np.all(~x_data.isnull())
+        self.inp_feats_names = x_data.columns.tolist()
+        x_data[:] = self.imputer.fit_transform(x_data)
+
         _, x_data = self.split(x_data)
         self.pipeline.fit(x_data, y_data)
         columns = self.pipeline.named_steps[&#34;generation&#34;].get_feature_names()
         dfcolumns = pd.DataFrame(columns)
-
+        self.feat_names = columns
         # If feature selection process is wanted
         if self.apply_selection:
-            dfscores = pd.DataFrame(self.pipeline.named_steps[&#34;selection&#34;].scores_)
-            feats_indices = self.pipeline.named_steps[&#34;selection&#34;].feats_indices
+            self.feature_selection.fit(self.pipeline.transform(x_data), y_data)
+            dfscores = pd.DataFrame(self.feature_selection.scores_)
+            feats_indices = self.feature_selection.feats_indices
             # print(dfscores)
 
             # Concat two dataframes for better visualization
@@ -283,29 +312,61 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
             featureScores.columns = [&#34;Specs&#34;, &#34;Score&#34;]
 
             # Print defined amount of features according to the assigned scores with descending order
-            print(
-                &#34;Features select \n&#34;,
-                featureScores.iloc[feats_indices]
-                .sort_values(&#34;Score&#34;, ascending=False)
-                .to_markdown(),
-            )
-            self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
+            if self.verbose:
+                print(
+                    &#34;Features select \n&#34;,
+                    featureScores.iloc[feats_indices]
+                    .sort_values(&#34;Score&#34;, ascending=False)
+                    .to_markdown(),
+                )
+            self.selected_feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         else:
-            self.feat_names = columns
+            self.selected_feat_names = columns
         return self
 
-    # Only return the designated features in addition to the removed features
-    # at the beginning of the pipeline process
-    def transform(self, x_data):
+    def transform(self, x_data: Union[pd.DataFrame, pd.Series]):
         &#34;&#34;&#34;
-        Transforms x_data from nxm to kxm
+        Transforms `x_data` from nxm to nxk
+        Only return the designated features in addition to the removed features
+        at the beginning of the pipeline process
         &#34;&#34;&#34;
-        labs, x_data = self.split(x_data)
-        new_x_data = pd.DataFrame(
-            self.pipeline.transform(x_data), columns=self.feat_names
-        )
+        is_series = isinstance(x_data, pd.Series)
+        if is_series:
+            x_data = pd.DataFrame(x_data).transpose()
+        missing_feats = [
+            x
+            for x in self.inp_feats_names
+            if x
+            not in (
+                x_data.columns if isinstance(x_data, pd.DataFrame) else x_data.index
+            )
+        ]
+        x_data = x_data.copy()
+        if missing_feats:
+            print(
+                f&#34;Warning: Missing feature(s): \n{missing_feats}\nThey are going to be imputed.&#34;
+            )
+            for f in missing_feats:
+                x_data[f] = None
+        x_data = x_data[self.inp_feats_names].copy()
+        x_data[:] = self.imputer.transform(x_data)
 
-        return pd.concat([labs, new_x_data], axis=1)</code></pre>
+        labs, x_data = self.split(x_data)
+        transformed = self.pipeline.transform(x_data)
+        if self.apply_selection:
+            selected = self.feature_selection.transform(transformed)
+            new_x_data = pd.DataFrame(selected, columns=self.selected_feat_names)
+
+            for fname in self.feats_to_skip_selection:
+                fname = f&#34;scaled__{fname}&#34;
+                if fname not in self.selected_feat_names:
+                    new_x_data[fname] = transformed[:, self.feat_names.index(fname)]
+        else:
+            new_x_data = pd.DataFrame(transformed, columns=self.feat_names)
+        new_x_data.index = labs.index
+
+        ret = pd.concat([labs, new_x_data], axis=1)
+        return ret</code></pre>
 </details>
 </section>
 <section>
@@ -319,23 +380,24 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
 <dl>
 <dt id="water_security.classification.feature_selection.ColumnSubstringPolynomial"><code class="flex name class">
 <span>class <span class="ident">ColumnSubstringPolynomial</span></span>
-<span>(</span><span>element)</span>
+<span>(</span><span>element: str)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Base class for all estimators in scikit-learn.</p>
-<h2 id="notes">Notes</h2>
-<p>All estimators should specify all the parameters that can be set
-at the class level in their <code>__init__</code> as explicit keyword
-arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
+<div class="desc"><p>Class for generation of cross polynomial features
+It generates features from the columns which contain the value of <code>element</code></p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class ColumnSubstringPolynomial(BaseEstimator, TransformerMixin):
-    def __init__(self, element):
+    &#34;&#34;&#34;Class for generation of cross polynomial features
+    It generates features from the columns which contain the value of `element`
+    &#34;&#34;&#34;
+
+    def __init__(self, element: str):
         self.element = element
-        self.poly = None
-        self.pop_feats = []
+        self.poly: PolynomialFeatures = None
+        self.sgen_feats: List[str] = []
 
     # Returns every column name that has a specific string inside
     @staticmethod
@@ -346,25 +408,22 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
     # Obtaining the list of columns and fitting them to a feature generation model
     def fit(self, X, y=None):
         self.poly = PolynomialFeatures(interaction_only=False, include_bias=False)
-        self.pop_feats = self.getArrayOfFeatures(X, self.element)
-        self.poly.fit(X[self.pop_feats].values)
+        self.sgen_feats = self.getArrayOfFeatures(X, self.element)
+        self.poly.fit(X[self.sgen_feats].values)
         self.mask = np.sum(self.poly.powers_, axis=1) &gt; 1
 
         # print(crossed_df.shape)
         return self
 
-    # Acquire the selected features and generate a dataframe with only selected feature columns
-    def transform(self, data):
-        crossed_feats = self.poly.transform(data[self.pop_feats])[:, self.mask]
-
-        # Convert to Pandas DataFrame and merge to original dataset
+    def transform(self, data: pd.DataFrame) -&gt; pd.DataFrame:
+        crossed_feats = self.poly.transform(data[self.sgen_feats])[:, self.mask]
         crossed_df = pd.DataFrame(crossed_feats)
         return crossed_df
 
     # Obtain the original feature names after the automatic naming of the cross feature algorithm
-    def get_feature_names(self):
+    def get_feature_names(self) -&gt; List[str]:
         feats = []
-        replacement_dict = {cnt: x for cnt, x in enumerate(self.pop_feats)}
+        replacement_dict = {cnt: x for cnt, x in enumerate(self.sgen_feats)}
         comb_pattern = re.compile(r&#34;(x[0-9]+) (x[0-9]+)&#34;)
         single_pattern = re.compile(r&#34;(x[0-9]+)&#34;)
         pattern = re.compile(r&#34;(x[0-9]+)&#34;)
@@ -372,13 +431,13 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
             if re.match(comb_pattern, feat):
                 out_feat = re.sub(
                     comb_pattern,
-                    r&#34;Feat[\1] * Feat[\2]&#34;,
+                    r&#34;Feat{\1} * Feat{\2}&#34;,
                     feat,
                 )
             else:
                 out_feat = re.sub(
                     single_pattern,
-                    r&#34;Feat[\1]&#34;,
+                    r&#34;Feat{\1}&#34;,
                     feat,
                 )
             out_feat = re.sub(
@@ -425,8 +484,8 @@ def getArrayOfFeatures(data, name):
 </summary>
 <pre><code class="python">def fit(self, X, y=None):
     self.poly = PolynomialFeatures(interaction_only=False, include_bias=False)
-    self.pop_feats = self.getArrayOfFeatures(X, self.element)
-    self.poly.fit(X[self.pop_feats].values)
+    self.sgen_feats = self.getArrayOfFeatures(X, self.element)
+    self.poly.fit(X[self.sgen_feats].values)
     self.mask = np.sum(self.poly.powers_, axis=1) &gt; 1
 
     # print(crossed_df.shape)
@@ -434,7 +493,7 @@ def getArrayOfFeatures(data, name):
 </details>
 </dd>
 <dt id="water_security.classification.feature_selection.ColumnSubstringPolynomial.get_feature_names"><code class="name flex">
-<span>def <span class="ident">get_feature_names</span></span>(<span>self)</span>
+<span>def <span class="ident">get_feature_names</span></span>(<span>self) ‑> List[str]</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -442,9 +501,9 @@ def getArrayOfFeatures(data, name):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_feature_names(self):
+<pre><code class="python">def get_feature_names(self) -&gt; List[str]:
     feats = []
-    replacement_dict = {cnt: x for cnt, x in enumerate(self.pop_feats)}
+    replacement_dict = {cnt: x for cnt, x in enumerate(self.sgen_feats)}
     comb_pattern = re.compile(r&#34;(x[0-9]+) (x[0-9]+)&#34;)
     single_pattern = re.compile(r&#34;(x[0-9]+)&#34;)
     pattern = re.compile(r&#34;(x[0-9]+)&#34;)
@@ -452,13 +511,13 @@ def getArrayOfFeatures(data, name):
         if re.match(comb_pattern, feat):
             out_feat = re.sub(
                 comb_pattern,
-                r&#34;Feat[\1] * Feat[\2]&#34;,
+                r&#34;Feat{\1} * Feat{\2}&#34;,
                 feat,
             )
         else:
             out_feat = re.sub(
                 single_pattern,
-                r&#34;Feat[\1]&#34;,
+                r&#34;Feat{\1}&#34;,
                 feat,
             )
         out_feat = re.sub(
@@ -471,7 +530,7 @@ def getArrayOfFeatures(data, name):
 </details>
 </dd>
 <dt id="water_security.classification.feature_selection.ColumnSubstringPolynomial.transform"><code class="name flex">
-<span>def <span class="ident">transform</span></span>(<span>self, data)</span>
+<span>def <span class="ident">transform</span></span>(<span>self, data: pandas.core.frame.DataFrame) ‑> pandas.core.frame.DataFrame</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -479,10 +538,8 @@ def getArrayOfFeatures(data, name):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def transform(self, data):
-    crossed_feats = self.poly.transform(data[self.pop_feats])[:, self.mask]
-
-    # Convert to Pandas DataFrame and merge to original dataset
+<pre><code class="python">def transform(self, data: pd.DataFrame) -&gt; pd.DataFrame:
+    crossed_feats = self.poly.transform(data[self.sgen_feats])[:, self.mask]
     crossed_df = pd.DataFrame(crossed_feats)
     return crossed_df</code></pre>
 </details>
@@ -567,6 +624,7 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 </dd>
 <dt id="water_security.classification.feature_selection.FeatureSelection"><code class="flex name class">
 <span>class <span class="ident">FeatureSelection</span></span>
+<span>(</span><span>feats_num=None, verbose=False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Base class for all estimators in scikit-learn.</p>
@@ -581,27 +639,26 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 <pre><code class="python">class FeatureSelection(BaseEstimator, TransformerMixin):
 
     # Initiation of the variables for the feature selection, using sklearn SelectKBest Algorithm
-    def __init__(self):
+    def __init__(self, feats_num=None, verbose=False):
         self.fitted_selector = None
-        self.min_num_feats = 10
+        self.feats_num = feats_num
+        self.min_feats_num = 10
         self.scores_ = None
+        self.verbose = verbose
 
     # Process of feature selection is done in this part: Select the K-best features
     # using the f_regression function since labels also have a meaning Risk:0 (means low) and 2(means high)
     def fit(self, x, y):
-        # risks.remove(label)
-        # print(risks)
         assert all(~np.isnan(y))
+        if self.feats_num is None:
 
-        # l = x.columns[x.isna().any()].tolist()
-        # print(l)
-
-        var_num = x.shape[0]
-        var_num = max(int((var_num * 15) / 100), self.min_num_feats)
-        print(&#34;Picked variable number:&#34;, var_num)
+            self.feats_num = x.shape[0]
+            self.feats_num = max(int((self.feats_num * 15) / 100), self.min_feats_num)
+            if self.verbose:
+                print(&#34;Picked variable number:&#34;, self.feats_num)
 
         # Applying select K-best
-        bestFeatures = SelectKBest(score_func=f_regression, k=var_num)
+        bestFeatures = SelectKBest(score_func=f_regression, k=self.feats_num)
         self.fitted_selector = bestFeatures.fit(x, y)
         self.scores_ = self.fitted_selector.scores_
         self.feats_indices = bestFeatures.get_support()
@@ -627,19 +684,16 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def fit(self, x, y):
-    # risks.remove(label)
-    # print(risks)
     assert all(~np.isnan(y))
+    if self.feats_num is None:
 
-    # l = x.columns[x.isna().any()].tolist()
-    # print(l)
-
-    var_num = x.shape[0]
-    var_num = max(int((var_num * 15) / 100), self.min_num_feats)
-    print(&#34;Picked variable number:&#34;, var_num)
+        self.feats_num = x.shape[0]
+        self.feats_num = max(int((self.feats_num * 15) / 100), self.min_feats_num)
+        if self.verbose:
+            print(&#34;Picked variable number:&#34;, self.feats_num)
 
     # Applying select K-best
-    bestFeatures = SelectKBest(score_func=f_regression, k=var_num)
+    bestFeatures = SelectKBest(score_func=f_regression, k=self.feats_num)
     self.fitted_selector = bestFeatures.fit(x, y)
     self.scores_ = self.fitted_selector.scores_
     self.feats_indices = bestFeatures.get_support()</code></pre>
@@ -662,33 +716,50 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 </dd>
 <dt id="water_security.classification.feature_selection.FeatureSelectionAndGeneration"><code class="flex name class">
 <span>class <span class="ident">FeatureSelectionAndGeneration</span></span>
-<span>(</span><span>apply_selection=True)</span>
+<span>(</span><span>apply_selection=True, feats_num=None, id_columns: List[str] = None, verbose=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Throughout this process, generation of the new features is done by using
-PCA and Polynomial Cross Features algorithm. Once feature generation is done,
-script uses all of the generated and original features as an input to perform
-a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
-score is used since numbers in the risk factors are representing a certain value.
-In the end, only selected feature columns, latitude and longitude columns are returned
-back for further prediction of the NaN values for a specific risk factor.</p></div>
+<div class="desc"><p>Main class for the generation of pipeline.
+The following process is followed:
+0. Imputation of the incoming data. This is done only during transform step, otherwise an assertion error is raised.
+1. Generation of the new features is done by using PCA and Polynomial Cross Features algorithm
+2. All of the generated and original features as an input to perform a feature selection based on the SelectKBest algorithm of the Sklearn, if the
+flag <code>apply_selection</code> is True. F_regression score is used since numbers
+in the risk factors are representing a certain value. The number of the selected features
+is calculated from the dimension of the dataset (15%) if the <code>feats_num</code> is not provided.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
+    &#34;&#34;&#34;Main class for the generation of pipeline.
+    The following process is followed:
+    0. Imputation of the incoming data. This is done only during transform step, otherwise an assertion error is raised.
+    1. Generation of the new features is done by using PCA and Polynomial Cross Features algorithm
+    2. All of the generated and original features as an input to perform a feature selection based on the SelectKBest algorithm of the Sklearn, if the
+    flag `apply_selection` is True. F_regression score is used since numbers
+    in the risk factors are representing a certain value. The number of the selected features
+    is calculated from the dimension of the dataset (15%) if the `feats_num` is not provided.
     &#34;&#34;&#34;
-        Throughout this process, generation of the new features is done by using
-    PCA and Polynomial Cross Features algorithm. Once feature generation is done,
-    script uses all of the generated and original features as an input to perform
-    a feature selection based on the SelectKBest algorithm of the Sklearn. F_regression
-    score is used since numbers in the risk factors are representing a certain value.
-    In the end, only selected feature columns, latitude and longitude columns are returned
-    back for further prediction of the NaN values for a specific risk factor.&#34;&#34;&#34;
 
     # Determine the columns that needs to be substracted before the feature generation
-    def __init__(self, apply_selection=True):
-        self.id_columns = [
+    def __init__(
+        self,
+        apply_selection=True,
+        feats_num=None,
+        id_columns: List[str] = None,
+        verbose=False,
+    ):
+        if id_columns is None:
+            id_columns = []
+        self.id_columns = id_columns
+        self.feats_num = feats_num
+        self.inp_feats_names: List[str] = []
+        self.verbose = verbose
+        self.imputer = KNNImputer(n_neighbors=5)
+        self.feats_to_skip_selection = [
+            &#34;population_1k_density&#34;,
+            &#34;elevation&#34;,
             &#34;latitude&#34;,
             &#34;longitude&#34;,
         ]
@@ -702,44 +773,51 @@ back for further prediction of the NaN values for a specific risk factor.</p></d
                     FeatureUnion(
                         [
                             (&#34;scaled&#34;, DummyTransformer()),
-                            (&#34;pca&#34;, PCAWrapper()),
+                            (&#34;pca&#34;, PCAWrapper(verbose=self.verbose)),
                             (&#34;pop_poly&#34;, ColumnSubstringPolynomial(&#34;population&#34;)),
                             (&#34;perc_poly&#34;, ColumnSubstringPolynomial(&#34;%&#34;)),
                         ]
                     ),
                 ),
-                (&#34;selection&#34;, FeatureSelection()),
             ]
         )
-        self.feat_names = None
+        self.feature_selection = FeatureSelection(
+            feats_num=self.feats_num, verbose=self.verbose
+        )
+        self.feat_names: List[str] = []
+        if self.feats_num is not None:
+            apply_selection = True
         self.apply_selection = apply_selection
 
-        # If feature selection is not applied, you can remove the steps from the pipeline.
-        # Flexible solution to remove the unwanted steps
-        if not apply_selection:
-            self.pipeline.steps.pop(2)
-
-    # Splitting the initial dataset columns into two, for further processing
     def split(self, data):
+        &#34;&#34;&#34;
+        Splitting the initial dataset columns into two, for further processing
+        &#34;&#34;&#34;
         return (
             data[self.id_columns],
             data[[col for col in data.columns.values if col not in self.id_columns]],
         )
 
-    # General order of the feature selection and generation process is defined here
-    def fit(self, x_data, y_data):
+    def fit(self, x_data: pd.DataFrame, y_data: Iterable):
         &#34;&#34;&#34;
         Fits to nxm features x_data and n predictions y_data
+        Both dataframes must carry only numeric values
         &#34;&#34;&#34;
+        x_data = x_data.copy()
+        assert np.all(~x_data.isnull())
+        self.inp_feats_names = x_data.columns.tolist()
+        x_data[:] = self.imputer.fit_transform(x_data)
+
         _, x_data = self.split(x_data)
         self.pipeline.fit(x_data, y_data)
         columns = self.pipeline.named_steps[&#34;generation&#34;].get_feature_names()
         dfcolumns = pd.DataFrame(columns)
-
+        self.feat_names = columns
         # If feature selection process is wanted
         if self.apply_selection:
-            dfscores = pd.DataFrame(self.pipeline.named_steps[&#34;selection&#34;].scores_)
-            feats_indices = self.pipeline.named_steps[&#34;selection&#34;].feats_indices
+            self.feature_selection.fit(self.pipeline.transform(x_data), y_data)
+            dfscores = pd.DataFrame(self.feature_selection.scores_)
+            feats_indices = self.feature_selection.feats_indices
             # print(dfscores)
 
             # Concat two dataframes for better visualization
@@ -747,29 +825,61 @@ back for further prediction of the NaN values for a specific risk factor.</p></d
             featureScores.columns = [&#34;Specs&#34;, &#34;Score&#34;]
 
             # Print defined amount of features according to the assigned scores with descending order
-            print(
-                &#34;Features select \n&#34;,
-                featureScores.iloc[feats_indices]
-                .sort_values(&#34;Score&#34;, ascending=False)
-                .to_markdown(),
-            )
-            self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
+            if self.verbose:
+                print(
+                    &#34;Features select \n&#34;,
+                    featureScores.iloc[feats_indices]
+                    .sort_values(&#34;Score&#34;, ascending=False)
+                    .to_markdown(),
+                )
+            self.selected_feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         else:
-            self.feat_names = columns
+            self.selected_feat_names = columns
         return self
 
-    # Only return the designated features in addition to the removed features
-    # at the beginning of the pipeline process
-    def transform(self, x_data):
+    def transform(self, x_data: Union[pd.DataFrame, pd.Series]):
         &#34;&#34;&#34;
-        Transforms x_data from nxm to kxm
+        Transforms `x_data` from nxm to nxk
+        Only return the designated features in addition to the removed features
+        at the beginning of the pipeline process
         &#34;&#34;&#34;
-        labs, x_data = self.split(x_data)
-        new_x_data = pd.DataFrame(
-            self.pipeline.transform(x_data), columns=self.feat_names
-        )
+        is_series = isinstance(x_data, pd.Series)
+        if is_series:
+            x_data = pd.DataFrame(x_data).transpose()
+        missing_feats = [
+            x
+            for x in self.inp_feats_names
+            if x
+            not in (
+                x_data.columns if isinstance(x_data, pd.DataFrame) else x_data.index
+            )
+        ]
+        x_data = x_data.copy()
+        if missing_feats:
+            print(
+                f&#34;Warning: Missing feature(s): \n{missing_feats}\nThey are going to be imputed.&#34;
+            )
+            for f in missing_feats:
+                x_data[f] = None
+        x_data = x_data[self.inp_feats_names].copy()
+        x_data[:] = self.imputer.transform(x_data)
 
-        return pd.concat([labs, new_x_data], axis=1)</code></pre>
+        labs, x_data = self.split(x_data)
+        transformed = self.pipeline.transform(x_data)
+        if self.apply_selection:
+            selected = self.feature_selection.transform(transformed)
+            new_x_data = pd.DataFrame(selected, columns=self.selected_feat_names)
+
+            for fname in self.feats_to_skip_selection:
+                fname = f&#34;scaled__{fname}&#34;
+                if fname not in self.selected_feat_names:
+                    new_x_data[fname] = transformed[:, self.feat_names.index(fname)]
+        else:
+            new_x_data = pd.DataFrame(transformed, columns=self.feat_names)
+        new_x_data.index = labs.index
+
+        ret = pd.concat([labs, new_x_data], axis=1)
+        return ret</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -779,27 +889,35 @@ back for further prediction of the NaN values for a specific risk factor.</p></d
 <h3>Methods</h3>
 <dl>
 <dt id="water_security.classification.feature_selection.FeatureSelectionAndGeneration.fit"><code class="name flex">
-<span>def <span class="ident">fit</span></span>(<span>self, x_data, y_data)</span>
+<span>def <span class="ident">fit</span></span>(<span>self, x_data: pandas.core.frame.DataFrame, y_data: Iterable)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Fits to nxm features x_data and n predictions y_data</p></div>
+<div class="desc"><p>Fits to nxm features x_data and n predictions y_data
+Both dataframes must carry only numeric values</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def fit(self, x_data, y_data):
+<pre><code class="python">def fit(self, x_data: pd.DataFrame, y_data: Iterable):
     &#34;&#34;&#34;
     Fits to nxm features x_data and n predictions y_data
+    Both dataframes must carry only numeric values
     &#34;&#34;&#34;
+    x_data = x_data.copy()
+    assert np.all(~x_data.isnull())
+    self.inp_feats_names = x_data.columns.tolist()
+    x_data[:] = self.imputer.fit_transform(x_data)
+
     _, x_data = self.split(x_data)
     self.pipeline.fit(x_data, y_data)
     columns = self.pipeline.named_steps[&#34;generation&#34;].get_feature_names()
     dfcolumns = pd.DataFrame(columns)
-
+    self.feat_names = columns
     # If feature selection process is wanted
     if self.apply_selection:
-        dfscores = pd.DataFrame(self.pipeline.named_steps[&#34;selection&#34;].scores_)
-        feats_indices = self.pipeline.named_steps[&#34;selection&#34;].feats_indices
+        self.feature_selection.fit(self.pipeline.transform(x_data), y_data)
+        dfscores = pd.DataFrame(self.feature_selection.scores_)
+        feats_indices = self.feature_selection.feats_indices
         # print(dfscores)
 
         # Concat two dataframes for better visualization
@@ -807,15 +925,16 @@ back for further prediction of the NaN values for a specific risk factor.</p></d
         featureScores.columns = [&#34;Specs&#34;, &#34;Score&#34;]
 
         # Print defined amount of features according to the assigned scores with descending order
-        print(
-            &#34;Features select \n&#34;,
-            featureScores.iloc[feats_indices]
-            .sort_values(&#34;Score&#34;, ascending=False)
-            .to_markdown(),
-        )
-        self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
+        if self.verbose:
+            print(
+                &#34;Features select \n&#34;,
+                featureScores.iloc[feats_indices]
+                .sort_values(&#34;Score&#34;, ascending=False)
+                .to_markdown(),
+            )
+        self.selected_feat_names = featureScores.iloc[feats_indices].Specs.tolist()
     else:
-        self.feat_names = columns
+        self.selected_feat_names = columns
     return self</code></pre>
 </details>
 </dd>
@@ -823,12 +942,15 @@ back for further prediction of the NaN values for a specific risk factor.</p></d
 <span>def <span class="ident">split</span></span>(<span>self, data)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Splitting the initial dataset columns into two, for further processing</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def split(self, data):
+    &#34;&#34;&#34;
+    Splitting the initial dataset columns into two, for further processing
+    &#34;&#34;&#34;
     return (
         data[self.id_columns],
         data[[col for col in data.columns.values if col not in self.id_columns]],
@@ -836,30 +958,66 @@ back for further prediction of the NaN values for a specific risk factor.</p></d
 </details>
 </dd>
 <dt id="water_security.classification.feature_selection.FeatureSelectionAndGeneration.transform"><code class="name flex">
-<span>def <span class="ident">transform</span></span>(<span>self, x_data)</span>
+<span>def <span class="ident">transform</span></span>(<span>self, x_data: Union[pandas.core.frame.DataFrame, pandas.core.series.Series])</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Transforms x_data from nxm to kxm</p></div>
+<div class="desc"><p>Transforms <code>x_data</code> from nxm to nxk
+Only return the designated features in addition to the removed features
+at the beginning of the pipeline process</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def transform(self, x_data):
+<pre><code class="python">def transform(self, x_data: Union[pd.DataFrame, pd.Series]):
     &#34;&#34;&#34;
-    Transforms x_data from nxm to kxm
+    Transforms `x_data` from nxm to nxk
+    Only return the designated features in addition to the removed features
+    at the beginning of the pipeline process
     &#34;&#34;&#34;
-    labs, x_data = self.split(x_data)
-    new_x_data = pd.DataFrame(
-        self.pipeline.transform(x_data), columns=self.feat_names
-    )
+    is_series = isinstance(x_data, pd.Series)
+    if is_series:
+        x_data = pd.DataFrame(x_data).transpose()
+    missing_feats = [
+        x
+        for x in self.inp_feats_names
+        if x
+        not in (
+            x_data.columns if isinstance(x_data, pd.DataFrame) else x_data.index
+        )
+    ]
+    x_data = x_data.copy()
+    if missing_feats:
+        print(
+            f&#34;Warning: Missing feature(s): \n{missing_feats}\nThey are going to be imputed.&#34;
+        )
+        for f in missing_feats:
+            x_data[f] = None
+    x_data = x_data[self.inp_feats_names].copy()
+    x_data[:] = self.imputer.transform(x_data)
 
-    return pd.concat([labs, new_x_data], axis=1)</code></pre>
+    labs, x_data = self.split(x_data)
+    transformed = self.pipeline.transform(x_data)
+    if self.apply_selection:
+        selected = self.feature_selection.transform(transformed)
+        new_x_data = pd.DataFrame(selected, columns=self.selected_feat_names)
+
+        for fname in self.feats_to_skip_selection:
+            fname = f&#34;scaled__{fname}&#34;
+            if fname not in self.selected_feat_names:
+                new_x_data[fname] = transformed[:, self.feat_names.index(fname)]
+    else:
+        new_x_data = pd.DataFrame(transformed, columns=self.feat_names)
+    new_x_data.index = labs.index
+
+    ret = pd.concat([labs, new_x_data], axis=1)
+    return ret</code></pre>
 </details>
 </dd>
 </dl>
 </dd>
 <dt id="water_security.classification.feature_selection.PCAWrapper"><code class="flex name class">
 <span>class <span class="ident">PCAWrapper</span></span>
+<span>(</span><span>verbose=False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Base class for all estimators in scikit-learn.</p>
@@ -874,19 +1032,69 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 <pre><code class="python">class PCAWrapper(BaseEstimator, TransformerMixin):
 
     # Initializing necessary variables for performing the PCA
-    def __init__(self):
+    def __init__(self, verbose=False):
         self.num_components = 10
+        self.verbose = verbose
         self.pca = PCA(n_components=self.num_components)
         self.component_cols = [&#34;PC&#34; + str(i + 1) for i in range(self.num_components)]
 
     # Fit the data to Principle Component Generator, return insight regarding the
     # first 10 principle components of the dataset
-    def fit(self, X, y):
+    def fit(self, X: Union[pd.DataFrame, np.ndarray], y=None):
         self.pca.fit(X)
         percentage_list = [
             element * 100 for element in self.pca.explained_variance_ratio_
         ]
+        if self.verbose:
+            print(
+                &#34;Explained variation percentage per principal component: {}&#34;.format(
+                    percentage_list
+                )
+            )
+            total_explained_percentage = sum(self.pca.explained_variance_ratio_) * 100
+            print(
+                &#34;Total percentage of the explained data by&#34;,
+                self.pca.n_components,
+                &#34;components is: %.2f&#34; % total_explained_percentage,
+            )
+            print(
+                &#34;Percentage of the information that is lost for using&#34;,
+                self.pca.n_components,
+                &#34;components is: %.2f&#34; % (100 - total_explained_percentage),
+            )
+        return self
 
+    # Return the dataframe of generated first 10 Principle Components
+    def transform(self, X: np.ndarray) -&gt; pd.DataFrame:
+        pca_ret = self.pca.transform(X)
+        return pd.DataFrame(data=pca_ret, columns=self.component_cols)
+
+    # Get the name of the Principle Components
+    def get_feature_names(self) -&gt; List[str]:
+        return self.component_cols</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>sklearn.base.BaseEstimator</li>
+<li>sklearn.base.TransformerMixin</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="water_security.classification.feature_selection.PCAWrapper.fit"><code class="name flex">
+<span>def <span class="ident">fit</span></span>(<span>self, X: Union[pandas.core.frame.DataFrame, numpy.ndarray], y=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fit(self, X: Union[pd.DataFrame, np.ndarray], y=None):
+    self.pca.fit(X)
+    percentage_list = [
+        element * 100 for element in self.pca.explained_variance_ratio_
+    ]
+    if self.verbose:
         print(
             &#34;Explained variation percentage per principal component: {}&#34;.format(
                 percentage_list
@@ -903,60 +1111,11 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
             self.pca.n_components,
             &#34;components is: %.2f&#34; % (100 - total_explained_percentage),
         )
-        return self
-
-    # Return the dataframe of generated first 10 Principle Components
-    def transform(self, X):
-        pca_ret = self.pca.transform(X)
-        return pd.DataFrame(data=pca_ret, columns=self.component_cols)
-
-    # Get the name of the Principle Components
-    def get_feature_names(self):
-        return self.component_cols</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li>sklearn.base.BaseEstimator</li>
-<li>sklearn.base.TransformerMixin</li>
-</ul>
-<h3>Methods</h3>
-<dl>
-<dt id="water_security.classification.feature_selection.PCAWrapper.fit"><code class="name flex">
-<span>def <span class="ident">fit</span></span>(<span>self, X, y)</span>
-</code></dt>
-<dd>
-<div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def fit(self, X, y):
-    self.pca.fit(X)
-    percentage_list = [
-        element * 100 for element in self.pca.explained_variance_ratio_
-    ]
-
-    print(
-        &#34;Explained variation percentage per principal component: {}&#34;.format(
-            percentage_list
-        )
-    )
-    total_explained_percentage = sum(self.pca.explained_variance_ratio_) * 100
-    print(
-        &#34;Total percentage of the explained data by&#34;,
-        self.pca.n_components,
-        &#34;components is: %.2f&#34; % total_explained_percentage,
-    )
-    print(
-        &#34;Percentage of the information that is lost for using&#34;,
-        self.pca.n_components,
-        &#34;components is: %.2f&#34; % (100 - total_explained_percentage),
-    )
     return self</code></pre>
 </details>
 </dd>
 <dt id="water_security.classification.feature_selection.PCAWrapper.get_feature_names"><code class="name flex">
-<span>def <span class="ident">get_feature_names</span></span>(<span>self)</span>
+<span>def <span class="ident">get_feature_names</span></span>(<span>self) ‑> List[str]</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -964,12 +1123,12 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_feature_names(self):
+<pre><code class="python">def get_feature_names(self) -&gt; List[str]:
     return self.component_cols</code></pre>
 </details>
 </dd>
 <dt id="water_security.classification.feature_selection.PCAWrapper.transform"><code class="name flex">
-<span>def <span class="ident">transform</span></span>(<span>self, X)</span>
+<span>def <span class="ident">transform</span></span>(<span>self, X: numpy.ndarray) ‑> pandas.core.frame.DataFrame</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -977,7 +1136,7 @@ arguments (no <code>*args</code> or <code>**kwargs</code>).</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def transform(self, X):
+<pre><code class="python">def transform(self, X: np.ndarray) -&gt; pd.DataFrame:
     pca_ret = self.pca.transform(X)
     return pd.DataFrame(data=pca_ret, columns=self.component_cols)</code></pre>
 </details>

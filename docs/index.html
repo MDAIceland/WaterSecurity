@@ -25,16 +25,18 @@ The current climate change scenario predicts that almost half of the world’s p
 <section id="section-intro">
 <h2 id="water-security-iceland">Water Security - Iceland</h2>
 <p>The current climate change scenario predicts that almost half of the world’s population will live in areas of high water stress by 2050 with limited access to fresh clean water. Governments, national, and international institutions, as well as water management companies, are looking for solutions that can address this growing global water demand. Cities are encouraged to take action on water security, to build resilience to water scarcity and manage this finite resource for the future.</p>
-<p>This project aims to look at and predict the water securiy around the world. It contains a preprocessing, a model, an a web-application.</p>
-<h4 id="in-order-to-get-the-final-dataset-from-the-preprocessing-the-following-notebooks-have-to-be-executed-in-the-given-order">In order to get the final dataset from the preprocessing the following notebooks have to be executed in the given order:</h4>
+<p>Based on financial, educational, environmental and demographical data, this project aims to display and predict the water security risks around the world. In order to do so, a Regression Machine Learning pipeline is deployed per risk category (e.g. risk of higher water prices or risk of declining water quality), and a forecast of that risk's severity is made. The regression model is based on engineered and selected features from the data mentioned above.</p>
+<p><strong>The final dataset is already created, but if needed, can be generated again by running the following notebooks in the given order:</strong></p>
 <ol>
-<li>prep_hdro_v2.ipynb</li>
-<li>combine_unlabeled.ipynb</li>
-<li>Dataset Normalization and Imputation.ipynb</li>
-<li>Cities Test Set Processing.ipynb</li>
-<li>Merge Unlabeled to Labeled.ipynb</li>
-<li>CitiesPopulationDensity.ipynb</li>
+<li><a href="notebooks/prep_hdro_v2.html">prep_hdro_v2</a></li>
+<li><a href="notebooks/combine_unlabeled.html">combine_unlabeled</a></li>
+<li><a href="notebooks/Dataset Normalization and Imputation.html">Dataset Normalization and Imputation</a></li>
+<li><a href="notebooks/Cities Test Set Processing.html">Cities Test Set Processing</a></li>
+<li><a href="notebooks/Merge Unlabeled to Labeled.html">Merge Unlabeled to Labeled</a></li>
+<li><a href="notebooks/CitiesPopulationDensity.html">CitiesPopulationDensity</a></li>
+<li><a href="notebooks/Cities Elevation.html">Cities Elevation</a></li>
 </ol>
+<p>In order to generate a classification report run the <a href="notebooks/Classification Outcome Visualization.html">Classification Outcome Visualization.ipynb</a> notebook.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -43,15 +45,19 @@ The current climate change scenario predicts that almost half of the world’s p
 ## Water Security - Iceland
 The current climate change scenario predicts that almost half of the world’s population will live in areas of high water stress by 2050 with limited access to fresh clean water. Governments, national, and international institutions, as well as water management companies, are looking for solutions that can address this growing global water demand. Cities are encouraged to take action on water security, to build resilience to water scarcity and manage this finite resource for the future.
 
-This project aims to look at and predict the water securiy around the world. It contains a preprocessing, a model, an a web-application.
+Based on financial, educational, environmental and demographical data, this project aims to display and predict the water security risks around the world. In order to do so, a Regression Machine Learning pipeline is deployed per risk category (e.g. risk of higher water prices or risk of declining water quality), and a forecast of that risk&#39;s severity is made. The regression model is based on engineered and selected features from the data mentioned above.
 
-#### In order to get the final dataset from the preprocessing the following notebooks have to be executed in the given order: 
-1. prep_hdro_v2.ipynb
-2. combine_unlabeled.ipynb
-3. Dataset Normalization and Imputation.ipynb
-4. Cities Test Set Processing.ipynb
-5. Merge Unlabeled to Labeled.ipynb
-6. CitiesPopulationDensity.ipynb
+**The final dataset is already created, but if needed, can be generated again by running the following notebooks in the given order:**
+
+1. [prep_hdro_v2](notebooks/prep_hdro_v2.html)
+2. [combine_unlabeled](notebooks/combine_unlabeled.html)
+3. [Dataset Normalization and Imputation](notebooks/Dataset Normalization and Imputation.html)
+4. [Cities Test Set Processing](notebooks/Cities Test Set Processing.html)
+5. [Merge Unlabeled to Labeled](notebooks/Merge Unlabeled to Labeled.html)
+6. [CitiesPopulationDensity](notebooks/CitiesPopulationDensity.html)
+7. [Cities Elevation](notebooks/Cities Elevation.html)
+
+In order to generate a classification report run the [Classification Outcome Visualization.ipynb](notebooks/Classification Outcome Visualization.html) notebook.
 &#34;&#34;&#34;</code></pre>
 </details>
 </section>
@@ -60,7 +66,8 @@ This project aims to look at and predict the water securiy around the world. It 
 <dl>
 <dt><code class="name"><a title="water_security.classification" href="classification/index.html">water_security.classification</a></code></dt>
 <dd>
-<div class="desc"><p>The classification module contains classes for risk prediction.</p></div>
+<div class="desc"><p>Classification
+The classification module contains classes for risk prediction …</p></div>
 </dd>
 <dt><code class="name"><a title="water_security.labeled_preprocessing" href="labeled_preprocessing/index.html">water_security.labeled_preprocessing</a></code></dt>
 <dd>
@@ -91,10 +98,7 @@ The …</p></div>
 <h1>Index</h1>
 <div class="toc">
 <ul>
-<li><a href="#water-security-iceland">Water Security - Iceland</a><ul>
-<li><a href="#in-order-to-get-the-final-dataset-from-the-preprocessing-the-following-notebooks-have-to-be-executed-in-the-given-order">In order to get the final dataset from the preprocessing the following notebooks have to be executed in the given order:</a></li>
-</ul>
-</li>
+<li><a href="#water-security-iceland">Water Security - Iceland</a></li>
 </ul>
 </div>
 <ul id="index">

@@ -293,6 +293,16 @@ class PlaceInfo(TypedDict):
     code: str
 
 
+def get_elevation(latitude: float, longitude: float):
+    &#34;&#34;&#34;
+    Returns coarse modeled elevation from gtopo30 for a specific latitude and longitude
+    &#34;&#34;&#34;
+    req = requests.get(
+        f&#34;http://api.geonames.org/gtopo30?lat={latitude}&amp;lng={longitude}&amp;username=vaslem&#34;
+    )
+    return int(req.text)
+
+
 def get_place(latitude: float, longitude: float) -&gt; PlaceInfo:
     &#34;&#34;&#34;
     Returns city, country and country 3-letter code, given latitude and longitude
@@ -508,6 +518,25 @@ with a specific bounding box pixels_width, pixels_height, and return them</p></d
         return dataset.read(window=window)</code></pre>
 </details>
 </dd>
+<dt id="water_security.utils.geo.get_elevation"><code class="name flex">
+<span>def <span class="ident">get_elevation</span></span>(<span>latitude: float, longitude: float)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns coarse modeled elevation from gtopo30 for a specific latitude and longitude</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_elevation(latitude: float, longitude: float):
+    &#34;&#34;&#34;
+    Returns coarse modeled elevation from gtopo30 for a specific latitude and longitude
+    &#34;&#34;&#34;
+    req = requests.get(
+        f&#34;http://api.geonames.org/gtopo30?lat={latitude}&amp;lng={longitude}&amp;username=vaslem&#34;
+    )
+    return int(req.text)</code></pre>
+</details>
+</dd>
 <dt id="water_security.utils.geo.get_place"><code class="name flex">
 <span>def <span class="ident">get_place</span></span>(<span>latitude: float, longitude: float) ‑> <a title="water_security.utils.geo.PlaceInfo" href="#water_security.utils.geo.PlaceInfo">PlaceInfo</a></span>
 </code></dt>
@@ -628,6 +657,7 @@ dict(one=1, two=2)</p></div>
 <li><code><a title="water_security.utils.geo.check_1k_population_density_source" href="#water_security.utils.geo.check_1k_population_density_source">check_1k_population_density_source</a></code></li>
 <li><code><a title="water_security.utils.geo.get_average_1k_population_density" href="#water_security.utils.geo.get_average_1k_population_density">get_average_1k_population_density</a></code></li>
 <li><code><a title="water_security.utils.geo.get_coordinate_pixel" href="#water_security.utils.geo.get_coordinate_pixel">get_coordinate_pixel</a></code></li>
+<li><code><a title="water_security.utils.geo.get_elevation" href="#water_security.utils.geo.get_elevation">get_elevation</a></code></li>
 <li><code><a title="water_security.utils.geo.get_place" href="#water_security.utils.geo.get_place">get_place</a></code></li>
 <li><code><a title="water_security.utils.geo.is_close" href="#water_security.utils.geo.is_close">is_close</a></code></li>
 </ul>
