@@ -13262,22 +13262,27 @@ div#notebook {
     <span class="n">markers</span> <span class="o">=</span> <span class="n">markers</span> <span class="o">+</span> <span class="p">(</span><span class="n">marker</span><span class="p">,)</span>
     
 <span class="kn">from</span> <span class="nn">utils.geo</span> <span class="kn">import</span> <span class="n">check_1k_population_density_source</span>
+<span class="kn">from</span> <span class="nn">utils.download</span> <span class="kn">import</span> <span class="n">DOWNLOAD_PROGRESS_</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">queues</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">def</span> <span class="nf">on_download</span><span class="p">(</span><span class="n">coords</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
             <span class="n">m</span><span class="o">.</span><span class="n">remove_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
-            <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Still Downloading..&quot;</span><span class="p">)</span>
+            <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Still Downloading.. </span><span class="si">{</span><span class="n">queues</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">dpopup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">coords</span>
             <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="n">threads</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-    <span class="n">dthread</span> <span class="o">=</span> <span class="n">check_1k_population_density_source</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">dthread</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">queues</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">check_1k_population_density_source</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dthread</span><span class="p">,</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">ret</span>
         <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dthread</span><span class="p">)</span>
+        <span class="n">queues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
         <span class="n">dpopup</span><span class="o">.</span><span class="n">child</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Downloading required resource..&quot;</span><span class="p">)</span>
         <span class="n">dpopup</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">coords</span>
         <span class="n">m</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">dpopup</span><span class="p">)</span>
@@ -13329,24 +13334,6 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Loaded model from water_security/data/model/model.pkl.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13354,12 +13341,24 @@ div#notebook {
 <h2 id="Instructions">Instructions<a class="anchor-link" href="#Instructions">&#182;</a></h2><h3 id="Click-on-clouds-of-cities-to-expand-or-hover-over-single-points-to-view-risks">Click on clouds of cities to expand or hover over single points to view risks<a class="anchor-link" href="#Click-on-clouds-of-cities-to-expand-or-hover-over-single-points-to-view-risks">&#182;</a></h3><ul>
 <li>Risks shown in black are result of ground truth</li>
 <li>Risks shown in blue are result of prediction</li>
+<li>The documented risks are the following:<ul>
+<li>Higher water prices</li>
+<li>Inadequate or aging infrastructure</li>
+<li>Increased water stress or scarcity</li>
+<li>Declining water quality</li>
+<li>Increased water demand</li>
+<li>Regulatory</li>
+<li>Energy supply issues</li>
 </ul>
-<h3 id="Click-on-the-map-for-online-prediction.-Click-the-created-red-dot-to-remove.">Click on the map for online prediction. Click the created red dot to remove.<a class="anchor-link" href="#Click-on-the-map-for-online-prediction.-Click-the-created-red-dot-to-remove.">&#182;</a></h3><ul>
+</li>
+<li>The Risks can have one of the following levels: Less Serious, Serious, Extremely Serious. If there is a risk not mentioned, then it has been determined that there is no such risk for the prediction point.</li>
+</ul>
+<h3 id="Click-on-the-map-to-get-online-prediction.-Click-the-created-red-dot-to-remove.">Click on the map to get online prediction. Click the created red dot to remove.<a class="anchor-link" href="#Click-on-the-map-to-get-online-prediction.-Click-the-created-red-dot-to-remove.">&#182;</a></h3><ul>
 <li>In this view the features SHAP values can also be seen for the predictions by clicking on the "Details" tab.</li>
 <li>The details can only be accessed only on the first click. Once you click on a different location or close the window, only hover can be done for that point.</li>
+<li>There will be a short delay between the click and the appearance of the red dot/information</li>
 </ul>
-<p>(For online prediction, a file containing population densities is required to be downloaded, which is ~700MB in size)</p>
+<p><strong>(For online prediction, a file containing population densities is required to be downloaded, which is ~900MB in size)</strong></p>
 
 </div>
 </div>
@@ -13377,35 +13376,6 @@ div#notebook {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
- 
- 
-<div id="a882ada8-d7d2-4c99-841e-435990ee9b04"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#a882ada8-d7d2-4c99-841e-435990ee9b04');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "be829d06be304f0dbe346847a4ef1a7b", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-
-</div>
-
 </div>
 </div>
 

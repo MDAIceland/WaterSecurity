@@ -26,7 +26,10 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import urllib
+<pre><code class="python">import threading
+import urllib
+from typing import Tuple
+
 from utils.notebook import isnotebook
 
 if isnotebook:
@@ -34,41 +37,68 @@ if isnotebook:
 else:
     from tqdm import tqdm
 
+from collections import deque
+
 
 class DownloadProgressBar(tqdm):
     &#34;&#34;&#34;
     Progress Bar for downloading purposes
     &#34;&#34;&#34;
 
+    def __init__(self, *args, download_queue=None, **kwargs):
+        self.download_queue = download_queue
+        self.cnt = 0
+        super().__init__(self, *args, **kwargs)
+
     def update_to(self, b=1, bsize=1, tsize=None):
+        global DOWNLOAD_PROGRESS_
         if tsize is not None:
             self.total = tsize
+
         self.update(b * bsize - self.n)
+        self.cnt += bsize
+        if self.download_queue is not None:
+            self.download_queue.append(
+                f&#34;{round(100*self.cnt/1024**2)/100}MB/{round(100*self.total/1024**2)/100}MB&#34;
+            )
 
 
-def download_url_while_in_notebook(url, output_path):
-    import threading
+def download_url_while_in_notebook(url, output_path) -&gt; Tuple[threading.Thread, deque]:
+    &#34;&#34;&#34;
+    Returns download thread and list that contains download progress string
+    &#34;&#34;&#34;
     from IPython.display import display
 
+    queue = deque(maxlen=10)
     progress = DownloadProgressBar(
-        unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
+        unit=&#34;B&#34;,
+        unit_scale=True,
+        miniters=1,
+        desc=url.split(&#34;/&#34;)[-1],
+        download_queue=queue,
     )
-
     thread = threading.Thread(
-        target=download_url_while_not_in_notebook, args=(url, output_path, progress)
+        target=download_url_while_not_in_notebook,
+        args=(url, output_path, progress),
     )
-    display(progress)
     thread.start()
-    return thread
+    display(progress)
+    return thread, queue
 
 
-def download_url_while_not_in_notebook(url: str, output_path: str, widget=None) -&gt; None:
+def download_url_while_not_in_notebook(
+    url: str, output_path: str, widget=None, queue=None
+) -&gt; None:
     &#34;&#34;&#34;
     Download a file from a url and save it to the provided output path
     &#34;&#34;&#34;
     if widget is None:
         widget = DownloadProgressBar(
-            unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
+            unit=&#34;B&#34;,
+            unit_scale=True,
+            miniters=1,
+            desc=url.split(&#34;/&#34;)[-1],
+            download_queue=queue,
         )
     with widget as t:
         urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
@@ -88,57 +118,71 @@ else:
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="water_security.utils.download.download_url"><code class="name flex">
-<span>def <span class="ident">download_url</span></span>(<span>url, output_path)</span>
+<span>def <span class="ident">download_url</span></span>(<span>url, output_path) ‑> Tuple[threading.Thread, collections.deque]</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Returns download thread and list that contains download progress string</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def download_url_while_in_notebook(url, output_path):
-    import threading
+<pre><code class="python">def download_url_while_in_notebook(url, output_path) -&gt; Tuple[threading.Thread, deque]:
+    &#34;&#34;&#34;
+    Returns download thread and list that contains download progress string
+    &#34;&#34;&#34;
     from IPython.display import display
 
+    queue = deque(maxlen=10)
     progress = DownloadProgressBar(
-        unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
+        unit=&#34;B&#34;,
+        unit_scale=True,
+        miniters=1,
+        desc=url.split(&#34;/&#34;)[-1],
+        download_queue=queue,
     )
-
     thread = threading.Thread(
-        target=download_url_while_not_in_notebook, args=(url, output_path, progress)
+        target=download_url_while_not_in_notebook,
+        args=(url, output_path, progress),
     )
-    display(progress)
     thread.start()
-    return thread</code></pre>
+    display(progress)
+    return thread, queue</code></pre>
 </details>
 </dd>
 <dt id="water_security.utils.download.download_url_while_in_notebook"><code class="name flex">
-<span>def <span class="ident">download_url_while_in_notebook</span></span>(<span>url, output_path)</span>
+<span>def <span class="ident">download_url_while_in_notebook</span></span>(<span>url, output_path) ‑> Tuple[threading.Thread, collections.deque]</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Returns download thread and list that contains download progress string</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def download_url_while_in_notebook(url, output_path):
-    import threading
+<pre><code class="python">def download_url_while_in_notebook(url, output_path) -&gt; Tuple[threading.Thread, deque]:
+    &#34;&#34;&#34;
+    Returns download thread and list that contains download progress string
+    &#34;&#34;&#34;
     from IPython.display import display
 
+    queue = deque(maxlen=10)
     progress = DownloadProgressBar(
-        unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
+        unit=&#34;B&#34;,
+        unit_scale=True,
+        miniters=1,
+        desc=url.split(&#34;/&#34;)[-1],
+        download_queue=queue,
     )
-
     thread = threading.Thread(
-        target=download_url_while_not_in_notebook, args=(url, output_path, progress)
+        target=download_url_while_not_in_notebook,
+        args=(url, output_path, progress),
     )
-    display(progress)
     thread.start()
-    return thread</code></pre>
+    display(progress)
+    return thread, queue</code></pre>
 </details>
 </dd>
 <dt id="water_security.utils.download.download_url_while_not_in_notebook"><code class="name flex">
-<span>def <span class="ident">download_url_while_not_in_notebook</span></span>(<span>url: str, output_path: str, widget=None) ‑> NoneType</span>
+<span>def <span class="ident">download_url_while_not_in_notebook</span></span>(<span>url: str, output_path: str, widget=None, queue=None) ‑> NoneType</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Download a file from a url and save it to the provided output path</p></div>
@@ -146,13 +190,19 @@ else:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def download_url_while_not_in_notebook(url: str, output_path: str, widget=None) -&gt; None:
+<pre><code class="python">def download_url_while_not_in_notebook(
+    url: str, output_path: str, widget=None, queue=None
+) -&gt; None:
     &#34;&#34;&#34;
     Download a file from a url and save it to the provided output path
     &#34;&#34;&#34;
     if widget is None:
         widget = DownloadProgressBar(
-            unit=&#34;B&#34;, unit_scale=True, miniters=1, desc=url.split(&#34;/&#34;)[-1]
+            unit=&#34;B&#34;,
+            unit_scale=True,
+            miniters=1,
+            desc=url.split(&#34;/&#34;)[-1],
+            download_queue=queue,
         )
     with widget as t:
         urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)</code></pre>
@@ -165,7 +215,7 @@ else:
 <dl>
 <dt id="water_security.utils.download.DownloadProgressBar"><code class="flex name class">
 <span>class <span class="ident">DownloadProgressBar</span></span>
-<span>(</span><span>*args, **kwargs)</span>
+<span>(</span><span>*args, download_queue=None, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Progress Bar for downloading purposes</p>
@@ -183,10 +233,22 @@ else:
     Progress Bar for downloading purposes
     &#34;&#34;&#34;
 
+    def __init__(self, *args, download_queue=None, **kwargs):
+        self.download_queue = download_queue
+        self.cnt = 0
+        super().__init__(self, *args, **kwargs)
+
     def update_to(self, b=1, bsize=1, tsize=None):
+        global DOWNLOAD_PROGRESS_
         if tsize is not None:
             self.total = tsize
-        self.update(b * bsize - self.n)</code></pre>
+
+        self.update(b * bsize - self.n)
+        self.cnt += bsize
+        if self.download_queue is not None:
+            self.download_queue.append(
+                f&#34;{round(100*self.cnt/1024**2)/100}MB/{round(100*self.total/1024**2)/100}MB&#34;
+            )</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -206,9 +268,16 @@ else:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def update_to(self, b=1, bsize=1, tsize=None):
+    global DOWNLOAD_PROGRESS_
     if tsize is not None:
         self.total = tsize
-    self.update(b * bsize - self.n)</code></pre>
+
+    self.update(b * bsize - self.n)
+    self.cnt += bsize
+    if self.download_queue is not None:
+        self.download_queue.append(
+            f&#34;{round(100*self.cnt/1024**2)/100}MB/{round(100*self.total/1024**2)/100}MB&#34;
+        )</code></pre>
 </details>
 </dd>
 </dl>
