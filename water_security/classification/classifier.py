@@ -1,6 +1,6 @@
 from typing import Dict
 from sklearn.base import BaseEstimator, RegressorMixin
-import numpy as np
+import pandas as pd
 import xgboost as xgb
 
 
@@ -18,12 +18,18 @@ class Classifier(BaseEstimator, RegressorMixin):
             self._parameters = MODEL_BEST_PARAMS[self.risk]
         return self._parameters
 
-    def fit(self, x_data, y_data):
+    def fit(self, x_data: pd.DataFrame, y_data):
         """
         x_data: the nxm features
         y_data: the n labels, with values 0,1,2 or 3
         """
         self.regressor = xgb.XGBRegressor(**self.parameters).fit(x_data, y_data)
+        self.feature_importances_ = pd.Series(
+            self.regressor.feature_importances_, index=x_data.columns.tolist()
+        )
+        self.feature_importances_ = self.feature_importances_[
+            self.feature_importances_ > 0
+        ].sort_values(ascending=False)
         return self
 
     def predict(self, x_data):

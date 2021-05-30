@@ -216,6 +216,12 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         self.inp_feats_names: List[str] = []
         self.verbose = verbose
         self.imputer = KNNImputer(n_neighbors=5)
+        self.feats_to_skip_selection = [
+            "population_1k_density",
+            "elevation",
+            "latitude",
+            "longitude",
+        ]
 
         # Defining the pipeline order given different classes created for the pipeline process
         self.pipeline = Pipeline(
@@ -232,19 +238,15 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
                         ]
                     ),
                 ),
-                (
-                    "selection",
-                    FeatureSelection(feats_num=self.feats_num, verbose=self.verbose),
-                ),
             ]
         )
-        self.feat_names = None
+        self.feature_selection = FeatureSelection(
+            feats_num=self.feats_num, verbose=self.verbose
+        )
+        self.feat_names: List[str] = []
+        if self.feats_num is not None:
+            apply_selection = True
         self.apply_selection = apply_selection
-
-        # If feature selection is not applied, you can remove the steps from the pipeline.
-        # Flexible solution to remove the unwanted steps
-        if not apply_selection:
-            self.pipeline.steps.pop(2)
 
     def split(self, data):
         """
@@ -269,11 +271,12 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         self.pipeline.fit(x_data, y_data)
         columns = self.pipeline.named_steps["generation"].get_feature_names()
         dfcolumns = pd.DataFrame(columns)
-
+        self.feat_names = columns
         # If feature selection process is wanted
         if self.apply_selection:
-            dfscores = pd.DataFrame(self.pipeline.named_steps["selection"].scores_)
-            feats_indices = self.pipeline.named_steps["selection"].feats_indices
+            self.feature_selection.fit(self.pipeline.transform(x_data), y_data)
+            dfscores = pd.DataFrame(self.feature_selection.scores_)
+            feats_indices = self.feature_selection.feats_indices
             # print(dfscores)
 
             # Concat two dataframes for better visualization
@@ -288,9 +291,9 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
                     .sort_values("Score", ascending=False)
                     .to_markdown(),
                 )
-            self.feat_names = featureScores.iloc[feats_indices].Specs.tolist()
+            self.selected_feat_names = featureScores.iloc[feats_indices].Specs.tolist()
         else:
-            self.feat_names = columns
+            self.selected_feat_names = columns
         return self
 
     def transform(self, x_data: Union[pd.DataFrame, pd.Series]):
@@ -321,9 +324,17 @@ class FeatureSelectionAndGeneration(BaseEstimator, TransformerMixin):
         x_data[:] = self.imputer.transform(x_data)
 
         labs, x_data = self.split(x_data)
-        new_x_data = pd.DataFrame(
-            self.pipeline.transform(x_data), columns=self.feat_names
-        )
+        transformed = self.pipeline.transform(x_data)
+        if self.apply_selection:
+            selected = self.feature_selection.transform(transformed)
+            new_x_data = pd.DataFrame(selected, columns=self.selected_feat_names)
+
+            for fname in self.feats_to_skip_selection:
+                fname = f"scaled__{fname}"
+                if fname not in self.selected_feat_names:
+                    new_x_data[fname] = transformed[:, self.feat_names.index(fname)]
+        else:
+            new_x_data = pd.DataFrame(transformed, columns=self.feat_names)
         new_x_data.index = labs.index
 
         ret = pd.concat([labs, new_x_data], axis=1)
