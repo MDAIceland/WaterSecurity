@@ -6,12 +6,12 @@ Based on financial, educational, environmental and demographical data, this proj
 
 **The final dataset is already created, but if needed, can be generated again by running the following notebooks in the given order:**
 
-1. [prep_hdro_v2.ipynb](notebooks/prep_hdro_v2.html)
-2. [combine_unlabeled.ipynb](notebooks/combine_unlabeled.html)
-3. [Dataset Normalization and Imputation.ipynb](notebooks/Dataset Normalization and Imputation.html)
-4. [Cities Test Set Processing.ipynb](notebooks/Cities Test Set Processing.html)
-5. [Merge Unlabeled to Labeled.ipynb](notebooks/Merge Unlabeled to Labeled.html)
-6. [CitiesPopulationDensity.ipynb](notebooks/CitiesPopulationDensity.html)
+1. [prep_hdro_v2](notebooks/prep_hdro_v2.html)
+2. [combine_unlabeled](notebooks/combine_unlabeled.html)
+3. [Dataset Normalization and Imputation](notebooks/Dataset Normalization and Imputation.html)
+4. [Cities Test Set Processing](notebooks/Cities Test Set Processing.html)
+5. [Merge Unlabeled to Labeled](notebooks/Merge Unlabeled to Labeled.html)
+6. [CitiesPopulationDensity](notebooks/CitiesPopulationDensity.html)
 7. [Cities Elevation](notebooks/Cities Elevation.html)
 
 In order to generate a classification report run the [Classification Outcome Visualization.ipynb](notebooks/Classification Outcome Visualization.html) notebook.
