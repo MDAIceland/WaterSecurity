@@ -13081,7 +13081,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -13107,7 +13107,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">risk</span><span class="p">,</span> <span class="n">importance</span> <span class="ow">in</span> <span class="n">FEATURES_IMPORTANCES</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -13327,7 +13327,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">risk</span><span class="p">,</span><span class="n">metrics</span> <span class="ow">in</span> <span class="n">TRAINING_METRICS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -14584,7 +14584,7 @@ Confusion Matrix:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -15828,15 +15828,142 @@ Confusion Matrix:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Average-MSE-for-training">Average MSE for training<a class="anchor-link" href="#Average-MSE-for-training">&#182;</a></h2>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_mse</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="n">risks</span><span class="p">[</span><span class="n">risk</span><span class="p">]:</span> <span class="n">metric</span><span class="p">[</span><span class="s1">&#39;regression_report&#39;</span><span class="p">][</span><span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">risk</span><span class="p">,</span><span class="n">metric</span> <span class="ow">in</span> <span class="n">TRAINING_METRICS</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">training_mse</span><span class="p">)</span>
+<span class="n">training_mse</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>Higher water prices                   0.581700
+Inadequate or aging infrastructure    0.639898
+Increased water stress or scarcity    0.249674
+Declining water quality               0.671731
+Increased water demand                0.555782
+Regulatory                            0.258317
+Energy supply issues                  0.415226
+dtype: float64</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count    7.000000
+mean     0.481761
+std      0.175490
+min      0.249674
+25%      0.336772
+50%      0.555782
+75%      0.610799
+max      0.671731
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Average-MSE-for-validation">Average MSE for validation<a class="anchor-link" href="#Average-MSE-for-validation">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_mse</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="n">risks</span><span class="p">[</span><span class="n">risk</span><span class="p">]:</span> <span class="n">metric</span><span class="p">[</span><span class="s1">&#39;regression_report&#39;</span><span class="p">][</span><span class="s1">&#39;MSE&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">risk</span><span class="p">,</span><span class="n">metric</span> <span class="ow">in</span> <span class="n">VALIDATION_METRICS</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">valid_mse</span><span class="p">)</span>
+<span class="n">valid_mse</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>Higher water prices                   0.835675
+Inadequate or aging infrastructure    0.756456
+Increased water stress or scarcity    0.287249
+Declining water quality               0.753705
+Increased water demand                0.983377
+Regulatory                            0.665608
+Energy supply issues                  0.784080
+dtype: float64</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count    7.000000
+mean     0.723736
+std      0.215814
+min      0.287249
+25%      0.709657
+50%      0.756456
+75%      0.809878
+max      0.983377
+dtype: float64</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 

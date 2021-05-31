@@ -15,4 +15,6 @@ Based on financial, educational, environmental and demographical data, this proj
 7. [Cities Elevation](notebooks/Cities Elevation.html)
 
 In order to generate a classification report run the [Classification Outcome Visualization.ipynb](notebooks/Classification Outcome Visualization.html) notebook.
+
+To access the classification specific data and to see the notebook that was used to select the parameters of xgboost. See the [classification page](classification/index.html).
 """
