@@ -16,7 +16,7 @@ python generate_documentation.py
 ```
 
 ## Development and Local Deployment
-
+A python version of 3.8 or higher is required to install and deploy this project.
 ### Installing
 To install the required packages run the following command:
 ```
