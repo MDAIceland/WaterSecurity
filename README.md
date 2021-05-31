@@ -32,3 +32,12 @@ When running the app for the first time a 829 MB large image will be downloaded 
 ```
 python run.py
 ```
+## Demo
+
+**Navigate/Hover:**
+![output1](https://user-images.githubusercontent.com/18720200/120207088-46f8eb80-c22c-11eb-9e29-a07f0f0aab53.gif)
+
+**Online predictions:**
+![output2](https://user-images.githubusercontent.com/18720200/120207127-55470780-c22c-11eb-8dd5-86acd73e34b4.gif)
+
+
