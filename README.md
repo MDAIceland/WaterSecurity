@@ -27,10 +27,20 @@ pip install -r requirements.txt
 On windows additional binaries has to be installed for the rasterio package to work.
 The package can be installed using conda or as described in their [documentation](https://rasterio.readthedocs.io/en/latest/installation.html).
 
-### Running the Web App:
+### Running the Web App
 When running the app for the first time a 829 MB large image will be downloaded so it can take some time before online predictions can be made.
 ```
 python run.py
+```
+
+### Running the Web App with Docker
+Pull image with :
+```
+docker pull bajo1207/watersecurity
+```
+Run container with:
+```
+docker run -p 8866:8866 bajo1207/watersecurity
 ```
 ## Demo
 
